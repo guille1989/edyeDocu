@@ -36,21 +36,21 @@ const config = {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en",
-    locales: ["en", "es", "pt"],
+    defaultLocale: "es",
+    locales: ["es", "en", "pt"],
     localeConfigs: {
       es: {
-        label: "Español",
+        label: "🇪🇸 Español",
         direction: "ltr",
         htmlLang: "es-ES",
       },
       en: {
-        label: "English",
+        label: "🇺🇸 English",
         direction: "ltr",
         htmlLang: "en-US",
       },
       pt: {
-        label: "Português",
+        label: "🇧🇷 Português",
         direction: "ltr",
         htmlLang: "pt-BR", // o "pt-PT" para portugués de Portugal
       },
@@ -66,8 +66,7 @@ const config = {
           sidebarPath: "./sidebars.js",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/guille1989/edyeDocu/blob/main/",
         },
         blog: {
           showReadingTime: true,
@@ -77,8 +76,7 @@ const config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/guille1989/edyeDocu/blob/main/",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
@@ -113,6 +111,17 @@ const config = {
             position: "left",
             label: "Edyes Docs",
           },
+          {
+            type: "localeDropdown",
+            position: "right",
+            dropdownItemsAfter: [
+              {
+                type: "html",
+                value: '<hr style="margin: 0.3rem 0;">',
+              },
+            ],
+          },
+
           /*
           { to: "/blog", label: "Blog", position: "left" },
           {

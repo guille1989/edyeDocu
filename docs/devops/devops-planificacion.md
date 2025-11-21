@@ -4,7 +4,7 @@ title: Planificación DevOps
 sidebar_label: Planificación DevOps
 ---
 
-# Procedimiento de Planificación DevOps  
+# Planificación DevOps  
 **Versión:** 1.0  
 **Fecha:** 01/08/2025  
 
@@ -107,5 +107,3 @@ Todas las actividades se gestionan mediante:
 | Categoría | Herramienta | Uso |
 |-----------|-------------|-----|
 | **Gestión** | Monday | Gestión de prioridades, releases, tareas y flujos de trabajo |
-
-|

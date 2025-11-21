@@ -28,3 +28,14 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Personalizar selector de idiomas */
+.navbar__link--locale-dropdown {
+  font-weight: 500;
+}
+
+/* Ocultar texto, mostrar solo banderas */
+.navbar__link--locale-dropdown::after {
+  content: "🌐";
+  margin-left: 0.3rem;
+}

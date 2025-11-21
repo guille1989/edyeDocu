@@ -4,7 +4,7 @@ title: Estrategia DevOps
 sidebar_label: Estrategia DevOps
 ---
 
-# Documentación DevOps — Estrategia  
+# Estrategia DevOps   
 **Versión:** 1.0  
 **Fecha:** 13/10/2025  
 

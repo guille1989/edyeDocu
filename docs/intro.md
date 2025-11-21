@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Edyes-Documentación
 
 La documentación técnica de **Edyes** consolida toda la información necesaria para comprender, desarrollar, mantener y operar el ecosistema tecnológico que sostiene la plataforma. Su objetivo es proporcionar una referencia centralizada, actualizada y estructurada que facilite el trabajo de los equipos de **desarrollo, DevOps, operaciones, QA, producto e integración**.
