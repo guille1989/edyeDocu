@@ -37,22 +37,13 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "es",
-    locales: ["es", "en", "pt"],
+    locales: ["es", "en"],
     localeConfigs: {
       es: {
-        label: "🇪🇸 Español",
-        direction: "ltr",
-        htmlLang: "es-ES",
+        label: "Español",
       },
       en: {
-        label: "🇺🇸 English",
-        direction: "ltr",
-        htmlLang: "en-US",
-      },
-      pt: {
-        label: "🇧🇷 Português",
-        direction: "ltr",
-        htmlLang: "pt-BR", // o "pt-PT" para portugués de Portugal
+        label: "English",
       },
     },
   },
@@ -93,7 +84,6 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
       colorMode: {
         respectPrefersColorScheme: true,
       },
@@ -101,7 +91,7 @@ const config = {
         logo: {
           alt: "Edyes Logo",
           src: "img/edyesLogo.png",
-          href: "/docs/intro", // Link a la primera página de los docs
+          href: "/", // Landing principal de documentación
           target: "_self",
         },
         items: [

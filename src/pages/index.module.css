@@ -3,21 +3,116 @@
  * and scoped locally.
  */
 
-.heroBanner {
+.hero {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: center;
   padding: 4rem 0;
+}
+
+.heroContent h1 {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  margin: 1rem 0;
+}
+
+.heroContent .lead {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1.05rem;
+  max-width: 60ch;
+}
+
+.brand {
+  color: var(--ifm-color-primary);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(46, 133, 85, 0.1);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.action {
+  min-width: 200px;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+}
+
+.heroCard {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(46, 133, 85, 0.08), rgba(46, 133, 85, 0.02));
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.05);
+}
+
+.cardTitle {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.cardList {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.cardFoot {
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.main {
+  padding: 2rem 0 4rem;
+}
+
+.features {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 1rem;
+  background: var(--ifm-background-surface-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card p {
+  color: var(--ifm-color-emphasis-700);
+}
+
+.link {
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--ifm-color-primary);
 }
 
 @media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+  .hero {
+    padding: 2rem 0;
   }
-}
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }

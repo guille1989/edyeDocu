@@ -1,0 +1,22 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Edyes-Arquitectura": {
+    "message": "Edyes-Arquitectura",
+    "description": "Category label in sidebar"
+  },
+  "sidebar.tutorialSidebar.category.Edyes-DevOps": {
+    "message": "Edyes-DevOps",
+    "description": "The label for category 'Edyes-DevOps' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Edyes-Aplicaciones": {
+    "message": "Edyes-Aplicaciones",
+    "description": "Category label in sidebar"
+  },
+  "sidebar.tutorialSidebar.category.Edyes-Integraciones": {
+    "message": "Edyes-Integraciones",
+    "description": "Category label in sidebar"
+  }
+}
