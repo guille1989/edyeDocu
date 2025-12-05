@@ -19,10 +19,10 @@ const featureLinks = [
     href: '/docs/devops/devops-estrategia',
   },
   {
-    title: 'Aplicaciones e integraciones',
+    title: 'Integraciones',
     description:
       'Guia de uso, despliegue y APIs de las soluciones que construyen la experiencia.',
-    href: '/docs/aplicaciones/admin',
+    href: '/docs/integraciones/int-overview',
   },
 ];
 

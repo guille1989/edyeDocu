@@ -1,6 +1,6 @@
 ---
 id: devops-cd
-title: Entrega Continua (CD)
+title: 🔄 Entrega Continua (CD)
 ---
 
 # Entrega Continua (CI)

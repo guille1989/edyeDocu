@@ -17,7 +17,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Edyes-Infraestructura",
+      label: "🗄️ Edyes-Infraestructura",
       items: [
         "infraestructura/indraestructura-production-environment",
         "infraestructura/indraestructura-staging-environment"
@@ -25,7 +25,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Edyes-DevOps",
+      label: "🛠️ Edyes-DevOps",
       items: [
         "devops/devops-estructura",
         "devops/devops-estrategia",
@@ -38,11 +38,12 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Edyes-Integraciones",
+      label: "🔌 Edyes-Integraciones",
       items: [
+        "integraciones/int-overview",
         {
           type: "category",
-          label: "Int-Adobe",
+          label: "🤝 Int-Adobe",
           items: [
             "integraciones/adobe/int-adobe-liberty",
             "integraciones/adobe/int-adobe-claro-puerto-rico",
@@ -50,7 +51,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Int-SAML AUTH",
+          label: "🤝 Int-SAML AUTH",
           items: [
             "integraciones/salm-auth/int-salm-auth-neo-tv"
           ],

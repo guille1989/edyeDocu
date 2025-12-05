@@ -1,5 +1,5 @@
 ---
 id: int-adobe-liberty
-title: Int-ADOBE Librety
-sidebar_label: Integración ADOBE Liberty
+title: Integración ADOBE Liberty
+sidebar_label: 🤝 Int-ADOBE Librety 
 ---

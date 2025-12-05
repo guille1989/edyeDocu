@@ -1,7 +1,7 @@
 ---
 id: devops-planificacion
-title: Planificación DevOps
-sidebar_label: Planificación DevOps
+title: 📃 Planificación DevOps
+sidebar_label: 📃 Planificación DevOps
 ---
 
 # Planificación DevOps  

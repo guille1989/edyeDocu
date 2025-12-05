@@ -87,6 +87,11 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
+      },
       navbar: {
         logo: {
           alt: "Edyes Logo",

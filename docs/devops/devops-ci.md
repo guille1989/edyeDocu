@@ -1,6 +1,6 @@
 ---
 id: devops-ci
-title: Integración Continua (CI)
+title: 🔄 Integración Continua (CI)
 ---
 
 # Integración Continua (CI)

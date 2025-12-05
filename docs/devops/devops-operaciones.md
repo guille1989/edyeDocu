@@ -1,6 +1,6 @@
 ---
 id: devops-operaciones
-title: Operaciones DevOps
+title: 📃 Operaciones DevOps
 ---
 
 # Operaciones DevOps

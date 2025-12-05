@@ -1,7 +1,7 @@
 ---
 id: devops-estrategia
-title: Estrategia DevOps
-sidebar_label: Estrategia DevOps
+title: 📃 Estrategia DevOps
+sidebar_label: 📃 Estrategia DevOps
 ---
 
 # Estrategia DevOps   
