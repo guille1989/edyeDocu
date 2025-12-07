@@ -71,35 +71,112 @@ Cada tecnología cuenta con políticas particulares:
 
 ### MySQL
 
-**Método de conexión:**
+El ecosistema Edye utiliza MySQL para servicios críticos como Admin, API, Billing, Connect y Satélite. La infraestructura se organiza por entorno de la siguiente forma:
 
-- Acceso únicamente desde servidores autorizados dentro de la red interna Linode.  
-- No se permiten conexiones externas públicas.  
-- Autenticación mediante usuario y contraseña.  
-- Puerto estándar: **3306/TCP**  
+### **Arquitectura General**
 
-**Usos principales:**
+| Entorno | Modelo | Descripción |
+|--------|--------|-------------|
+| **Staging** | Nodo único | Cada base vive en un único servidor. |
+| **Producción** | Clúster HA (Alta Disponibilidad) | 1 Primary (lectura/escritura) + 2 Replicas (solo lectura). |
 
-- Gestión de usuarios (API / Connect / Billing).  
-- Sincronización de metadata.  
-- Procesos de facturación y suscripción.  
+- **Versión:** MySQL **8.0.35**.
+- **Ubicación:** Todos los clústeres residen en **Dallas**, mismo datacenter que la infraestructura Edye.
+
+---
+
+### **Acceso y Seguridad**
+
+El acceso está protegido mediante una doble capa de seguridad:
+
+#### **1) Whitelist de IPs**
+Solo los servidores autorizados pueden conectarse:
+
+- API
+- Admin
+- Billing
+- Play
+- Cloud
+- Conecta / Connect
+- Satélite
+
+Cualquier IP no registrada en la whitelist es rechazada automáticamente.
+
+#### **2) Conexión SSL obligatoria (Puerto 21611)**
+
+Todas las conexiones MySQL deben usar:
+
+- **Certificado CA obligatorio**
+- **Conexión cifrada TLS**
+- **Puerto seguro:** `21611`
+
+Sin el certificado CA, la conexión es denegada aunque la IP esté autorizada.
+
+---
+
+### **Uso Principal de MySQL en Edye**
+
+- Gestión de usuarios y autenticación (Connect / InPlayer)
+- Transacciones de Billing
+- Catálogo y configuración general (Admin)
+- Persistencia del backend API
+- Operaciones del ecosistema SSO
 
 ---
 
 ### MongoDB
 
-Utilizado por EDYE-PLAY y EDYE-CLOUD como base de datos NoSQL.
+MongoDB se utiliza para componentes que requieren flexibilidad y almacenamiento dinámico, especialmente en los servicios Cloud y Play.
 
-**Método de conexión:**
+### **Arquitectura**
 
-- Acceso interno por puerto **27017/TCP**  
-- Autenticación mediante usuario y contraseña  
-- Sin acceso público: solo red privada Linode / VPN  
+La conexión a MongoDB está **totalmente restringida** a los dos servidores de Cloud:
 
-**Usos principales:**
+- `cloud-prod-1.edye.com`
+- `cloud-prod-2.edye.com`
 
-- Registro y analítica de eventos de usuario (Cloud)  
-- Perfiles, preferencias y estados de reproducción (Play)  
+Estos módulos administran:
+
+- Actividad y consumo de usuarios  
+- Favoritos y progresos  
+- Contenidos vistos  
+- Perfil del usuario y preferencias  
+
+---
+
+### **Método de Conexión**
+
+MongoDB **no expone puertos directamente**.  
+La conexión se realiza mediante:
+
+### **MongoDB Data API (HTTPS)**
+
+- Se invoca a través de una **URL de API** generada por MongoDB.
+- Cada servidor utiliza un **API Key único**.
+- La API permite operaciones CRUD restringidas y auditadas.
+
+```text
+POST https://data.mongodb-api.com/app/<app-id>/endpoint/data/v1/action/find
+Headers: 
+  api-key: <API_KEY>
+  content-type: application/json 
+Body:
+{
+  "dataSource": "<DATA_SOURCE_NAME>",
+  "database": "<DATABASE_NAME>",
+  "collection": "<COLLECTION_NAME>",
+  "filter": { 
+      /* filtros opcionales */
+  },
+  "limit": 20
+}
+```
+
+### **Seguridad**
+
+- Cada API Key tiene permisos mínimos necesarios.
+- Solo los servidores Cloud pueden ejecutar solicitudes válidas.
+- Solicitudes desde IPs externas no son aceptadas.
 
 ---
 ## 3.3. Flujo del proceso de entrega continua

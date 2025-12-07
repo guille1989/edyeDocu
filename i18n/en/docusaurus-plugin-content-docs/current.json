@@ -18,5 +18,25 @@
   "sidebar.tutorialSidebar.category.Edyes-Integraciones": {
     "message": "Edyes-Integraciones",
     "description": "Category label in sidebar"
+  },
+  "sidebar.tutorialSidebar.category.🗄️ Edyes-Infraestructura": {
+    "message": "🗄️ Edyes-Infraestructura",
+    "description": "The label for category '🗄️ Edyes-Infraestructura' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🛠️ Edyes-DevOps": {
+    "message": "🛠️ Edyes-DevOps",
+    "description": "The label for category '🛠️ Edyes-DevOps' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🔌 Edyes-Integraciones": {
+    "message": "🔌 Edyes-Integraciones",
+    "description": "The label for category '🔌 Edyes-Integraciones' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🤝 Int-Adobe": {
+    "message": "🤝 Int-Adobe",
+    "description": "The label for category '🤝 Int-Adobe' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🤝 Int-SAML AUTH": {
+    "message": "🤝 Int-SAML AUTH",
+    "description": "The label for category '🤝 Int-SAML AUTH' in sidebar 'tutorialSidebar'"
   }
 }
