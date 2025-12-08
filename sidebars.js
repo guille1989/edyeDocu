@@ -41,21 +41,10 @@ const sidebars = {
       label: "🔌 Edyes-Integraciones",
       items: [
         "integraciones/int-overview",
-        {
-          type: "category",
-          label: "🤝 Int-Adobe",
-          items: [
-            "integraciones/adobe/int-adobe-liberty",
-            "integraciones/adobe/int-adobe-claro-puerto-rico",
-          ],
-        },
-        {
-          type: "category",
-          label: "🤝 Int-SAML AUTH",
-          items: [
-            "integraciones/salm-auth/int-salm-auth-neo-tv"
-          ],
-        },
+        "integraciones/integracion-mvpd-oauth2",
+        "integraciones/integracion-neo-saml-api",
+        "integraciones/integracion-bango-verizon",
+        "integraciones/integracion-izzi-openid",
       ],
     },
     {
