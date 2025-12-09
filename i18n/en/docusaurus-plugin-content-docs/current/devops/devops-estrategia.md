@@ -1,20 +1,20 @@
 ---
 id: devops-estrategia
-title: Estrategia DevOps
-sidebar_label: Estrategia DevOps
+title: 📃 DevOps Strategy
+sidebar_label: 📃 DevOps Strategy
 ---
 
-# Estrategia DevOps   
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
+# DevOps Strategy  
+**Version:** 1.0  
+**Date:** 12/01/2025  
 
 ---
 
-## 1. Objetivo y alcance
+## 1. Objective and Scope
 
-Definir la estrategia DevOps revisada de la organización, consolidando la automatización, seguridad y monitoreo continuo en los entornos de desarrollo, integración, pruebas y producción.
+Define the organization’s updated DevOps strategy, consolidating automation, security, and continuous monitoring across development, integration, testing, and production environments.
 
-Esta estrategia aplica a todas las plataformas soportadas por:
+This strategy applies to all platforms supported by:
 
 - GitHub  
 - Swagger  
@@ -24,65 +24,61 @@ Esta estrategia aplica a todas las plataformas soportadas por:
 
 ---
 
-## 2. Principios y Políticas DevOps
+## 2. DevOps Principles and Policies
 
-### **Principios básicos**
-- Automatización extremo a extremo  
-- Colaboración constante entre equipos  
-- Mejora continua  
-- Seguridad integrada (DevSecOps)  
-- Monitoreo constante
+### **Core Principles**
+- End-to-end automation  
+- Ongoing collaboration between teams  
+- Continuous improvement  
+- Built-in security (DevSecOps)  
+- Continuous monitoring
 
-### **Política de Versionamiento**
-Todo código debe estar versionado en GitHub bajo un esquema de ramas controlado:
+### **Versioning Policy**
+All code must be versioned in GitHub under a controlled branch scheme:
 
 - `main`
 - `stage`
 - `production`
 - `feature/*`
 
-### **Política de Despliegue**
-Los despliegues deben realizarse exclusivamente mediante **pipelines validados y automatizados**, con control de calidad previo.
+### **Deployment Policy**
+Deployments must be performed exclusively through validated and automated pipelines, with prior quality control.
 
 ---
 
-## 3. Gobernanza y Colaboración
+## 3. Governance and Collaboration
 
-Cada región (*Latam, Europa, Norteamérica*) cuenta con un **DevOps Lead** responsable de coordinar entregas, validaciones y despliegues controlados.
+Each region (LatAm, Europe, North America) has a **DevOps Lead** responsible for coordinating releases, validations, and controlled deployments.
 
-La gestión de tareas se realiza en **Monday**, con:
+Task management is performed in **Monday**, including:
 
-- Reportes semanales automatizados  
-- Control de versiones en Drive/Miro  
-- Flujo formal de documentación:
-
-Solicitud → Revisión → Ajuste → Aprobación → Publicación.
-
----
-
-## 4. Herramientas Principales
-
-| Herramienta | Propósito | Integración |
-|-------------|-----------|-------------|
-| **GitHub / GitHub Actions** | Repositorio y CI/CD automatizado | Integración con Swagger |
-| **Swagger / Postman** | Documentación y validación de endpoints | QA automatizado |
-| **Monday** | Gestión de backlog e incidentes | Fuente de seguimiento y control |
-| **Grafana / Prometheus / Loki** | Monitoreo y alertas | Integración por correo |
-| **Qualys (VMDR/WAS)** | Escaneo de vulnerabilidades y compliance | Integración continua en monitoreo |
+- Automated weekly reports  
+- Version control in Drive/Miro  
+- Formal documentation flow:  
+  Request → Review → Adjustment → Approval → Publication.
 
 ---
 
-## 5. Seguridad y Monitoreo
+## 4. Key Tools
 
-La seguridad forma parte integral del pipeline DevOps (**DevSecOps**), aplicándose controles automáticos de vulnerabilidades mediante **Qualys**.
+| Tool | Purpose | Integration |
+|------|---------|-------------|
+| **GitHub / GitHub Actions** | Repository and automated CI/CD | Integration with Swagger |
+| **Swagger / Postman** | Documentation and endpoint validation | Automated QA |
+| **Monday** | Backlog and incident management | Source of tracking and control |
+| **Grafana / Prometheus / Loki** | Monitoring and alerts | Email integration |
+| **Qualys (VMDR/WAS)** | Vulnerability scanning and compliance | Continuous integration in monitoring |
 
-El monitoreo se realiza con **Grafana**, consolidando métricas de:
+---
 
-- Infraestructura  
+## 5. Security and Monitoring
+
+Security is an integral part of the DevOps pipeline (**DevSecOps**), with automated vulnerability controls via **Qualys**.
+
+Monitoring is performed with **Grafana**, consolidating metrics for:
+
+- Infrastructure  
 - APIs  
-- Servicios críticos  
+- Critical services  
 
-Las alertas se envían por correo y se revisan diariamente en el panel de incidentes.
-
-
-
+Alerts are sent by email and reviewed daily on the incident dashboard.

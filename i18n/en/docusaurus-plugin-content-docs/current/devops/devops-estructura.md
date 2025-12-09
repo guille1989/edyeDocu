@@ -1,108 +1,106 @@
 ---
 id: devops-estructura
-title: Estructura Devops INGLES
+title: "📃 DevOps Structure"
 ---
 
-# Estructura DevOps   
-**Versión:** 1.0  
-**Fecha:** 01/12/2025    
-
----
-
-## 1. Introducción y Contexto
-
-Este documento forma parte del proyecto de documentación tecnológica de Edye (HITN Digital), desarrollado a partir de julio de 2025 con el objetivo de consolidar los procesos DevOps, seguridad y monitoreo del ecosistema digital. La estructura DevOps busca estandarizar prácticas de automatización, despliegue continuo y control de calidad del software en los entornos de desarrollo, staging y producción.
+# DevOps Structure  
+**Version:** 1.0  
+**Date:** 12/01/2025    
 
 ---
 
-## 2. Descripción General del Proceso DevOps
+## 1. Introduction and Context
 
-El componente DevOps integra los procesos de desarrollo, integración continua, entrega continua, operaciones y mejora continua en la organización. Su objetivo es automatizar flujos, reducir tiempos de entrega y garantizar la calidad del software.  
-Se apoya en herramientas como:
-
-- **GitHub** (repositorios, CI/CD)  
-- **Swagger** (documentación de APIs)  
-- **Monday** (gestión de tareas)  
-- **Grafana** (monitoreo)  
-- **Qualys** (seguridad)  
-- **Postman** (pruebas de endpoints)
+This document is part of the Edye (HITN Digital) technology documentation project, launched in July 2025 to consolidate DevOps, security, and monitoring processes across the digital ecosystem. The DevOps structure standardizes automation practices, continuous delivery, and software quality control in development, staging, and production environments.
 
 ---
 
-## 3. Ciclo DevOps (Pipeline General)
+## 2. DevOps Process Overview
 
-El ciclo DevOps implementado en Edye sigue el siguiente flujo principal:
+The DevOps component integrates development, continuous integration, continuous delivery, operations, and continuous improvement. Its goal is to automate flows, shorten delivery times, and ensure software quality, supported by:
 
-![Ciclo DevOps](/img/flujo-devops.jpg)
-> **Figura 1.** *Flujo general del proceso DevOps*
-
-Cada fase está soportada por herramientas específicas y responsables asignados:
-
-| Fase                | Descripción                                        | Herramientas                          |
-|--------------------|----------------------------------------------------|----------------------------------------|
-| **Planificación**  | Gestión de backlog, milestones y KPIs.             | Monday                                 |
-| **Desarrollo**     | Implementación de código y pruebas unitarias.      | GitHub, Swagger, Postman               |
-| **Integración Continua** | Compilación, validación y análisis de seguridad. | GitHub Actions, Snyk, SonarQube        |
-| **Entrega Continua**      | Despliegue automatizado.                         | GitHub Actions                         |
-| **Operaciones**    | Monitoreo, alertas y gestión de incidentes.        | monitor.edye.com, status.edye.com      |
+- **GitHub** (repositories, CI/CD)  
+- **Swagger** (API documentation)  
+- **Monday** (task management)  
+- **Grafana** (monitoring)  
+- **Qualys** (security)  
+- **Postman** (endpoint testing)
 
 ---
 
-## 4. Estructura Documental
+## 3. DevOps Cycle (General Pipeline)
 
-La documentación DevOps se organiza jerárquicamente para asegurar trazabilidad y control de versiones.
+The DevOps cycle implemented at Edye follows this main flow:
 
-| Categoría               | Documentos |
-|------------------------|------------|
-| **Planificación**      | https://docs.google.com/document/d/1e1P99kDmgtiPRaAMtj3oYz1zFkKUvrec49buXHp72D0/edit?usp=drive_link |
-| **Desarrollo**         | https://docs.google.com/document/d/1TlZTob4QFa2sHtZ76Ku2NXcrI3V5mWGbYvv_zTQNmgk/edit?tab=t.0 |
-| **Integración Continua** | https://docs.google.com/document/d/1e9Nkp1mI-z8yjHeEcgsXJW6vHIu2aFj1N4mMSdSvYKY/edit?tab=t.0 |
-| **Entrega Continua**   | https://docs.google.com/document/d/19QMMCA3rwXQ2e18Q9jByyy2XnHC5zmNe8XulaiZDhlQ/edit?tab=t.0 |
-| **Operaciones**        | https://docs.google.com/document/d/1txgJkjhwSdG694OBCQZhHs5iWSVDR6SCr74ZyZi66t0/edit?tab=t.0 |
+![DevOps Cycle](/img/flujo-devops.jpg)  
+> **Figure 1.** *General DevOps process flow*
 
----
+Each phase relies on specific tools and assigned owners:
 
-## 5. Seguridad y Monitoreo
-
-La seguridad forma parte integral del pipeline DevOps y se implementa mediante:
-
-- **Qualys** para escaneo y cumplimiento.
-- **Grafana / Prometheus** para monitoreo de infraestructura y APIs.
-- **Loki** para centralización de logs.
-- **Alertas automáticas** configuradas sobre métricas críticas.
+| Phase                   | Description                                         | Tools                                     |
+|-------------------------|-----------------------------------------------------|-------------------------------------------|
+| **Planning**            | Backlog management, milestones, KPIs.               | Monday                                    |
+| **Development**         | Code implementation and unit testing.               | GitHub, Swagger, Postman                  |
+| **Continuous Integration** | Build, validation, and security analysis.        | GitHub Actions, Snyk, SonarQube           |
+| **Continuous Delivery** | Automated deployments.                              | GitHub Actions                            |
+| **Operations**          | Monitoring, alerts, and incident response.          | monitor.edye.com, status.edye.com         |
 
 ---
 
-## 6. Roles y Responsabilidades
+## 4. Document Structure
 
-| Rol                | Responsabilidades                                            | Herramientas Asociadas         | Interacción Principal |
-|-------------------|--------------------------------------------------------------|--------------------------------|------------------------|
-| **DevOps Engineer** | Mantener pipelines CI/CD, infraestructura y monitoreo.        | GitHub Actions, Grafana        | Backend, QA           |
-| **FullStack Developer** | Implementar APIs y mantener documentación.                 | GitHub, Swagger, Postman       | DevOps, QA            |
-| **QA Engineer**  | Ejecutar pruebas automatizadas e integraciones.               | Postman, Jenkins               | Desarrollo            |
-| **Project Manager** | Coordinar entregas y comunicación interna.                   | Monday                         | Todas las áreas       |
+DevOps documentation is organized hierarchically to ensure traceability and version control.
 
----
-
-## 7. Gobernanza Documental
-
-El flujo de actualización sigue:
-
-**Solicitud → Revisión → Ajuste → Aprobación → Actualización (Drive/Miro)**
-
-Cada documento tiene:
-
-- **Responsable del cambio**
-- **Aprobador técnico**
-- **Administrador de repositorio**
+| Category                | Documents |
+|------------------------|-----------|
+| **Planning**           | https://docs.google.com/document/d/1e1P99kDmgtiPRaAMtj3oYz1zFkKUvrec49buXHp72D0/edit?usp=drive_link |
+| **Development**        | https://docs.google.com/document/d/1TlZTob4QFa2sHtZ76Ku2NXcrI3V5mWGbYvv_zTQNmgk/edit?tab=t.0 |
+| **Continuous Integration** | https://docs.google.com/document/d/1e9Nkp1mI-z8yjHeEcgsXJW6vHIu2aFj1N4mMSdSvYKY/edit?tab=t.0 |
+| **Continuous Delivery** | https://docs.google.com/document/d/19QMMCA3rwXQ2e18Q9jByyy2XnHC5zmNe8XulaiZDhlQ/edit?tab=t.0 |
+| **Operations**         | https://docs.google.com/document/d/1txgJkjhwSdG694OBCQZhHs5iWSVDR6SCr74ZyZi66t0/edit?tab=t.0 |
 
 ---
 
-## 8. Mejores Prácticas
+## 5. Security and Monitoring
 
-- Mantener pipelines automatizados y validados.
-- Aplicar control de ramas y revisiones de código.
-- Actualizar documentación técnica en cada versión.
-- Ejecutar postmortems tras incidentes.
-- Usar Monday como fuente única de seguimiento.
+Security is embedded throughout the DevOps pipeline via:
 
+- **Qualys** for scanning and compliance.
+- **Grafana / Prometheus** for infrastructure and API monitoring.
+- **Loki** for centralized logging.
+- **Automated alerts** configured on critical metrics.
+
+---
+
+## 6. Roles and Responsibilities
+
+| Role                  | Responsibilities                                             | Associated Tools              | Primary Interaction |
+|-----------------------|--------------------------------------------------------------|-------------------------------|---------------------|
+| **DevOps Engineer**   | Maintain CI/CD pipelines, infrastructure, and monitoring.    | GitHub Actions, Grafana       | Backend, QA         |
+| **Full-Stack Developer** | Implement APIs and maintain documentation.               | GitHub, Swagger, Postman      | DevOps, QA          |
+| **QA Engineer**       | Execute automated tests and integrations.                    | Postman, Jenkins              | Development         |
+| **Project Manager**   | Coordinate releases and internal communication.              | Monday                        | All areas           |
+
+---
+
+## 7. Documentation Governance
+
+Update flow:
+
+**Request → Review → Adjustment → Approval → Update (Drive/Miro)**
+
+Each document tracks:
+
+- **Change owner**
+- **Technical approver**
+- **Repository administrator**
+
+---
+
+## 8. Best Practices
+
+- Keep pipelines automated and validated.
+- Apply branch control and code reviews.
+- Update technical documentation for every release.
+- Run postmortems after incidents.
+- Use Monday as the single source of tracking.

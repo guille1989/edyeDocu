@@ -3,6 +3,8 @@ id: integracion-bango-verizon
 title: Integración Verizon – Direct Carrier Billing
 sidebar_label: Integración Verizon – Direct Carrier Billing
 description: Documentación técnica para la integración Edye ↔ Verizon mediante modelo Direct Carrier Billing y App Integration.
+tags:
+  - integraciones
 ---
 
 # Integración Verizon – Direct Carrier Billing

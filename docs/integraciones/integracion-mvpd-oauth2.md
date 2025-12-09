@@ -3,6 +3,8 @@ id: integracion-mvpd-oauth2
 title: Integración Adobe Pass (MVPD)
 sidebar_label: Integración Adobe Pass (OAuth2)
 description: Documento unificado de integración Adobe Pass para partners MVPD como Claro Puerto Rico y Liberty.
+tags:
+  - integraciones
 ---
 
 # Integración Adobe Pass (MVPD)
