@@ -21,12 +21,6 @@ tags:
 
 Esta integración permite que los usuarios de IZZI accedan a Edye mediante **OpenID Connect** utilizando flujo Authorization Code, autenticación centralizada y validación de tokens JWT.
 
-Basado en:
-
-- _ESP-INT Open_Id IZZI.pdf_ :contentReference[oaicite:2]{index=2}
-- _IZZI web sequence diagram (Customer Register)_ (imagen adjunta)
-- _ONBOARDING EDYETV IPTV – Stream Specs_ :contentReference[oaicite:3]{index=3}
-
 ---
 
 ## 1. Información General

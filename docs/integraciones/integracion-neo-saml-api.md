@@ -21,11 +21,6 @@ tags:
 
 Esta integración proporciona el mecanismo para que usuarios de operadores NEO accedan a Edye utilizando **SAML 2.0** como método de autenticación (IdP provisto por NEO) y **REST API Authorization** para validar su elegibilidad de acceso al contenido.
 
-Basado en:
-
-- _ESP-INT API-SAML NEO.pdf_ :contentReference[oaicite:0]{index=0}
-- _Gateway Fornecedores v2.5.pdf_ :contentReference[oaicite:1]{index=1}
-
 ---
 
 ## 1. Descripción General

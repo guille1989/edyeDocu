@@ -16,9 +16,6 @@ tags:
 
 # Integración Verizon – Direct Carrier Billing (DCB)
 
-Basado en _Edye Content Workflow 2023_ y documentación interna del ecosistema Edye.  
-Fuente: Edye Content Workflow 2023 PDF. :contentReference[oaicite:1]{index=1}
-
 ---
 
 ## 1. Introducción
