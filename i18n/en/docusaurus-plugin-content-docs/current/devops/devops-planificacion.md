@@ -1,109 +1,110 @@
 ---
 id: devops-planificacion
-title: Planificación DevOps
-sidebar_label: Planificación DevOps
+title: 📃 DevOps Planning
+sidebar_label: 📃 DevOps Planning
 ---
 
-# Planificación DevOps  
-**Versión:** 1.0  
-**Fecha:** 01/12/2025    
+# DevOps Planning
 
----
-
-## 1. Introducción
-
-El presente documento forma parte del conjunto de procedimientos técnicos que estructuran el ciclo DevOps del ecosistema **Edye / HITN Digital**.  
-Su propósito es definir el marco metodológico y operativo para la fase de **planificación**, asegurando la correcta gestión de tareas, recursos y prioridades dentro de los proyectos tecnológicos.
-
-La planificación DevOps constituye el punto de partida del ciclo de desarrollo continuo, permitiendo:
-
-- Alinear las necesidades del negocio con los objetivos técnicos.  
-- Garantizar la trazabilidad de las tareas.  
-- Optimizar la colaboración entre desarrollo, QA, infraestructura y operaciones.
-
-Este procedimiento se integra con los procesos de:
-
-- Desarrollo  
-- Integración Continua (CI)  
-- Entrega Continua (CD)  
-- Operaciones  
-- Mejora Continua  
-
-Formando un flujo integral orientado a la eficiencia, automatización y calidad del software.
+**Version:** 1.0  
+**Date:** 12/01/2025
 
 ---
 
-## 2. Alcance
+## 1. Introduction
 
-Este procedimiento aplica a **todos los proyectos, productos y servicios digitales** desarrollados dentro del ecosistema Edye que requieran planificación técnica bajo el modelo DevOps.
+This document is part of the technical procedures that structure the DevOps cycle of the **Edye / HITN Digital** ecosystem.  
+Its purpose is to define the methodological and operational framework for the **planning** phase, ensuring proper management of tasks, resources, and priorities within technology projects.
 
-Establece lineamientos sobre:
+DevOps planning is the starting point of the continuous development cycle, enabling:
 
-- Organización y priorización de tareas técnicas.  
-- Roles y responsabilidades del equipo DevOps.  
-- Uso de herramientas corporativas (Monday, GitHub, Grafana).  
-- Seguimiento y validación de entregas planificadas.  
+- Alignment between business needs and technical objectives.
+- Guaranteed task traceability.
+- Optimized collaboration among development, QA, infrastructure, and operations.
 
-El alcance va desde la **revisión del backlog** hasta la **validación final**, enlazándose con las fases de:
+This procedure integrates with the processes of:
 
-- Desarrollo  
-- Integración  
-- Despliegue  
-- Operaciones  
-- Evaluación Postmortem  
+- Development
+- Continuous Integration (CI)
+- Continuous Delivery (CD)
+- Operations
+- Continuous Improvement
 
----
-
-## 3. Procedimiento
-
-### 3.1. Descripción general
-
-El proceso de planificación DevOps define la secuencia de actividades necesarias para:
-
-- Organizar  
-- Priorizar  
-- Gestionar  
-
-las tareas técnicas dentro del ciclo de desarrollo continuo.
-
-El flujo abarca:
-
-1. Revisión  
-2. Priorización  
-3. Asignación  
-4. Ejecución  
-5. Validación  
-
-Todas las actividades se gestionan mediante:
-
-- **Monday**: backlog, dependencias, fechas.  
-- **GitHub**: control de versiones, validación técnica, PRs.  
+Forming an end-to-end flow aimed at efficiency, automation, and software quality.
 
 ---
 
-### 3.2. Diagrama del flujo de planificación DevOps
+## 2. Scope
 
-![Flujo de planificación DevOps](/img/planificacion-devops-diagrama.jpg)
-> **Figura 1.** Diagrama del flujo del proceso de planificación DevOps.
+This procedure applies to **all digital projects, products, and services** developed within the Edye ecosystem that require technical planning under the DevOps model.
+
+It establishes guidelines for:
+
+- Organizing and prioritizing technical tasks.
+- Roles and responsibilities of the DevOps team.
+- Use of corporate tools (Monday, GitHub, Grafana).
+- Tracking and validating planned deliverables.
+
+The scope ranges from **backlog review** to **final validation**, tying into the phases of:
+
+- Development
+- Integration
+- Deployment
+- Operations
+- Postmortem Evaluation
 
 ---
 
-### 3.3. Detalle por fase o actividad
+## 3. Procedure
 
-| **Fase**                     | **Entrada**                  | **Actividad**                                   | **Herramienta**                     | **Salida**                 |
-|-----------------------------|------------------------------|-------------------------------------------------|-------------------------------------|-----------------------------|
-| **1. Revisión de backlog**  | Tareas en Monday             | Revisión y priorización técnica                 | Monday                              | Backlog validado           |
-| **2. Planificación de tareas** | Backlog aprobado            | Asignar tareas, fechas y dependencias           | Monday                              | Plan de desarrollo de tareas |
-| **3. Desarrollo**           | Plan de desarrollo de tareas | Programación de componentes y pruebas unitarias | GitHub / Postman / Swagger          | Código validado            |
-| **4. Integración continua** | Pull Requests                | Validación y compilación automatizada           | GitHub Actions                      | Build validada             |
-| **5. Despliegue**           | Código aprobado              | Ejecución de pipeline CI/CD y despliegue en Staging | GitHub Actions                  | Release desplegada         |
-| **6. Evaluación**           | Métricas y reportes          | Análisis de desempeño y mejoras                 | Grafana / Evaluaciones manuales     | Informe de retrospectiva   |
+### 3.1. General description
 
+The DevOps planning process defines the sequence of activities required to:
+
+- Organize
+- Prioritize
+- Manage
+
+technical tasks within the continuous development cycle.
+
+The flow covers:
+
+1. Review
+2. Prioritization
+3. Assignment
+4. Execution
+5. Validation
+
+All activities are managed through:
+
+- **Monday**: backlog, dependencies, dates.
+- **GitHub**: version control, technical validation, PRs.
 
 ---
 
-## 4. Herramientas
+### 3.2. DevOps planning flow diagram
 
-| Categoría | Herramienta | Uso |
-|-----------|-------------|-----|
-| **Gestión** | Monday | Gestión de prioridades, releases, tareas y flujos de trabajo |
+![DevOps planning flow](/img/planificacion-devops-diagrama.jpg)
+
+> **Figure 1.** Diagram of the DevOps planning process flow.
+
+---
+
+### 3.3. Detail by phase or activity
+
+| **Phase**                    | **Input**                 | **Activity**                                       | **Tool**                      | **Output**                   |
+| --------------------------- | ------------------------- | -------------------------------------------------- | ----------------------------- | ---------------------------- |
+| **1. Backlog review**       | Tasks in Monday           | Review and technical prioritization                | Monday                        | Validated backlog            |
+| **2. Task planning**        | Approved backlog          | Assign tasks, dates, and dependencies              | Monday                        | Task development plan        |
+| **3. Development**          | Task development plan     | Component coding and unit testing                  | GitHub / Postman / Swagger    | Validated code               |
+| **4. Continuous integration** | Pull Requests            | Automated validation and build                     | GitHub Actions                | Validated build              |
+| **5. Deployment**           | Approved code             | Run CI/CD pipeline and deploy to Staging           | GitHub Actions                | Deployed release             |
+| **6. Evaluation**           | Metrics and reports       | Performance analysis and improvements              | Grafana / Manual evaluations  | Retrospective report         |
+
+---
+
+## 4. Tools
+
+| Category    | Tool    | Use                                                          |
+| ----------- | ------- | ------------------------------------------------------------ |
+| **Management** | Monday | Management of priorities, releases, tasks, and workflows      |

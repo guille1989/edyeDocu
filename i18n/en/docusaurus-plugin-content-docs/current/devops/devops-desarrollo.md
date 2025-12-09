@@ -1,162 +1,164 @@
 ---
 id: devops-desarrollo
-title: Desarrollo DevOps
+title: 📃 DevOps Development
 ---
 
-# Desarrollo DevOps   
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
+# DevOps Development
 
----
-## 1. Introducción
-
-Definir los lineamientos, actividades, roles y herramientas aplicables al proceso de desarrollo de software dentro del ecosistema tecnológico de Edye (HITN Digital).
-
-Este procedimiento tiene como propósito garantizar la calidad, coherencia y trazabilidad del código fuente previo a su integración en los entornos de pruebas y despliegue. Además, establece los principios técnicos y operativos para un desarrollo ágil, seguro y alineado con las prácticas DevOps corporativas.
+**Version:** 1.0  
+**Date:** 12/01/2025
 
 ---
 
-## 2. Alcance
+## 1. Introduction
 
-El presente procedimiento aplica a todas las actividades de implementación, documentación, validación y control de versiones del código fuente alojado en los repositorios oficiales de Edye.
+Define the guidelines, activities, roles, and tools applicable to the software development process within the Edye (HITN Digital) technology ecosystem.
 
-Cubre el ciclo completo desde la asignación de una tarea hasta la aprobación del código para su integración en los entornos de staging o producción, garantizando trazabilidad entre requerimientos, commits, pruebas y entregas.
-
-Este procedimiento es de aplicación para los equipos de desarrollo backend, frontend y QA, así como para los perfiles DevOps Engineer y Project Manager responsables del control de calidad y validación de entregables. 
+This procedure aims to guarantee the quality, consistency, and traceability of the source code prior to its integration into testing and deployment environments. It also establishes the technical and operational principles for agile, secure development aligned with corporate DevOps practices.
 
 ---
 
-## 3. Procedimiento
+## 2. Scope
 
-El proceso de desarrollo DevOps en Edye define las actividades y lineamientos técnicos para la implementación, control de versiones, pruebas y documentación del código fuente dentro del ecosistema tecnológico de HITN Digital.
+This procedure applies to all source code implementation, documentation, validation, and version control activities hosted in Edye’s official repositories.
 
-El flujo integra las fases de **codificación**, **validación** y **revisión cruzada** antes de su integración a los entornos de staging y producción, asegurando trazabilidad y calidad del software entregado.
+It covers the full cycle from task assignment to code approval for integration into staging or production environments, ensuring traceability between requirements, commits, tests, and deliveries.
 
----
-
-## 3.1. Entorno de desarrollo
-
-El entorno de desarrollo de Edye se sustenta en una arquitectura tecnológica moderna basada en servicios y aplicaciones construidas principalmente con **Node.js**, **Next.js** y **Laravel**.
-
-La plataforma opera bajo un modelo de bases de datos híbridas:
-
-- **MySQL** → motor relacional para procesos estructurados.  
-- **MongoDB** → base de datos NoSQL para componentes que requieren flexibilidad y escalabilidad.
-
-### Entornos principales
-
-- **Local**: desarrollo individual de los programadores.  
-- **Staging**: entorno de pruebas integradas y QA.  
-- **Producción**: despliegue estable validado.
-
-### Control de versiones
-
-El control de versiones se gestiona en **GitHub**, utilizando las ramas principales:
-
-- `main`  
-- `production`  
-- `features/*`  
-- `staging`  
+This procedure applies to backend, frontend, and QA development teams, as well as DevOps Engineers and Project Managers responsible for quality control and deliverable validation.
 
 ---
 
-## 3.2. Entradas y salidas del proceso
+## 3. Procedure
 
-| Tipo     | Descripción |
-|----------|-------------|
-| **Entradas** | Tareas asignadas en Monday, requerimientos funcionales/técnicos, reportes de bugs o mejoras. |
-| **Salidas** | Código documentado, probado y aprobado en GitHub; Swagger actualizado; Postman validado. |
+The DevOps development process at Edye defines the activities and technical guidelines for implementation, version control, testing, and documentation of the source code within the HITN Digital technology ecosystem.
 
-> *Nota:* Para algunos repositorios, las entregas Swagger/Postman no son necesarias.
+The flow integrates the phases of **coding**, **validation**, and **peer review** before integration into staging and production environments, ensuring traceability and quality of the delivered software.
 
 ---
 
-## 3.3. Diagrama del flujo de desarrollo DevOps
+## 3.1. Development environment
 
-El siguiente diagrama representa de forma visual el **flujo general de la fase de desarrollo dentro del ciclo DevOps** del ecosistema Edye.
+Edye’s development environment is based on a modern technology architecture built mainly with **Node.js**, **Next.js**, and **Laravel**.
 
-![Diagrama del flujo de desarrollo DevOps](/img/desarrollo-devops.jpg)
-> **Figura 1.** *Diagrama del flujo del proceso de desarrollo DevOps.*  
+The platform operates under a hybrid database model:
 
----
+- **MySQL** → relational engine for structured processes.
+- **MongoDB** → NoSQL database for components that require flexibility and scalability.
 
-## 3.4. Detalle por fase o actividad
+### Main environments
 
-- **Asignación y preparación:** Recepción de tarea → creación de branch desde `production` usando `feature/<nombre>` o `<nombre>`.
-- **Codificación:** Desarrollo del componente asignado.
-- **Testing:** Creación de unit tests con Jest y validación con Postman collections.  
-  Documentación Swagger se genera automáticamente.
-- **Revisión técnica:** Pull Request (PR), revisión cruzada, validaciones GitHub Actions.
-- **Aprobación y merge:** Validación funcional, merge controlado, versionado semántico, actualización del changelog.
+- **Local**: individual developer work.
+- **Staging**: integrated testing and QA environment.
+- **Production**: validated stable deployment.
 
----
+### Version control
 
-## 3.5. Repositorios GitHub
+Version control is managed in **GitHub**, using the main branches:
 
-Los repositorios se encuentran en GitHub, y constituyen la fuente única de verdad del código y la documentación técnica del ecosistema EDYE. Cada repositorio mantiene sus ramas, pipelines CI/CD y archivos de documentación asociados (README.md, Swagger, Postman).
-
-
-| Repositorio | Propósito | Ramas | Stack |
-|-------------|-----------|--------|--------|
-| **EDYE-CONNECT** | Middleware SSO para operadores, apps y partners. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-BILLING** | Pagos, promociones y suscripciones. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-API-STANDALONE** | Backend principal con endpoints REST. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-CONECTA** | Conector SSO entre Edye y operadores. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-ADMIN** | CMS central para shows, metadata, imágenes y partners. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-PLAY** | Plataforma web (niños/padres). | Main / Staging / Production | Node.js - Next.js - MongoDB |
-| **EDYE-CLOUD** | Actividad de usuarios y almacenamiento. | Main / Staging / Production | Node.js - MongoDB |
-| **EDYE-API-SATELITE** | Redundancia, carga y resiliencia. | Main / Staging / Production | PHP - Laravel - MySQL |
-
-> **Nomenclatura estándar:** `edye-[módulo]`
-
-Cada repositorio debe incluir su propio README.md con instrucciones de instalación, dependencias, ramas activas, pipelines de despliegue y contactos técnicos.
+- `main`
+- `production`
+- `features/*`
+- `staging`
 
 ---
 
-## 3.6. Clonar repositorios GitHub
+## 3.2. Process inputs and outputs
 
-El desarrollador debe contar con permisos y haber configurado SSH o PAT.
+| Type        | Description                                                                              |
+| ----------- | ---------------------------------------------------------------------------------------- |
+| **Inputs**  | Tasks assigned in Monday, functional/technical requirements, bug or improvement reports. |
+| **Outputs** | Documented, tested, and approved code in GitHub; updated Swagger; validated Postman.     |
 
-### Clonación mediante SSH (recomendada)
+> _Note:_ For some repositories, Swagger/Postman deliveries are not required.
 
-**Requisitos previos:**
+---
 
-- Tener clave SSH (`id_rsa` o `ed25519`)  
-- Agregar clave pública en GitHub:  
+## 3.3. DevOps development flow diagram
+
+The following diagram visually represents the **general flow of the development phase within Edye’s DevOps cycle**.
+
+![DevOps development flow diagram](/img/desarrollo-devops.jpg)
+
+> **Figure 1.** _Diagram of the DevOps development process flow._
+
+---
+
+## 3.4. Detail by phase or activity
+
+- **Assignment and preparation:** Task reception → branch creation from `production` using `feature/<name>` or `<name>`.
+- **Coding:** Development of the assigned component.
+- **Testing:** Creation of unit tests with Jest and validation with Postman collections.  
+  Swagger documentation is generated automatically.
+- **Technical review:** Pull Request (PR), peer review, GitHub Actions validations.
+- **Approval and merge:** Functional validation, controlled merge, semantic versioning, changelog update.
+
+---
+
+## 3.5. GitHub repositories
+
+Repositories are hosted on GitHub and constitute the single source of truth for code and technical documentation in the EDYE ecosystem. Each repository maintains its branches, CI/CD pipelines, and associated documentation files (README.md, Swagger, Postman).
+
+| Repository              | Purpose                                            | Branches                    | Stack                       |
+| ----------------------- | -------------------------------------------------- | --------------------------- | --------------------------- |
+| **EDYE-CONNECT**        | SSO middleware for operators, apps, and partners.  | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-BILLING**        | Payments, promotions, and subscriptions.           | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-API-STANDALONE** | Main backend with REST endpoints.                  | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-CONECTA**        | SSO connector between Edye and operators.          | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-ADMIN**          | Central CMS for shows, metadata, images, partners. | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-PLAY**           | Web platform (kids/parents).                       | Main / Staging / Production | Node.js - Next.js - MongoDB |
+| **EDYE-CLOUD**          | User activity and storage.                         | Main / Staging / Production | Node.js - MongoDB           |
+| **EDYE-API-SATELITE**   | Redundancy, load, and resilience.                  | Main / Staging / Production | PHP - Laravel - MySQL       |
+
+> **Standard naming:** `edye-[module]`
+
+Each repository must include its own README.md with installation instructions, dependencies, active branches, deployment pipelines, and technical contacts.
+
+---
+
+## 3.6. Cloning GitHub repositories
+
+Developers must have permissions and have configured SSH or PAT.
+
+### Cloning via SSH (recommended)
+
+**Prerequisites:**
+
+- Have an SSH key (`id_rsa` or `ed25519`)
+- Add the public key to GitHub:  
   **Settings → SSH and GPG keys**
 
-**Tutorial oficial:**  
-https://docs.github.com/es/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+**Official tutorial:**  
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
 
-**Comando de clonación:**
+**Clone command:**
 
 ```bash
-git clone git@github.com:edye/<repositorio>.git
+git clone git@github.com:edye/<repository>.git
 ```
 
 ---
 
-## 3.7. Estándares de desarrollo
+## 3.7. Development standards
 
-El desarrollo de software en Edye sigue criterios uniformes para asegurar consistencia, mantenibilidad y calidad del código.
+Software development at Edye follows uniform criteria to ensure consistency, maintainability, and code quality.
 
-Los estándares incluyen:
+Standards include:
 
-- **Estructura modular** organizada por servicio.
-- **Revisión de código obligatoria** antes de cada *merge request*.
-- **Nomenclatura de ramas controlada**  
-  - `feature/<nombre>`  
-  - `<nombre>`
-- **Versionado semántico**, por ejemplo: `v1.3.2`.
-- **Definición correcta de endpoints RESTful**, asegurando respuestas **JSON coherentes**.
-- **Cumplimiento de convenciones de estilo** y documentación de API mediante **Swagger/OpenAPI**.
+- **Modular structure** organized by service.
+- **Mandatory code review** before every merge request.
+- **Controlled branch naming**
+  - `feature/<name>`
+  - `<name>`
+- **Semantic versioning**, e.g., `v1.3.2`.
+- **Proper definition of RESTful endpoints**, ensuring consistent **JSON responses**.
+- **Compliance with style conventions** and API documentation using **Swagger/OpenAPI**.
 
 ---
 
-## 4. Herramientas
+## 4. Tools
 
-| Categoría              | Herramienta     | Uso |
-|------------------------|-----------------|-----|
-| **Control de versiones** | GitHub          | Repositorios, PRs, code review |
-| **Pruebas**             | Jest, Postman   | Validación funcional e integración |
-| **Gestión**             | Monday          | Seguimiento de backlog y entregas. Todos los cambios deben actualizar la documentación técnica y referenciar la tarea origen en Monday. |
+| Category            | Tool          | Use                                                                                                                                |
+| ------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Version control** | GitHub        | Repositories, PRs, code review                                                                                                     |
+| **Testing**         | Jest, Postman | Functional and integration validation                                                                                              |
+| **Management**      | Monday        | Backlog tracking and deliveries. All changes must update the technical documentation and reference the originating task in Monday. |
