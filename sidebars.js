@@ -47,6 +47,7 @@ const sidebars = {
         "integraciones/integracion-izzi-openid",
       ],
     },
+    "devops-compendio",
     {
       /*
       type: 'category',

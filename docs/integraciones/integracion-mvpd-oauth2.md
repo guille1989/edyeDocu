@@ -207,5 +207,3 @@ Aunque ambos partners son equivalentes técnicamente, aquí se deja explícito:
 | Arquitectura | Igual             | Igual   |
 | Seguridad    | Igual             | Igual   |
 | KPIs         | Igual             | Igual   |
-
-> Conclusión: **Ambas integraciones son 100 % idénticas en términos técnicos y operativos.**
