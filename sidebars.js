@@ -20,7 +20,7 @@ const sidebars = {
       label: "🗄️ Edyes-Infraestructura",
       items: [
         "infraestructura/indraestructura-production-environment",
-        "infraestructura/indraestructura-staging-environment"
+        "infraestructura/indraestructura-staging-environment",
       ],
     },
     {
@@ -41,10 +41,27 @@ const sidebars = {
       label: "🔌 Edyes-Integraciones",
       items: [
         "integraciones/int-overview",
-        "integraciones/integracion-mvpd-oauth2",
-        "integraciones/integracion-neo-saml-api",
-        "integraciones/integracion-bango-verizon",
-        "integraciones/integracion-izzi-openid",
+        {
+          type: "category",
+          label: "Modelos",
+          items: ["integraciones/modelos/int-ingesta"],
+        },
+        {
+          type: "category",
+          label: "Flujos",
+          items: ["integraciones/flujos/int-ingesta-flujo-contenidos"],
+        },
+        {
+          type: "category",
+          label: "Partners",
+          items: [
+            {
+              type: "category",
+              label: "Claro Video",
+              items: ["integraciones/partners/claro-video/int-ing-partner-claro-video"],
+            },
+          ],
+        },
       ],
     },
     "devops-compendio",
