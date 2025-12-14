@@ -1,4 +1,6 @@
 import React from "react";
+import { createPortal } from "react-dom";
+import { useLocation } from "@docusaurus/router";
 import { supabase } from "../lib/supabaseClient";
 
 const isBrowser = typeof window !== "undefined";
@@ -9,7 +11,8 @@ export default function Root({ children }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
-  const logoutButtonRef = React.useRef(null);
+  const [navbarRight, setNavbarRight] = React.useState(null);
+  const location = useLocation();
 
   React.useEffect(() => {
     if (!isBrowser) return;
@@ -53,62 +56,55 @@ export default function Root({ children }) {
   };
 
   React.useEffect(() => {
-    if (!isBrowser) return;
+    if (!isBrowser || !sessionEmail) return;
 
-    const removeBtn = () => {
-      if (logoutButtonRef.current) {
-        logoutButtonRef.current.remove();
-        logoutButtonRef.current = null;
-      }
+    const updateNode = () => {
+      const node = document.querySelector(".navbar__items--right");
+      setNavbarRight(node || null);
     };
 
-    if (!sessionEmail) {
-      removeBtn();
-      return;
-    }
-
-    const ensureButton = () => {
-      const navbarRight = document.querySelector(".navbar__items--right");
-      if (!navbarRight) return;
-      if (!logoutButtonRef.current) {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.textContent = "Cerrar sesion";
-        btn.style.padding = "8px 12px";
-        btn.style.borderRadius = "8px";
-        btn.style.border = "1px solid #e5e7eb";
-        btn.style.background = "#fff";
-        btn.style.cursor = "pointer";
-        btn.style.fontWeight = "600";
-        btn.style.marginLeft = "8px";
-        btn.onclick = signOut;
-        navbarRight.appendChild(btn);
-        logoutButtonRef.current = btn;
-      } else if (!logoutButtonRef.current.isConnected) {
-        navbarRight.appendChild(logoutButtonRef.current);
-      }
-    };
-
-    ensureButton();
+    updateNode();
 
     const navBar = document.querySelector("nav.navbar");
     const observer = navBar
-      ? new MutationObserver(() => ensureButton())
+      ? new MutationObserver(() => updateNode())
       : null;
     if (observer && navBar) {
       observer.observe(navBar, { childList: true, subtree: true });
     }
 
+    const interval = window.setInterval(updateNode, 1000);
+
     return () => {
       if (observer) observer.disconnect();
-      removeBtn();
+      window.clearInterval(interval);
     };
-  }, [sessionEmail]);
+  }, [location.pathname, sessionEmail]);
 
   const showOverlay = isBrowser && (loading || !sessionEmail);
 
   return (
     <>
+      {sessionEmail && navbarRight
+        ? createPortal(
+            <button
+              type="button"
+              onClick={signOut}
+              style={{
+                padding: "8px 12px",
+                borderRadius: 8,
+                border: "1px solid #e5e7eb",
+                background: "#fff",
+                cursor: "pointer",
+                fontWeight: 600,
+                marginLeft: 8,
+              }}
+            >
+              Cerrar sesión
+            </button>,
+            navbarRight
+          )
+        : null}
       {children}
       {showOverlay ? (
         <div
