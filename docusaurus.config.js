@@ -25,6 +25,16 @@ const config = {
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
+  themes: [
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        hashed: true,
+        language: ["es", "en"],
+      },
+    ],
+  ],
+
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "facebook", // Usually your GitHub org/user name.
@@ -105,6 +115,10 @@ const config = {
             sidebarId: "tutorialSidebar",
             position: "left",
             label: "Edyes Docs",
+          },
+          {
+            type: "search",
+            position: "right",
           },
           {
             type: "localeDropdown",
