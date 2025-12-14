@@ -55,38 +55,53 @@ export default function Root({ children }) {
   React.useEffect(() => {
     if (!isBrowser) return;
 
-    if (!sessionEmail) {
+    const removeBtn = () => {
       if (logoutButtonRef.current) {
         logoutButtonRef.current.remove();
         logoutButtonRef.current = null;
       }
+    };
+
+    if (!sessionEmail) {
+      removeBtn();
       return;
     }
 
-    const navbarRight = document.querySelector(".navbar__items--right");
-    if (!navbarRight) return;
+    const ensureButton = () => {
+      const navbarRight = document.querySelector(".navbar__items--right");
+      if (!navbarRight) return;
+      if (!logoutButtonRef.current) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = "Cerrar sesion";
+        btn.style.padding = "8px 12px";
+        btn.style.borderRadius = "8px";
+        btn.style.border = "1px solid #e5e7eb";
+        btn.style.background = "#fff";
+        btn.style.cursor = "pointer";
+        btn.style.fontWeight = "600";
+        btn.style.marginLeft = "8px";
+        btn.onclick = signOut;
+        navbarRight.appendChild(btn);
+        logoutButtonRef.current = btn;
+      } else if (!logoutButtonRef.current.isConnected) {
+        navbarRight.appendChild(logoutButtonRef.current);
+      }
+    };
 
-    if (!logoutButtonRef.current) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.textContent = "Cerrar sesion";
-      btn.style.padding = "8px 12px";
-      btn.style.borderRadius = "8px";
-      btn.style.border = "1px solid #e5e7eb";
-      btn.style.background = "#fff";
-      btn.style.cursor = "pointer";
-      btn.style.fontWeight = "600";
-      btn.style.marginLeft = "8px";
-      btn.onclick = signOut;
-      navbarRight.appendChild(btn);
-      logoutButtonRef.current = btn;
+    ensureButton();
+
+    const navBar = document.querySelector("nav.navbar");
+    const observer = navBar
+      ? new MutationObserver(() => ensureButton())
+      : null;
+    if (observer && navBar) {
+      observer.observe(navBar, { childList: true, subtree: true });
     }
 
     return () => {
-      if (logoutButtonRef.current) {
-        logoutButtonRef.current.remove();
-        logoutButtonRef.current = null;
-      }
+      if (observer) observer.disconnect();
+      removeBtn();
     };
   }, [sessionEmail]);
 
