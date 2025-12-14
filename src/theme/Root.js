@@ -7,6 +7,7 @@ export default function Root({ children }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState("");
+  const logoutButtonRef = React.useRef(null);
 
   React.useEffect(() => {
     const storedEmail = window.localStorage.getItem("docsSessionEmail");
@@ -45,6 +46,43 @@ export default function Root({ children }) {
     setEmail("");
     setPassword("");
   };
+
+  // Place logout button inside the navbar (right section) when logged in
+  React.useEffect(() => {
+    if (!sessionEmail) {
+      if (logoutButtonRef.current) {
+        logoutButtonRef.current.remove();
+        logoutButtonRef.current = null;
+      }
+      return;
+    }
+
+    const navbarRight = document.querySelector(".navbar__items--right");
+    if (!navbarRight) return;
+
+    if (!logoutButtonRef.current) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = "Cerrar sesión";
+      btn.style.padding = "8px 12px";
+      btn.style.borderRadius = "8px";
+      btn.style.border = "1px solid #e5e7eb";
+      btn.style.background = "#fff";
+      btn.style.cursor = "pointer";
+      btn.style.fontWeight = "600";
+      btn.style.marginLeft = "8px";
+      btn.onclick = signOut;
+      navbarRight.appendChild(btn);
+      logoutButtonRef.current = btn;
+    }
+
+    return () => {
+      if (logoutButtonRef.current) {
+        logoutButtonRef.current.remove();
+        logoutButtonRef.current = null;
+      }
+    };
+  }, [sessionEmail]);
 
   if (loading) return <div style={{ padding: 32 }}>Cargando...</div>;
 
@@ -149,24 +187,5 @@ export default function Root({ children }) {
     );
   }
 
-  return (
-    <>
-      <div style={{ position: "fixed", top: 12, right: 12, zIndex: 999 }}>
-        <button
-          onClick={signOut}
-          style={{
-            padding: "8px 12px",
-            borderRadius: 8,
-            border: "1px solid #e5e7eb",
-            background: "#fff",
-            cursor: "pointer",
-            fontWeight: 600,
-          }}
-        >
-          Cerrar sesión
-        </button>
-      </div>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
