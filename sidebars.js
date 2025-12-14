@@ -58,7 +58,17 @@ const sidebars = {
             {
               type: "category",
               label: "Claro Video",
-              items: ["integraciones/partners/claro-video/int-ing-partner-claro-video"],
+              items: [
+                "integraciones/partners/claro-video/int-ing-partner-claro-video",
+                {
+                  type: "category",
+                  label: "Anexos",
+                  items: [
+                    "integraciones/partners/claro-video/anexos/int-partnet-claro-video-anexos-posters",
+                    "integraciones/partners/claro-video/anexos/int-partnet-claro-video-anexos-checklist",
+                  ],
+                },
+              ],
             },
           ],
         },

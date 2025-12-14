@@ -11,6 +11,7 @@ ecosistema **EDYE**, utilizado por múltiples partners para la distribución de
 contenidos audiovisuales (series, películas, episodios, imágenes y metadata).
 
 Este modelo aplica, entre otros, a los siguientes partners:
+
 - Claro Video
 - Megacable
 - Dish México
@@ -23,6 +24,7 @@ Este modelo aplica, entre otros, a los siguientes partners:
 ## 1. Alcance
 
 El modelo de ingesta cubre:
+
 - Preparación y validación de contenidos
 - Sincronización con JW Player
 - Generación de assets por partner
@@ -30,6 +32,7 @@ El modelo de ingesta cubre:
 - Validación, monitoreo y reporting post-ingesta
 
 No cubre:
+
 - Autenticación de usuarios
 - Facturación
 - Consumo del contenido por el partner
@@ -49,7 +52,8 @@ Los siguientes sistemas participan en el flujo de ingesta:
 - **Admin Panel (EDYE)**  
   Interfaz operativa para sincronización, validaciones y generación de deliveries.
 
-- **Almacenamiento**  
+- **Almacenamiento**
+
   - Aspera (HITN Production)
   - SFTP directo del partner (según configuración)
 
@@ -109,12 +113,12 @@ Antes de ejecutar una ingesta, se deben cumplir los siguientes requisitos:
 
 El modelo de ingesta presenta las siguientes variantes según el partner:
 
-| Variante | Descripción |
-|------|------|
-| Aspera | Assets generados y almacenados en HITN Production |
-| SFTP Directo | Assets enviados directamente al repositorio del partner |
-| XML + Imágenes | Delivery completo de metadata e imágenes |
-| Solo Imágenes | Delivery limitado a artwork e imágenes |
+| Variante       | Descripción                                             |
+| -------------- | ------------------------------------------------------- |
+| Aspera         | Assets generados y almacenados en HITN Production       |
+| SFTP Directo   | Assets enviados directamente al repositorio del partner |
+| XML + Imágenes | Delivery completo de metadata e imágenes                |
+| Solo Imágenes  | Delivery limitado a artwork e imágenes                  |
 
 Cada partner puede aplicar una o más variantes del modelo.
 
@@ -132,7 +136,7 @@ Durante la ingesta, EDYE API ejecuta validaciones automáticas sobre:
 
 ### Estados de procesamiento
 
-- **Pending**: Delivery creado, pendiente de ejecución
+- **Pending / Received**: Delivery creado, pendiente de ejecución
 - **Processing**: Assets en generación
 - **Completed**: Ingesta finalizada correctamente
 - **Failed**: Error en uno o más assets
@@ -152,12 +156,12 @@ El estado de una ingesta puede ser monitoreado desde el **Admin Panel**:
 
 ## 9. Errores comunes y troubleshooting
 
-| Error | Causa probable | Acción recomendada |
-|----|----|----|
-| Validation error | Imágenes no sincronizadas | Ejecutar sync de JW Player |
-| Missing assets | Episodios sin stills | Reemplazar imágenes |
-| Delivery stuck | Error en batch | Revisar log y reintentar |
-| Metadata inconsistente | Campos obligatorios faltantes | Corregir metadata |
+| Error                  | Causa probable                | Acción recomendada         |
+| ---------------------- | ----------------------------- | -------------------------- |
+| Validation error       | Imágenes no sincronizadas     | Ejecutar sync de JW Player |
+| Missing assets         | Episodios sin stills          | Reemplazar imágenes        |
+| Delivery stuck         | Error en batch                | Revisar log y reintentar   |
+| Metadata inconsistente | Campos obligatorios faltantes | Corregir metadata          |
 
 ---
 

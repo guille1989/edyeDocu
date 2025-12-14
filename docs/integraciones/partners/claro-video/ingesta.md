@@ -1,180 +1,118 @@
 ---
 id: int-ing-partner-claro-video
-title: Anexo Técnico – Posters y Artwork Claro Video
-sidebar_position: 1
+title: Ingesta de Contenidos – Claro Video
+sidebar_position: 2
 ---
 
-# Anexo Técnico: Posters y Artwork – Claro Video
+# Ingesta de Contenidos – Claro Video
 
-Este documento define las **especificaciones técnicas, estructura de carpetas y
-convenciones de nombrado** requeridas por **Claro Video** para la correcta
-publicación e ingesta de posters y artes gráficos dentro del ecosistema **EDYE**.
-
-Este anexo aplica exclusivamente a integraciones por **ingesta de contenidos**.
-
----
-
-## 1. Alcance
-
-Las especificaciones descritas en este documento aplican a:
-
-- Series
-- Películas
-- Temporadas
-- Episodios
-
-Incluye:
-
-- Posters
-- Episodic stills
-- Variantes por idioma
-- Versiones con y sin texto
+Este documento describe las **particularidades de la integración por ingesta de
+contenidos del partner Claro Video**, basada en el **modelo estándar de ingesta
+EDYE**.
 
 ---
 
-## 2. Tipos de contenido
+## 1. Información general
 
-### 2.1 Series
-
-Para contenidos tipo **serie**, se deben generar:
-
-- Poster genérico de la serie
-- Posters por temporada
-- Posters por episodio
-
-Se recomienda **diferenciar visualmente cada temporada** mediante posters
-específicos.
+- **Partner:** Claro Video  
+- **Servicio:** Ingesta VOD Internacional  
+- **Tipo de contenido:** Video on Demand  
+- **Formato de video:** MP4 (H.264)  
+- **Volumen estimado:** ~1500 assets por día  
 
 ---
 
-### 2.2 Películas
+## 2. Modelo de integración aplicado
 
-Para contenidos tipo **película**, se debe generar:
+Claro Video implementa el siguiente modelo:
 
-- Poster único del contenido
+- **Modelo:** Ingesta de Contenidos  
+  Ver: `modelos/ingesta.md`
 
----
-
-## 3. Especificaciones técnicas de imágenes
-
-Las imágenes deben cumplir con las siguientes especificaciones para **exportación web**:
-
-| Tipo           | Dimensiones | Ratio | DPI | Formato |
-| -------------- | ----------- | ----- | --- | ------- |
-| WCHICA         | 290 x 163   | 16:9  | 72  | JPG     |
-| WMEDIANA       | 200 x 300   | 2:3   | 72  | JPG     |
-| WGRANDE        | 675 x 380   | 16:9  | 72  | JPG     |
-| WHORIZONTAL 4K | 3840 x 2160 | 16:9  | 72  | JPG     |
-| WCUADRADO 4K   | 2160 x 2160 | 1:1   | 72  | JPG     |
-| WVERTICAL 4K   | 1708 x 2562 | 2:3   | 72  | JPG     |
+Este documento no redefine el modelo, sino que documenta las
+**configuraciones y reglas específicas del partner**.
 
 ---
 
-## 4. Idiomas y variantes de imagen
+## 3. Flujo aplicado
 
-Claro Video requiere variantes explícitas por idioma y tipo de imagen:
+El flujo aplicado corresponde al flujo estándar de ingesta EDYE:
 
-| Código | Descripción                      |
-| ------ | -------------------------------- |
-| EN     | Imágenes con textos en inglés    |
-| PT     | Imágenes con textos en portugués |
-| SS     | Imágenes con textos en español   |
-| CLEAN  | Imágenes sin texto               |
+1. Carga de contenido en JW Player  
+2. Sincronización JW Player ↔ EDYE API  
+3. Validación de metadata e imágenes  
+4. Generación de delivery para Claro Video  
+5. Procesamiento de assets  
+6. Entrega al partner  
+7. Validación final y reporting  
 
----
-
-## 5. Reglas generales de nomenclatura
-
-### 5.1 Reglas obligatorias
-
-- Todo el **naming debe estar en MAYÚSCULAS**
-- **No se permiten espacios**
-- **No se permiten caracteres especiales**  
-  (Á, É, Í, Ó, Ú, ¿, ¡, (, ), etc.)
-- Los separadores deben ser guiones (`-`) y guiones bajos (`_`)
+Ver detalle en:
+- `flujo/flujo-ingesta.md`
 
 ---
 
-## 6. Estructura de carpetas
+## 4. Consideraciones operativas
 
-La estructura base de directorios debe ser la siguiente:
-
-```text
-TITULODELACONTENIDO/
-├── EXPORTACION/
-├── EXPORTACION_WEB/
-├── HD/
-│   ├── CLEAN/
-│   ├── EN/
-│   ├── PT/
-│   └── SS/
-└── SD/
-    ├── CLEAN/
-    ├── EN/
-    ├── PT/
-    └── SS/
-```
-
-## 7. Nomenclatura de archivos – Episodios
-
-### 7.1 Formato general
-
-```text
-TITULO-TEMP-EP-EP_VARIANTE_CALIDAD_CODIGO.jpg
-```
-
-### 7.2 Componentes del nombre
-
-| Componente   | Descripción                               |
-| ------------ | ----------------------------------------- |
-| **TITULO**   | Nombre del contenido                      |
-| **TEMP**     | Número de temporada                       |
-| **EP**       | Número de episodio                        |
-| **VARIANTE** | CLEAN / EN / PT / SS                      |
-| **CALIDAD**  | HD / SD                                   |
-| **CODIGO**   | Código interno de imagen (ej. BC10, PS01) |
-
-### 7.3 Ejemplos válidos
-
-```text
-TITULODELASERIE-01-01-01_CLEAN_HD_BC10.jpg
-TITULODELASERIE-01-01-01_SS_HD_PS04.jpg
-TITULODELASERIE-01-01-01_EN_SD_BC13.jpg
-```
+- Alto volumen operativo diario (~1500 assets)
+- Procesamiento asincrónico
+- Tiempo promedio de procesamiento:
+  - **3 a 5 minutos por asset**
+- Entregas realizadas mediante batches controlados
 
 ---
 
-## 8. Consideraciones importantes
+## 5. Validaciones generales
 
-- El nombre del **folder principal** debe estar en **MAYÚSCULAS** y **sin espacios**.
-- Las imágenes incorrectamente nombradas pueden provocar:
-  - Fallos de validación
-  - Rechazo del delivery por parte del partner
-- Todas las **variantes de idioma** deben entregarse cuando el contenido lo requiera.
+Durante la ingesta para Claro Video se validan:
+
+- Resolución mínima de video: **720p**
+- Codificación soportada: **H.264**
+- Metadata obligatoria completa
+- Imágenes sincronizadas y válidas
+- Naming conforme a reglas del partner
 
 ---
 
-## 9. Relación con la integración
+## 6. Estados de procesamiento
 
-Este anexo debe leerse en conjunto con:
+| Estado | Descripción |
+|------|-------------|
+| Pending | Delivery creado |
+| Processing | Assets en procesamiento |
+| Completed | Procesamiento exitoso |
+| Failed | Error en uno o más assets |
+
+El estado se consulta desde el **Admin Panel** de EDYE.
+
+---
+
+## 7. Método de entrega
+
+Los contenidos procesados se entregan mediante:
+
+- **Aspera (HITN Production)** – método principal
+- **SFTP directo del partner** – cuando aplica
+
+---
+
+## 8. Anexos técnicos
+
+Las siguientes reglas son obligatorias para Claro Video:
+
+- Posters y artwork  
+  Ver: `anexos/posters.md`
+
+---
+
+## 9. Observaciones
+
+- Los flujos de ingesta vía FTP se encuentran en proceso de descontinuación.
+- Cualquier cambio operativo debe validarse con **Operaciones EDYE**.
+
+---
+
+## 10. Documentación relacionada
 
 - `modelos/ingesta.md`
 - `flujo/flujo-ingesta.md`
-- `partners/claro-video/ingesta.md`
-
-Este documento **no reemplaza** el flujo de ingesta ni la documentación general del
-modelo, sino que define **reglas específicas del partner Claro Video**.
-
----
-
-## 10. Control de cambios
-
-Cualquier modificación en:
-
-- Dimensiones
-- Naming
-- Idiomas
-- Estructura de carpetas
-
-Debe ser validada previamente con el equipo de **Operaciones EDYE** y el partner
-**Claro Video**.
+- `anexos-globales/codigos-error.md`
