@@ -46,8 +46,22 @@ El flujo aplicado corresponde al flujo estándar de ingesta EDYE:
 6. Entrega al partner  
 7. Validación final y reporting  
 
-Ver detalle en:
-- `flujo/flujo-ingesta.md`
+![Flujo aplicado Edyes](/img/integraciones/ingesta/claro-video/claro-edyes-flow.jpg)
+> **Figura 1.** Diagrama del flujo estándar de ingesta EDYE
+
+Este flujo describe el comportamiento técnico del sistema EDYE.
+A continuación se detalla el flujo operativo específico del partner Claro Video.
+
+### 3.1. Flujo operativo del partner
+
+Además del flujo técnico estándar de ingesta EDYE, Claro Video cuenta con un
+flujo operativo que involucra a los equipos de Contenido, Diseño y DevOps.
+
+Este flujo describe las tareas humanas previas y posteriores a la generación del
+delivery.
+
+![Flujo operativo del partner](/img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
+> **Figura 2.** Diagrama del flujo operativo del partner
 
 ---
 
