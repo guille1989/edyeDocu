@@ -27,7 +27,7 @@ EDYE**.
 Claro Video implementa el siguiente modelo:
 
 - **Modelo:** Ingesta de Contenidos  
-  Ver: `modelos/ingesta.md`
+  Ver: `modelos/Ingesta de Contenidos`
 
 Este documento no redefine el modelo, sino que documenta las
 **configuraciones y reglas específicas del partner**.
