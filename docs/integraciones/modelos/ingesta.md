@@ -189,3 +189,37 @@ Algunos partners requieren formatos específicos (ej. XLS).
 
 - [Flujo de Ingesta](../flujos/flujo-ingesta.md)
 - [Ingesta Claro Video](../partners/claro-video/ingesta.md)
+
+---
+
+## 13. Documentos de apoyo (Google Drive)
+
+Esta sección centraliza los documentos operativos (PDF) relacionados con el modelo de ingesta.
+Usa estos enlaces como referencia visual paso a paso del Admin Panel y procesos de delivery.
+
+### Operación de deliveries y monitoreo
+
+- **Generar deliveries para partners vía EDYE API (PDF)**  
+  [Abrir en Drive](https://drive.google.com/file/d/1lljpBhoBqpV9BHzWPlfA6_Rba-Q3kpa9/view?usp=drive_link)
+
+- **Verificar el estado individual de un asset dentro de un delivery (PDF)**  
+  [Abrir en Drive](https://drive.google.com/file/d/1Id1bk7cMcvQ-fLHOOZG8bCvFyNa8DSxJ/view?usp=drive_link)
+
+- **Descargar reportes de ingesta / delivery reports (PDF)**  
+  [Abrir en Drive](https://drive.google.com/file/d/1dMgpGFmfRcIClUC1X3K68CsPRi4oYyoG/view?usp=drive_link)
+
+### Imágenes y paquetes
+
+- **Descargar paquetes de imágenes para partners específicos (PDF)**  
+  [Abrir en Drive](https://drive.google.com/file/d/1RqXEM0K-BSqC7vBPRrdundW3J1LPrVfb/view?usp=drive_link)
+
+- **Reemplazar imágenes de episodios manualmente en EDYE API (PDF)**  
+  [Abrir en Drive](https://drive.google.com/file/d/1rRpWeTCohNudmPhUEZr6QLZ0CRxGmFYy/view?usp=drive_link)
+
+- **Sincronizar playlists e imágenes desde JW Player hacia EDYE API (PDF)**  
+  [Abrir en Drive](https://drive.google.com/file/d/1EknA3RHwOift9hmv90AgMzdGwLk3KLWj/view?usp=drive_link)
+
+### Metadata y etiquetado
+
+- **Etiquetado masivo (Add Tags to Content in Bulk) vía EDYE API (PDF)**  
+  [Abrir en Drive](https://drive.google.com/file/d/1HHgs9z459F3KGgZ8cR3qr6rMBtHYnTB9/view?usp=drive_link)
