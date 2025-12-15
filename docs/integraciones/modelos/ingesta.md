@@ -27,7 +27,8 @@ El modelo de ingesta cubre:
 
 - Preparación y validación de contenidos
 - Sincronización con JW Player
-- Generación de assets por partner
+- Normalización y validación de metadata
+- Generación de assets por partner (paquetes y/o assets individuales)
 - Entrega de metadata e imágenes
 - Validación, monitoreo y reporting post-ingesta
 
@@ -43,19 +44,23 @@ No cubre:
 
 Los siguientes sistemas participan en el flujo de ingesta:
 
-- **JW Player**  
+- **JW Player (JWP)**  
   Origen de videos, playlists y still images.
 
 - **EDYE API**  
   Motor central de procesamiento, validación y generación de assets.
 
 - **Admin Panel (EDYE)**  
-  Interfaz operativa para sincronización, validaciones y generación de deliveries.
+  Interfaz operativa para sincronización, validaciones, generación de deliveries y monitoreo.
 
-- **Almacenamiento**
+- **Fuentes de metadata externas (cuando aplique)**  
+  - **Gracenote / TMS** (IDs, referencias de catálogo)
 
+- **Canales de entrega / repositorios (según configuración de partner)**  
   - Aspera (HITN Production)
-  - SFTP directo del partner (según configuración)
+  - SFTP del partner
+  - S3 del partner (casos específicos)
+  - Delivery vía API/SSL (casos específicos)
 
 - **Partner**  
   Receptor final de los assets generados.
@@ -74,6 +79,7 @@ El modelo de ingesta soporta los siguientes tipos de contenido:
   - Posters
   - Episodic stills
   - Logos
+  - Thumbnails (cuando aplique por partner)
 - Metadata asociada al contenido
 
 ---
@@ -83,16 +89,20 @@ El modelo de ingesta soporta los siguientes tipos de contenido:
 El flujo estándar de ingesta se compone de los siguientes pasos:
 
 1. El contenido audiovisual es cargado y organizado en **JW Player**.
-2. Se ejecuta la **sincronización de JW Player con EDYE API**.
-3. Se valida la metadata y el etiquetado del contenido.
-4. Se genera un **delivery** para uno o más partners.
-5. EDYE API procesa los assets (XML, imágenes).
-6. Los assets son entregados vía **Aspera o SFTP**.
-7. Se valida el estado final de la ingesta.
-8. Se generan reportes post-ingesta.
+2. Se completan **parámetros obligatorios de metadata** (según modelo y partner), por ejemplo:
+   - IDs externos (p.ej. **TMS ID**) cuando aplique
+   - parámetros custom (p.ej. **Acronym**) cuando aplique
+3. Se ejecuta la **sincronización de JW Player con EDYE API**.
+4. Se valida la metadata y el etiquetado del contenido (campos obligatorios, consistencia y tags).
+5. Se valida el **paquete de imágenes** (posters / episodic stills / thumbnails) y su **naming/estructura** de acuerdo a los specs del partner.
+6. Se genera un **delivery** para uno o más partners desde el Admin Panel.
+7. EDYE API procesa los assets (XML/metadata, imágenes, paquetes) y ejecuta **QC** (warnings/errors).
+8. Los assets son entregados vía el canal configurado (**Aspera / SFTP / S3 / API**).
+9. Se valida el estado final de la ingesta (por delivery y por asset) y se reintenta lo fallido (si aplica).
+10. Se generan reportes post-ingesta.
 
 📌 Ver diagrama completo:  
-`/integraciones/flujo/Flujo de Ingesta de Contenidos`
+`../flujos/flujo-ingesta.md`
 
 ---
 
@@ -100,25 +110,41 @@ El flujo estándar de ingesta se compone de los siguientes pasos:
 
 Antes de ejecutar una ingesta, se deben cumplir los siguientes requisitos:
 
-- Playlists correctamente configuradas en JW Player
-- Episodios sincronizados con EDYE API
-- Imágenes válidas asociadas a cada episodio
-- Metadata completa y consistente
+- Playlists correctamente configuradas en JW Player (incluyendo playlists específicas por partner, si aplica)
+- Contenidos (series/películas/episodios) sincronizables con EDYE API
+- Metadata completa y consistente (campos obligatorios, idioma(s), disponibilidad, etc.)
+- IDs externos cargados cuando aplique (p.ej. **TMS ID**) y parámetros custom requeridos (p.ej. **Acronym**)
 - Etiquetado correcto (ej. `geoList`, tags editoriales)
-- Partner habilitado para delivery
+- Paquete de imágenes completo según el partner:
+  - Posters (con aspect ratios requeridos)
+  - Episodic stills por episodio (cantidad mínima requerida)
+  - Thumbnails (si el partner los requiere)
+- Naming y estructura de archivos conforme a las **especificaciones del partner**
+- Partner habilitado para delivery (configuración de canal + formato de entrega)
 
 ---
 
 ## 6. Variantes del modelo de ingesta
 
-El modelo de ingesta presenta las siguientes variantes según el partner:
+Las variantes se agrupan en **canal de entrega** y **tipo de paquete**.
 
-| Variante       | Descripción                                             |
-| -------------- | ------------------------------------------------------- |
-| Aspera         | Assets generados y almacenados en HITN Production       |
-| SFTP Directo   | Assets enviados directamente al repositorio del partner |
-| XML + Imágenes | Delivery completo de metadata e imágenes                |
-| Solo Imágenes  | Delivery limitado a artwork e imágenes                  |
+### 6.1 Canales de entrega (según partner)
+
+| Canal         | Descripción                                          |
+|--------------|------------------------------------------------------|
+| Aspera       | Assets generados y almacenados en HITN Production    |
+| SFTP Directo | Assets enviados al repositorio SFTP del partner      |
+| S3           | Assets enviados al bucket S3 del partner (casos)     |
+| API/SSL      | Delivery vía API/SSL (casos de integración por API)  |
+
+### 6.2 Tipos de paquete / alcance de delivery
+
+| Paquete             | Descripción                                             |
+|---------------------|---------------------------------------------------------|
+| Metadata + Imágenes | Delivery completo de metadata (XML/JSON) e imágenes     |
+| Full Package        | Metadata + posters + episodic stills + thumbnails (si aplica) |
+| Solo Imágenes       | Delivery limitado a artwork e imágenes                  |
+| Solo Metadata       | Delivery limitado a metadata (cuando el partner lo permite) |
 
 Cada partner puede aplicar una o más variantes del modelo.
 
@@ -128,18 +154,20 @@ Cada partner puede aplicar una o más variantes del modelo.
 
 Durante la ingesta, EDYE API ejecuta validaciones automáticas sobre:
 
-- Existencia de imágenes requeridas
+- Existencia de imágenes requeridas (por tipo de contenido y por partner)
 - Coherencia entre playlists y episodios
 - Estructura y naming de assets
 - Sincronización JW Player ↔ EDYE
 - Configuración del delivery por partner
+- Restricciones adicionales (ej. thumbnails con watermark, cuando aplique)
 
 ### Estados de procesamiento
 
 - **Pending / Received**: Delivery creado, pendiente de ejecución
-- **Processing**: Assets en generación
+- **Processing**: Assets en generación/transferencia
 - **Completed**: Ingesta finalizada correctamente
 - **Failed**: Error en uno o más assets
+- **Completed with Warnings** (si aplica): finaliza pero requiere revisión de alertas
 
 ---
 
@@ -148,20 +176,24 @@ Durante la ingesta, EDYE API ejecuta validaciones automáticas sobre:
 El estado de una ingesta puede ser monitoreado desde el **Admin Panel**:
 
 - Vista general de deliveries
-- Log detallado por asset
+- **Delivery View**: revisión del paquete generado (por partner, por tipo de asset)
+- Log detallado por asset (errores, warnings)
 - Estado individual de cada archivo
 - Reintento manual de assets fallidos
+- **API Logs / Log Viewer** (si está habilitado): auditoría y troubleshooting
 
 ---
 
 ## 9. Errores comunes y troubleshooting
 
-| Error                  | Causa probable                | Acción recomendada         |
-| ---------------------- | ----------------------------- | -------------------------- |
-| Validation error       | Imágenes no sincronizadas     | Ejecutar sync de JW Player |
-| Missing assets         | Episodios sin stills          | Reemplazar imágenes        |
-| Delivery stuck         | Error en batch                | Revisar log y reintentar   |
-| Metadata inconsistente | Campos obligatorios faltantes | Corregir metadata          |
+| Error / Síntoma                         | Causa probable                                    | Acción recomendada                          |
+|----------------------------------------|---------------------------------------------------|---------------------------------------------|
+| Validation error                        | Imágenes no sincronizadas o faltantes             | Ejecutar sync de JW Player y revalidar      |
+| Missing assets                          | Episodios sin stills / posters incompletos        | Cargar/reemplazar imágenes y reintentar     |
+| Metadata inconsistente                  | Campos obligatorios faltantes                     | Corregir metadata en JWP / EDYE y reintentar|
+| Delivery stuck / processing prolongado  | Error en batch o dependencia en la transferencia  | Revisar logs, reintentar, escalar a DevOps  |
+| Warning por thumbnails / watermark      | Falta watermark o formatos requeridos             | Cargar watermark/formats correctos y reintentar |
+| Naming/estructura inválidos             | No cumple spec del partner                         | Ajustar naming/estructura y regenerar       |
 
 ---
 
@@ -189,6 +221,7 @@ Algunos partners requieren formatos específicos (ej. XLS).
 
 - [Flujo de Ingesta](../flujos/flujo-ingesta.md)
 - [Ingesta Claro Video](../partners/claro-video/ingesta.md)
+- [Ingesta Dish Mexico](../partners/dish-mexico/ingesta.md)
 
 ---
 
