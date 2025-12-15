@@ -1,6 +1,6 @@
 ---
 id: int-ingesta
-title: Ingesta de Contenidos
+title: Ingesta
 sidebar_position: 1
 ---
 
@@ -92,7 +92,7 @@ El flujo estándar de ingesta se compone de los siguientes pasos:
 8. Se generan reportes post-ingesta.
 
 📌 Ver diagrama completo:  
-`/integraciones/flujo/ingesta-flow.png`
+`/integraciones/flujo/Flujo de Ingesta de Contenidos`
 
 ---
 

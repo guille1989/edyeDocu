@@ -38,5 +38,33 @@
   "sidebar.tutorialSidebar.category.🤝 Int-SAML AUTH": {
     "message": "🤝 Int-SAML AUTH",
     "description": "The label for category '🤝 Int-SAML AUTH' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Modelos": {
+    "message": "Modelos",
+    "description": "The label for category 'Modelos' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Flujos": {
+    "message": "Flujos",
+    "description": "The label for category 'Flujos' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Partners": {
+    "message": "Partners",
+    "description": "The label for category 'Partners' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Claro Video": {
+    "message": "Claro Video",
+    "description": "The label for category 'Claro Video' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Anexos-Claro Video": {
+    "message": "Anexos-Claro Video",
+    "description": "The label for category 'Anexos-Claro Video' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Dish Mexico": {
+    "message": "Dish Mexico",
+    "description": "The label for category 'Dish Mexico' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Anexos-Dish Mexico": {
+    "message": "Anexos-Dish Mexico",
+    "description": "The label for category 'Anexos-Dish Mexico' in sidebar 'tutorialSidebar'"
   }
 }
