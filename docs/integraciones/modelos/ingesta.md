@@ -187,7 +187,5 @@ Algunos partners requieren formatos específicos (ej. XLS).
 
 ## 12. Referencias
 
-- [Flujo de Ingesta](../flujo/flujo-ingesta.md)
-- [Gestión de Imágenes](../imagenes/)
-- [Integraciones por Partner](../partners/)
-- [Códigos de Error](../anexos-globales/codigos-error.md)
+- [Flujo de Ingesta](../flujos/flujo-ingesta.md)
+- [Ingesta Claro Video](../partners/claro-video/ingesta.md)
