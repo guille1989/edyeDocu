@@ -1,7 +1,7 @@
 ---
 id: devops-compendio
 title: 📚 Compendio DevOps
-sidebar_label: 📚 Compendio
+sidebar_label: 📚 Compendio **CONSTRUCTION**
 ---
 
 import DevopsPlanEs from './devops/devops-planificacion.md';
