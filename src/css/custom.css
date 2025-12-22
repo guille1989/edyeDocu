@@ -199,6 +199,24 @@ body {
   background: rgba(15, 23, 42, 0.92);
 }
 
+/* Mermaid zoom helper */
+.mermaid-zoom {
+  overflow: auto;
+}
+
+.mermaid-zoom svg {
+  min-width: 960px;
+  max-width: none;
+  cursor: zoom-in;
+  transition: transform 120ms ease;
+}
+
+.mermaid-zoom svg:active {
+  transform: scale(1.25);
+  transform-origin: top left;
+  cursor: zoom-out;
+}
+
 .theme-doc-markdown h1,
 .theme-doc-markdown h2,
 .theme-doc-markdown h3 {

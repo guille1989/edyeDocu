@@ -30,7 +30,12 @@ const config = {
     supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
   },
 
+  markdown: {
+    mermaid: true,
+  },
+
   themes: [
+    "@docusaurus/theme-mermaid",
     [
       "@easyops-cn/docusaurus-search-local",
       {

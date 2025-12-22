@@ -27,7 +27,7 @@ EDYE**.
 Claro Video implementa el siguiente modelo:
 
 - **Modelo:** Ingesta de Contenidos  
-  Ver: `modelos/Ingesta de Contenidos`
+  Ver: `modelos/Ingesta`
 
 Este documento no redefine el modelo, sino que documenta las
 **configuraciones y reglas específicas del partner**.
@@ -36,24 +36,6 @@ Este documento no redefine el modelo, sino que documenta las
 
 ## 3. Flujo aplicado
 
-El flujo aplicado corresponde al flujo estándar de ingesta EDYE:
-
-1. Carga de contenido en JW Player  
-2. Sincronización JW Player ↔ EDYE API  
-3. Validación de metadata e imágenes  
-4. Generación de delivery para Claro Video  
-5. Procesamiento de assets  
-6. Entrega al partner  
-7. Validación final y reporting  
-
-![Flujo aplicado Edyes](/img/integraciones/ingesta/claro-video/claro-edyes-flow.jpg)
-> **Figura 1.** Diagrama del flujo estándar de ingesta EDYE
-
-Este flujo describe el comportamiento técnico del sistema EDYE.
-A continuación se detalla el flujo operativo específico del partner Claro Video.
-
-### 3.1. Flujo operativo del partner
-
 Además del flujo técnico estándar de ingesta EDYE, Claro Video cuenta con un
 flujo operativo que involucra a los equipos de Contenido, Diseño y DevOps.
 
@@ -61,7 +43,7 @@ Este flujo describe las tareas humanas previas y posteriores a la generación de
 delivery.
 
 ![Flujo operativo del partner](/img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
-> **Figura 2.** Diagrama del flujo operativo del partner
+> **Figura 1.** Diagrama del flujo operativo del partner
 
 ---
 
@@ -114,7 +96,7 @@ Los contenidos procesados se entregan mediante:
 Las siguientes reglas son obligatorias para Claro Video:
 
 - Posters y artwork  
-  Ver: `anexos/posters.md`
+  Ver: `Anexos-Claro Video/Posters y Artwork Claro Video`
 
 ---
 

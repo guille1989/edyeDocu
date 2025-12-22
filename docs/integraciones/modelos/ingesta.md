@@ -56,6 +56,10 @@ Los siguientes sistemas participan en el flujo de ingesta:
 - **Fuentes de metadata externas (cuando aplique)**  
   - **Gracenote / TMS** (IDs, referencias de catálogo)
 
+> **Regla:** Los identificadores **Gracenote / TMS** se requieren **solo** para partners que tengan **correlación de catálogo vía Gracenote** (actualmente: **[NOMBRE_DEL_PARTNER]**).  
+> Para los demás partners, estos IDs **no son obligatorios** (opcionales / N/A).
+
+
 - **Canales de entrega / repositorios (según configuración de partner)**  
   - Aspera (HITN Production)
   - SFTP del partner
@@ -186,14 +190,14 @@ El estado de una ingesta puede ser monitoreado desde el **Admin Panel**:
 
 ## 9. Errores comunes y troubleshooting
 
-| Error / Síntoma                         | Causa probable                                    | Acción recomendada                          |
-|----------------------------------------|---------------------------------------------------|---------------------------------------------|
-| Validation error                        | Imágenes no sincronizadas o faltantes             | Ejecutar sync de JW Player y revalidar      |
-| Missing assets                          | Episodios sin stills / posters incompletos        | Cargar/reemplazar imágenes y reintentar     |
-| Metadata inconsistente                  | Campos obligatorios faltantes                     | Corregir metadata en JWP / EDYE y reintentar|
-| Delivery stuck / processing prolongado  | Error en batch o dependencia en la transferencia  | Revisar logs, reintentar, escalar a DevOps  |
-| Warning por thumbnails / watermark      | Falta watermark o formatos requeridos             | Cargar watermark/formats correctos y reintentar |
-| Naming/estructura inválidos             | No cumple spec del partner                         | Ajustar naming/estructura y regenerar       |
+| Error / Síntoma                         | Causa probable                                                                 | Acción recomendada                                               |
+|----------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------|
+| Validation error                        | Imágenes no sincronizadas o faltantes                                          | Ejecutar sync de JW Player y revalidar                           |
+| Missing assets                          | Episodios sin stills / posters incompletos                                     | Cargar/reemplazar imágenes y reintentar                          |
+| Metadata inconsistente                  | Campos obligatorios faltantes **o caracteres invisibles/codificación inválida (solo UTF-8)** | Corregir metadata en JWP / EDYE, normalizar texto a UTF-8 y reintentar |
+| Delivery stuck / processing prolongado  | Error en batch o dependencia en la transferencia                               | Revisar logs, reintentar, escalar a DevOps                       |
+| Naming/estructura inválidos             | No cumple spec del partner                                                     | Ajustar naming/estructura y regenerar                            |
+
 
 ---
 

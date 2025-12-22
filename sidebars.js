@@ -33,12 +33,18 @@ const sidebars = {
         {
           type: "category",
           label: "Modelos",
-          items: ["integraciones/modelos/int-ingesta"],
+          items: [
+            "integraciones/modelos/int-ingesta",
+            "integraciones/modelos/int-delivery-api",
+          ],
         },
         {
           type: "category",
           label: "Flujos",
-          items: ["integraciones/flujos/int-ingesta-flujo-contenidos"],
+          items: [
+            "integraciones/flujos/int-ingesta-flujo-general-contenidos",
+            "integraciones/flujos/int-delivery-via-api-flujo-general-contenidos",
+          ],
         },
         {
           type: "category",
@@ -59,7 +65,7 @@ const sidebars = {
                 },
               ],
             },
-             {
+            {
               type: "category",
               label: "Dish Mexico",
               items: [
@@ -74,11 +80,109 @@ const sidebars = {
                 },
               ],
             },
+            {
+              type: "category",
+              label: "Claro Brasil",
+              items: [
+                "integraciones/partners/claro-brazil/int-ing-partner-claro-brazil",
+                {
+                  type: "category",
+                  label: "Anexos-Claro Brazil",
+                  items: [
+                    "integraciones/partners/claro-brazil/anexos/int-partnet-claro-brasil-anexos-checklist",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Sky Brazil",
+              items: [
+                "integraciones/partners/sky-brazil/int-ing-partner-sky-brazil",
+                {
+                  type: "category",
+                  label: "Anexos-Sky Brazil",
+                  items: [
+                    "integraciones/partners/sky-brazil/anexos/int-partnet-sky-brazil-anexos-checklist",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Whatch Brazil",
+              items: [
+                "integraciones/partners/watch-brazil/int-ing-partner-watch-brazil",
+                {
+                  type: "category",
+                  label: "Anexos-Whatch Brazil",
+                  items: [
+                    "integraciones/partners/watch-brazil/anexos/int-partnet-watch-brazil-anexos-checklist",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "VTR",
+              items: [
+                "integraciones/partners/vtr/int-ing-partner-vtr",
+                {
+                  type: "category",
+                  label: "Anexos-VTR",
+                  items: [
+                    "integraciones/partners/vtr/anexos/int-partnet-vtr-anexos-checklist",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "ROKU Premium",
+              items: [
+                "integraciones/partners/roku-premium/int-ing-partner-roku-premium",
+                {
+                  type: "category",
+                  label: "Anexos-ROKU Premium",
+                  items: [
+                    "integraciones/partners/roku-premium/anexos/int-partnet-roku-premium-anexos-checklist",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "DirecTV",
+              items: [
+                "integraciones/partners/directv/int-ing-partner-directv",
+                {
+                  type: "category",
+                  label: "Anexos-DirecTV",
+                  items: [
+                    "integraciones/partners/directv/anexos/int-partnet-directv-anexos-checklist",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Megacable",
+              items: [
+                "integraciones/partners/megacable/int-ing-partner-megacable",
+                {
+                  type: "category",
+                  label: "Anexos-Megacable",
+                  items: [
+                    "integraciones/partners/megacable/anexos/int-partnet-megacable-anexos-checklist",
+                  ],
+                },
+              ],
+            },
           ],
         },
       ],
     },
-    "devops-compendio"
+    "devops-compendio",
   ],
 };
 

@@ -25,8 +25,39 @@ metadata y artwork, operada principalmente vía Aspera.
 
 ## 4. Flujo de Ingesta – Dish México
 
-![Flujo de Ingesta Dish México](/img/integraciones/ingesta/dish-mx/flujo-ingesta-dish-mx.jpg)
-> **Figura 1.** Diagrama del flujo estándar de ingesta EDYE
+```mermaid
+---
+config:
+  theme: mc
+  look: neo
+---
+sequenceDiagram
+    actor CO as "Content Operations"
+    actor DT as "Design Team"
+    actor DD as "EDYE DevOps"
+    actor CV as "Dish Mexico"
+
+    CO->>CO: Recibe contenido del equipo de programación
+    CO->>CO: Sube contenido a JW Player y crea metadata
+    CO->>CO: Sincroniza JW Player con EDYE API
+
+    CO->>DT: Solicita creación de arte principal por serie
+    DT->>DT: Diseña arte según especificaciones del partner
+    DT->>CO: Notifica arte disponible
+    CO->>CO: Verifica y valida arte cargado en EDYE
+
+    CO->>DD: Solicita generación de delivery
+    DD->>DD: Genera delivery para  Dish Mexico
+    DD->>DD: Ejecuta validación operativa (metadata / imágenes / naming)
+
+    alt Errores en la validación
+        DD->>CO: Reporta errores para corrección
+        CO->>CO: Corrige contenido / metadata / imágenes
+    else Validación exitosa
+        DD->>CV: Entrega assets vía SFTP / Aspera
+    end
+``` 
+> **Figura 1.** Diagrama del flujo operativo del partner
 
 Este flujo describe el proceso operativo completo desde la recepción del
 contenido por parte del equipo de Content Operations hasta la entrega
