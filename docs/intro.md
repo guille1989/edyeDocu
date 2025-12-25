@@ -3,6 +3,10 @@ id: intro
 title: "🏁 Edyes-Documentación"
 sidebar_label: "🏁 Edyes-Documentación"
 ---
+**Versión:** 1.0  
+**Fecha:** 01/12/2025  
+
+---
 
 # Edyes-Documentación
 

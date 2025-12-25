@@ -2,6 +2,10 @@
 id: int-checklist
 title: Edyes - Checklist de Integraciones
 ---
+**Versión:** 1.0  
+**Fecha:** 01/12/2025  
+
+---
 
 ## ✅ Checklist — Integración API + Notifier (Direct Carrier Billing)
 

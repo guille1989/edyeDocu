@@ -2,7 +2,10 @@
 id: int-overview
 title: 🤝 Edyes - Integraciónes
 ---
+**Versión:** 1.0  
+**Fecha:** 01/12/2025  
 
+---
 
 # Tabla de Tipos de Integración
 

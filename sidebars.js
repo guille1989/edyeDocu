@@ -8,8 +8,22 @@ const sidebars = {
       type: "category",
       label: "🗄️ Edye-Infraestructura",
       items: [
-        "infraestructura/indraestructura-production-environment",
-        "infraestructura/indraestructura-staging-environment",
+        "infraestructura/infraestructura-environment"
+      ],
+    },
+    {
+      type: "category",
+      label: "Edye-Servicios",
+      items: [
+        "aplicaciones/app-admin",
+        "aplicaciones/app-api",
+        "aplicaciones/app-billing",
+        "aplicaciones/app-cache",
+        "aplicaciones/app-cloud",
+        "aplicaciones/app-conecta",
+        "aplicaciones/app-play",
+        "aplicaciones/app-connect",
+        "aplicaciones/app-satellite",
       ],
     },
     {

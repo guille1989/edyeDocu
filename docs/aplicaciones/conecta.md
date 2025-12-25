@@ -1,6 +1,6 @@
 ---
-id: app-admin
-title: Servicio Admin
+id: app-conecta
+title: Servicio Conecta
 ---
 **Versión:** 1.0  
 **Fecha:** 01/12/2025  
