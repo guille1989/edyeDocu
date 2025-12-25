@@ -1,6 +1,6 @@
 ---
 id: int-ing-partner-roku-premium
-title: Checklist de Ingesta – ROKU Premium
+title: Ingesta de Contenidos –  ROKU Premium
 ---
 
 # Anexo por Partner — ROKU (Ingesta)

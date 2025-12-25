@@ -3,6 +3,31 @@ id: int-overview
 title: 🤝 Edyes - Integraciónes
 ---
 
+
+# Tabla de Tipos de Integración
+
+<div align="center">
+
+| Name                        | Integration Type                          | Status         |
+|-----------------------------|-------------------------------------------|----------------|
+| Claro Video                 | Ingesta                                   | 🟢 Operativa   |
+| Megacable                   | Ingesta                                   | 🟢 Operativa   |
+| Dish México                 | Ingesta                                   | 🟢 Operativa   |
+| The Shelf                   | Delivery via API                          | 🟢 Operativa   |
+| Telefónica (Movistar)       | API + Notifier (Direct Carrier Billing)   | 🟢 Operativa   |
+| VTR                         | OpenID, Ingesta                           | 🟢 Operativa   |
+| Directv                     | Delivery via API                          | 🟢 Operativa   |
+| Claro Brazil                | Ingesta                                   | 🟢 Operativa   |
+| Sky Brazil                  | Ingesta                                   | 🟢 Operativa   |
+| WATCH Brazil                | Delivery via API                          | 🟢 Operativa   |
+| Walmart                     | Edye Billing                              | 🟢 Operativa   |
+| Telecable                   | API + Notifier + APK                      | 🟢 Operativa   |
+| Ultralink                   | Edye Billing                              | 🟢 Operativa   |
+| Mi Bebé y Yo                | Edye Billing                              | 🟢 Operativa   |
+| ROKU Premium Subscriptions  | Ingesta                                   | 🟢 Operativa   |
+
+</div>
+
 # Monday Board (embed)
 
 <iframe
@@ -10,3 +35,4 @@ title: 🤝 Edyes - Integraciónes
   style={{ width: '100%', height: '900px', border: 0 }}
   allowfullscreen
 ></iframe>
+

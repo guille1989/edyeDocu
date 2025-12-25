@@ -38,7 +38,7 @@ export default function Home() {
           <div className={styles.badge}>  Documentacion unificada </div>
           <h1>
             
-            Todo el conocimiento de <span className={styles.brand}>Edyes</span>{' '}
+            Todo el conocimiento de <span className={styles.brand}>Edye</span>{' '}
             en un solo lugar
             
           </h1>

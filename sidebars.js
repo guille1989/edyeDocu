@@ -6,7 +6,7 @@ const sidebars = {
     "intro",
     {
       type: "category",
-      label: "🗄️ Edyes-Infraestructura",
+      label: "🗄️ Edye-Infraestructura",
       items: [
         "infraestructura/indraestructura-production-environment",
         "infraestructura/indraestructura-staging-environment",
@@ -14,7 +14,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "🛠️ Edyes-DevOps",
+      label: "🛠️ Edye-DevOps",
       items: [
         "devops/devops-estructura",
         "devops/devops-estrategia",
@@ -27,23 +27,18 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "🔌 Edyes-Integraciones",
+      label: "🔌 Edye-Integraciones",
       items: [
         "integraciones/int-overview",
         {
           type: "category",
-          label: "Modelos",
+          label: "Tipos de integraciones",
           items: [
             "integraciones/modelos/int-ingesta",
             "integraciones/modelos/int-delivery-api",
-          ],
-        },
-        {
-          type: "category",
-          label: "Flujos",
-          items: [
-            "integraciones/flujos/int-ingesta-flujo-general-contenidos",
-            "integraciones/flujos/int-delivery-via-api-flujo-general-contenidos",
+            "integraciones/modelos/int-edye-billing",
+            "integraciones/modelos/int-api-notifier-apk",
+            "integraciones/modelos/int-api-notifier-billing"
           ],
         },
         {
@@ -59,8 +54,7 @@ const sidebars = {
                   type: "category",
                   label: "Anexos-Claro Video",
                   items: [
-                    "integraciones/partners/claro-video/anexos/int-partnet-claro-video-anexos-posters",
-                    "integraciones/partners/claro-video/anexos/int-partnet-claro-video-anexos-checklist",
+                    "integraciones/partners/claro-video/anexos/int-partnet-claro-video-anexos-posters"
                   ],
                 },
               ],
@@ -74,110 +68,109 @@ const sidebars = {
                   type: "category",
                   label: "Anexos-Dish Mexico",
                   items: [
-                    "integraciones/partners/dish-mexico/anexos/int-partnet-dish-mexico-anexos-posters",
-                    "integraciones/partners/dish-mexico/anexos/int-partnet-dish-mexico-anexos-checklist",
+                    "integraciones/partners/dish-mexico/anexos/int-partnet-dish-mexico-anexos-posters"
                   ],
                 },
               ],
             },
             {
               type: "category",
-              label: "Claro Brasil",
+              label: "Claro Brazil",
               items: [
-                "integraciones/partners/claro-brazil/int-ing-partner-claro-brazil",
-                {
-                  type: "category",
-                  label: "Anexos-Claro Brazil",
-                  items: [
-                    "integraciones/partners/claro-brazil/anexos/int-partnet-claro-brasil-anexos-checklist",
-                  ],
-                },
+                "integraciones/partners/claro-brazil/int-ing-partner-claro-brazil"
               ],
             },
             {
               type: "category",
               label: "Sky Brazil",
               items: [
-                "integraciones/partners/sky-brazil/int-ing-partner-sky-brazil",
-                {
-                  type: "category",
-                  label: "Anexos-Sky Brazil",
-                  items: [
-                    "integraciones/partners/sky-brazil/anexos/int-partnet-sky-brazil-anexos-checklist",
-                  ],
-                },
+                "integraciones/partners/sky-brazil/int-ing-partner-sky-brazil"
               ],
             },
             {
               type: "category",
               label: "Whatch Brazil",
               items: [
-                "integraciones/partners/watch-brazil/int-ing-partner-watch-brazil",
-                {
-                  type: "category",
-                  label: "Anexos-Whatch Brazil",
-                  items: [
-                    "integraciones/partners/watch-brazil/anexos/int-partnet-watch-brazil-anexos-checklist",
-                  ],
-                },
+                "integraciones/partners/watch-brazil/int-ing-partner-watch-brazil"
               ],
             },
             {
               type: "category",
               label: "VTR",
               items: [
-                "integraciones/partners/vtr/int-ing-partner-vtr",
-                {
-                  type: "category",
-                  label: "Anexos-VTR",
-                  items: [
-                    "integraciones/partners/vtr/anexos/int-partnet-vtr-anexos-checklist",
-                  ],
-                },
+                "integraciones/partners/vtr/int-ing-partner-vtr"
               ],
             },
             {
               type: "category",
               label: "ROKU Premium",
               items: [
-                "integraciones/partners/roku-premium/int-ing-partner-roku-premium",
-                {
-                  type: "category",
-                  label: "Anexos-ROKU Premium",
-                  items: [
-                    "integraciones/partners/roku-premium/anexos/int-partnet-roku-premium-anexos-checklist",
-                  ],
-                },
+                "integraciones/partners/roku-premium/int-ing-partner-roku-premium"
               ],
             },
             {
               type: "category",
               label: "DirecTV",
               items: [
-                "integraciones/partners/directv/int-ing-partner-directv",
-                {
-                  type: "category",
-                  label: "Anexos-DirecTV",
-                  items: [
-                    "integraciones/partners/directv/anexos/int-partnet-directv-anexos-checklist",
-                  ],
-                },
+                "integraciones/partners/directv/int-ing-partner-directv"
               ],
             },
             {
               type: "category",
               label: "Megacable",
               items: [
-                "integraciones/partners/megacable/int-ing-partner-megacable",
-                {
-                  type: "category",
-                  label: "Anexos-Megacable",
-                  items: [
-                    "integraciones/partners/megacable/anexos/int-partnet-megacable-anexos-checklist",
-                  ],
-                },
+                "integraciones/partners/megacable/int-ing-partner-megacable"
               ],
             },
+            {
+              type: "category",
+              label: "Walmart",
+              items: [
+                "integraciones/partners/walmart/int-edye-billing-partner-waltmart"
+              ],
+            },
+            {
+              type: "category",
+              label: "Mi Bebé y Yo",
+              items: [
+                "integraciones/partners/mi-bebe-y-yo/int-edye-billing-partner-mi-bebe-y-yo"
+              ],
+            },
+            {
+              type: "category",
+              label: "Ultralink",
+              items: [
+                "integraciones/partners/ultralink/int-edye-billing-partner-ultralink"
+              ],
+            },
+            {
+              type: "category",
+              label: "The Shelf",
+              items: [
+                "integraciones/partners/the-shelf/int-edye-delivery-via-api-the-shelf"
+              ],
+            },
+            {
+              type: "category",
+              label: "Telecable",
+              items: [
+                "integraciones/partners/telecable/int-edye-api-notifier-apk-telecable"
+              ],
+            },
+            {
+              type: "category",
+              label: "Telefonica (Movistar)",
+              items: [
+                "integraciones/partners/telefonica-movistar/int-edye-api-notifier-billing-telefonica"
+              ],
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Anexos",
+          items: [
+            "integraciones/int-checklist"
           ],
         },
       ],

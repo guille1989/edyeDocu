@@ -1,7 +1,12 @@
 ---
 id: int-ingesta
-title: Ingesta
+title: Integración por Ingesta
 sidebar_position: 1
+---
+
+**Versión:** 1.0  
+**Fecha:** 01/12/2025  
+
 ---
 
 # Modelo de Integración: Ingesta de Contenidos
@@ -17,7 +22,7 @@ Este modelo aplica, entre otros, a los siguientes partners:
 - Dish México
 - Sky Brasil
 - Roku Premium Subscriptions
-- WATCH Brasil
+- WATCH Brazil
 
 ---
 
@@ -105,8 +110,101 @@ El flujo estándar de ingesta se compone de los siguientes pasos:
 9. Se valida el estado final de la ingesta (por delivery y por asset) y se reintenta lo fallido (si aplica).
 10. Se generan reportes post-ingesta.
 
-📌 Ver diagrama completo:  
-`../flujos/flujo-ingesta.md`
+### 4.1. Fases del flujo
+
+#### Fase A — Pre-ingesta (Preparación)
+
+1. **Carga de contenido**
+
+   - Videos master
+   - Organización por series, temporadas y episodios
+   - Idiomas y variantes
+
+2. **Preparación de metadata**
+
+   - Campos obligatorios
+   - IDs externos (ej. TMS / Gracenote)
+   - Metadata editorial y operativa
+
+3. **Preparación de imágenes**
+
+   - Posters
+   - Episodic stills
+   - Logos (si aplica)
+   - Thumbnails (si aplica)
+
+4. **Configuración de reglas por partner**
+   - Tipo de metadata
+   - Reglas de validación
+   - Reglas de naming y estructura
+   - Formato de imágenes y watermark
+
+---
+
+#### Fase B — Ingesta (Ejecución)
+
+5. **Disparo de ingesta**
+
+   - Sincronización vía API
+   - O ingesta vía FTP / polling (si aplica)
+
+6. **Validación automática**
+
+   - Video: codec, resolución, duración
+   - Metadata: completitud y consistencia
+   - Imágenes: existencia y formato
+
+   **Resultado posible:**
+
+   - Failed → requiere corrección
+   - Completed with warnings
+   - Validated OK
+
+7. **Generación de Delivery**
+
+   - Packaging según especificación del partner
+   - Aplicación de naming y estructura
+   - Inclusión de thumbnails / watermark (si aplica)
+
+8. **Entrega**
+   - Canal definido por partner:
+     - SFTP
+     - Aspera
+     - S3
+     - API
+
+---
+
+#### Fase C — Post-ingesta (Control y cierre)
+
+9. **Validación final (Operaciones)**
+
+   - Integridad del delivery
+   - Confirmación de recepción por el partner
+
+10. **Reporting**
+    - Estado del procesamiento
+    - Errores y reprocesos
+    - Logs y métricas de ejecución
+
+---
+
+### 4.2. Diagrama del flujo
+
+```mermaid
+flowchart TD
+  A[Pre-ingesta] --> B[Ingesta / Sync]
+  B --> C{Validación}
+  C -- Error --> R[Corrección y reintento]
+  R --> B
+  C -- OK --> D[Generación Delivery]
+  D --> E[Entrega]
+  E --> F{Validación Final}
+  F -- Error --> R2[Corrección y reenvío]
+  R2 --> D
+  F -- OK --> G[Reporting y Cierre]
+```
+> **Figura 1.** Diagrama del flujo **
 
 ---
 

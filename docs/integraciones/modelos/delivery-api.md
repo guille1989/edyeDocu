@@ -1,7 +1,11 @@
 ---
 id: int-delivery-api
-title: Delivery vía API
+title: Integración por Delivery vía API
 sidebar_position: 2
+---
+**Versión:** 1.0  
+**Fecha:** 01/12/2025  
+
 ---
 
 # Modelo de Integración: Delivery de Contenidos vía API
@@ -25,6 +29,7 @@ El modelo de delivery vía API cubre:
 - Reporting y auditoría de consumo (cuando aplique)
 
 No cubre:
+
 - Ingesta/carga de contenido en JW Player (eso pertenece al modelo de ingesta)
 - Transferencia de paquetes de assets por SFTP/Aspera/S3 (modelo file-based)
 - Reproducción DRM, playback, player SDK o analítica del partner (salvo acuerdos específicos)
@@ -36,16 +41,14 @@ No cubre:
 Los siguientes sistemas participan en el delivery vía API:
 
 - **EDYE API**  
-Fuente central para exposición de catálogo, metadata y assets por endpoints.
+  Fuente central para exposición de catálogo, metadata y assets por endpoints.
 - **Admin Panel (EDYE)**  
-Interfaz operativa para configuración por partner (acceso, parámetros, thumbnails, etc.) y verificación/monitoreo.
+  Interfaz operativa para configuración por partner (acceso, parámetros, thumbnails, etc.) y verificación/monitoreo.
 - **JW Player (JWP) (origen upstream, indirecto)**  
-Origen de videos, playlists y still images. La ingesta mantiene a EDYE actualizado, y luego el partner consume desde EDYE API.
-- **Fuentes de metadata externas (cuando aplique)**
-		- Gracenote / TMS (IDs, correlación, enriquecimiento)
-		- Regla: Los identificadores Gracenote / TMS se requieren solo para partners que tengan correlación de catálogo vía Gracenote/TMS (definido por contrato). Para los demás partners, estos IDs no son obligatorios (opcionales / N/A).
+  Origen de videos, playlists y still images. La ingesta mantiene a EDYE actualizado, y luego el partner consume desde EDYE API.
+- **Fuentes de metadata externas (cuando aplique)** - Gracenote / TMS (IDs, correlación, enriquecimiento) - Regla: Los identificadores Gracenote / TMS se requieren solo para partners que tengan correlación de catálogo vía Gracenote/TMS (definido por contrato). Para los demás partners, estos IDs no son obligatorios (opcionales / N/A).
 - **Partner**  
-Cliente API (backend o app) que consume los endpoints y sincroniza su catálogo.
+  Cliente API (backend o app) que consume los endpoints y sincroniza su catálogo.
 
 ---
 
@@ -57,11 +60,7 @@ El modelo de delivery vía API soporta, según configuración:
 - Películas
 - Episodios
 - Playlists / colecciones (si se exponen)
-- Imágenes:
-		- Posters
-		- Episodic stills
-		- Logos
-		- Thumbnails (cuando aplique por partner)
+- Imágenes: - Posters - Episodic stills - Logos - Thumbnails (cuando aplique por partner)
 - Metadata asociada al contenido (campos editoriales, disponibilidad, ratings, idiomas, etc.)
 
 ---
@@ -70,16 +69,81 @@ El modelo de delivery vía API soporta, según configuración:
 
 El flujo estándar de delivery vía API se compone de los siguientes pasos:
 
-1. EDYE expone endpoints habilitados para el partner (por entorno y por permisos).
-2. El partner se autentica y obtiene acceso (token/API key según esquema acordado).
-3. El partner consulta el catálogo (por ejemplo: Show List), usando paginación/cursor.
-4. El partner consulta el detalle o listas dependientes (por ejemplo: Episode List por show/temporada).
-5. El partner procesa metadata y assets (URLs de imágenes/thumbnails) y valida el contrato.
-6. El partner guarda un checkpoint (cursor/fecha updated_since) para sincronización incremental.
-7. EDYE monitorea consumo (logs/errores/rate limit) y el partner reporta incidencias con evidencia.
-8. Si hay errores de contrato o datos, se corrige upstream (metadata/imagenes) y se repite el sync.
+### Fase A — Preparación (Pre-delivery)
 
-> 📌 Ver diagrama completo: ../flujos/flujo-delivery-api.md
+- Carga y organización del contenido
+  - Videos master en JW Player
+  - Estructura: show → temporada → episodio
+  - Idiomas / variantes (si aplica)
+- Metadata mínima y consistencia
+  - Campos obligatorios (por estándar EDYE + anexo partner)
+  - IDs externos (TMS/Gracenote u otros, si aplica)
+  - Revisión de consistencia editorial
+- Imágenes y thumbnails
+  - Posters / stills / logos (según caso)
+  - Generación/validación de thumbnails según formatos por partner (si aplica)
+- Configuración del partner en EDYE Admin
+  - Alta/edición del partner
+  - Definición de permisos de API (endpoints habilitados)
+  - Filtros por tags/geo (si aplica)
+  - Configuración de thumbnails y/o watermark (si aplica)
+  - Selección de “Delivery Type” cuando corresponda (ej. API Delivery)
+
+> Nota: En “API Delivery”, EDYE puede agregar al JSON un campo adicional con los thumbnails configurados (p. ej. custom_thumbnails) cuando aplique.
+
+### Fase B — Publicación y Exposición vía API
+
+- Sincronización / actualización de datos
+  - Sincronización de shows/episodios (si aplica por operación)
+  - Verificación de que el contenido esté “visible” y en tags correctos
+- Exposición en endpoints de EDYE
+  - Endpoints típicos (según permisos):
+    - Show List
+    - Episode List
+  - La respuesta incluye metadata + referencias a assets (imágenes/thumbnails) según configuración
+- Consumo por el partner
+  - El partner ejecuta polling (job programado) o sincronización bajo demanda
+  - El partner:
+    - Detecta nuevos shows/episodios o cambios
+    - Descarga/consume assets referenciados (imágenes/thumbnails)
+    - Actualiza su catálogo interno
+
+### Fase C — Control, errores y cierre operativo
+
+- Validación y control de errores
+  - En EDYE:
+    - Seguimiento de tráfico por endpoint/partner
+    - Revisión de errores recientes (Latest Errors)
+    - Revisión de API Log (por rango de fecha, endpoint, usuario, status)
+  - En partner:
+    - Manejo de reintentos y backoff
+    - Reporte de inconsistencias (si un asset no existe o falta metadata)
+- Corrección y reintentos
+  - Si el error es editorial (metadata/imagenes): corrige Content Ops / Diseño y se reexpone por API
+  - Si el error es técnico (auth, endpoint, performance): DevOps investiga logs y aplica corrección
+- Reporting
+  - Estado del consumo (éxitos/errores por ventana)
+  - Evidencia en logs (API Log) y métricas del dashboard técnico
+
+---
+
+### Diagrama del flujo
+
+```mermaid
+flowchart TD
+  A["Preparación contenido + metadata + imágenes"] --> B["Configurar Partner en Admin"]
+  B --> C["Exposición en EDYE API (Show/Episode List)"]
+  C --> D["Consumo Partner (polling/sync)"]
+  D --> E{"Validación en Partner"}
+  E -- Error --> R["Corrección (metadata/imágenes/config) + reintento"]
+  R --> C
+  E -- OK --> F["Catálogo actualizado en Partner"]
+  C --> G["Observabilidad EDYE: Dashboard + API Log"]
+  G --> H{"Errores detectados?"}
+  H -- Sí --> R2["Troubleshooting (Ops/DevOps) + fix"]
+  R2 --> C
+  H -- No --> I["Reporting y cierre operativo"]
+```
 
 ---
 
@@ -104,21 +168,21 @@ Las variantes se agrupan por tipo de consumo y alcance de datos.
 
 ### 6.1 Tipos de consumo (según partner)
 
-| Tipo           | Descripción                                                      |
-|----------------|------------------------------------------------------------------|
-| Catálogo full  | El partner sincroniza todo el catálogo permitido (paginado).      |
-| Incremental    | El partner consume solo cambios desde un checkpoint (updated_since / cursor). |
-| Por colección  | El partner consume por playlists/colecciones específicas (tags/IDs). |
-| Híbrido        | Full inicial + incremental recurrente.                            |
+| Tipo          | Descripción                                                                   |
+| ------------- | ----------------------------------------------------------------------------- |
+| Catálogo full | El partner sincroniza todo el catálogo permitido (paginado).                  |
+| Incremental   | El partner consume solo cambios desde un checkpoint (updated_since / cursor). |
+| Por colección | El partner consume por playlists/colecciones específicas (tags/IDs).          |
+| Híbrido       | Full inicial + incremental recurrente.                                        |
 
 ### 6.2 Alcance de entrega
 
-| Alcance                | Descripción                                                        |
-|------------------------|--------------------------------------------------------------------|
-| Metadata + Imágenes    | JSON + URLs a posters/stills/thumbnails.                           |
-| Solo metadata          | JSON sin requerimientos estrictos de imágenes (si el partner lo permite). |
-| Solo imágenes          | Endpoints/feeds para refresco de artwork (casos específicos).      |
-| Enriquecido (TMS/Gracenote) | Incluye IDs externos y/o campos adicionales para correlación.  |
+| Alcance                     | Descripción                                                               |
+| --------------------------- | ------------------------------------------------------------------------- |
+| Metadata + Imágenes         | JSON + URLs a posters/stills/thumbnails.                                  |
+| Solo metadata               | JSON sin requerimientos estrictos de imágenes (si el partner lo permite). |
+| Solo imágenes               | Endpoints/feeds para refresco de artwork (casos específicos).             |
+| Enriquecido (TMS/Gracenote) | Incluye IDs externos y/o campos adicionales para correlación.             |
 
 ---
 
@@ -171,15 +235,15 @@ Cuando el partner reporte un incidente, debe incluir:
 
 ## 9. Errores comunes y troubleshooting
 
-| Error / Síntoma         | Causa probable                                      | Acción recomendada                                                                 |
-|------------------------|-----------------------------------------------------|------------------------------------------------------------------------------------|
-| 401 / 403              | Credenciales inválidas, expiradas o sin permisos    | Validar token/API key, revisar Access Control, rotar credenciales                  |
-| 400 Bad Request        | Parámetros no soportados (paginación/filtros)       | Revisar contrato, ajustar query/cursor, validar tipos                              |
-| 404 Not Found          | Recurso no existe o no está en el scope del partner | Confirmar filtros/tags/geo; validar IDs                                           |
-| 429 Rate limit         | Exceso de requests o burst no permitido             | Implementar backoff exponencial + jitter; respetar RPS acordado                   |
-| 5xx / timeouts         | Degradación temporal del servicio                   | Reintentar con backoff; activar circuit breaker; escalar a DevOps                  |
-| Data inconsistente     | Campos obligatorios faltantes o caracteres invisibles/codificación inválida (solo UTF-8) | Normalizar metadata upstream (JWP/EDYE), corregir campos y re-sincronizar         |
-| Imágenes faltantes     | Posters/stills no disponibles o no cumplen formato  | Completar imágenes, validar ratios/tamaños/watermark y reintentar                 |
+| Error / Síntoma    | Causa probable                                                                           | Acción recomendada                                                        |
+| ------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 401 / 403          | Credenciales inválidas, expiradas o sin permisos                                         | Validar token/API key, revisar Access Control, rotar credenciales         |
+| 400 Bad Request    | Parámetros no soportados (paginación/filtros)                                            | Revisar contrato, ajustar query/cursor, validar tipos                     |
+| 404 Not Found      | Recurso no existe o no está en el scope del partner                                      | Confirmar filtros/tags/geo; validar IDs                                   |
+| 429 Rate limit     | Exceso de requests o burst no permitido                                                  | Implementar backoff exponencial + jitter; respetar RPS acordado           |
+| 5xx / timeouts     | Degradación temporal del servicio                                                        | Reintentar con backoff; activar circuit breaker; escalar a DevOps         |
+| Data inconsistente | Campos obligatorios faltantes o caracteres invisibles/codificación inválida (solo UTF-8) | Normalizar metadata upstream (JWP/EDYE), corregir campos y re-sincronizar |
+| Imágenes faltantes | Posters/stills no disponibles o no cumplen formato                                       | Completar imágenes, validar ratios/tamaños/watermark y reintentar         |
 
 ---
 
@@ -218,21 +282,15 @@ Algunos partners requieren reportes en formatos específicos (CSV/XLS) según op
 Esta sección centraliza documentos operativos (PDF) relacionados con operación, monitoreo y validaciones del delivery vía API.
 
 ### Operación y monitoreo
+
 - Monitoreo de consumo API y revisión de logs (PDF)  
-	_Abrir en Drive_
+  _Abrir en Drive_
 - Control de acceso y roles por partner (PDF)  
-	_Abrir en Drive_
+  _Abrir en Drive_
 
 ### Contrato de datos y validaciones
+
 - Contrato de schema (campos obligatorios) por partner (PDF)  
-	_Abrir en Drive_
+  _Abrir en Drive_
 - Guía de paginación e incremental sync (PDF)  
-	_Abrir en Drive_
----
-id: int-delivery-api
-title: Deliveru API
-sidebar_position: 2
----
-
-# Modelo de Integración: Deliveru API
-
+  _Abrir en Drive_

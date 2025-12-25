@@ -11,7 +11,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Edyes Docs",
+  title: "Edye Docs",
   tagline: "Documentation for Edyes products",
   favicon: "img/edyesLogo.png",
 
@@ -114,7 +114,7 @@ const config = {
       },
       navbar: {
         logo: {
-          alt: "Edyes Logo",
+          alt: "Edye Logo",
           src: "img/edyesLogo.png",
           href: "/", // Landing principal de documentación
           target: "_self",
@@ -124,7 +124,7 @@ const config = {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
-            label: "Edyes Docs",
+            label: "Edye Docs",
           },
           {
             type: "search",
