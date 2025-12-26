@@ -1,6 +1,6 @@
 ---
 id: int-ingesta
-title: Integración por Ingesta
+title: 🤝 Integración por Ingesta
 sidebar_position: 1
 ---
 

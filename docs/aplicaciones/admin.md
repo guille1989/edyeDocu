@@ -1,6 +1,6 @@
 ---
 id: app-admin
-title: Servicio Admin
+title: 🈸 Servicio Admin
 ---
 
 **Versión:** 1.0  

@@ -1,6 +1,6 @@
 ---
 id: int-edye-billing
-title: Integración por Edye Billing
+title: 🤝 Integración por Edye Billing
 sidebar_position: 2
 ---
 **Versión:** 1.0  

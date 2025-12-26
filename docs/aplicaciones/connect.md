@@ -1,6 +1,6 @@
 ---
 id: app-connect
-title: Servicio Connect (Conecta)
+title: 🈸 Servicio Connect (Conecta)
 ---
 **Versión:** 1.0  
 **Fecha:** 01/12/2025  

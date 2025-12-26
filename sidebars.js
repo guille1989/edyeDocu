@@ -13,7 +13,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Edye-Servicios",
+      label: "🗂️ Edye-Aplicaciones",
       items: [
         "aplicaciones/app-admin",
         "aplicaciones/app-api",
@@ -186,6 +186,20 @@ const sidebars = {
             "integraciones/int-checklist"
           ],
         },
+      ],
+    },
+    {
+      type: "category",
+      label: "🛡️ Edye-Seguridad y Monitoreo",
+      items: [
+        "seguridad_monitoreo/seguridad_monitoreo",
+      ],
+    },
+    {
+      type: "category",
+      label: "👷🏼‍♂️ Edye-Soporte y Técnico",
+      items: [
+        "soporte_tecnico/soporte_tecnico",
       ],
     },
     "devops-compendio",

@@ -1,6 +1,6 @@
 ---
 id: app-play
-title: Servicio Play
+title: 🈸 Servicio Play
 ---
 
 **Versión:** 1.0  

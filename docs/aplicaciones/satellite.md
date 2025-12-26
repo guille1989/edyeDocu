@@ -1,6 +1,6 @@
 ---
 id: app-satellite
-title: Servicio Satellite
+title: 🈸 Servicio Satellite
 
 ---
 

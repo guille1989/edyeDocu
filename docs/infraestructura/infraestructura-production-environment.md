@@ -1,6 +1,6 @@
 ---
 id: infraestructura-environment
-title: Infraestructura EDYE
+title: 🏢 Infraestructura EDYE
 ---
 **Versión:** 1.0  
 **Fecha:** 01/12/2025  

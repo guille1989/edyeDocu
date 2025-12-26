@@ -1,6 +1,6 @@
 ---
 id: int-delivery-api
-title: Integración por Delivery vía API
+title: 🤝 Integración por Delivery vía API
 sidebar_position: 2
 ---
 **Versión:** 1.0  
