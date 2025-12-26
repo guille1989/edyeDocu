@@ -20,7 +20,6 @@ const sidebars = {
         "aplicaciones/app-billing",
         "aplicaciones/app-cache",
         "aplicaciones/app-cloud",
-        "aplicaciones/app-conecta",
         "aplicaciones/app-play",
         "aplicaciones/app-connect",
         "aplicaciones/app-satellite",

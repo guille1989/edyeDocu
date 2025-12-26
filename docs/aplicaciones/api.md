@@ -36,7 +36,7 @@ El servicio está diseñado como microservicio de alto rendimiento en Node.js. L
 | **Servicios de cache**        | Utiliza caché en memoria (p. ej., Redis) para almacenar respuestas frecuentes y reducir la latencia.                                                                                                                                                                                                                                                                                       |
 | **Servicios externos**        | Interactúa con servicios de almacenamiento para obtener activos multimedia y con el servicio de suscripciones para validar licencias de acceso.                                                                                                                                                                                                                                            |
 
-### 3.1. Diagrama de arquitectura (Mermaid)
+### 3.1. Diagrama de arquitectura
 
 ```mermaid
 flowchart TD
