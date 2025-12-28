@@ -158,9 +158,6 @@ POST /api/ingesta/contenido
   - `A12`, `AL`, `12` o `L`
 - `studio` y `studio_name` **deben forzarse a “Edye”**
 
-**Referencia técnica:**  
-:contentReference[oaicite:1]{index=1}
-
 ### Ejemplo JSON mínimo
 
 ```json

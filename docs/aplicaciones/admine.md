@@ -1,5 +1,5 @@
 ---
-id: app-admin
+id: app-admine
 title: 🈸 Servicio Admin
 ---
 

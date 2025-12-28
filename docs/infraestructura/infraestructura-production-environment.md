@@ -218,34 +218,34 @@ flowchart TD
 ```
 
 
-Detección: Las alertas de monitoreo o los reportes de usuarios inician el proceso de incidente.
+**Detección**: Las alertas de monitoreo o los reportes de usuarios inician el proceso de incidente.
 
-Clasificación: Se determina el nivel de severidad y se asignan recursos apropiados. Los incidentes críticos activan un equipo de respuesta especializado.
+**Clasificación**: Se determina el nivel de severidad y se asignan recursos apropiados. Los incidentes críticos activan un equipo de respuesta especializado.
 
-Mitigación y diagnóstico: Se trabaja para restablecer el servicio lo antes posible, analizando causas raíz y aplicando soluciones temporales cuando sea necesario.
+**Mitigación y diagnóstico**: Se trabaja para restablecer el servicio lo antes posible, analizando causas raíz y aplicando soluciones temporales cuando sea necesario.
 
-Resolución: Se implementan correcciones definitivas y se valida la estabilidad del sistema.
+**Resolución**: Se implementan correcciones definitivas y se valida la estabilidad del sistema.
 
-Post‑mortem: Se realiza un análisis detallado documentando la causa raíz, el tiempo de resolución y las acciones preventivas. Se actualizan los runbooks y se comunican las lecciones aprendidas a los equipos.
+**Post‑mortem**: Se realiza un análisis detallado documentando la causa raíz, el tiempo de resolución y las acciones preventivas. Se actualizan los runbooks y se comunican las lecciones aprendidas a los equipos.
 
-Gestión de tickets: Todos los pasos se registran en la herramienta corporativa de seguimiento de incidencias (por ejemplo Jira), permitiendo auditoría y trazabilidad.
+**Gestión de tickets**: Todos los pasos se registran en la herramienta corporativa de seguimiento de incidencias (por ejemplo Jira), permitiendo auditoría y trazabilidad.
 
 
 ## 12. Buenas prácticas operativas
 
 Para asegurar la calidad y estabilidad de la infraestructura EDYE, se adoptan las siguientes buenas prácticas:
 
-Control de versiones y revisión de código: Todo el código pasa por revisiones de pares y pipelines automáticos antes de ser integrado en ramas principales.
+**Control de versiones y revisión de código**: Todo el código pasa por revisiones de pares y pipelines automáticos antes de ser integrado en ramas principales.
 
-Automatización: Los procesos repetitivos se automatizan mediante scripts y herramientas de orquestación, reduciendo errores manuales.
+**Automatización**: Los procesos repetitivos se automatizan mediante scripts y herramientas de orquestación, reduciendo errores manuales.
 
-Gestión de configuraciones: Se utiliza infraestructura como código (IaC) para definir entornos de manera declarativa. Esto facilita la replicación y reduce la deriva de configuración.
+**Gestión de configuraciones**: Se utiliza infraestructura como código (IaC) para definir entornos de manera declarativa. Esto facilita la replicación y reduce la deriva de configuración.
 
-Actualizaciones y parches: Se establecen ventanas de mantenimiento para aplicar parches de seguridad y actualizaciones de software. Se prueban primero en staging antes de aplicar a producción.
+**Actualizaciones y parches**: Se establecen ventanas de mantenimiento para aplicar parches de seguridad y actualizaciones de software. Se prueban primero en staging antes de aplicar a producción.
 
-Observabilidad proactiva: Se analizan tendencias de métricas para anticiparse a problemas de capacidad. Se definen SLO/SLI y se revisan periódicamente.
+**Observabilidad proactiva**: Se analizan tendencias de métricas para anticiparse a problemas de capacidad. Se definen SLO/SLI y se revisan periódicamente.
 
-Seguridad por diseño: La seguridad se considera desde el diseño, implementando controles de acceso adecuados, cifrado y prácticas de desarrollo seguro.
+**Seguridad por diseño**: La seguridad se considera desde el diseño, implementando controles de acceso adecuados, cifrado y prácticas de desarrollo seguro.
 
 
 ## 13. Consideraciones finales

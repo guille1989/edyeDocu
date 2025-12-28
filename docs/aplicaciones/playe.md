@@ -1,5 +1,5 @@
 ---
-id: app-play
+id: app-playe
 title: 🈸 Servicio Play
 ---
 
@@ -102,4 +102,4 @@ Las interacciones principales del servicio Play son:
 - **Servicio Cloud:** para descargar archivos de vídeo, audio, libros y juegos. La entrega se hace mediante URLs firmadas y temporales.
 - **Servicio Satellite:** para sincronizar el estado de “seguir viendo” y favoritos cuando el usuario se mueve entre dispositivos.
 
-## El diseño modular de estas comunicaciones facilita la actualización independiente de cada servicio sin afectar la experiencia de usuario.
+El diseño modular de estas comunicaciones facilita la actualización independiente de cada servicio sin afectar la experiencia de usuario.
