@@ -1,6 +1,7 @@
 ---
 id: devops-ci
 title: 📃 Continuous Integration (CI)
+sidebar_label: 📃 Continuous Integration (CI)
 ---
 
 # Continuous Integration (CI)

@@ -1,6 +1,7 @@
 ---
 id: devops-desarrollo
 title: 📃 DevOps Development
+sidebar_label: 📃 DevOps Development
 ---
 
 # DevOps Development

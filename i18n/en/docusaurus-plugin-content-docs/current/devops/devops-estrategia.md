@@ -4,9 +4,10 @@ title: 📃 DevOps Strategy
 sidebar_label: 📃 DevOps Strategy
 ---
 
-# DevOps Strategy  
+# DevOps Strategy
+
 **Version:** 1.0  
-**Date:** 12/01/2025  
+**Date:** 12/01/2025
 
 ---
 
@@ -16,24 +17,26 @@ Define the organization’s updated DevOps strategy, consolidating automation, s
 
 This strategy applies to all platforms supported by:
 
-- GitHub  
-- Swagger  
-- Monday  
-- Grafana  
-- Qualys  
+- GitHub
+- Swagger
+- Monday
+- Grafana
+- Qualys
 
 ---
 
 ## 2. DevOps Principles and Policies
 
 ### **Core Principles**
-- End-to-end automation  
-- Ongoing collaboration between teams  
-- Continuous improvement  
-- Built-in security (DevSecOps)  
+
+- End-to-end automation
+- Ongoing collaboration between teams
+- Continuous improvement
+- Built-in security (DevSecOps)
 - Continuous monitoring
 
 ### **Versioning Policy**
+
 All code must be versioned in GitHub under a controlled branch scheme:
 
 - `main`
@@ -42,6 +45,7 @@ All code must be versioned in GitHub under a controlled branch scheme:
 - `feature/*`
 
 ### **Deployment Policy**
+
 Deployments must be performed exclusively through validated and automated pipelines, with prior quality control.
 
 ---
@@ -52,8 +56,8 @@ Each region (LatAm, Europe, North America) has a **DevOps Lead** responsible for
 
 Task management is performed in **Monday**, including:
 
-- Automated weekly reports  
-- Version control in Drive/Miro  
+- Automated weekly reports
+- Version control in Drive/Miro
 - Formal documentation flow:  
   Request → Review → Adjustment → Approval → Publication.
 
@@ -61,13 +65,13 @@ Task management is performed in **Monday**, including:
 
 ## 4. Key Tools
 
-| Tool | Purpose | Integration |
-|------|---------|-------------|
-| **GitHub / GitHub Actions** | Repository and automated CI/CD | Integration with Swagger |
-| **Swagger / Postman** | Documentation and endpoint validation | Automated QA |
-| **Monday** | Backlog and incident management | Source of tracking and control |
-| **Grafana / Prometheus / Loki** | Monitoring and alerts | Email integration |
-| **Qualys (VMDR/WAS)** | Vulnerability scanning and compliance | Continuous integration in monitoring |
+| Tool                            | Purpose                               | Integration                          |
+| ------------------------------- | ------------------------------------- | ------------------------------------ |
+| **GitHub / GitHub Actions**     | Repository and automated CI/CD        | Integration with Swagger             |
+| **Swagger / Postman**           | Documentation and endpoint validation | Automated QA                         |
+| **Monday**                      | Backlog and incident management       | Source of tracking and control       |
+| **Grafana / Prometheus / Loki** | Monitoring and alerts                 | Email integration                    |
+| **Qualys (VMDR/WAS)**           | Vulnerability scanning and compliance | Continuous integration in monitoring |
 
 ---
 
@@ -77,8 +81,8 @@ Security is an integral part of the DevOps pipeline (**DevSecOps**), with automa
 
 Monitoring is performed with **Grafana**, consolidating metrics for:
 
-- Infrastructure  
-- APIs  
-- Critical services  
+- Infrastructure
+- APIs
+- Critical services
 
 Alerts are sent by email and reviewed daily on the incident dashboard.

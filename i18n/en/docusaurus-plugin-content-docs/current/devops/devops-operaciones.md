@@ -1,7 +1,7 @@
-
 ---
 id: devops-operaciones
 title: 📃 DevOps Operations
+sidebar_label: 📃 DevOps Operations
 ---
 
 # DevOps Operations
