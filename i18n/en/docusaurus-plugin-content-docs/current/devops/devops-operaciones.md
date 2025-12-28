@@ -1,109 +1,110 @@
+
 ---
 id: devops-operaciones
-title: Operaciones DevOps
+title: 📃 DevOps Operations
 ---
 
-# Operaciones DevOps
+# DevOps Operations
 
-**Versión:** 1.0  
-**Fecha:** 01/12/2025
-
----
-
-## 1. Introducción
-
-El propósito de este documento es establecer los **procedimientos**, **herramientas** y **responsabilidades** que aseguren la **estabilidad**, **disponibilidad**, **monitoreo continuo** y **continuidad operativa** de los servicios digitales del ecosistema **Edye / HITN Digital**.
-
-El proceso de **Operaciones DevOps** garantiza que todos los sistemas funcionen de manera segura y con el máximo rendimiento, mediante un **monitoreo proactivo**, la **gestión oportuna de incidentes** y la ejecución de **actividades de mantenimiento preventivo** que permiten anticipar fallas y reducir interrupciones del servicio.
+**Version:** 1.0  
+**Date:** 01/12/2025
 
 ---
 
-## 2. Alcance
+## 1. Introduction
 
-Este procedimiento aplica a todos los componentes productivos y de soporte del ecosistema **Edye**, incluyendo:
+The purpose of this document is to establish the **procedures**, **tools**, and **responsibilities** that ensure the **stability**, **availability**, **continuous monitoring**, and **operational continuity** of the digital services of the **Edye / HITN Digital** ecosystem.
+
+The **DevOps Operations** process ensures that all systems operate securely and at maximum performance, through **proactive monitoring**, **timely incident management**, and the execution of **preventive maintenance activities** that anticipate failures and reduce service interruptions.
+
+---
+
+## 2. Scope
+
+This procedure applies to all productive and support components of the **Edye** ecosystem, including:
 
 - **Admin**
 - **API**
-- **Satélite**
+- **Satellite**
 - **Billing**
 - **Cloud**
 - **Play**
 - **Conecta**
 - **Conect**
 
-Entornos aplicables:
+Applicable environments:
 
 - **Staging**
-- **Producción**
+- **Production**
 
-Comprende las siguientes actividades:
+It includes the following activities:
 
-- Administración y observabilidad de la infraestructura.
-- Detección, análisis y resolución de incidentes.
-- Monitoreo del rendimiento y seguridad.
-- Planes de contingencia, respaldo y continuidad del servicio.
-
----
-
-## 3. Procedimiento
-
-El proceso de Operaciones DevOps garantiza la supervisión continua de los servicios, la detección temprana de anomalías y la respuesta ágil ante fallos o degradaciones, manteniendo la trazabilidad y comunicación entre los equipos DevOps.
+- Infrastructure administration and observability.
+- Detection, analysis, and resolution of incidents.
+- Performance and security monitoring.
+- Contingency, backup, and service continuity plans.
 
 ---
 
-## 3.1. Monitoreo y observabilidad
+## 3. Procedure
 
-El monitoreo se ejecuta en tiempo real sobre la infraestructura y los servicios clave, recolectando métricas, logs y eventos que se visualizan en los tableros operativos corporativos.
-
-| Categoría                                                        | Herramienta              | Función principal                                                                                                       |
-| ---------------------------------------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| Seguridad y vulnerabilidades                                     | Qualys                   | Escaneo de vulnerabilidades, cumplimiento PCI-DSS y alertas críticas.                                                   |
-| Métricas de usuarios. Logs y alertas. Métricas e infraestructura | https://monitor.edye.com | Seguimiento de uso, consumo de contenidos y rendimiento del frontend, con centralización de logs y alertas automáticas. |
-| Métricas estatus de servicios Edyes                              | https://status.edye.com/ | Panoramio global de funcionamiento de todos los servicios Edyes.                                                        |
+The DevOps Operations process ensures continuous supervision of services, early detection of anomalies, and agile response to failures or degradations, maintaining traceability and communication between DevOps teams.
 
 ---
 
-## 3.2. Procedimiento de monitoreo
+## 3.1. Monitoring and observability
 
-- Captura de métricas en tiempo real desde servidores y aplicaciones.
-- Evaluación automática de umbrales críticos (CPU > 80%, error rate > 2%).
-- Registro del incidente en Monday.
-- Ejecución de análisis post-evento con definición de acciones correctivas.
+Monitoring is performed in real time on the infrastructure and key services, collecting metrics, logs, and events that are visualized on corporate operational dashboards.
+
+| Category                                                        | Tool                  | Main function                                                                                                         |
+| --------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Security and vulnerabilities                                    | Qualys                | Vulnerability scanning, PCI-DSS compliance, and critical alerts.                                                      |
+| User metrics. Logs and alerts. Metrics and infrastructure       | https://monitor.edye.com | Usage tracking, content consumption, and frontend performance, with centralized logs and automatic alerts.            |
+| Edyes service status metrics                                    | https://status.edye.com/ | Global overview of the operation of all Edyes services.                                                              |
 
 ---
 
-### 3.2.1. STATUS de servicios EDYE (https://status.edye.com/)
+## 3.2. Monitoring procedure
 
-El Service Status de Edye es la plataforma pública de monitoreo externo del ecosistema Edye / HITN Digital. Proporciona una vista consolidada del estado operativo de todos los servicios y permite evaluar la disponibilidad histórica mediante indicadores precisos de uptime, facilitando la detección temprana de incidencias y la transparencia con partners y equipos internos.
+- Real-time metric capture from servers and applications.
+- Automatic evaluation of critical thresholds (CPU > 80%, error rate > 2%).
+- Incident registration in Monday.
+- Post-event analysis with definition of corrective actions.
 
-Este panel muestra:
+---
 
-**Estado general del ecosistema**  
-En la parte superior se presenta un indicador global (All systems Operational), que resume la disponibilidad actual de toda la plataforma.  
-El estado varía dinámicamente entre:
+### 3.2.1. EDYE service STATUS (https://status.edye.com/)
 
-- Operational (Verde)
-- (Amarillo)
-- (Rojo)
+The Edye Service Status is the public external monitoring platform of the Edye / HITN Digital ecosystem. It provides a consolidated view of the operational status of all services and allows historical availability evaluation through precise uptime indicators, facilitating early detection of incidents and transparency with partners and internal teams.
 
-![Estado general del ecosistema](/img/operaciones/estado-general-edyes-devops.jpg)
+This panel shows:
 
-> **Figura 1.** _Estado general del ecosistema._
+**General ecosystem status**  
+At the top, a global indicator (All systems Operational) summarizes the current availability of the entire platform.  
+The status dynamically varies between:
 
-**Uptime histórico (últimos 90 días)**  
-Cada servicio dispone de un gráfico de barras que representa su disponibilidad diaria durante los últimos 90 días.  
-El uso de colores permite identificar rápidamente:
+- Operational (Green)
+- (Yellow)
+- (Red)
 
-- Verde → disponibilidad normal
-- Amarillo → degradación parcial
-- Rojo → indisponibilidad total
+![General ecosystem status](/img/operaciones/estado-general-edyes-devops.jpg)
 
-![Uptime histórico](/img/operaciones/uptime-edyes-devops.jpg)
+> **Figure 1.** _General ecosystem status._
 
-> **Figura 2.** _Uptime histórico últimos 90 días._
+**Historical uptime (last 90 days)**  
+Each service has a bar chart representing its daily availability over the last 90 days.  
+The use of colors allows quick identification of:
 
-**Servicios monitoreados**  
-El panel incluye los módulos principales de Edye:
+- Green → normal availability
+- Yellow → partial degradation
+- Red → total unavailability
+
+![Historical uptime](/img/operaciones/uptime-edyes-devops.jpg)
+
+> **Figure 2.** _Historical uptime last 90 days._
+
+**Monitored services**  
+The panel includes the main Edye modules:
 
 - EDYE API
 - EDYE Billing
@@ -113,265 +114,265 @@ El panel incluye los módulos principales de Edye:
 - EDYE Connect
 - EDYE Play
 
-Cada uno con su porcentaje exacto de disponibilidad (ej. 99.997%), indicador de estado y su historial de uptime.
+Each with its exact availability percentage (e.g. 99.997%), status indicator, and uptime history.
 
-![Servicios monitoreados](/img/operaciones/uptime-marker-edyes-devops.jpg)
+![Monitored services](/img/operaciones/uptime-marker-edyes-devops.jpg)
 
-> **Figura 3.** _Servicios monitoreados últimos 90 días._
+> **Figure 3.** _Monitored services last 90 days._
 
-**Actualización automática**  
-El sistema se actualiza en intervalos regulares (por ejemplo, cada pocos segundos), permitiendo información prácticamente en tiempo real, como se indica con el contador de actualización (Next update in X sec).
+**Automatic update**  
+The system updates at regular intervals (for example, every few seconds), allowing information practically in real time, as indicated by the update counter (Next update in X sec).
 
-![Actualización automática](/img/operaciones/upgrade-edyes-devops.jpg)
+![Automatic update](/img/operaciones/upgrade-edyes-devops.jpg)
 
-> **Figura 4.** _Actualización automática dashboard._
+> **Figure 4.** _Automatic dashboard update._
 
-**Overall Uptime (últimas 24h · 7 días · 30 días · 90 días)**  
-El panel incluye métricas consolidadas de disponibilidad global del ecosistema:
+**Overall Uptime (last 24h · 7 days · 30 days · 90 days)**  
+The panel includes consolidated metrics of the global availability of the ecosystem:
 
-- 99.978% – Últimas 24 horas
-- 99.948% – Últimos 7 días
-- 99.919% – Últimos 30 días
-- 99.939% – Últimos 90 días
+- 99.978% – Last 24 hours
+- 99.948% – Last 7 days
+- 99.919% – Last 30 days
+- 99.939% – Last 90 days
 
-Este bloque permite evaluar la estabilidad general de la plataforma a lo largo del tiempo y detectar tendencias de mejora o degradación.
+This block allows evaluation of the general stability of the platform over time and detection of improvement or degradation trends.
 
 ![Overall Uptime](/img/operaciones/overall-uptime-edyes-devops.jpg)
 
-> **Figura 5.** _Overall Uptime._
+> **Figure 5.** _Overall Uptime._
 
-**Registro de incidentes y actualizaciones (Status Updates)**  
-El panel incorpora un área de actualizaciones que muestra incidentes reportados, mantenimientos programados o problemas históricos.
+**Incident and update log (Status Updates)**  
+The panel incorporates an updates area that shows reported incidents, scheduled maintenance, or historical problems.
 
-Esto indica que no se han producido incidentes relevantes en el último mes.  
-El enlace “Status update history” da acceso al historial completo de eventos registrados.
+This indicates that no relevant incidents have occurred in the last month.  
+The “Status update history” link provides access to the full history of recorded events.
 
-![Registro de incidentes y actualizaciones](/img/operaciones/status-update-edyes-devops.jpg)
+![Incident and update log](/img/operaciones/status-update-edyes-devops.jpg)
 
-> **Figura 6.** _Registro de incidentes y actualizaciones._
+> **Figure 6.** _Incident and update log._
 
-**Propósito dentro del ecosistema**  
-El servicio cumple funciones claves:
+**Purpose within the ecosystem**  
+The service fulfills key functions:
 
-- Monitoreo externo (Blackbox monitoring). Verifica disponibilidad desde fuera de la infraestructura, detectando caídas, errores de conectividad o expiración de certificados.
-- Transparencia con partners y clientes. Permite a operadores, equipos comerciales y stakeholders verificar rápidamente la salud del sistema.
-- Complemento a Grafana / Loki / Prometheus. Mientras Grafana centraliza métricas internas, el panel de Service Status muestra la perspectiva del usuario final.
+- External monitoring (Blackbox monitoring). Verifies availability from outside the infrastructure, detecting outages, connectivity errors, or certificate expiration.
+- Transparency with partners and clients. Allows operators, commercial teams, and stakeholders to quickly check system health.
+- Complement to Grafana / Loki / Prometheus. While Grafana centralizes internal metrics, the Service Status panel shows the end-user perspective.
 
 ---
 
 ### 3.2.2. Monitor https://monitor.edye.com (Grafana)
 
-El Monitor Edye es la plataforma interna de observabilidad centralizada del ecosistema Edye / HITN Digital. Está construido sobre Grafana y consolida métricas en tiempo real provenientes de servidores, aplicaciones, APIs, bases de datos y servicios externos críticos. Su propósito es permitir detección temprana de anomalías, supervisión continua del rendimiento y trazabilidad completa ante incidentes operativos.
+The Edye Monitor is the internal centralized observability platform of the Edye / HITN Digital ecosystem. It is built on Grafana and consolidates real-time metrics from servers, applications, APIs, databases, and critical external services. Its purpose is to enable early detection of anomalies, continuous performance monitoring, and complete traceability in operational incidents.
 
-Este sistema complementa el monitoreo externo (https://status.edye.com) proporcionando una visión profunda del comportamiento interno de la infraestructura, mientras que Status Edye muestra únicamente la experiencia del usuario final (blackbox monitoring).
+This system complements external monitoring (https://status.edye.com) by providing a deep view of the internal behavior of the infrastructure, while Status Edye only shows the end-user experience (blackbox monitoring).
 
-**Vista General del Estado del Sistema**
+**System Status Overview**
 
-La pantalla principal del Monitor Edye presenta un resumen en tiempo real del estado de los servicios y servidores del ecosistema.
+The main screen of the Edye Monitor presents a real-time summary of the status of the ecosystem's services and servers.
 
-![Vista General del Estado del Sistema](/img/operaciones/dashboard-edyes-devops.jpg)
+![System Status Overview](/img/operaciones/dashboard-edyes-devops.jpg)
 
-> **Figura 6.** _Vista general del sistema (Dashboard principal)._
+> **Figure 6.** _System overview (Main dashboard)._ 
 
-En este panel se visualiza:
+This panel displays:
 
-- Estado actual de los servicios (OK / Degraded / Down)
-- Consumo de recursos por servidor (CPU, RAM, Load Average)
-- Rendimiento del API: latencia promedio, errores por minuto, throughput
-- Estado de procesos internos (cron jobs, workers, PM2, servicios Laravel)
-- Alertas activas o degradaciones detectadas
+- Current status of services (OK / Degraded / Down)
+- Resource consumption per server (CPU, RAM, Load Average)
+- API performance: average latency, errors per minute, throughput
+- Status of internal processes (cron jobs, workers, PM2, Laravel services)
+- Active alerts or detected degradations
 
-**Métricas de Infraestructura**
+**Infrastructure Metrics**
 
-El sistema recoge y gráfica métricas de cada uno de los servidores del ecosistema, incluyendo:
+The system collects and graphs metrics from each of the ecosystem's servers, including:
 
-**CPU y RAM**
+**CPU and RAM**
 
-_Figura X. Consumo de CPU y memoria en servidores Edye._
+_Figure X. CPU and memory consumption on Edye servers._
 
-Indicadores principales:
+Main indicators:
 
-- Uso promedio y picos de CPU
-- Consumo de memoria RAM por servicio
-- Tendencias de carga horaria/diaria
-- Eventos de saturación (>80%) que disparan alertas automáticas
+- Average and peak CPU usage
+- RAM consumption per service
+- Hourly/daily load trends
+- Saturation events (>80%) that trigger automatic alerts
 
-**Latencia y tiempos de respuesta**
+**Latency and response times**
 
-Se incluyen gráficos que muestran:
+Graphs include:
 
-- Tiempo de respuesta del API por endpoint
-- Latencia del frontend (Play)
-- Métricas de consultas a MySQL y MongoDB
+- API response time by endpoint
+- Frontend latency (Play)
+- MySQL and MongoDB query metrics
 
-_Figura X. Latencia y tiempo de respuesta del API Edye_
+_Figure X. Latency and response time of the Edye API_
 
-**Consumo de Contenidos y Métricas del Frontend**
+**Content Consumption and Frontend Metrics**
 
-Una de las secciones más relevantes del panel monitorea en tiempo real:
+One of the most relevant sections of the panel monitors in real time:
 
-_Figura X. Consumo de contenidos y rendimiento del frontend_
+_Figure X. Content consumption and frontend performance_
 
-Incluye:
+Includes:
 
-- Conteo de reproducciones por minuto/hora
-- Consumo de contenidos (VOD, Live)
-- Distribución por país o partner
-- Usuarios activos concurrentes
-- Eventos de error en reproducción
+- Play count per minute/hour
+- Content consumption (VOD, Live)
+- Distribution by country or partner
+- Concurrent active users
+- Playback error events
 
-Esta información permite detectar caídas de CDN, picos de tráfico anómalos o problemas de integración con JW Player.
+This information allows detection of CDN outages, anomalous traffic spikes, or integration problems with JW Player.
 
-**Logs Centralizados y Detección de Errores**
+**Centralized Logs and Error Detection**
 
-El panel incluye vistas integradas con Loki, mostrando:
+The panel includes integrated views with Loki, showing:
 
-![Logs Centralizados y Detección de Errores](/img/operaciones/logs-edyes-devops.jpg)
+![Centralized Logs and Error Detection](/img/operaciones/logs-edyes-devops.jpg)
 
-> **Figura X.** _Logs centralizados y errores de sistema (Loki)._
+> **Figure X.** _Centralized logs and system errors (Loki)._ 
 
-- Logs de Nginx (Play/Cloud)
-- Logs de Apache (servicios Laravel)
-- Logs de PM2 para Node.js
-- Logs de errores de API
+- Nginx logs (Play/Cloud)
+- Apache logs (Laravel services)
+- PM2 logs for Node.js
+- API error logs
 
-Opciones incluidas:
+Included options:
 
-- Filtros por servicio, nivel, fecha u ocurrencia del error
-- Búsqueda avanzada por endpoint, tag, partner o ID de contenido
-- Vista correlacionada entre logs + métricas para diagnóstico rápido
+- Filters by service, level, date, or error occurrence
+- Advanced search by endpoint, tag, partner, or content ID
+- Correlated view between logs + metrics for quick diagnosis
 
-**Alertas Automáticas**
+**Automatic Alerts**
 
-El sistema posee reglas configuradas para notificar al equipo operativo cuando ocurre alguna anomalía.
+The system has rules configured to notify the operations team when an anomaly occurs.
 
-_Figura X. Alertas automáticas del Monitor Edye_
+_Figure X. Automatic alerts from the Edye Monitor_
 
-Alertas configuradas:
+Configured alerts:
 
-- CPU > 80% sostenido
+- CPU > 80% sustained
 - RAM > 85%
-- Latencia API > 500 ms
+- API Latency > 500 ms
 - Error Rate > 2%
-- Caída de algún servicio (Node.js, Laravel, PM2, Apache)
-- Falla de integraciones (VTR, Claro, Pagoralia, InPlayer)
-- Falla de cron jobs o procesos de sincronización
+- Service outage (Node.js, Laravel, PM2, Apache)
+- Integration failure (VTR, Claro, Pagoralia, InPlayer)
+- Cron job or synchronization process failure
 
-Notificaciones:
+Notifications:
 
-- Email automático
-- Registro en Monday como incidente (cuando aplica el procedimiento)
+- Automatic email
+- Registration in Monday as an incident (when the procedure applies)
 
-**Diagnóstico y Acciones Operativas**
+**Diagnosis and Operational Actions**
 
-El monitor se utiliza como fuente principal de información durante:
+The monitor is used as the main source of information during:
 
-- Gestión de incidentes
+- Incident management
 - Postmortems
-- Validación post-deploy
-- Análisis de degradación de performance
+- Post-deploy validation
+- Performance degradation analysis
 
-Permite:
+It allows:
 
-- Comparar curvas antes/después de un despliegue
-- Identificar picos en CPU/RAM producto de bugs
-- Revisar patrones de error repetidos
-- Detectar partners que generan sobrecarga o errores frecuentes
+- Compare curves before/after a deployment
+- Identify CPU/RAM spikes due to bugs
+- Review repeated error patterns
+- Detect partners generating overload or frequent errors
 
-**Integración con el Proceso DevOps**
+**Integration with the DevOps Process**
 
-El Monitor Edye se integra directamente en el flujo de DevOps:
+The Edye Monitor integrates directly into the DevOps flow:
 
-- Revisión automática tras cada despliegue (CI/CD)
-- Monitoreo continuo para decisiones de rollback
-- Métricas que alimentan el tablero de incidentes
-- Validación del estado de los servicios antes de iniciar entregas a partners
-
----
-
-## 3.3. Gestión de incidentes
-
-Cada incidente se gestiona de acuerdo con su tipo, impacto y prioridad.  
-El proceso garantiza trazabilidad completa desde la detección hasta la resolución final.
-
-| Tipo de incidente                      | Procedimiento                                                     |
-| -------------------------------------- | ----------------------------------------------------------------- |
-| Falla en servidor o servicio           | Notificación automática → diagnóstico → reinicio o rollback.      |
-| Errores en API o endpoints             | Validación Swagger → revisión de logs → hotfix en GitHub.         |
-| Vulnerabilidades críticas              | Escalamiento al CISO → remediación inmediata.                     |
-| Degradación de rendimiento             | Análisis en Grafana → ajuste de recursos.                         |
-| Problemas con partners o integraciones | Verificación de paquetes → reenvío controlado o rollback parcial. |
-
-## 3.4. Continuidad operativa y mantenimiento
-
-- Backups automáticos diarios en Akamai Cloud Storage.
-- Revisiones semanales de logs y paquetes del sistema.
-- Actualización programada de paquetes (APT Update/Upgrade).
-- Pruebas de restauración trimestrales desde snapshots.
-- Reinicio planificado de servicios fuera de horario operativo.
+- Automatic review after each deployment (CI/CD)
+- Continuous monitoring for rollback decisions
+- Metrics that feed the incident board
+- Validation of service status before starting deliveries to partners
 
 ---
 
-## 3.5. Flujo de gestión de incidencias
+## 3.3. Incident management
 
-![Flujo de gestión de incidencias](/img/operaciones/diagrama-incidentes-edyes-devops.jpg)
+Each incident is managed according to its type, impact, and priority.  
+The process ensures complete traceability from detection to final resolution.
 
-> **Figura X.** _Diagrama del flujo de gestión de incidentes operativos DevOps._
+| Incident type                         | Procedure                                                        |
+| ------------------------------------- | ---------------------------------------------------------------- |
+| Server or service failure             | Automatic notification → diagnosis → restart or rollback.        |
+| API or endpoint errors                | Swagger validation → log review → hotfix in GitHub.              |
+| Critical vulnerabilities              | Escalation to CISO → immediate remediation.                      |
+| Performance degradation               | Analysis in Grafana → resource adjustment.                       |
+| Partner or integration issues         | Package verification → controlled resend or partial rollback.    |
 
-**Descripción general del flujo:**
+## 3.4. Operational continuity and maintenance
 
-**Fases:**
+- Daily automatic backups in Akamai Cloud Storage.
+- Weekly review of system logs and packages.
+- Scheduled package update (APT Update/Upgrade).
+- Quarterly restoration tests from snapshots.
+- Planned service restart outside operational hours.
 
-**Detección**  
-Monitoreo detecta anomalía o alerta de Grafana / Qualys.
+---
 
-**Registro**  
-Se crea ticket en Monday (tipo, prioridad, impacto).
+## 3.5. Incident management flow
 
-**Clasificación**  
-Se evalúa el impacto en usuarios, servicios o integraciones.
+![Incident management flow](/img/operaciones/diagrama-incidentes-edyes-devops.jpg)
 
-**Diagnóstico**  
-Revisión de logs (Loki), métricas, API, infraestructura.
+> **Figure X.** _DevOps operational incident management flow diagram._
 
-**Acción correctiva**
+**General flow description:**
 
-- Reinicio de servicios
+**Phases:**
+
+**Detection**  
+Monitoring detects anomaly or alert from Grafana / Qualys.
+
+**Registration**  
+Ticket is created in Monday (type, priority, impact).
+
+**Classification**  
+Impact on users, services, or integrations is evaluated.
+
+**Diagnosis**  
+Review of logs (Loki), metrics, API, infrastructure.
+
+**Corrective action**
+
+- Service restart
 - Rollback
 - Hotfix
-- Ajuste de infraestructura
-- Coordinación con partners si aplica
+- Infrastructure adjustment
+- Coordination with partners if applicable
 
-**Validación**  
-Confirmación mediante healthchecks y monitoreo.
+**Validation**  
+Confirmation through healthchecks and monitoring.
 
-**Documentación**  
-Registro de causa raíz, impacto, tiempos, correcciones.
-
----
-
-## 3.6. Configuración de Servidores Web (Nginx)
-
-Esta sección documenta la configuración estándar de Nginx para las aplicaciones Node.js del ecosistema Edye en los entornos de staging y producción.
-
-Actualmente aplican principalmente a:
-
-- **CLOUD (cloud.edye.com)** – Aplicación Node.js expuesta a través de proxy reverso.
-- **PLAY (play.edye.com)** – Frontend web (Next.js/Node.js) expuesto vía Nginx, con control de métodos y cabeceras de seguridad.
+**Documentation**  
+Record of root cause, impact, times, corrections.
 
 ---
 
-### 3.6.1. Patrón general de proxy reverso para aplicaciones Node.js
+## 3.6. Web Server Configuration (Nginx)
 
-Todas las aplicaciones Node.js se publican mediante Nginx como reverse proxy hacia un proceso Node que escucha en `localhost:3000` (o el puerto que se defina en cada servidor).
+This section documents the standard Nginx configuration for the Node.js applications of the Edye ecosystem in the staging and production environments.
 
-**Patrón base:**
+Currently mainly applies to:
 
-- `listen` en la IP interna del servidor, puerto 80 (o 443 si el TLS termina en la misma instancia).
-- `server_name` con el dominio de la aplicación (cloud.edye.com, play.edye.com, etc.).
-- `location /` apuntando a `proxy_pass http://localhost:3000;`.
+- **CLOUD (cloud.edye.com)** – Node.js application exposed through reverse proxy.
+- **PLAY (play.edye.com)** – Web frontend (Next.js/Node.js) exposed via Nginx, with method and security header control.
 
-**Cabeceras estándar:**
+---
+
+### 3.6.1. General reverse proxy pattern for Node.js applications
+
+All Node.js applications are published via Nginx as a reverse proxy to a Node process listening on `localhost:3000` (or the port defined on each server).
+
+**Base pattern:**
+
+- `listen` on the server's internal IP, port 80 (or 443 if TLS terminates on the same instance).
+- `server_name` with the application's domain (cloud.edye.com, play.edye.com, etc.).
+- `location /` pointing to `proxy_pass http://localhost:3000;`.
+
+**Standard headers:**
 
 - `proxy_set_header Host $host;`
 - `proxy_set_header Upgrade $http_upgrade;`
@@ -382,29 +383,29 @@ Todas las aplicaciones Node.js se publican mediante Nginx como reverse proxy hac
 - `proxy_read_timeout 60s;`
 - `send_timeout 60s;`
 
-**Optimización:**
+**Optimization:**
 
-- `gzip on;` y `gzip_types` para contenidos estáticos y JSON.
-- Buffers de proxy (`proxy_buffer_size`, `proxy_buffers`, `proxy_busy_buffers_size`).
+- `gzip on;` and `gzip_types` for static content and JSON.
+- Proxy buffers (`proxy_buffer_size`, `proxy_buffers`, `proxy_busy_buffers_size`).
 
-**Seguridad básica:**
+**Basic security:**
 
-- Ocultar cabeceras de tecnología:  
+- Hide technology headers:  
   `proxy_hide_header X-Powered-By;`  
   `more_clear_headers Server;`
 
-Este patrón se reutiliza en las configuraciones específicas de **CLOUD** y **PLAY**.
+This pattern is reused in the specific configurations of **CLOUD** and **PLAY**.
 
 ---
 
-### 3.6.2. Configuración Nginx – cloud.edye.com (CLOUD)
+### 3.6.2. Nginx Configuration – cloud.edye.com (CLOUD)
 
-Archivo de configuración (producción y/o staging):
+Configuration file (production and/or staging):
 
-- Ruta sugerida: /etc/nginx/sites-available/cloud-prod-proxy.conf
-- Enlace simbólico: /etc/nginx/sites-enabled/cloud-prod-proxy.conf
+- Suggested path: /etc/nginx/sites-available/cloud-prod-proxy.conf
+- Symlink: /etc/nginx/sites-enabled/cloud-prod-proxy.conf
 
-Configuración:
+Configuration:
 
 ```bash
 server {
@@ -432,43 +433,43 @@ server {
 }
 ```
 
-**Puntos clave:**
+**Key points:**
 
-**Escucha y dominio**  
-Los servidores escuchan al balanceador en (IP interna):80.
+**Listen and domain**  
+Servers listen to the balancer on (internal IP):80.
 
-**Proxy a Node.js**
+**Proxy to Node.js**
 
-- Todas las peticiones (/) se redirigen a `http://localhost:3000`, donde corre la app Node.
-- Se habilita soporte para WebSockets (`Upgrade` / `Connection 'upgrade'`).
+- All requests (/) are redirected to `http://localhost:3000`, where the Node app runs.
+- WebSockets support is enabled (`Upgrade` / `Connection 'upgrade'`).
 
-**Seguridad y headers**  
-`more_clear_headers Server;` y `proxy_hide_header X-Powered-By;` evitan exponer detalles de la tecnología.
+**Security and headers**  
+`more_clear_headers Server;` and `proxy_hide_header X-Powered-By;` prevent exposing technology details.
 
-**Tamaño de carga**  
-`client_max_body_size 10m;` limita el tamaño máximo de archivos subidos a 10 MB.
+**Upload size**  
+`client_max_body_size 10m;` limits the maximum upload file size to 10 MB.
 
-**Rendimiento**
+**Performance**
 
-- `gzip on;` + `gzip_types` para comprimir texto, JSON, JS, XML.
-- Configuración de buffers para manejar respuestas grandes sin penalizar memoria.
+- `gzip on;` + `gzip_types` to compress text, JSON, JS, XML.
+- Buffer configuration to handle large responses without penalizing memory.
 
 ---
 
-### 3.6.3. Configuración Nginx – play.edye.com (PLAY)
+### 3.6.3. Nginx Configuration – play.edye.com (PLAY)
 
-Archivo de configuración (producción y/o staging):
+Configuration file (production and/or staging):
 
-- Ruta sugerida: /etc/nginx/sites-available/play-proxy.conf
-- Enlace simbólico: /etc/nginx/sites-enabled/play-proxy.conf
+- Suggested path: /etc/nginx/sites-available/play-proxy.conf
+- Symlink: /etc/nginx/sites-enabled/play-proxy.conf
 
-Configuración:
+Configuration:
 
 ```bash
 server {
     listen 192.168.222.103:80;
     server_name play.edye.com; # Replace with your domain
-    # REDIRECT HECHO EN EL CODIGO DEL APP
+    # REDIRECT DONE IN APP CODE
     if ($http_x_forwarded_proto = "http") {
         return 301 https://$host$request_uri;
     }
@@ -518,13 +519,13 @@ server {
 }
 ```
 
-**Puntos clave:**
+**Key points:**
 
-**Escucha y dominio**  
-Los servidores escuchan al balanceador en (IP local):80.
+**Listen and domain**  
+Servers listen to the balancer on (local IP):80.
 
-**Redirección a HTTPS**  
-Se usa la cabecera `X-Forwarded-Proto` para forzar HTTP → HTTPS:
+**Redirect to HTTPS**  
+The `X-Forwarded-Proto` header is used to force HTTP → HTTPS:
 
 ```bash
 if ($http_x_forwarded_proto = "http") {
@@ -532,108 +533,108 @@ if ($http_x_forwarded_proto = "http") {
 }
 ```
 
-Esto asume que el TLS termina en un balanceador o capa anterior que inyecta X-Forwarded-Proto.
+This assumes that TLS terminates on a balancer or previous layer that injects X-Forwarded-Proto.
 
-**Restricción de métodos en /**  
-Solo se permiten **GET, HEAD y OPTIONS** para la app web (`location /`).  
-Cualquier otro método (POST, PUT, DELETE, etc.) devuelve **405 Method Not Allowed**.
+**Method restriction on /**  
+Only **GET, HEAD, and OPTIONS** are allowed for the web app (`location /`).  
+Any other method (POST, PUT, DELETE, etc.) returns **405 Method Not Allowed**.
 
-Esto ayuda a:
+This helps to:
 
-- Reducir superficie de ataque.
-- Asegurar que las operaciones de lectura pasen por la app web, y las de escritura se controlen en endpoints específicos.
+- Reduce attack surface.
+- Ensure that read operations go through the web app, and write operations are controlled on specific endpoints.
 
-**Endpoint específico `/api/search`**  
-Se define `location = /api/search` con comportamiento distinto:
+**Specific endpoint `/api/search`**  
+`location = /api/search` is defined with different behavior:
 
-- Solo permite POST. Si el método no es POST ⇒ **405**.
-- Redirige también a `http://localhost:3000` pero con esa política de métodos.
+- Only allows POST. If the method is not POST ⇒ **405**.
+- Also redirects to `http://localhost:3000` but with that method policy.
 
-Útil para búsquedas o endpoints que requieren payload.
+Useful for searches or endpoints that require payload.
 
-**Cabeceras de seguridad**
+**Security headers**
 
-- `X-Frame-Options "SAMEORIGIN"`: evita que el sitio se incruste en iframes de otros dominios.
-- `X-XSS-Protection "1; mode=block"`: protección básica contra XSS en navegadores antiguos.
-- `X-Content-Type-Options "nosniff"`: evita que el navegador infiera tipos de contenido.
-- `Referrer-Policy "no-referrer-when-downgrade"`: controla envío del header `Referer`.
-- `Strict-Transport-Security` (HSTS): obliga a usar HTTPS en el dominio y subdominios durante un año.
+- `X-Frame-Options "SAMEORIGIN"`: prevents the site from being embedded in iframes from other domains.
+- `X-XSS-Protection "1; mode=block"`: basic protection against XSS in old browsers.
+- `X-Content-Type-Options "nosniff"`: prevents the browser from inferring content types.
+- `Referrer-Policy "no-referrer-when-downgrade"`: controls sending of the `Referer` header.
+- `Strict-Transport-Security` (HSTS): forces the use of HTTPS on the domain and subdomains for one year.
 
-**Tamaño de petición**  
-`client_max_body_size 512K;` limita el tamaño de payload (más agresivo que en CLOUD).
+**Request size**  
+`client_max_body_size 512K;` limits the payload size (more aggressive than in CLOUD).
 
-**Rendimiento**  
-Configuración de `gzip` y buffers similar a CLOUD.
+**Performance**  
+`gzip` and buffer configuration similar to CLOUD.
 
 ---
 
-### 3.6.4. Operación y mantenimiento de configuraciones Nginx
+### 3.6.4. Operation and maintenance of Nginx configurations
 
-Para todos los servidores de staging y producción:
+For all staging and production servers:
 
-**Ubicación de archivos**
+**File locations**
 
-`/etc/nginx/sites-available/<nombre>.conf`
-`/etc/nginx/sites-enabled/<nombre>.conf (symlink)`
+`/etc/nginx/sites-available/<name>.conf`
+`/etc/nginx/sites-enabled/<name>.conf (symlink)`
 
-**Validación de configuración**
+**Configuration validation**
 
-- Antes de aplicar cambios:
+- Before applying changes:
 
 `nginx -t`
 
-Si la prueba es exitosa:
+If the test is successful:
 
 `systemctl reload nginx`
 
-Cualquier error debe quedar registrado en los logs del sistema:
+Any error must be recorded in the system logs:
 
 `/var/log/nginx/error.log`
 
-**Buenas prácticas**
+**Best practices**
 
-- No exponer IPs públicas ni puertos internos en la documentación externa.
-- Mantener consistente el uso de `X-Forwarded-Proto`, `Host` y otras cabeceras entre CLOUD y PLAY.
-- Documentar cambios relevantes en Monday vinculando la tarea al cambio en Nginx y al commit de GitHub (si aplica).
-
----
-
-## 3.7. Gestión de procesos Node.js (PM2)
-
-PM2 es el administrador de procesos utilizado para ejecutar las aplicaciones Node.js en los servidores de **staging** y **producción** del ecosistema Edye.
-
-En los servidores actuales **no se utiliza un archivo** `ecosystem.config.js`, sino que los procesos se levantan directamente con comandos PM2 individuales.
+- Do not expose public IPs or internal ports in external documentation.
+- Keep consistent use of `X-Forwarded-Proto`, `Host`, and other headers between CLOUD and PLAY.
+- Document relevant changes in Monday linking the task to the Nginx change and the GitHub commit (if applicable).
 
 ---
 
-### 3.7.1 Modelo de ejecución
+## 3.7. Node.js process management (PM2)
 
-Las aplicaciones Node.js (Play y Cloud) se ejecutan mediante:
+PM2 is the process manager used to run Node.js applications on the **staging** and **production** servers of the Edye ecosystem.
 
-`pm2 start <script>.js --name "<nombre-app>"`
+Currently, **no** `ecosystem.config.js` file is used on the servers; instead, processes are started directly with individual PM2 commands.
 
-El estado de las aplicaciones se gestiona directamente con PM2:
+---
+
+### 3.7.1 Execution model
+
+Node.js applications (Play and Cloud) are run using:
+
+`pm2 start <script>.js --name "<app-name>"`
+
+The state of the applications is managed directly with PM2:
 
 ```bash
 pm2 status
-pm2 restart <identificador de la aplicación en pm2>
-pm2 stop <identificador de la aplicación en pm2>
-pm2 delete <identificador de la aplicación en pm2>
+pm2 restart <pm2 app identifier>
+pm2 stop <pm2 app identifier>
+pm2 delete <pm2 app identifier>
 ```
 
-**Como no existe archivo de ecosistema**, toda la configuración depende de:
+**Since there is no ecosystem file**, all configuration depends on:
 
-- Los comandos iniciales usados al ejecutar `pm2 start`
-- Los valores persistentes almacenados en PM2
-- La configuración del módulo pm2-logrotate
+- The initial commands used when running `pm2 start`
+- The persistent values stored in PM2
+- The pm2-logrotate module configuration
 
 ---
 
-### 3.7.2 Módulo activo: pm2-logrotate
+### 3.7.2 Active module: pm2-logrotate
 
-El servidor tiene habilitado el módulo **pm2-logrotate**, encargado de rotar automáticamente los logs de cada aplicación.
+The server has the **pm2-logrotate** module enabled, which automatically rotates the logs of each application.
 
-**Configuración actual:**
+**Current configuration:**
 
 ```bash
 pm2 set pm2-logrotate:max_size 100M
@@ -645,67 +646,67 @@ pm2 set pm2-logrotate:rotateInterval 0 0 * * *
 pm2 set pm2-logrotate:rotateModule true
 ```
 
-**Esto garantiza:**
+**This ensures:**
 
-- Log rotation automática
-- Control de tamaño
-- No saturar el disco
-- Logs comprimidos en los entornos
+- Automatic log rotation
+- Size control
+- No disk saturation
+- Compressed logs in environments
 
 ---
 
-### 3.7.3 Ubicación de logs
+### 3.7.3 Log location
 
-PM2 crea sus logs en:
+PM2 creates its logs in:
 
 ```bash
 ~/.pm2/logs/<app>-out.log
 ~/.pm2/logs/<app>-error.log
 ```
 
-Después de rotar:
+After rotation:
 
 ```bash
 ~/.pm2/logs/<app>-out-2025-01-13.log.gz
 ```
 
-**Importante:**
+**Important:**
 
-Estos logs se consumen junto con `nginx/error.log` y `nginx/access.log` para análisis post-incidente (ver sección 3.5 del documento de Operaciones).
+These logs are consumed along with `nginx/error.log` and `nginx/access.log` for post-incident analysis (see section 3.5 of the Operations document).
 
 ---
 
-### 3.7.4 Persistencia y arranque automático
+### 3.7.4 Persistence and automatic startup
 
-Como no existe un archivo ecosystem, PM2 persiste el estado actual mediante:
+Since there is no ecosystem file, PM2 persists the current state using:
 
 ```bash
 pm2 save
 pm2 startup
 ```
 
-Esto garantiza que:
+This ensures that:
 
-- Las apps se levanten automáticamente tras un reinicio del servidor
-- Los cambios se mantengan aun sin ecosystem
+- Apps start automatically after a server reboot
+- Changes are maintained even without an ecosystem file
 
 ---
 
-### 3.7.5 Recomendaciones operativas
+### 3.7.5 Operational recommendations
 
-- Mantener `pm2 save` después de cualquier cambio de procesos
-- Verificar logs después de deploy:
+- Keep `pm2 save` after any process change
+- Check logs after deploy:
   `pm2 logs <app> --lines 100`
-- Evitar ejecutar `pm2 delete all` en producción
-- Revisar tamaño del disco periódicamente:
+- Avoid running `pm2 delete all` in production
+- Check disk size periodically:
   `du -sh ~/.pm2/logs`
 
   ***
 
-## 4. Herramientas
+## 4. Tools
 
-| Categoría                                      | Herramienta                                                                                    | Uso principal                                                                     |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Monitoreo, métricas, alertas, y notificaciones | Grafana (Monitoreo de las métricas) / Prometheus (Junta status servidores) / Loki (Junta Logs) | Supervisión de disponibilidad y rendimiento. Visualización de logs centralizados. |
-| Seguridad y cumplimiento                       | Qualys                                                                                         | Escaneo, gestión de accesos y cumplimiento normativo.                             |
-| Gestión operativa                              | Monday                                                                                         | Registro, trazabilidad y documentación de incidentes.                             |
+| Category                                      | Tool                                                                                      | Main use                                                                         |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Monitoring, metrics, alerts, and notifications | Grafana (Metrics monitoring) / Prometheus (Server status aggregation) / Loki (Log aggregation) | Availability and performance monitoring. Centralized log visualization.           |
+| Security and compliance                        | Qualys                                                                                     | Scanning, access management, and regulatory compliance.                           |
+| Operational management                         | Monday                                                                                     | Incident registration, traceability, and documentation.                           |

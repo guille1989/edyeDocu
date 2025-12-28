@@ -1,263 +1,276 @@
 ---
 id: devops-ci
-title: Integración Continua (CI)
+title: 📃 Continuous Integration (CI)
 ---
 
-# Integración Continua (CI)
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
+# Continuous Integration (CI)
 
----
-
-## 1. Introducción
-
-Definir los lineamientos y actividades del proceso de Integración Continua (CI) dentro del ecosistema Edye / HITN Digital, asegurando la automatización de la compilación, validación y control de calidad del código fuente antes de su despliegue.
-
-El propósito principal de este procedimiento es reducir errores humanos, aumentar la trazabilidad de los cambios y acelerar la entrega de software estable en los entornos de staging y production, utilizando herramientas corporativas de automatización, revisión y monitoreo.
-
-De esta forma, la Integración Continua contribuye a mantener un flujo DevOps eficiente, seguro y auditable, integrando control de versiones, pruebas automatizadas y análisis de calidad en un pipeline unificado gestionado por GitHub Actions.
+**Version:** 1.0  
+**Date:** 01/12/2025
 
 ---
 
-## 2. Alcance
+## 1. Introduction
 
-Este procedimiento aplica a todos los repositorios alojados en GitHub pertenecientes al ecosistema Edye, incluyendo:
+Define the guidelines and activities of the Continuous Integration (CI) process within the Edye / HITN Digital ecosystem, ensuring the automation of build, validation, and quality control of the source code before its deployment.
 
-- EDYE-CONNECT  
-- EDYE-BILLING  
-- EDYE-API-STANDALONE  
-- EDYE-CONECTA  
-- EDYE-ADMIN  
-- EDYE-PLAY  
-- EDYE-CLOUD  
-- EDYE-API-SATELITE  
+The main purpose of this procedure is to reduce human errors, increase traceability of changes, and accelerate the delivery of stable software in the staging and production environments, using corporate automation, review, and monitoring tools.
 
-Cada repositorio cuenta con un pipeline CI configurado en GitHub Actions, el cual se ejecuta automáticamente ante cada pull request (PR) o push hacia las ramas principales (**stage** o **production**). El alcance incluye la construcción, análisis, validación y empaquetado del código.
+In this way, Continuous Integration helps maintain an efficient, secure, and auditable DevOps flow, integrating version control, automated testing, and quality analysis in a unified pipeline managed by GitHub Actions.
 
 ---
 
-## 3. Procedimiento
+## 2. Scope
 
-El proceso de Integración Continua (CI) en el ecosistema Edye / HITN Digital automatiza la compilación, validación, pruebas y control de calidad del código fuente mediante GitHub Actions.
+This procedure applies to all repositories hosted on GitHub belonging to the Edye ecosystem, including:
+
+- EDYE-CONNECT
+- EDYE-BILLING
+- EDYE-API-STANDALONE
+- EDYE-CONECTA
+- EDYE-ADMIN
+- EDYE-PLAY
+- EDYE-CLOUD
+- EDYE-API-SATELITE
+
+Each repository has a CI pipeline configured in GitHub Actions, which runs automatically on every pull request (PR) or push to the main branches (**stage** or **production**). The scope includes building, analyzing, validating, and packaging the code.
 
 ---
 
-## 3.1. Flujo general del proceso de Integración Continua
+## 3. Procedure
 
-Cada repositorio dispone de un pipeline configurado que se activa ante un **push** o **pull request** hacia las ramas `main` o `develop`.
-
-El siguiente diagrama representa la secuencia completa del proceso CI en Edye:
-
-![Flujo general del proceso de Integración Continua](/img/integracion-continua-devops.jpg)
-> **Figura 1.** Diagrama del flujo general del proceso de Integración Continua
+The Continuous Integration (CI) process in the Edye / HITN Digital ecosystem automates the build, validation, testing, and quality control of the source code using GitHub Actions.
 
 ---
-## 3.2. Descripción del flujo CI
+
+## 3.1. General flow of the Continuous Integration process
+
+Each repository has a configured pipeline that is triggered on a **push** or **pull request** to the `main` or `develop` branches.
+
+The following diagram represents the complete sequence of the CI process in Edye:
+
+![General flow of the Continuous Integration process](/img/integracion-continua-devops.jpg)
+
+> **Figure 1.** Diagram of the general flow of the Continuous Integration process
+
 ---
 
-### 3.2.1 Descripción del Pipeline – CI Cloud (Node.js)
+## 3.2. CI flow description
 
-El pipeline CI Cloud implementa el proceso automatizado de validación, construcción y despliegue de la aplicación Node.js correspondiente al entorno productivo cloud-prod.edye.com. Este flujo garantiza que únicamente las versiones aprobadas en las ramas sean distribuidas en los servidores productivos de Akamai/Linode.
+---
 
-### 1. Disparadores del Pipeline
+### 3.2.1 Pipeline Description – CI Cloud (Node.js)
 
-El workflow se ejecuta bajo dos condiciones:
+The CI Cloud pipeline implements the automated process of validation, build, and deployment of the Node.js application corresponding to the production environment cloud-prod.edye.com. This flow ensures that only the approved versions in the branches are distributed to the production servers of Akamai/Linode.
 
-**a) Push a la rama**  
-Cada commit o merge realizado sobre las ramas activa automáticamente el pipeline, iniciando el proceso de despliegue.
+### 1. Pipeline Triggers
 
-**b) Ejecución manual (`workflow_dispatch`)**  
-Permite lanzar el pipeline desde GitHub Actions sin necesidad de realizar un commit, útil para reintentos o despliegues controlados.
+The workflow runs under two conditions:
 
-### 2. Entorno de Ejecución
+**a) Push to the branch**  
+Each commit or merge made to the branches automatically triggers the pipeline, starting the deployment process.
 
-El job principal utiliza:
+**b) Manual execution (`workflow_dispatch`)**  
+Allows launching the pipeline from GitHub Actions without making a commit, useful for retries or controlled deployments.
 
-- Sistema operativo: Ubuntu 22.04  
-- Node.js: versión 22 (configurada mediante actions/setup-node)
+### 2. Execution Environment
 
-Este entorno garantiza compatibilidad y reproducibilidad durante la ejecución del proceso.
+The main job uses:
 
-### 3. Etapas del Pipeline
+- Operating system: Ubuntu 22.04
+- Node.js: version 22 (configured via actions/setup-node)
 
-#### 3.1. Checkout del Repositorio
-El pipeline obtiene el código fuente del repositorio mediante actions/checkout, permitiendo acceder a todo el contenido vigente en la rama.
+This environment ensures compatibility and reproducibility during the process execution.
 
-#### 3.2. Configuración de Node.js
-A través de actions/setup-node se define la versión de Node.js necesaria para ejecutar las tareas del proyecto.
+### 3. Pipeline Stages
 
-#### 3.3. Actualización de Dependencias
-Se ejecuta un proceso de actualización de paquetes mediante el comando npm update para asegurar versiones coherentes con el entorno productivo.
+#### 3.1. Repository Checkout
+
+The pipeline fetches the source code from the repository using actions/checkout, allowing access to all current content in the branch.
+
+#### 3.2. Node.js Setup
+
+Through actions/setup-node, the required Node.js version is set to run the project tasks.
+
+#### 3.3. Dependency Update
+
+A package update process is run using the npm update command to ensure versions consistent with the production environment.
 
 ```bash
 npm update
 ```
 
-#### 3.4. Ejecución de Pruebas Automatizadas
-Se ejecuta el script de pruebas definido en el proyecto (npm run test).  Si alguna prueba falla, el pipeline finaliza y se evita un despliegue defectuoso.
+#### 3.4. Automated Test Execution
+
+The test script defined in the project is run (npm run test). If any test fails, the pipeline ends and a faulty deployment is prevented.
 
 ```bash
 npm run test
 ```
 
-#### 3.5. Construcción del Proyecto (Build)
-Se ejecuta el comando npm run build para generar los artefactos finales del sistema (bundle, dist o equivalentes).
+#### 3.5. Project Build
+
+The command npm run build is run to generate the final system artifacts (bundle, dist, or equivalents).
 
 ```bash
 npm run build
 ```
 
-#### 3.6. Limpieza Antes del Despliegue
-Con el objetivo de reducir el peso del paquete final, se eliminan los directorios no necesarios:
+#### 3.6. Cleanup Before Deployment
 
-- node_modules  
-- .git  
+To reduce the size of the final package, unnecessary directories are removed:
 
-### 4. Despliegue en Servidor Linode 1
+- node_modules
+- .git
 
-#### 4.1. Transferencia de Archivos (SCP)
-El pipeline utiliza appleboy/scp-action para copiar todos los archivos generados hacia el directorio del servidor:  **/var/www/cloud-prod.edye.com**.
+### 4. Deployment on Linode Server 1
 
-La autenticación se realiza mediante variables y secretos seguros almacenados en GitHub.
+#### 4.1. File Transfer (SCP)
 
-#### 4.2. Ejecución de Scripts en el Servidor (SSH)
-Una vez copiados los archivos, se ejecutan las siguientes acciones en el servidor:
+The pipeline uses appleboy/scp-action to copy all generated files to the server directory: **/var/www/cloud-prod.edye.com**.
 
-- Carga del entorno NVM y Node.js  
-- Instalación de dependencias del entorno productivo (npm install)  
-- Reinicio del proceso Node.js mediante **PM2**, asegurando que el servicio quede activo con la nueva versión.
+Authentication is done using secure variables and secrets stored in GitHub.
 
-### 5. Despliegue en Servidor Linode 2
+#### 4.2. Script Execution on the Server (SSH)
 
-Se repite exactamente el mismo proceso aplicado en el servidor 1:
+Once the files are copied, the following actions are performed on the server:
 
-- Copia de archivos mediante SCP  
-- Instalación de dependencias  
-- Reinicio del servicio mediante PM2  
+- Load NVM and Node.js environment
+- Install production environment dependencies (npm install)
+- Restart the Node.js process using **PM2**, ensuring the service is active with the new version.
 
-Esto garantiza alta disponibilidad y consistencia entre ambos nodos productivos.
+### 5. Deployment on Linode Server 2
 
-### 6. Finalización del Pipeline
+The exact same process applied to server 1 is repeated:
 
-El pipeline concluye tras completar el despliegue en los dos servidores.  
-La nueva versión del servicio cloud-prod.edye.com queda operativa en ambos nodos.
+- File copy via SCP
+- Dependency installation
+- Service restart using PM2
 
-### Resumen del Flujo General
+This ensures high availability and consistency between both production nodes.
 
-- Configuración del entorno Node.js  
-- Actualización de dependencias  
-- Ejecución de pruebas automatizadas  
-- Construcción del proyecto  
-- Limpieza de archivos no necesarios  
-- Transferencia de archivos a los servidores  
-- Instalación de dependencias en servidores  
-- Reinicio del servicio con PM2  
-- Publicación final en ambos nodos productivos  
+### 6. Pipeline Completion
 
----
-### 3.2.2 Descripción del Pipeline – CI Admin - Deploy (Laravel)
+The pipeline concludes after completing the deployment on both servers.  
+The new version of the cloud-prod.edye.com service is operational on both nodes.
 
-El pipeline “CI Admin - Deploy” automatiza el proceso de despliegue de la aplicación Laravel Admin en el entorno stage. Su función principal es notificar a un script de despliegue en el servidor cada vez que se actualiza la rama, delegando en dicho script las tareas internas de actualización del código y del entorno.
+### General Flow Summary
 
-### 1. Disparadores del Pipeline
-
-El workflow se ejecuta en dos escenarios:
-
-**a) Push a la rama**  
-Cada vez que se realiza un commit o merge hacia las ramas, GitHub Actions dispara automáticamente este pipeline de despliegue.
-
-**b) Ejecución manual (`workflow_dispatch`)**  
-El pipeline puede ejecutarse manualmente desde la pestaña “Actions” de GitHub, lo que permite relanzar el proceso sin necesidad de generar nuevos commits.
-
-### 2. Entorno de Ejecución
-
-El job principal del workflow se denomina **deploy** y se ejecuta sobre:
-
-- Sistema operativo del runner: **Ubuntu 22.04**
-
-Este runner actúa como origen de la conexión remota hacia el servidor donde está alojada la aplicación Laravel Admin.
-
-### 3. Proceso General del Pipeline
-
-El pipeline consta de un único paso principal, que se encarga de invocar el proceso de despliegue remoto:
-
-#### 3.1. Conexión por SSH y ejecución remota
-
-Se utiliza la acción `appleboy/ssh-action` para conectarse al servidor mediante SSH, usando las credenciales definidas como variables y secretos en GitHub:
-
-- Host: definido en `ADMIN_PROD_HOST`
-- Usuario: definido en `ADMIN_PROD_USER`
-- Contraseña: definida en `ADMIN_PROD_PASSWORD`
-
-Una vez establecida la conexión, el runner ejecuta en el servidor un comando `curl` que realiza una petición HTTP local:
-
-- **Método:** POST  
-- **URL:** `http://127.0.0.1/deploy/deploy.php`  
-- **Parámetros:**  
-  - token enviado en la URL, obtenido del secreto `ADMIN_PROD_TOKEN`  
-  - cuerpo JSON con el campo `ref` indicando la referencia de la rama: `"refs/heads/production"`
-
-Este POST activa el script `deploy.php` en el propio servidor, el cual es el responsable de ejecutar internamente las acciones necesarias para actualizar la aplicación con la última versión del código de la rama (por ejemplo, obtener cambios del repositorio, actualizar dependencias, ejecutar tareas de Laravel, limpiar cachés, etc., según esté configurado en dicho script).
-
-### 4. Flujo Lógico del Despliegue
-
-De forma resumida, el flujo del pipeline es el siguiente:
-
-- Se detecta un cambio en la rama o se lanza el workflow manualmente.  
-- GitHub Actions inicia el job **deploy** en un runner Ubuntu 22.04.  
-- El runner se conecta por SSH al servidor utilizando las credenciales seguras configuradas en GitHub.  
-- En el servidor, se ejecuta una petición HTTP local (`curl`) a `deploy.php` con:  
-  - un token de seguridad  
-  - la referencia de la rama como parámetro  
-- El script `deploy.php` procesa la solicitud y ejecuta el flujo de despliegue definido para la aplicación Laravel Admin.  
-- Finalizado el script de despliegue, la nueva versión de la aplicación queda disponible en el entorno **stage/**.
-
-### 5. Enfoque DevOps
-
-Este pipeline se alinea con la estrategia DevOps del ecosistema Edye al:
-
-- Centralizar el despliegue de entornos en GitHub Actions.  
-- Mantener las credenciales y tokens gestionados como secretos en GitHub.  
-- Delegar en un script del servidor (`deploy.php`) la lógica específica del despliegue Laravel, permitiendo adaptar y extender el proceso sin modificar el pipeline.  
-- Facilitar relanzar despliegues de forma controlada y repetible mediante la opción manual (`workflow_dispatch`). 
+- Node.js environment setup
+- Dependency update
+- Automated test execution
+- Project build
+- Cleanup of unnecessary files
+- File transfer to servers
+- Dependency installation on servers
+- Service restart with PM2
+- Final publication on both production nodes
 
 ---
 
-## 3.3. Políticas de ejecución y validación
+### 3.2.2 Pipeline Description – CI Admin - Deploy (Laravel)
 
-- El Pull Request necesita aprobación por parte del área técnica.  
-- Todo Merge debe superar el pipeline CI.  
-- Se requiere mínimo un revisor técnico para el merge a Stage y Production.  
+The “CI Admin - Deploy” pipeline automates the deployment process of the Laravel Admin application in the stage environment. Its main function is to notify a deployment script on the server each time the branch is updated, delegating to that script the internal tasks of code and environment update.
+
+### 1. Pipeline Triggers
+
+The workflow runs in two scenarios:
+
+**a) Push to the branch**  
+Every time a commit or merge is made to the branches, GitHub Actions automatically triggers this deployment pipeline.
+
+**b) Manual execution (`workflow_dispatch`)**  
+The pipeline can be run manually from the “Actions” tab in GitHub, allowing the process to be relaunched without generating new commits.
+
+### 2. Execution Environment
+
+The main job of the workflow is called **deploy** and runs on:
+
+- Runner operating system: **Ubuntu 22.04**
+
+This runner acts as the origin of the remote connection to the server where the Laravel Admin application is hosted.
+
+### 3. General Pipeline Process
+
+The pipeline consists of a single main step, which is responsible for invoking the remote deployment process:
+
+#### 3.1. SSH Connection and Remote Execution
+
+The `appleboy/ssh-action` action is used to connect to the server via SSH, using the credentials defined as variables and secrets in GitHub:
+
+- Host: defined in `ADMIN_PROD_HOST`
+- User: defined in `ADMIN_PROD_USER`
+- Password: defined in `ADMIN_PROD_PASSWORD`
+
+Once the connection is established, the runner executes a `curl` command on the server that makes a local HTTP request:
+
+- **Method:** POST
+- **URL:** `http://127.0.0.1/deploy/deploy.php`
+- **Parameters:**
+  - token sent in the URL, obtained from the `ADMIN_PROD_TOKEN` secret
+  - JSON body with the `ref` field indicating the branch reference: `"refs/heads/production"`
+
+This POST activates the `deploy.php` script on the server itself, which is responsible for internally executing the necessary actions to update the application with the latest version of the branch code (for example, fetching changes from the repository, updating dependencies, running Laravel tasks, clearing caches, etc., as configured in that script).
+
+### 4. Logical Deployment Flow
+
+In summary, the pipeline flow is as follows:
+
+- A change in the branch is detected or the workflow is launched manually.
+- GitHub Actions starts the **deploy** job on an Ubuntu 22.04 runner.
+- The runner connects via SSH to the server using the secure credentials configured in GitHub.
+- On the server, a local HTTP request (`curl`) is made to `deploy.php` with:
+  - a security token
+  - the branch reference as a parameter
+- The `deploy.php` script processes the request and executes the deployment flow defined for the Laravel Admin application.
+- Once the deployment script is finished, the new version of the application is available in the **stage/** environment.
+
+### 5. DevOps Approach
+
+This pipeline aligns with the Edye ecosystem's DevOps strategy by:
+
+- Centralizing environment deployment in GitHub Actions.
+- Keeping credentials and tokens managed as secrets in GitHub.
+- Delegating the specific deployment logic for Laravel to a server script (`deploy.php`), allowing the process to be adapted and extended without modifying the pipeline.
+- Facilitating controlled and repeatable redeployments through the manual option (`workflow_dispatch`).
 
 ---
 
-## 3.4. Estructura de Archivos del Pipeline
+## 3.3. Execution and validation policies
 
-Cada repositorio del ecosistema Edye debe contener un archivo principal del workflow de Integración Continua en la siguiente ruta: **.github/workflows/ci.yml**
-
-Ejemplo básico de configuración  
-*[Estructura de Archivos del Pipeline](https://drive.google.com/file/d/1SvEgbb7Nh5Z_eFrrlLFLRECpUTM_qHEQ/view?usp=drive_link)*
-
----
-
-## 3.5. Convenciones de ramas y triggers
-
-El control de versiones y la ejecución de pipelines CI se basan en la siguiente estructura de ramas:
-
-| Rama       | Propósito                           | Pipeline asociado                    |
-|------------|-------------------------------------|--------------------------------------|
-| **main**   | Código de producción estable.       | No aplica pipeline. <br/>SCI limitado a test y lint. |
-| **stage**  | Entorno de staging o pruebas integradas. | Stack Node.js pipeline por rama. <br/>Stack Laravel pipeline por rama. |
-| **production** | Entorno de producción.          | Stack Node.js pipeline por rama. <br/>SStack Laravel pipeline por rama. |
-| **Satellite**  | Entorno especial (NY).          | Stack Laravel pipeline por rama. |
+- The Pull Request requires approval by the technical area.
+- Every Merge must pass the CI pipeline.
+- At least one technical reviewer is required for merging to Stage and Production.
 
 ---
 
-# 4. Herramientas
+## 3.4. Pipeline File Structure
 
-Las principales herramientas empleadas en la Integración Continua de Eddy son:
+Each repository in the Edye ecosystem must contain a main Continuous Integration workflow file at the following path: **.github/workflows/ci.yml**
 
-| Categoría                   | Herramienta      | Uso principal |
-|-----------------------------|------------------|---------------|
-| Repositorios y versionado   | GitHub           | Gestión de código, PR, control de ramas y workflows CI/CD. |
-| Automatización de CI/CD     | GitHub Actions   | Ejecución automática de pipelines y validaciones. |
+Basic configuration example  
+_[Pipeline File Structure](https://drive.google.com/file/d/1SvEgbb7Nh5Z_eFrrlLFLRECpUTM_qHEQ/view?usp=drive_link)_
+
+---
+
+## 3.5. Branch and trigger conventions
+
+Version control and CI pipeline execution are based on the following branch structure:
+
+| Branch         | Purpose                                 | Associated pipeline                                                        |
+| -------------- | --------------------------------------- | -------------------------------------------------------------------------- |
+| **main**       | Stable production code.                 | Pipeline does not apply. <br/>SCI limited to test and lint.                |
+| **stage**      | Staging or integrated test environment. | Node.js stack pipeline per branch. <br/>Laravel stack pipeline per branch. |
+| **production** | Production environment.                 | Node.js stack pipeline per branch. <br/>Laravel stack pipeline per branch. |
+| **Satellite**  | Special environment (NY).               | Laravel stack pipeline per branch.                                         |
+
+---
+
+# 4. Tools
+
+The main tools used in Eddy's Continuous Integration are:
+
+| Category                    | Tool           | Main use                                                  |
+| --------------------------- | -------------- | --------------------------------------------------------- |
+| Repositories and versioning | GitHub         | Code management, PR, branch control, and CI/CD workflows. |
+| CI/CD automation            | GitHub Actions | Automatic execution of pipelines and validations.         |

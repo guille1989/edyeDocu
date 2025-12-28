@@ -1,224 +1,225 @@
+
 ---
 id: devops-cd
-title: Entrega Continua (CD)
+title: 📃 Continuous Delivery (CD)
 ---
 
-# Entrega Continua (CI)
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
+# Continuous Delivery (CD)
+**Version:** 1.0  
+**Date:** 01/12/2025  
 
 ---
-## 1. Introducción
-Definir la arquitectura técnica, configuración y políticas de acceso a los servidores que soportan los entornos de staging y production del ecosistema Edye.
-
----
-
-## 2. Alcance
-El presente procedimiento aplica a todos los servidores y entornos del ecosistema Edye, incluyendo los servicios:  
-Admin, API, Satélite, Billing, Cloud, Play, Conecta y Conect, en sus ambientes de staging y production.
-
-El alcance de este documento DevOps comprende únicamente las actividades relacionadas con la estabilidad, disponibilidad, seguridad y continuidad operativa de los servicios desplegados en dichos entornos.
+## 1. Introduction
+Define the technical architecture, configuration, and access policies for the servers that support the staging and production environments of the Edye ecosystem.
 
 ---
 
-## 3. Procedimiento
-El proceso de Entrega Continua (CD) permite desplegar versiones estables del software en los entornos definidos mediante flujos automatizados y reproducibles.  
-Los despliegues se gestionan a través de GitHub Actions y herramientas de monitoreo integradas.
+## 2. Scope
+This procedure applies to all servers and environments of the Edye ecosystem, including the services:  
+Admin, API, Satellite, Billing, Cloud, Play, Conecta, and Conect, in their staging and production environments.
+
+The scope of this DevOps document only covers activities related to the stability, availability, security, and operational continuity of the services deployed in these environments.
 
 ---
 
-## 3.1. Arquitectura general de entornos
-La infraestructura de Edye se encuentra alojada en Linode (Akamai Cloud) y organizada en tres niveles principales:
-
-- **Staging:** entorno intermedio para validación funcional y pruebas de QA.  
-- **Production:** entorno activo con servicios en operación.
-
-**Configuración técnica general:**
-
-- Servidor Web: Linode/Ubuntu  
-- Base de datos: MongoDB, MySQL  
-- Despliegues: automatizados mediante GitHub Actions
+## 3. Procedure
+The Continuous Delivery (CD) process allows stable versions of the software to be deployed in the defined environments through automated and reproducible flows.  
+Deployments are managed through GitHub Actions and integrated monitoring tools.
 
 ---
 
-### 3.1.1. Arquitectura general de servidores y DNS
+## 3.1. General environment architecture
+Edye's infrastructure is hosted on Linode (Akamai Cloud) and organized into three main levels:
 
-- *[**Linode servidores**](https://docs.google.com/spreadsheets/d/19VrWJu_G5nqdRHV1idEApHZ80LjAlgtPcORP6zDS-y8/edit?usp=drive_link)*
-- *[**Nombres de dominio**](https://docs.google.com/spreadsheets/d/1x-BnfqmrZmFQHwP7ihllWhJsTDkXjA37w5z9jj-uCDE/edit?usp=drive_link)*
+- **Staging:** intermediate environment for functional validation and QA testing.  
+- **Production:** active environment with services in operation.
+
+**General technical configuration:**
+
+- Web Server: Linode/Ubuntu  
+- Database: MongoDB, MySQL  
+- Deployments: automated via GitHub Actions
 
 ---
 
-## 3.2. Acceso y autenticación a servidores/Bases de datos
+### 3.1.1. General server and DNS architecture
 
-### Acceso a servidor Linode
-El acceso a los servidores del ecosistema Edye se realiza mediante los siguientes lineamientos:
+- *[**Linode servers**](https://docs.google.com/spreadsheets/d/19VrWJu_G5nqdRHV1idEApHZ80LjAlgtPcORP6zDS-y8/edit?usp=drive_link)*
+- *[**Domain names**](https://docs.google.com/spreadsheets/d/1x-BnfqmrZmFQHwP7ihllWhJsTDkXjA37w5z9jj-uCDE/edit?usp=drive_link)*
 
-- Conexión SSH segura, restringida por firewall.  
-- Autenticación mediante clave pública (SSH Key) sobre el puerto 22/TCP.  
-- Acceso limitado únicamente a roles autorizados:
-  - Administradores (Admin / DevOps).
+---
 
-### Acceso a Bases de Datos
+## 3.2. Server/Database access and authentication
 
-El ecosistema Edye opera con dos motores principales:
+### Access to Linode server
+Access to the Edye ecosystem servers is performed according to the following guidelines:
 
-- **MySQL** (servicios Laravel: Admin, API, Billing, Conecta, Connect, Satélite)  
-- **MongoDB** (servicios Node.js: Play y Cloud)
+- Secure SSH connection, restricted by firewall.  
+- Authentication via public key (SSH Key) on port 22/TCP.  
+- Access limited only to authorized roles:
+  - Administrators (Admin / DevOps).
 
-Cada tecnología cuenta con políticas particulares:
+### Access to Databases
+
+The Edye ecosystem operates with two main engines:
+
+- **MySQL** (Laravel services: Admin, API, Billing, Conecta, Connect, Satellite)  
+- **MongoDB** (Node.js services: Play and Cloud)
+
+Each technology has particular policies:
 
 ---
 
 ### MySQL
 
-**Método de conexión:**
+**Connection method:**
 
-- Acceso únicamente desde servidores autorizados dentro de la red interna Linode.  
-- No se permiten conexiones externas públicas.  
-- Autenticación mediante usuario y contraseña.  
-- Puerto estándar: **3306/TCP**  
+- Access only from authorized servers within the internal Linode network.  
+- No public external connections allowed.  
+- Authentication via username and password.  
+- Standard port: **3306/TCP**  
 
-**Usos principales:**
+**Main uses:**
 
-- Gestión de usuarios (API / Connect / Billing).  
-- Sincronización de metadata.  
-- Procesos de facturación y suscripción.  
+- User management (API / Connect / Billing).  
+- Metadata synchronization.  
+- Billing and subscription processes.  
 
 ---
 
 ### MongoDB
 
-Utilizado por EDYE-PLAY y EDYE-CLOUD como base de datos NoSQL.
+Used by EDYE-PLAY and EDYE-CLOUD as NoSQL database.
 
-**Método de conexión:**
+**Connection method:**
 
-- Acceso interno por puerto **27017/TCP**  
-- Autenticación mediante usuario y contraseña  
-- Sin acceso público: solo red privada Linode / VPN  
+- Internal access via port **27017/TCP**  
+- Authentication via username and password  
+- No public access: only Linode private network / VPN  
 
-**Usos principales:**
+**Main uses:**
 
-- Registro y analítica de eventos de usuario (Cloud)  
-- Perfiles, preferencias y estados de reproducción (Play)  
+- User event registration and analytics (Cloud)  
+- Profiles, preferences, and playback states (Play)  
 
 ---
-## 3.3. Flujo del proceso de entrega continua
+## 3.3. Continuous delivery process flow
 
-![Flujo del proceso de entrega continua](/img/entrega-continua-devops.jpg)
-> **Figura 1.** Diagrama del flujo de Entrega Continua DevOps
+![Continuous delivery process flow](/img/entrega-continua-devops.jpg)
+> **Figure 1.** Diagram of the DevOps Continuous Delivery flow
 
-**Descripción del flujo:**
+**Flow description:**
 
-### Despliegue automatizado
+### Automated deployment
 
-El pipeline ejecuta automáticamente el procedimiento de despliegue correspondiente al tipo de tecnología:x
+The pipeline automatically executes the deployment procedure corresponding to the technology type:
 
-#### Servicios Laravel (Apache)
+#### Laravel Services (Apache)
 - `git pull`
-- `composer install` / optimización
-- `php artisan migrate` *(solo en 1 nodo de Production)*
-- Reinicio de Apache
+- `composer install` / optimization
+- `php artisan migrate` *(only on 1 Production node)*
+- Apache restart
 
-#### Servicios Node.js (Nginx + PM2)
-- Transferencia del build via SCP
+#### Node.js Services (Nginx + PM2)
+- Build transfer via SCP
 - `pm2 reload`
 
 ---
 
-### Validación Post-Deploy
+### Post-Deploy Validation
 
-Una vez desplegado en Staging, se realizan las siguientes validaciones:
+Once deployed in Staging, the following validations are performed:
 
-- Revisión de logs iniciales  
-- Validación de endpoints críticos  
-- Comprobación de respuesta del backend/servicio  
+- Review of initial logs  
+- Validation of critical endpoints  
+- Backend/service response check  
 
-Si todas las pruebas se completan correctamente, se habilita la opción de despliegue a Producción.
+If all tests are completed successfully, the option to deploy to Production is enabled.
 
 ---
 
-### Aprobación manual y despliegue en Producción
+### Manual approval and deployment to Production
 
-El despliegue en Staging a Production requiere una **aprobación manual** por parte del equipo autorizado (DevOps / Líder Técnico).
-Una vez aprobada, el sistema ejecuta en Production el mismo procedimiento automatizado aplicado en Staging, garantizando coherencia entre entornos.
+Deployment from Staging to Production requires **manual approval** by the authorized team (DevOps / Technical Lead).
+Once approved, the system executes in Production the same automated procedure applied in Staging, ensuring consistency between environments.
  
 ---
 
-### Monitoreo y Seguimiento
+### Monitoring and Tracking
 
-Tras desplegar en Production, se activa el monitoreo continuo:
+After deploying to Production, continuous monitoring is activated:
 
-- Logs de servidor y aplicación  
-- Métricas de rendimiento, uso y disponibilidad (https://monitor.edye.com)  
-- Alertas: errores, tiempo de respuesta, caídas  
+- Server and application logs  
+- Performance, usage, and availability metrics (https://monitor.edye.com)  
+- Alerts: errors, response time, outages  
 
-Si se detecta anomalía o degradación del servicio, el flujo avanza hacia el proceso de contingencia.
+If an anomaly or service degradation is detected, the flow advances to the contingency process.
 
 ---
 
 ### Backup / Rollback
 
-Ante errores post-despliegue:
+In case of post-deployment errors:
 
-- Restaurar versión anterior  
-- Usar snapshots o artefactos históricos  
-- Reactivar servicio en estado previo estable  
+- Restore previous version  
+- Use snapshots or historical artifacts  
+- Reactivate service in previous stable state  
 
-Esto asegura continuidad operativa y minimiza tiempos de caída.
+This ensures operational continuity and minimizes downtime.
 
 ---
 
-## 3.4. Métodos de despliegue según tipo de servicio (Apache vs PM2/Nginx)
+## 3.4. Deployment methods by service type (Apache vs PM2/Nginx)
 
-El ecosistema Edye utiliza dos modelos de ejecución distintos según la tecnología del servicio.
+The Edye ecosystem uses two different execution models depending on the service technology.
 
-Aunque el proceso CI/CD es común, **la forma en que el servidor actualiza y levanta cada servicio depende del stack tecnológico.**
+Although the CI/CD process is common, **the way the server updates and starts each service depends on the technology stack.**
 
 
-| Tipo de Servicio | Servidor / Proceso | Inicio del Servicio | Método de Despliegue | Logs |
-|------------------|--------------------|----------------------|-----------------------|------|
-| **Laravel** | Apache | Automático | git pull + composer install + artisan migrate + restart Apache | /var/log/apache2/* /var/www/{'app'}/storage/logs/laravel.log |
-| **Node.js (Play / Cloud)** | Nginx + PM2 | PM2 (modo fork) | build CI → scp → pm2 reload | /var/log/nginx/*  ~/.pm2/logs/* |
+| Service Type | Server / Process | Service Start | Deployment Method | Logs |
+|--------------|------------------|---------------|-------------------|------|
+| **Laravel** | Apache | Automatic | git pull + composer install + artisan migrate + restart Apache | /var/log/apache2/* /var/www/{'app'}/storage/logs/laravel.log |
+| **Node.js (Play / Cloud)** | Nginx + PM2 | PM2 (fork mode) | CI build → scp → pm2 reload | /var/log/nginx/*  ~/.pm2/logs/* |
 
 ---
 
 ### 3.4.1 Nginx + PM2
 
-Los servicios Play y Cloud utilizan una arquitectura basada en **Node.js**, administrada mediante **PM2** y expuesta a Internet a través de **Nginx** como reverse proxy. Este stack se aplica exclusivamente a los servicios Node.
+Play and Cloud services use an architecture based on **Node.js**, managed by **PM2** and exposed to the Internet through **Nginx** as a reverse proxy. This stack applies exclusively to Node services.
 
 #### Nginx
 
-- Última versión: https://nginx.org/  
-- Actúa como reverse proxy  
-- No ejecuta la app; solo enruta tráfico HTTPS  
+- Latest version: https://nginx.org/  
+- Acts as a reverse proxy  
+- Does not run the app; only routes HTTPS traffic  
 
-**Rutas de configuración:**
+**Configuration paths:**
 
 - `/etc/nginx/sites-enabled/play-proxy.conf`  
 - `/etc/nginx/sites-enabled/cloud-prod-proxy.conf`  
 
-**Certificados:**
+**Certificates:**
 
-- Certbot automático  
-- Renovación manual cada 75 días en balanceadores  
+- Automatic Certbot  
+- Manual renewal every 75 days on balancers  
 
-**Comandos:**
+**Commands:**
 
-- `sudo systemctl reload nginx` Comando que recarga la configuración del servidor Nginx sin detener el proceso ni interrumpir las conexiones activas existentes.  
-- `sudo systemctl restart nginx` Comando sudo systemctl restart nginx detiene completamente el servicio de Nginx y lo vuelve a iniciar desde cero, lo que implica una interrupción temporal de todas las conexiones activas y puede causar un breve período en el que tu sitio web no está disponible.
+- `sudo systemctl reload nginx` Command that reloads the Nginx server configuration without stopping the process or interrupting existing active connections.  
+- `sudo systemctl restart nginx` The sudo systemctl restart nginx command completely stops the Nginx service and restarts it from scratch, which implies a temporary interruption of all active connections and may cause a brief period in which your website is unavailable.
 
 ---
 
 #### PM2
 
-PM2 gestiona el ciclo de vida de los procesos Node.js, permitiendo reinicios controlados, monitoreo y autoinicio.
+PM2 manages the Node.js process lifecycle, allowing controlled restarts, monitoring, and autostart.
 
-**Ubicación del código:**
+**Code location:**
 
 - `/var/www/play`  
 - `/var/www/cloud-prod.edye.com`
 
-**Versiones de Node.js:**
+**Node.js versions:**
 
 - Cloud → 22.19.0  
 - Play → 18.20.4  
@@ -232,52 +233,52 @@ PM2 gestiona el ciclo de vida de los procesos Node.js, permitiendo reinicios con
 - `pm2 startup`  
 - `pm2 save`
 
-**Comandos frecuentes:**
+**Frequent commands:**
 
 - `pm2 start 0`  
 - `pm2 stop 0`  
 - `pm2 delete 0`  
 - `pm2 reload 0`  
 
-**Flujo de despliegue (Node.js):**
+**Deployment flow (Node.js):**
 
-El pipeline no ejecuta git pull en servidores Node.js.
+The pipeline does not run git pull on Node.js servers.
 
-- CI ejecuta build + pruebas  
-- Build se copia via SCP  
+- CI runs build + tests  
+- Build is copied via SCP  
 - `pm2 reload 0`  
 
-**Validación y monitoreo:**
+**Validation and monitoring:**
 
-- Healthcheck 24/7  
-- Alertas de degradación  
-- Dashboard en https://monitor.edye.com  
-- Status externo: https://status.edye.com  
+- 24/7 Healthcheck  
+- Degradation alerts  
+- Dashboard at https://monitor.edye.com  
+- External status: https://status.edye.com  
 
 **Rollback:**
 
-- Retroceder rama production  
-- Nuevo build  
-- Re-despliegue  
+- Roll back production branch  
+- New build  
+- Redeploy  
 
 ---
 
 ### 3.4.2 Apache
 
-Los servicios basados en Laravel dentro del ecosistema Edye operan sobre **Apache HTTP Server**. funcionan como aplicaciones PHP servidas directamente por Apache.
+Laravel-based services within the Edye ecosystem run on **Apache HTTP Server**. They function as PHP applications served directly by Apache.
 
-**Arquitectura:**
+**Architecture:**
 
-- Aplicaciones PHP servidas desde `/public`  
-- Routing gestionado vía VirtualHost  
+- PHP applications served from `/public`  
+- Routing managed via VirtualHost  
 
-**Flujo de despliegue:**
+**Deployment flow:**
 
 - `git pull`  
 - `composer install --no-dev --optimize-autoloader`  
 - `php artisan migrate`  
 - `php artisan optimize`  
-- Limpieza de caches:
+- Cache cleaning:
   - `php artisan cache:clear`
   - `php artisan config:clear`
   - `php artisan route:clear`
@@ -289,35 +290,35 @@ Los servicios basados en Laravel dentro del ecosistema Edye operan sobre **Apach
 - `/var/log/apache2/access.log`  
 - `/var/www/{'app'}/storage/logs/laravel.log`
 
-**Validación y monitoreo:**
+**Validation and monitoring:**
 
-- Healthcheck activo  
-- Logs Apache + Laravel  
-- Observabilidad en Grafana  
+- Active healthcheck  
+- Apache + Laravel logs  
+- Observability in Grafana  
 
 **Rollback:**
 
-- Revertir código  
-- Reejecutar flujo de deploy  
+- Revert code  
+- Rerun deploy flow  
 
 ---
 
-## 3.5. Procedimiento de mantenimiento y contingencia
+## 3.5. Maintenance and contingency procedure
 
-- Actualizaciones automáticas por cada PUSH  
-- Limpieza de logs y temporales (Autorotate)  
-- Backups diarios (Akamai Cloud Storage)  
-- Escaneo Qualys diario  
-- Rollback manual ante fallas críticas  
+- Automatic updates for each PUSH  
+- Log and temp cleanup (Autorotate)  
+- Daily backups (Akamai Cloud Storage)  
+- Daily Qualys scan  
+- Manual rollback in case of critical failures  
 
 ---
 
-## 4. Herramientas
+## 4. Tools
 
-| Categoría | Herramienta | Uso principal |
+| Category | Tool | Main use |
 |----------|-------------|---------------|
-| Automatización y despliegue | GitHub Actions | Despliegue automatizado de aplicaciones y recursos |
-| Infraestructura | Linode (Akamai Cloud), PM2, Nginx, Apache | Hosting y ejecución de servicios |
-| Seguridad | Qualys | Escaneo de vulnerabilidades |
-| Monitoreo | Grafana | Supervisión de rendimiento |
-| Gestión operativa | Monday | Registro de entregas, incidencias y trazabilidad post-deploy |
+| Automation and deployment | GitHub Actions | Automated deployment of applications and resources |
+| Infrastructure | Linode (Akamai Cloud), PM2, Nginx, Apache | Hosting and running services |
+| Security | Qualys | Vulnerability scanning |
+| Monitoring | Grafana | Performance monitoring |
+| Operational management | Monday | Delivery records, incidents, and post-deploy traceability |
