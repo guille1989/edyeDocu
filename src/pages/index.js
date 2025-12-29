@@ -10,7 +10,7 @@ const featureLinks = [
     title: 'Arquitectura',
     description:
       'Visibilidad del ecosistema: servicios, flujos y componentes clave de Edyes.',
-    href: '/docs/arquitectura/overview',
+    href: '/docs/infraestructura/infraestructura-environment',
   },
   {
     title: 'DevOps',
@@ -52,7 +52,7 @@ export default function Home() {
             <Link className={clsx('button button--primary', styles.action)} to="/docs/intro">
               Empezar a explorar
             </Link>
-            <Link className={clsx('button button--secondary', styles.action)} to="/docs/devops/devops-planificacion">
+            <Link className={clsx('button button--secondary', styles.action)} to="/docs/devops/devops-estructura">
               Ver flujo DevOps
             </Link>
           </div>
