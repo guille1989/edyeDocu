@@ -47,9 +47,13 @@ Cada fase está soportada por herramientas específicas y responsables asignados
 | **Entrega Continua**     | Despliegue automatizado.                         | GitHub Actions                    |
 | **Operaciones**          | Monitoreo, alertas y gestión de incidentes.      | monitor.edye.com, status.edye.com |
 
+## 4. Arquitectura Técnica del Ciclo DevOps de EDYE
+
+![Ciclo DevOps](/img/arquitecturaDevOps.jpg)
+> **Figura 2.** _Arquitectura DevOps y Flujo CI/CD del Ecosistema EDYE_
 ---
 
-## 4. Estructura Documental
+## 5. Estructura Documental
 
 La documentación DevOps se organiza jerárquicamente para asegurar trazabilidad y control de versiones.
 
@@ -63,7 +67,7 @@ La documentación DevOps se organiza jerárquicamente para asegurar trazabilidad
 
 ---
 
-## 5. Seguridad y Monitoreo
+## 6. Seguridad y Monitoreo
 
 La seguridad forma parte integral del pipeline DevOps y se implementa mediante:
 
@@ -74,7 +78,7 @@ La seguridad forma parte integral del pipeline DevOps y se implementa mediante:
 
 ---
 
-## 6. Roles y Responsabilidades
+## 7. Roles y Responsabilidades
 
 | Rol                     | Responsabilidades                                      | Herramientas Asociadas   | Interacción Principal |
 | ----------------------- | ------------------------------------------------------ | ------------------------ | --------------------- |
@@ -85,7 +89,7 @@ La seguridad forma parte integral del pipeline DevOps y se implementa mediante:
 
 ---
 
-## 7. Gobernanza Documental
+## 8. Gobernanza Documental
 
 El flujo de actualización sigue:
 
@@ -99,7 +103,7 @@ Cada documento tiene:
 
 ---
 
-## 8. Mejores Prácticas
+## 9. Mejores Prácticas
 
 - Mantener pipelines automatizados y validados.
 - Aplicar control de ramas y revisiones de código.

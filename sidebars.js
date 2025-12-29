@@ -199,7 +199,8 @@ const sidebars = {
       type: "category",
       label: "👷🏼‍♂️ Edye-Soporte y Técnico",
       items: [
-        "soporte_tecnico/soporte_tecnico",
+        "soporte_tecnico/soporte_clientes_internos",
+        "soporte_tecnico/soporte_clientes_externos",
       ],
     },
     "devops-compendio",
