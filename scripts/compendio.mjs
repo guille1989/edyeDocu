@@ -585,4 +585,9 @@ if (format === "pdf") {
     process.exit(1);
   }
   console.log(`Wrote ${outPdf}`);
+  const staticDir = path.join(root, "static");
+  const staticPdf = path.join(staticDir, `compendio-${locale}.pdf`);
+  fs.mkdirSync(staticDir, { recursive: true });
+  fs.copyFileSync(outPdf, staticPdf);
+  console.log(`Copied ${staticPdf}`);
 }

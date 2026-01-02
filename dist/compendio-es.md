@@ -1031,11 +1031,6 @@ La comunicación entre servicios se diseña para ser idempotente y se asegura la
 
 # 📃 Estructura Devops
 
-**Versión:** 1.0  
-**Fecha:** 01/12/2025
-
----
-
 ## 1. Introducción y Contexto
 
 Este documento forma parte del proyecto de documentación tecnológica de Edye (HITN Digital), desarrollado a partir de julio de 2025 con el objetivo de consolidar los procesos DevOps, seguridad y monitoreo del ecosistema digital. La estructura DevOps busca estandarizar prácticas de automatización, despliegue continuo y control de calidad del software en los entornos de desarrollo, staging y producción.
@@ -1143,11 +1138,6 @@ Cada documento tiene:
 
 # 📃 Estrategia DevOps
 
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
-
----
-
 ## 1. Objetivo y alcance
 
 Definir la estrategia DevOps revisada de la organización, consolidando la automatización, seguridad y monitoreo continuo en los entornos de desarrollo, integración, pruebas y producción.
@@ -1227,11 +1217,6 @@ Las alertas se envían por correo y se revisan diariamente en el panel de incide
 \newpage
 
 # 📃 Planificación DevOps
-
-**Versión:** 1.0  
-**Fecha:** 01/12/2025
-
----
 
 ## 1. Introducción
 
@@ -1337,10 +1322,6 @@ Todas las actividades se gestionan mediante:
 
 # 📃 Desarrollo DevOps
 
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
-
----
 ## 1. Introducción
 
 Definir los lineamientos, actividades, roles y herramientas aplicables al proceso de desarrollo de software dentro del ecosistema tecnológico de Edye (HITN Digital).
@@ -1499,11 +1480,6 @@ Los estándares incluyen:
 \newpage
 
 # 🔄 Integración Continua (CI)
-
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
-
----
 
 ## 1. Introducción
 
@@ -1764,10 +1740,6 @@ Las principales herramientas empleadas en la Integración Continua de Eddy son:
 
 # 🔄 Entrega Continua (CD)
 
-**Versión:** 1.0  
-**Fecha:** 01/12/2025  
-
----
 ## 1. Introducción
 Definir la arquitectura técnica, configuración y políticas de acceso a los servidores que soportan los entornos de staging y production del ecosistema Edye.
 
@@ -2164,11 +2136,6 @@ Los servicios basados en Laravel dentro del ecosistema Edye operan sobre **Apach
 \newpage
 
 # 📃 Operaciones DevOps
-
-**Versión:** 1.0  
-**Fecha:** 01/12/2025
-
----
 
 ## 1. Introducción
 
