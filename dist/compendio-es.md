@@ -7905,22 +7905,3 @@ Los formularios mencionados se encuentran en Monday y están destinados al equip
 ## 16. Conclusión
 
 Este documento reúne la información oficial disponible sobre el servicio de soporte técnico para clientes externos de EDYE / HITN Digital. La estructura presentada facilita su integración en plataformas de documentación corporativa como Confluence o Docusaurus. Para mantener la vigencia del procedimiento, es importante actualizar este documento cada vez que se modifiquen roles, SLAs, herramientas o flujos de trabajo, siguiendo el control de versiones establecido en la documentación fuente.
-
-***
-
-\newpage
-
-# 📚 Compendio DevOps
-
-import DevopsPlanEs from './devops/devops-planificacion.md';
-import DevopsPlanEn from '../i18n/en/docusaurus-plugin-content-docs/current/devops/devops-planificacion.md';
-import DevopsDevEs from './devops/devops-desarrollo.md';
-import DevopsDevEn from '../i18n/en/docusaurus-plugin-content-docs/current/devops/devops-desarrollo.md';
-
-# 📚 Compendio DevOps
-
-<DevopsPlanEs />
-
----
-
-<DevopsDevEs />

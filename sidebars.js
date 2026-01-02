@@ -201,8 +201,7 @@ const sidebars = {
         "soporte_tecnico/soporte_clientes_internos",
         "soporte_tecnico/soporte_clientes_externos",
       ],
-    },
-    "devops-compendio",
+    }
   ],
 };
 
