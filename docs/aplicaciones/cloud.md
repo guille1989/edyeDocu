@@ -1,7 +1,6 @@
 ---
 id: app-cloud
 title: 🈸 Servicio Cloud
-
 ---
 
 **Versión:** 1.0  

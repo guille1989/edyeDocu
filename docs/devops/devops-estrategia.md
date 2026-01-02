@@ -3,8 +3,7 @@ id: devops-estrategia
 title: 📃 Estrategia DevOps
 sidebar_label: 📃 Estrategia DevOps
 ---
-
-# Estrategia DevOps   
+  
 **Versión:** 1.0  
 **Fecha:** 01/12/2025  
 

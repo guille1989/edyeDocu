@@ -3,7 +3,6 @@ id: devops-cd
 title: 🔄 Entrega Continua (CD)
 ---
 
-# Entrega Continua (CI)
 **Versión:** 1.0  
 **Fecha:** 01/12/2025  
 

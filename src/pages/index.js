@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
 
@@ -28,6 +29,7 @@ const featureLinks = [
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
+  const pdfHref = useBaseUrl('/compendio-es.pdf');
 
   return (
     <Layout
@@ -55,6 +57,13 @@ export default function Home() {
             <Link className={clsx('button button--secondary', styles.action)} to="/docs/devops/devops-estructura">
               Ver flujo DevOps
             </Link>
+            <a
+              className={clsx('button button--outline button--secondary', styles.action)}
+              href={pdfHref}
+              download
+            >
+              Descarga PDF
+            </a>
           </div>
         </div>
         <div className={styles.heroCard}>
