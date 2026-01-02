@@ -1,15 +1,25 @@
-# Edyes-Documentación
+---
+id: intro
+title: "🏁 Edye-Documentación"
+sidebar_label: "🏁 Edye-Documentación"
+---
+**Version:** 1.0  
+**Date:** 12/01/2025  
 
-La documentación técnica de **Edyes** consolida toda la información necesaria para comprender, desarrollar, mantener y operar el ecosistema tecnológico que sostiene la plataforma. Su objetivo es proporcionar una referencia centralizada, actualizada y estructurada que facilite el trabajo de los equipos de **desarrollo, DevOps, operaciones, QA, producto e integración**.
+---
 
-Edyes es un sistema compuesto por múltiples servicios, aplicaciones, APIs y herramientas que interactúan para ofrecer una experiencia digital estable, segura y escalable. Debido a la naturaleza distribuida del ecosistema y a la evolución continua de sus componentes, esta documentación funciona como el punto de verdad para:
+# Edye Documentation
 
-- Conocer la arquitectura general y sus flujos principales.  
-- Entender los procesos y estándares DevOps aplicados en la organización.  
-- Acceder a manuales de uso, despliegue y operación de cada servicio.  
-- Consultar el funcionamiento de APIs, integraciones y pipelines.  
-- Garantizar la trazabilidad y consistencia entre áreas y regiones.  
+The technical documentation for **Edye** consolidates all the information needed to understand, develop, maintain, and operate the technological ecosystem that supports the platform. Its goal is to provide a centralized, up-to-date, and structured reference that facilitates the work of the **development, DevOps, operations, QA, product, and integration** teams.
 
-La información presentada aquí sigue una estructura modular y práctica, permitiendo navegar por secciones específicas según el rol y las necesidades del usuario. Cada documento forma parte de un marco técnico unificado que busca mejorar la colaboración entre equipos, acelerar los ciclos de entrega y asegurar la calidad del software en todas las etapas.
+Edye is a system composed of multiple services, applications, APIs, and tools that interact to deliver a stable, secure, and scalable digital experience. Due to the distributed nature of the ecosystem and the continuous evolution of its components, this documentation serves as the single source of truth to:
 
-Esta documentación es un recurso vivo: evoluciona junto con la plataforma, los procesos y las tecnologías de Edyes. Por ello, cualquier cambio relevante en código, infraestructura o modelos operativos debe reflejarse aquí para mantener una visión precisa y actualizada del ecosistema completo.
+- Understand the overall architecture and its main flows.  
+- Learn the DevOps processes and standards applied in the organization.  
+- Access usage, deployment, and operation manuals for each service.  
+- Review how APIs, integrations, and pipelines work.  
+- Ensure traceability and consistency across areas and regions.  
+
+The information presented here follows a modular and practical structure, allowing navigation through specific sections based on the user’s role and needs. Each document is part of a unified technical framework that aims to improve collaboration among teams, accelerate delivery cycles, and ensure software quality at every stage.
+
+This documentation is a living resource: it evolves alongside Edye’s platform, processes, and technologies. Therefore, any significant change in code, infrastructure, or operating models must be reflected here to maintain an accurate and up-to-date view of the entire ecosystem.
