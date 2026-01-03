@@ -1,113 +1,111 @@
 ---
 id: int-ing-partner-claro-video
-title: Ingesta de Contenidos – Claro Video
+title: Content Ingestion – Claro Video
 sidebar_position: 2
 ---
 
-# Ingesta de Contenidos – Claro Video
+# Content Ingestion – Claro Video
 
-Este documento describe las **particularidades de la integración por ingesta de
-contenidos del partner Claro Video**, basada en el **modelo estándar de ingesta
-EDYE**.
+This document describes the **specifics of the content ingestion integration for
+the Claro Video partner**, based on the **standard EDYE ingestion model**.
 
 ---
 
-## 1. Información general
+## 1. General information
 
 - **Partner:** Claro Video  
-- **Servicio:** Ingesta VOD Internacional  
-- **Tipo de contenido:** Video on Demand  
-- **Formato de video:** MP4 (H.264)  
-- **Volumen estimado:** ~1500 assets por día  
+- **Service:** International VOD Ingestion  
+- **Content type:** Video on Demand  
+- **Video format:** MP4 (H.264)  
+- **Estimated volume:** ~1500 assets per day  
 
 ---
 
-## 2. Modelo de integración aplicado
+## 2. Applied integration model
 
-Claro Video implementa el siguiente modelo:
+Claro Video implements the following model:
 
-- **Modelo:** Ingesta de Contenidos  
-  Ver: `modelos/Ingesta`
+- **Model:** Content Ingestion  
+  See: `modelos/Ingesta`
 
-Este documento no redefine el modelo, sino que documenta las
-**configuraciones y reglas específicas del partner**.
-
----
-
-## 3. Flujo aplicado
-
-Además del flujo técnico estándar de ingesta EDYE, Claro Video cuenta con un
-flujo operativo que involucra a los equipos de Contenido, Diseño y DevOps.
-
-Este flujo describe las tareas humanas previas y posteriores a la generación del
-delivery.
-
-![Flujo operativo del partner](/img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
-> **Figura 1.** Diagrama del flujo operativo del partner
+This document does not redefine the model; it documents the
+**partner-specific configurations and rules**.
 
 ---
 
-## 4. Consideraciones operativas
+## 3. Applied flow
 
-- Alto volumen operativo diario (~1500 assets)
-- Procesamiento asincrónico
-- Tiempo promedio de procesamiento:
-  - **3 a 5 minutos por asset**
-- Entregas realizadas mediante batches controlados
+In addition to the standard EDYE ingestion technical flow, Claro Video has an
+operational flow that involves the Content, Design, and DevOps teams.
 
----
+This flow describes the human tasks before and after the delivery generation.
 
-## 5. Validaciones generales
-
-Durante la ingesta para Claro Video se validan:
-
-- Resolución mínima de video: **720p**
-- Codificación soportada: **H.264**
-- Metadata obligatoria completa
-- Imágenes sincronizadas y válidas
-- Naming conforme a reglas del partner
+![Partner operational flow](/img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
+> **Figure 1.** Partner operational flow diagram
 
 ---
 
-## 6. Estados de procesamiento
+## 4. Operational considerations
 
-| Estado | Descripción |
+- High daily operational volume (~1500 assets)
+- Asynchronous processing
+- Average processing time:
+  - **3 to 5 minutes per asset**
+- Deliveries performed through controlled batches
+
+---
+
+## 5. General validations
+
+During ingestion for Claro Video the following are validated:
+
+- Minimum video resolution: **720p**
+- Supported encoding: **H.264**
+- Complete mandatory metadata
+- Synchronized and valid images
+- Naming in accordance with partner rules
+
+---
+
+## 6. Processing states
+
+| State | Description |
 |------|-------------|
-| Pending | Delivery creado |
-| Processing | Assets en procesamiento |
-| Completed | Procesamiento exitoso |
-| Failed | Error en uno o más assets |
+| Pending | Delivery created |
+| Processing | Assets in processing |
+| Completed | Successful processing |
+| Failed | Error in one or more assets |
 
-El estado se consulta desde el **Admin Panel** de EDYE.
-
----
-
-## 7. Método de entrega
-
-Los contenidos procesados se entregan mediante:
-
-- **Aspera (HITN Production)** – método principal
-- **SFTP directo del partner** – cuando aplica
+The status is checked from the **EDYE Admin Panel**.
 
 ---
 
-## 8. Anexos técnicos
+## 7. Delivery method
 
-Las siguientes reglas son obligatorias para Claro Video:
+Processed content is delivered through:
 
-- Posters y artwork  
-  Ver: `Anexos-Claro Video/Posters y Artwork Claro Video`
-
----
-
-## 9. Observaciones
-
-- Los flujos de ingesta vía FTP se encuentran en proceso de descontinuación.
-- Cualquier cambio operativo debe validarse con **Operaciones EDYE**.
+- **Aspera (HITN Production)** – main method
+- **Direct partner SFTP** – when applicable
 
 ---
 
-## 10. Documentación relacionada
+## 8. Technical annexes
+
+The following rules are mandatory for Claro Video:
+
+- Posters and artwork  
+  See: `Anexos-Claro Video/Posters y Artwork Claro Video`
+
+---
+
+## 9. Notes
+
+- Ingestion flows via FTP are being phased out.
+- Any operational change must be validated with **EDYE Operations**.
+
+---
+
+## 10. Related documentation
 
 - `modelos/ingesta.md`
 - `flujo/flujo-ingesta.md`

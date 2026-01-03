@@ -1,25 +1,22 @@
 ---
 id: int-ing-partner-watch-brazil
-title: Ingesta de Contenidos – Whatch Brazil
+title: Content Ingestion – Watch Brazil
 ---
 
-# Anexo de Integración – Ingesta de Contenidos
+# Integration Annex – Content Ingestion
 
 **Partner:** Watch Brazil  
-**Tipo de integración:** Ingesta VOD  
-**Estado:** Activo
+**Integration type:** VOD Ingestion  
+**Status:** Active
 
-Este anexo complementa el **flujo genérico de Ingesta EDYE** y define únicamente las
-configuraciones específicas requeridas por el partner **Watch Brazil**.  
-El flujo operativo, validaciones generales y responsabilidades base se rigen por el
-documento de Ingesta estándar.
+This annex complements the **generic EDYE Ingestion flow** and defines only the specific configurations required by the **Watch Brazil** partner.  
+The operational flow, general validations, and base responsibilities are governed by the standard Ingestion document.
 
 ---
 
-## 1. Flujo de Ingesta – Sky Brazil
+## 1. Ingestion Flow – Sky Brazil
 
-El siguiente flujo describe el **proceso end-to-end de ingesta y entrega de contenidos hacia Sky Brazil**, partiendo desde la preparación editorial y técnica en EDYE hasta la validación final del partner.
-Este flujo es una **implementación específica del modelo genérico de ingesta**, adaptada a los requisitos técnicos y operativos de Sky.
+The following flow describes the **end-to-end ingestion and content delivery process to Sky Brazil**, starting from the editorial and technical preparation in EDYE through the partner’s final validation. This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
 <div class="mermaid-zoom">
 
@@ -54,67 +51,68 @@ sequenceDiagram
         end
     end
 ```
+
 </div>
-> **Figura 1.** Diagrama del flujo operativo del partner
+> **Figure 1.** Partner operational flow diagram
 
-# Flujo de Ingesta – Watch Brazil
+# Ingestion Flow – Watch Brazil
 
-1. **Recepción del contenido**  
-  Content Operations recibe el contenido audiovisual desde programación o proveedores.
+1. **Content reception**  
+   Content Operations receives audiovisual content from programming or suppliers.
 
-2. **Carga en JW Player**  
-  El video se carga en JW Player y se completa la metadata mínima, incluyendo los campos específicos requeridos por Watch Brazil.
+2. **Upload to JW Player**  
+   The video is uploaded to JW Player and the minimum metadata is completed, including the specific fields required by Watch Brazil.
 
-3. **Solicitud y creación de artes**  
-  Content Operations solicita al Design Team los posters y stills; el equipo de diseño produce y carga los artes requeridos.
+3. **Request and creation of artwork**  
+   Content Operations requests posters and stills from the Design Team; the design team produces and uploads the required artwork.
 
-4. **Confirmación de assets**  
-  Una vez cargadas las imágenes, el Design Team notifica a Edye DevOps que los assets están listos para delivery.
+4. **Asset confirmation**  
+   Once the images are uploaded, the Design Team notifies Edye DevOps that the assets are ready for delivery.
 
-5. **Generación del paquete**  
-  Edye DevOps consolida el paquete completo de entrega (video, metadata e imágenes).
+5. **Package generation**  
+   Edye DevOps consolidates the complete delivery package (video, metadata, and images).
 
-6. **Validación técnica**  
-  Se ejecutan validaciones de video, metadata, imágenes, naming y estructura del delivery.
+6. **Technical validation**  
+   Video, metadata, images, naming, and delivery structure validations are executed.
 
-7. **Correcciones (si aplica)**  
-  Si hay errores, se reportan a Content Operations, se corrige el contenido y se regenera el paquete.
+7. **Corrections (if applicable)**  
+   If there are errors, they are reported to Content Operations, the content is corrected, and the package is regenerated.
 
-8. **Entrega al partner**  
-  Con validación exitosa, Edye DevOps entrega el contenido a Watch Brazil (API y, si aplica, Amazon S3) y confirma el cierre del proceso.
+8. **Delivery to the partner**  
+   With successful validation, Edye DevOps delivers the content to Watch Brazil (API and, if applicable, Amazon S3) and confirms process closure.
 
 ---
 
-## 2. Canal de entrega
+## 2. Delivery channel
 
-**Método principal:**
+**Main method:**
 
 - **API REST (POST multipart/form-data)**
 
-**Métodos alternativos / heredados:**
+**Alternative / legacy methods:**
 
 - FTP con polling (en proceso de desuso)
 
-**Autenticación:**
+**Authentication:**
 
 - Bearer Token
 
-**Endpoint principal:**
+**Main endpoint:**
 
 ```text
 POST /api/ingesta/contenido
 ```
 
-**Formato:**
+**Format:**
 
 - Video: MP4 (H.264)
 - Metadata: JSON (multipart)
 
 ---
 
-## 3. Estructura y naming
+## 3. Structure and naming
 
-### Estructura lógica del delivery
+### Logical delivery structure
 
 ```text
 /ingesta/
@@ -129,36 +127,38 @@ POST /api/ingesta/contenido
 	└── still_vertical.jpg
 ```
 
-### Reglas de naming
-- Un **content_id único** por asset
-- Nombres sin espacios
-- Solo caracteres ASCII
-- Consistencia entre video, metadata e imágenes
+### Naming rules
+
+- One **unique content_id** per asset
+- Names without spaces
+- ASCII characters only
+- Consistency among video, metadata, and images
 
 ---
 
 ## 4. Metadata
 
-### Campos obligatorios (JSON)
+### Mandatory fields (JSON)
 
-| Campo | Descripción |
-|------|-------------|
-| `title` | Título del contenido |
-| `id_cliente` | Identificador del partner |
-| `rating` | Clasificación etaria |
-| `studio` | Debe ser **Edye** |
-| `studio_name` | Debe ser **Edye** |
-| `licensing_window_start` | Fecha + hora (ISO 8601) |
-| `licensing_window_end` | Fecha + hora (ISO 8601) |
-| `actors_display` | Lista consolidada de actores |
+| Campo                    | Descripción                 |
+| ------------------------ | --------------------------- |
+| `title`                  | Content title               |
+| `id_cliente`             | Partner identifier          |
+| `rating`                 | Age rating                  |
+| `studio`                 | Must be **Edye**            |
+| `studio_name`            | Must be **Edye**            |
+| `licensing_window_start` | Date + time (ISO 8601)      |
+| `licensing_window_end`   | Date + time (ISO 8601)      |
+| `actors_display`         | Consolidated list of actors |
 
-**Reglas especiales Watch Brazil:**
-- El campo `rating` **no acepta valores numéricos simples**
-- Debe enviarse como:
-  - `A12`, `AL`, `12` o `L`
-- `studio` y `studio_name` **deben forzarse a “Edye”**
+**Special Watch Brazil rules:**
 
-### Ejemplo JSON mínimo
+- The `rating` field **does not accept simple numeric values**
+- It must be sent as:
+  - `A12`, `AL`, `12`, or `L`
+- `studio` and `studio_name` **must be forced to “Edye”**
+
+### Minimum JSON example
 
 ```json
 {
@@ -175,95 +175,95 @@ POST /api/ingesta/contenido
 
 ---
 
-## 5. Imágenes
+## 5. Images
 
-### Imágenes requeridas (obligatorias)
+### Required images (mandatory)
 
-| Tipo              | Resolución | Ratio   |
-|-------------------|------------|---------|
-| Poster Horizontal | 3840x2160  | 16:9    |
-| Poster Vertical   | 1708x2562  | Vertical|
-| Still Horizontal  | 3840x2160  | 16:9    |
-| Still Vertical    | 1708x2562  | Vertical|
+| Type              | Resolution | Ratio    |
+| ----------------- | ---------- | -------- |
+| Poster Horizontal | 3840x2160  | 16:9     |
+| Poster Vertical   | 1708x2562  | Vertical |
+| Still Horizontal  | 3840x2160  | 16:9     |
+| Still Vertical    | 1708x2562  | Vertical |
 
-> ⚠️ La imagen **Still Vertical** es obligatoria. Sin este asset, la Still Horizontal será recortada en aplicaciones mobile.
+> ⚠️ The **Still Vertical** image is mandatory. Without this asset, the Still Horizontal will be cropped in mobile applications.
 
-- Watermark: No obligatorio
-- Referencia técnica: Specs XML and Images - Edye
+- Watermark: Not mandatory
+- Technical reference: Specs XML and Images - Edye
 
 ---
 
-## 6. Reglas de validación
+## 6. Validation rules
 
 ### Video
 
 - Codec: H.264
-- Resolución mínima: 720p
-- Duración máxima: 2 horas
+- Minimum resolution: 720p
+- Maximum duration: 2 hours
 
 ### Metadata
 
-- Campos obligatorios completos
-- Fechas con timestamp
-- Codificación UTF-8 (sin caracteres invisibles rotos)
+- Mandatory fields completed
+- Dates with timestamp
+- UTF-8 encoding (without broken invisible characters)
 
 ### Imágenes
 
-- Resoluciones exactas
-- Ratio correcto
-- Todos los tipos requeridos presentes
+- Exact resolutions
+- Correct ratio
+- All required types present
 
 ---
 
-## 7. Criterios de aceptación (Operaciones)
+## 7. Acceptance criteria (Operations)
 
-El delivery se considera **ACEPTADO** cuando:
+The delivery is considered **ACCEPTED** when:
 
-- El endpoint responde `200 OK`
-- Estado final: `completed`
-- No existen errores de validación
-- Metadata e imágenes coinciden con el video entregado
-- QC automatizado sin fallos críticos
+- The endpoint responds `200 OK`
+- Final status: `completed`
+- No validation errors exist
+- Metadata and images match the delivered video
+- Automated QC without critical failures
 
-Estados posibles: `received`, `processing`, `error`, `completed`
+Possible states: `received`, `processing`, `error`, `completed`
 
-Referencia técnica: ESP-INT Ingesta Watch Brazil
-
----
-
-## 8. Reintentos y rollback
-
-### Reintento parcial
-
-Se permite cuando:
-
-- Error de metadata
-- Error de imágenes
-- Corrección sin cambio de video
-
-### Reenvío completo
-
-Requerido cuando:
-
-- Cambia el archivo de video
-- Error estructural de naming
-- Inconsistencia entre assets
+Technical reference: ESP-INT Ingesta Watch Brazil
 
 ---
 
-## 9. Soporte y escalamiento
+## 8. Retries and rollback
 
-### Contactos
+### Partial retry
+
+Allowed when:
+
+- Metadata error
+- Image error
+- Correction without video change
+
+### Full resend
+
+Required when:
+
+- The video file changes
+- Structural naming error
+- Inconsistency among assets
+
+---
+
+## 9. Support and escalation
+
+### Contacts
 
 - Partner – Watch Brazil: Henrique Weber — henrique.weber@watch.tv.br
-- EDYE – Operaciones: Equipo DevOps / Content Operations
+- EDYE – Operations: DevOps Team / Content Operations
 
-### Horario de soporte
+### Support hours
 
-- Lunes a Viernes, horario laboral Brasil (BRT)
+- Monday to Friday, business hours Brazil (BRT)
 
-### Escalamiento
+### Escalation
 
-- Operaciones EDYE
-- DevOps EDYE
-- Contacto técnico Watch Brazil
+- EDYE Operations
+- EDYE DevOps
+- Watch Brazil technical contact

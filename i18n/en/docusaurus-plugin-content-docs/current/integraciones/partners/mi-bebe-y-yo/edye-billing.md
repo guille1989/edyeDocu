@@ -1,21 +1,20 @@
----
 id: int-edye-billing-partner-mi-bebe-y-yo
 title: Edye Billing – Mi Bebé y Yo
 ---
-## Información de integración específica – Mi Bebé y Yo
+## Specific integration information – Mi Bebé y Yo
 
-En esta sección se recopila información específica del partner que implementa la integración EDYE Billing mediante Pagoralia e InPlayer. Las descripciones se basan en los documentos de integración compartidos.
+This section gathers partner-specific information for the EDYE Billing integration via Pagoralia and InPlayer. The descriptions are based on the shared integration documents.
 
-**Canal de integración:** API REST con endpoints diferenciados por entorno. Se utilizan los endpoints de Pagoralia (`/create‑portal`) para generar el portal de pago geolocalizado y de InPlayer (`/auth`, `/user`) para autenticación y registro de usuarios.
+**Integration channel:** REST API with environment-specific endpoints. Pagoralia endpoints (`/create‑portal`) are used to generate the geolocated payment portal, and InPlayer endpoints (`/auth`, `/user`) for user authentication and registration.
 
-**Arquitectura y flujo:** Pagoralia genera un portal geolocalizado ajustando el idioma y la moneda según la dirección IP del usuario. InPlayer gestiona la identidad y valida a los usuarios que pagan. El flujo secuencial consta de tres pasos: (1) generación del portal; (2) registro en InPlayer; y (3) habilitación de acceso a los contenidos. El portal se personaliza con logos y colores del cliente.
+**Architecture and flow:** Pagoralia generates a geolocated portal, adjusting language and currency based on the user’s IP address. InPlayer manages identity and validates paying users. The sequential flow consists of three steps: (1) portal generation; (2) registration in InPlayer; and (3) enabling access to the content. The portal is customized with client logos and colors.
 
-**Campos e interoperabilidad:** Pagoralia envía a InPlayer los datos de nombre, email, ID de compra, IP y tipo de producto. InPlayer devuelve a la plataforma un JWT que incluye las claims `userID`, `email`, `purchaseTime` y `accessLevel`. La sincronización entre ambos servicios se realiza mediante webhooks que confirman el pago y el registro del usuario.
+**Fields and interoperability:** Pagoralia sends InPlayer the data for name, email, purchase ID, IP, and product type. InPlayer returns to the platform a JWT that includes the claims `userID`, `email`, `purchaseTime`, and `accessLevel`. Synchronization between both services is performed via webhooks that confirm payment and user registration.
 
-**Validaciones y seguridad:** Pagoralia comprueba que el país esté soportado, que el cliente esté disponible y que los métodos de pago estén activos. InPlayer valida que el correo no esté duplicado, que los formatos sean correctos y que las contraseñas cumplan políticas de seguridad. Los mensajes de error más comunes son `403 Forbidden` (cliente no habilitado) y `409 Conflict` (usuario ya registrado). Las comunicaciones utilizan HTTPS y tokens firmados, y los portales temporales expiran tras una hora.
+**Validations and security:** Pagoralia checks that the country is supported, the client is available, and payment methods are active. InPlayer validates that the email is not duplicated, formats are correct, and passwords comply with security policies. The most common error messages are `403 Forbidden` (client not enabled) and `409 Conflict` (user already registered). Communications use HTTPS and signed tokens, and temporary portals expire after one hour.
 
-**Entornos y URLs:** Mi Bebé y Yo utilizará los endpoints de QA y producción de Pagoralia e InPlayer: `https://qa.pagoralia.com/create‑portal` y `https://qa.inplayer.com/api/auth` para pruebas, y `https://pagos.pagoralia.com` y `https://inplayer.com/api` para el entorno productivo.
+**Environments and URLs:** Mi Bebé y Yo will use the QA and production endpoints of Pagoralia and InPlayer: `https://qa.pagoralia.com/create‑portal` and `https://qa.inplayer.com/api/auth` for testing, and `https://pagos.pagoralia.com` and `https://inplayer.com/api` for the production environment.
 
-**Particularidades operativas:** El portal ajusta automáticamente el idioma y la moneda según la ubicación del usuario final y aplica el branding del cliente. La integración se limita a pagos individuales en tiempo real; la conciliación de ganancias se gestiona por medio de mecanismos estándar de EDYE.
+**Operational particularities:** The portal automatically adjusts language and currency based on the end user’s location and applies client branding. The integration is limited to real-time individual payments; revenue reconciliation is managed through EDYE standard mechanisms.
 
-**Contactos de soporte:** El documento original no especifica contactos; estos se deberán acordar en los contratos de servicio.w
+**Support contacts:** The original document does not specify contacts; these must be agreed upon in the service contracts.w

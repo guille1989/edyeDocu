@@ -1,26 +1,26 @@
 ---
 id: int-ing-partner-claro-brazil
-title: Ingesta de Contenidos – Claro Brasil
----
-# Anexo de Integración por Ingesta – Claro Brasil
-
-Este documento describe las **configuraciones específicas del partner Claro Brasil** que complementan el **flujo genérico de ingesta EDYE**.  
-No redefine el flujo estándar, únicamente detalla los parámetros particulares requeridos por este partner.
-
+title: Content Ingestion – Claro Brazil
 ---
 
-## 1. Flujo de Ingesta – Claro Brasil
+# Ingestion Integration Appendix – Claro Brazil
 
-El siguiente diagrama representa el **flujo operativo de ingesta de contenidos hacia Claro Brasil**, basado en el **modelo estándar de ingesta EDYE** y adaptado a las particularidades técnicas de este partner.
+This document describes the **partner-specific configurations for Claro Brazil** that complement the **generic EDYE ingestion flow**.  
+It does not redefine the standard flow; it only details the particular parameters required by this partner.
 
-El proceso inicia con la **preparación del contenido en JW Player**, donde se cargan los videos maestros, se estructura el catálogo (series, temporadas y episodios) y se completa la metadata obligatoria. Posteriormente, las imágenes requeridas (posters y episodic stills) son generadas y cargadas por el equipo de Diseño en EDYE.
+---
 
-Una vez que video, metadata e imágenes se encuentran sincronizados, el sistema de **DevOps genera el paquete de entrega específico para Claro Brasil**, ejecutando validaciones automáticas sobre formato de video, consistencia de metadata y especificaciones de imágenes.
+## 1. Ingestion Flow – Claro Brazil
 
-La entrega se realiza preferentemente vía **API de ingesta de Claro Brasil**, utilizando un esquema asíncrono con **tracking ID** para el seguimiento del estado del procesamiento. En caso de errores de validación o procesamiento, el flujo contempla **corrección en origen y reintentos controlados**, ya sea parciales (metadata / imágenes) o completos (video).
+The following diagram represents the **operational content ingestion flow toward Claro Brazil**, based on the **standard EDYE ingestion model** and adapted to this partner’s technical specifics.
 
-El proceso concluye cuando Claro Brasil retorna el estado **`completed`**, momento en el cual la entrega es validada por Operaciones y se realiza el **cierre operativo de la ingesta**.
+The process starts with **content preparation in JW Player**, where master videos are uploaded, the catalog is structured (series, seasons, and episodes), and the required metadata is completed. The required images (posters and episodic stills) are then generated and uploaded by the Design team in EDYE.
 
+Once video, metadata, and images are synchronized, the **DevOps system generates the delivery package specific to Claro Brazil**, running automatic validations on video format, metadata consistency, and image specifications.
+
+Delivery is preferably performed via the **Claro Brazil ingestion API**, using an asynchronous scheme with a **tracking ID** to monitor processing status. In case of validation or processing errors, the flow includes **source correction and controlled retries**, either partial (metadata / images) or full (video).
+
+The process concludes when Claro Brazil returns the **`completed`** status, at which point Operations validate the delivery and perform the **operational close of the ingestion**.
 
 <div class="mermaid-zoom">
 
@@ -70,41 +70,41 @@ sequenceDiagram
 ```
 
 </div>
-> **Figura 1.** Diagrama del flujo operativo del partner
+> **Figure 1.** Partner operational flow diagram
 ---
 
-## 1. Canal de Entrega
+## 1. Delivery Channel
 
-**Tipo de entrega:** Híbrida (API + transferencia de archivos)
+**Delivery type:** Hybrid (API + file transfer)
 
-### 1.1 Métodos soportados
+### 1.1 Supported methods
 
 - **API REST (principal)**
-- **FTP / SFTP (polling)** *(en proceso de descontinuación)*
+- **FTP / SFTP (polling)** _(en proceso de descontinuación)_
 
-### 1.2 Endpoints principales
+### 1.2 Main endpoints
 
-| Uso                     | Endpoint |
-|-------------------------|----------|
-| Ingesta de contenido    | `POST /api/ingesta/contenido` |
-| Consulta de estado      | `GET /api/ingesta/status?id={tracking_id}` |
+| Use               | Endpoint                                   |
+| ----------------- | ------------------------------------------ |
+| Content ingestion | `POST /api/ingesta/contenido`              |
+| Status query      | `GET /api/ingesta/status?id={tracking_id}` |
 
-### 1.3 Autenticación
+### 1.3 Authentication
 
 - **Bearer Token**
-- Token entregado por Claro Brasil por ambiente (DEV / QA / PROD)
+- Token provided by Claro Brazil per environment (DEV / QA / PROD)
 
-### 1.4 Formato de envío
+### 1.4 Submission format
 
 - `multipart/form-data`
-  - Archivo de video
-  - JSON de metadata
+  - Video file
+  - Metadata JSON
 
 ---
 
-## 2. Estructura y Naming
+## 2. Structure and Naming
 
-### 2.1 Estructura lógica de assets
+### 2.1 Logical asset structure
 
 ```text
 /ingesta/
@@ -121,30 +121,30 @@ sequenceDiagram
                  └── {external_id}_ep_{n}.jpg
 ```
 
-### 2.2 Convenciones de naming
+### 2.2 Naming conventions
 
-- Sin espacios
-- Sin caracteres especiales
-- UTF-8 estricto
-- Identificador externo consistente entre video, metadata e imágenes
+- No spaces
+- No special characters
+- Strict UTF-8
+- Consistent external identifier across video, metadata, and images
 
 ---
 
 ## 3. Metadata
 
-### 3.1 Campos obligatorios
+### 3.1 Required fields
 
-| Campo        | Tipo   | Descripción                   |
-|--------------|--------|--------------------------------|
-| title        | string | Título del contenido           |
-| external_id  | string | ID único del contenido         |
-| id_cliente   | string | Identificador Claro Brasil     |
-| duration     | number | Duración en segundos           |
-| language     | string | Idioma principal               |
-| tms_id       | string | ID Gracenote / TMS             |
-| acronym      | string | Acrónimo operativo             |
+| Field       | Type   | Description             |
+| ----------- | ------ | ----------------------- |
+| title       | string | Content title           |
+| external_id | string | Unique content ID       |
+| id_cliente  | string | Claro Brazil identifier |
+| duration    | number | Duration in seconds     |
+| language    | string | Main language           |
+| tms_id      | string | Gracenote / TMS ID      |
+| acronym     | string | Operational acronym     |
 
-### 3.2 Ejemplo de JSON
+### 3.2 JSON example
 
 ```json
 {
@@ -158,104 +158,119 @@ sequenceDiagram
   "content_type": "episode"
 }
 ```
+
 ---
 
-## 4. Imágenes
+## 4. Images
 
-### 4.1 Tipos requeridos
+### 4.1 Required types
 
-| Tipo           | Uso     |
-|----------------|---------|
-| Poster         | Serie    |
+| Type | Use |
+| Tipo | Uso |
+| Poster | Series |
+| Episodic still | Episode |
 | Episodic still | Episodio |
 
-### 4.2 Especificaciones
+### 4.2 Specifications
 
-| Tipo    | Resolución    | Ratio | Watermark |
+| Type | Resolution | Ratio | Watermark |
+| Tipo | Resolución | Ratio | Watermark |
 |---------|---------------|-------|-----------|
-| Poster  | >= 2000x3000  | 2:3   | No        |
-| Episodio| >= 1920x1080  | 16:9  | No        |
+| Poster | >= 2000x3000 | 2:3 | No |
+| Episodio| >= 1920x1080 | 16:9 | No |
 
 ---
 
-## 5. Reglas de Validación
+## 5. Validation Rules
 
 ### 5.1 Video
 
-- Contenedor: MP4
+- Container: MP4
 - Codec: H.264
-- Resolución mínima: 1280x720
-- Duración máxima: 2 horas
+- Minimum resolution: 1280x720
+- Maximum duration: 2 hours
+- AAC audio
 - Audio AAC
 
 ### 5.2 Metadata
 
-- JSON válido
-- Campos obligatorios presentes
-- Sin caracteres especiales invisibles
+- Valid JSON
+- Required fields present
+- No invisible special characters
+- Strict UTF-8
 - UTF-8 estricto
 
 ### 5.3 Imágenes
 
-- Cumplimiento de ratio
-- Resolución mínima válida
+- Ratio compliance
+- Valid minimum resolution
+- Correct naming
 - Naming correcto
 
 ---
 
-## 6. Criterios de Aceptación (Operaciones)
+## 6. Acceptance Criteria (Operations)
 
+Operations validate that:
 Operaciones valida que:
 
-- Video, metadata e imágenes correspondan al mismo external_id
-- El estado final del proceso sea completed
-- No existan errores de validación
-- El tracking ID tenga cierre exitoso
+- Video, metadata, and images correspond to the same external_id
+- The final process state is completed
+- No validation errors exist
+- The tracking ID closes successfully
+- Automatic QC without critical errors
 - QC automático sin errores críticos
 
 ---
 
-## 7. Reintentos y Rollback
+## 7. Retries and Rollback
 
-### 7.1 Reintento parcial
+### 7.1 Partial retry
 
+Allowed when:
 Se permite cuando:
 
-- Error de metadata
-- Error de imagen
+- Metadata error
+- Image error
+- Non-structural validation failure
 - Fallo de validación no estructural
 
-### 7.2 Reenvío completo
+### 7.2 Full resend
 
+Mandatory when:
 Obligatorio cuando:
 
-- Error de video
-- Cambio de archivo maestro
+- Video error
+- Master file change
+- ID inconsistency
 - Inconsistencia de IDs
 
 ---
 
-## 8. Estados del Proceso
+## 8. Process States
 
-| Estado     | Descripción            |
-|------------|------------------------|
-| received   | Archivo recibido       |
-| processing | En procesamiento       |
-| error      | Fallo en validación    |
-| completed  | Proceso exitoso        |
+| State | Description |
+| Estado | Descripción |
+| received | File received |
+| processing | In processing |
+| error | Validation failure |
+| completed | Successful process |
+| completed | Proceso exitoso |
 
 ---
 
-## 9. Soporte y Escalamiento
+## 9. Support and Escalation
 
-### 9.1 Operación EDYE
+### 9.1 EDYE Operations
 
-- Horario: L-V 9:00-18:00 (UTC-5)
-- Canal: Slack / Email operativo
+- Hours: Mon-Fri 9:00-18:00 (UTC-5)
+- Channel: Slack / Operational email
+- Escalation: DevOps EDYE
 - Escalamiento: DevOps EDYE
 
-### 9.2 Partner Claro Brasil
+### 9.2 Claro Brazil Partner
 
-- Equipo técnico Claro BR
-- Escalamiento vía ticket / contacto asignado
+- Claro BR technical team
+- Escalation via ticket / assigned contact
+- Support window per partner SLA
 - Ventana de soporte según SLA del partner

@@ -1,17 +1,17 @@
 ---
 id: int-ing-partner-roku-premium
-title: Ingesta de Contenidos –  ROKU Premium
+title: Content Ingestion –  ROKU Premium
 ---
 
-# Anexo por Partner — ROKU (Ingesta)
+# Partner Annex — ROKU (Ingestion)
 
-## Descripción general del flujo de integración
+## General description of the integration flow
 
-El siguiente diagrama describe el **flujo de integración por ingesta con el partner ROKU**, basado en el modelo estándar de Edye y adaptado a los requerimientos específicos del canal. El proceso cubre de extremo a extremo la preparación, validación y entrega de contenidos audiovisuales, desde la recepción del material por parte de Content Operations hasta la confirmación final de ingesta por ROKU.
+The following diagram describes the **ingestion integration flow with the ROKU partner**, based on the standard Edye model and adapted to the channel’s specific requirements. The process covers end-to-end preparation, validation, and delivery of audiovisual content, from receipt of the material by Content Operations to the final ingestion confirmation by ROKU.
 
-El flujo contempla como **canal principal la ingesta vía API de ROKU**, utilizando un esquema `multipart` que combina media y metadata en formato JSON, con mecanismos de **seguimiento por estado (polling)** hasta su finalización. De forma controlada, también se considera un **canal alternativo/legado vía FTP**, únicamente en escenarios excepcionales.
+The flow includes **ROKU API ingestion as the main channel**, using a `multipart` scheme that combines media and metadata in JSON format, with **state tracking (polling)** mechanisms until completion. In a controlled way, an **alternative/legacy channel via FTP** is also considered, only in exceptional scenarios.
 
-A lo largo del proceso se integran controles de calidad sobre **video, metadata e imágenes**, con ciclos claros de corrección y reintento en caso de errores, garantizando trazabilidad, consistencia operativa y alineación con las especificaciones técnicas del partner. Este diagrama sirve como referencia única y reutilizable para operaciones, diseño y DevOps durante la ejecución y soporte de la integración con ROKU.
+Throughout the process, quality controls are integrated on **video, metadata, and images**, with clear correction and retry cycles in case of errors, ensuring traceability, operational consistency, and alignment with the partner’s technical specifications. This diagram serves as a single, reusable reference for operations, design, and DevOps during the execution and support of the integration with ROKU.
 
 ```mermaid
 sequenceDiagram
@@ -51,11 +51,13 @@ sequenceDiagram
         end
     end
 ```
+
 > **Figura 1.** Diagrama del flujo operativo del partner
+> **Figure 1.** Partner operational flow diagram
 
-## 1. Canal de entrega
+## 1. Delivery channel
 
-**Método principal (recomendado / vigente):** API REST (Ingesta VOD)
+**Primary method (recommended / current):** REST API (VOD Ingestion)
 
 - Endpoint: `POST /api/ingesta/contenido`
 - Auth: Bearer Token
@@ -66,7 +68,7 @@ sequenceDiagram
 - Base URL (QA/Prod): TBD
 - Cliente/tenant: `id_cliente` (definido por operaciones/partner)
 
-**Método alterno (legado):** FTP con polling (en desuso, será descontinuado Q3 2025)
+**Alternate method (legacy):** FTP with polling (deprecated, will be discontinued Q3 2025)
 
 **Referencia oficial:**
 
@@ -74,11 +76,11 @@ sequenceDiagram
 
 ---
 
-## 2. Estructura y naming
+## 2. Structure and naming
 
-**Modelo API:** No requiere árbol de carpetas.
+**API model:** Does not require a folder tree.
 
-**Convención recomendada (interno Edye → entrega a Roku):**
+**Recommended convention (internal Edye → delivery to Roku):**
 
 - Archivo de video: `external_id` o `title_id` + variante idioma/temporada/episodio si aplica
 
@@ -87,26 +89,26 @@ sequenceDiagram
 - `EDYE_S01E03_ES.mp4`
 - `EDYE_MOV_000123_EN.mp4`
 
-**Idempotencia / reintentos:** Mantener mismo identificador lógico (`external_id`) para rastrear reenvíos.
+**Idempotency / retries:** Maintain the same logical identifier (`external_id`) to track resends.
 
-Si Roku exige estructura de archivos/paquetes, referenciar y alinear con su spec oficial.
+If Roku requires file/package structure, reference and align with its official spec.
 
 ---
 
 ## 3. Metadata
 
-**Campos obligatorios mínimos:**
+**Minimum mandatory fields:**
 
 - `titulo`
 - `id_cliente`
 - `archivo_media` (en el multipart/form-data)
 
-**Formato de envío:**
+**Submission format:**
 
 - `file=@video.mp4`
 - `metadata='{...json...}'`
 
-**Ejemplo de request:**
+**Request example:**
 
 ```http
 POST /api/ingesta/contenido
@@ -117,7 +119,7 @@ file: video.mp4
 metadata: JSON
 ```
 
-**Ejemplo JSON (mínimo + recomendado):**
+**JSON example (minimum + recommended):**
 
 ```json
 {
@@ -135,15 +137,15 @@ metadata: JSON
 }
 ```
 
-> Nota: el doc técnico solo fija mínimos (`titulo`, `id_cliente`). El resto es extensión operativa para trazabilidad/QA. Si Roku exige esquema exacto, se ajusta a su spec.
+> Note: the technical doc only sets minimums (`titulo`, `id_cliente`). The rest is an operational extension for traceability/QA. If Roku requires an exact schema, it is adjusted to its spec.
 
 ---
 
-## 4. Imágenes
+## 4. Images
 
-En el flujo documentado, el procesamiento posterior incluye creación de thumbnails (automatizado).
+In the documented flow, subsequent processing includes thumbnail creation (automated).
 
-**A completar por partner (ver guía oficial):**
+**To be completed by partner (see official guide):**
 
 - Tipos de imágenes requeridas: posters / cover / background / episodic stills / logo, etc.
 - Tamaños/ratios: TBD (según Roku)
@@ -153,7 +155,7 @@ Si el modelo final exige “package” con artwork + metadata, dejar explícito 
 
 ---
 
-## 5. Reglas de validación
+## 5. Validation rules
 
 **Video:**
 
@@ -162,20 +164,20 @@ Si el modelo final exige “package” con artwork + metadata, dejar explícito 
 - Codec: H.264
 - Formato: MP4 H.264 + JSON metadata
 
-**Proceso/negocio:**
+**Process/business:**
 
 - Estados: `received`, `processing`, `error`, `completed`
 - Errores comunes: formato no soportado, metadatos incompletos
 
-**Imágenes:**
+**Images:**
 
 - Si Roku recibe imágenes, validar contra tamaños/ratio/watermark exigidos en la spec oficial.
 
 ---
 
-## 6. Criterios de aceptación
+## 6. Acceptance criteria
 
-Operaciones/QA debe confirmar como **ACEPTADO** cuando:
+Operations/QA must confirm as **ACCEPTED** when:
 
 - Ingesta responde `200 OK` con `status=received` y Tracking ID
 - El status del Tracking ID llega a `completed` (sin error)
@@ -185,34 +187,34 @@ Operaciones/QA debe confirmar como **ACEPTADO** cuando:
 
 ---
 
-## 7. Reintentos / rollback
+## 7. Retries / rollback
 
-**Reintentar (sin regenerar master) cuando:**
+**Retry (without regenerating master) when:**
 
 - Error por metadatos incompletos → corregir JSON y reenviar
 - Error transitorio de red/timeouts → reenviar misma media + metadata (con mismo `external_id`)
 
-**Regenerar media (nuevo encode) cuando:**
+**Regenerate media (new encode) when:**
 
 - Error por formato/codificación no soportada o falla de validación (codec/resolución/duración)
 
-**Rollback (operativo):**
+**Rollback (operational):**
 
-- Suele ser despublicación o corrección con reingesta del asset (si Roku lo permite por spec/operación)
+- It is usually unpublishing or correction with reingestion of the asset (if Roku allows it by spec/operation)
 
 ---
 
-## 8. Soporte
+## 8. Support
 
-**Contactos a completar:**
+**Contacts to be completed:**
 
 - Roku Partner / Ops: Nombre + email + canal (Slack/Teams) — TBD
 - Edye Content Operations: responsable de carga y validación
 - Edye DevOps / Integraciones: monitoreo, troubleshooting, reintentos
 
-**Monitoreo / logs:**
+**Monitoring / logs:**
 
 - Logs: Elastic/Kibana → IngestaLogs
 - Alertas críticas: más de 10 errores consecutivos por cliente
 
-**Horario y SLA:** TBD (definir por acuerdo operativo con Roku)
+**Schedule and SLA:** TBD (define by operational agreement with Roku)

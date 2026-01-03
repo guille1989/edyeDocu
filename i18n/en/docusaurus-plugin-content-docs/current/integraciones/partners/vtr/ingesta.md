@@ -1,20 +1,20 @@
 ---
 id: int-ing-partner-vtr
-title: Ingesta de Contenidos – VTR
+title: Content Ingestion – VTR
 ---
 
-# Anexo por Partner — VTR (Integración por Ingesta)
+# Partner Annex — VTR (Ingestion Integration)
 
-## 1. Flujo de Ingesta – VTR
+## 1. Ingestion Flow – VTR
 
-Este flujo describe el proceso de integración por ingesta con el partner VTR, siguiendo el modelo estándar de EDYE. El objetivo es asegurar que los contenidos audiovisuales (video, metadata e imágenes) cumplan con los requisitos técnicos y operativos definidos por VTR antes de ser ingeridos, procesados y marcados como `completed` en su plataforma.
+This flow describes the ingestion-based integration process with the VTR partner, following EDYE’s standard model. The goal is to ensure audiovisual content (video, metadata, and images) meets VTR’s technical and operational requirements before it is ingested, processed, and marked as `completed` on their platform.
 
-El flujo está diseñado para ser reutilizable y controlado, incorporando validaciones tempranas, manejo de errores y reintentos, y soportando dos canales de entrada:
+The flow is designed to be reusable and controlled, incorporating early validations, error handling and retries, and supporting two input channels:
 
 - **API REST (principal)**
 - **FTP con polling (legado / transitorio)**
 
-De esta manera, Operaciones, Diseño y DevOps trabajan de forma coordinada para garantizar una ingesta estable, trazable y con visibilidad de estado en cada etapa.
+This way, Operations, Design, and DevOps work in coordination to ensure stable ingestion, traceability, and status visibility at every stage.
 
 <div class="mermaid-zoom">
 
@@ -58,42 +58,42 @@ sequenceDiagram
 ```
 
 </div>
-> **Figura 1.** Diagrama del flujo operativo del partner
+> **Figure 1.** Partner operational flow diagram
 
-## Descripción paso a paso del flujo de ingesta VTR
+## Step-by-step description of the VTR ingestion flow
 
-1) **Recepción del contenido**  
-El equipo de Content Operations recibe el contenido audiovisual desde Programación o Contenidos (series, temporadas, episodios).
+1. **Content reception**  
+   The Content Operations team receives audiovisual content from Programming or Content (series, seasons, episodes).
 
-2) **Preparación de video y metadata mínima**  
-Content Operations prepara el archivo de video y completa la metadata obligatoria requerida por VTR (por ejemplo: título, identificador de cliente y referencia al archivo de media).
+2. **Preparation of video and minimum metadata**  
+   Content Operations prepares the video file and completes the mandatory metadata required by VTR (for example: title, client identifier, and reference to the media file).
 
-3) **Validación previa de requisitos técnicos**  
-Antes de iniciar la ingesta, se verifica que el contenido cumpla con las especificaciones técnicas de VTR, como formato MP4/H.264, resolución mínima de 720p y duración máxima permitida.
+3. **Pre-validation of technical requirements**  
+   Before starting ingestion, the team verifies that the content meets VTR’s technical specifications, such as MP4/H.264 format, minimum resolution of 720p, and maximum allowed duration.
 
-4) **Gestión de imágenes y artes (si aplica)**  
-En caso de requerirse artes editoriales, Content Operations solicita al Design Team la creación o actualización de posters, stills u otros assets gráficos. El equipo de diseño genera las imágenes según los tamaños y ratios definidos por VTR y las carga en EDYE.
+4. **Image and artwork management (if applicable)**  
+   If editorial artwork is required, Content Operations requests the Design Team to create or update posters, stills, or other graphic assets. The design team generates the images according to the sizes and ratios defined by VTR and uploads them to EDYE.
 
-5) **Solicitud de ejecución de ingesta**  
-Una vez validados video, metadata e imágenes, Content Operations solicita a Edye DevOps la ejecución del proceso de ingesta hacia VTR, utilizando el canal acordado.
+5. **Ingestion execution request**  
+   Once video, metadata, and images are validated, Content Operations asks Edye DevOps to execute the ingestion process toward VTR using the agreed channel.
 
-6) **Ejecución de la ingesta y procesamiento**  
-Edye DevOps ejecuta la ingesta, enviando el contenido mediante la API de VTR (canal principal) o a través de FTP con polling (canal alternativo). Durante esta etapa se procesan el video, la metadata y el post-proceso automático (QC y generación de thumbnails).
+6. **Ingestion execution and processing**  
+   Edye DevOps executes ingestion, sending content through VTR’s API (main channel) or via FTP with polling (alternative channel). During this stage, the video, metadata, and automatic post-processing (QC and thumbnail generation) are processed.
 
-7) **Validación del resultado**  
-DevOps valida que la ingesta se haya completado correctamente, revisando el estado del proceso (`received`, `processing`, `error` o `completed`) y confirmando que no existan fallas en video, metadata o procesamiento.
+7. **Result validation**  
+   DevOps validates that ingestion completed successfully, reviewing the process status (`received`, `processing`, `error`, or `completed`) and confirming there are no issues in video, metadata, or processing.
 
-8) **Manejo de errores y reintentos**  
-Si se detectan errores (por ejemplo, metadata incompleta o formato de video no soportado), DevOps reporta la causa a Content Operations. El equipo corrige los insumos necesarios y solicita un reintento de la ingesta.
+8. **Error handling and retries**  
+   If errors are detected (for example, incomplete metadata or unsupported video format), DevOps reports the cause to Content Operations. The team corrects the required inputs and requests an ingestion retry.
 
-9) **Cierre exitoso de la ingesta**  
-Cuando el estado final es `completed`, se confirma el cierre operativo del flujo. El contenido queda correctamente ingerido en VTR y el proceso se registra para monitoreo, reporting y auditoría.
+9. **Successful ingestion closure**  
+   When the final status is `completed`, the operational closure of the flow is confirmed. The content is correctly ingested in VTR and the process is recorded for monitoring, reporting, and auditing.
 
 ---
 
-## 1. Canal de entrega
+## 1. Delivery channel
 
-### Modelo de entrada (ingesta)
+### Input model (ingestion)
 
 - **API REST (principal):** `POST /api/ingesta/contenido`
 - **Autenticación:** Bearer Token
@@ -102,29 +102,29 @@ Cuando el estado final es `completed`, se confirma el cierre operativo del flujo
   - `metadata` (JSON)
 - **Tracking:** respuesta inicial entrega un id (tracking ID), luego consulta por `GET /api/ingesta/status?id=xxx`
 
-> **⚠️ FTP con polling (legado / en transición):**
+> **⚠️ FTP with polling (legacy / in transition):**
 >
-> Punto de entrada histórico, en proceso de descontinuación Q3 2025 (confirmar si aplica aún en PROD).
+> Historical entry point, in the process of being decommissioned in Q3 2025 (confirm whether it still applies in PROD).
 
-### Flujo híbrido (operación histórica)
+### Hybrid flow (historical operation)
 
-- VTR como Hybrid Delivery (Manual + API): videos en folders en Aspera; la API toma los videos, genera metadata y sube con imágenes a HITN Aspera; el delivery final para VTR incluye imágenes + metadata.
-- Nota: mantener ambos flujos en el anexo para evitar confusión de equipos.
+- VTR as Hybrid Delivery (Manual + API): videos in folders in Aspera; the API takes the videos, generates metadata, and uploads with images to HITN Aspera; the final delivery for VTR includes images + metadata.
+- Note: keep both flows in the annex to avoid team confusion.
 
-### Ambientes
+### Environments
 
-- Desarrollo, QA, Producción.
-- Token de prueba para sandbox: `abc123` (no exponer secretos reales).
+- Development, QA, Production.
+- Test token for sandbox: `abc123` (do not expose real secrets).
 
-### Endpoints de OAuth/entitlement (no ingesta, pero útil para soporte):
+### OAuth/entitlement endpoints (not ingestion, but useful for support):
 
-- Endpoints de OAuth/token/logout y autorización para validación integral del partner.
+- OAuth/token/logout and authorization endpoints for comprehensive partner validation.
 
 ---
 
-## 2. Estructura y naming
+## 2. Structure and naming
 
-La ingesta por API no define árbol de carpetas ni naming de archivos. Se propone base para estandarizar (TBD validar con VTR):
+Ingestion via API does not define a folder tree or file naming. A baseline is proposed for standardization (TBD validate with VTR):
 
 ```text
 /VTR/INBOUND/VIDEOS/YYYY/MM/DD/
@@ -136,23 +136,23 @@ La ingesta por API no define árbol de carpetas ni naming de archivos. Se propon
 	SERIES_<externalId>_S<season>_E<episode>_still_<WxH>.jpg
 ```
 
-**Reglas mínimas recomendadas de naming:**
+**Minimum recommended naming rules:**
 
-- Sin tildes / caracteres invisibles; UTF-8 consistente.
-- Sin espacios; usar `_` o `-`.
-- IDs estables (ideal: `externalId` o `id_cliente` + un `contentId` propio del catálogo).
+- No accents / invisible characters; consistent UTF-8.
+- No spaces; use `_` or `-`.
+- Stable IDs (ideally `externalId` or `id_cliente` + a `contentId` from the catalog).
 
 ---
 
 ## 3. Metadata
 
-### Campos obligatorios
+### Mandatory fields
 
 - `titulo`
 - `id_cliente`
 - `archivo_media`
 
-### Ejemplo JSON mínimo
+### Minimum JSON example
 
 ```json
 {
@@ -174,44 +174,44 @@ La ingesta por API no define árbol de carpetas ni naming de archivos. Se propon
 
 ---
 
-## 4. Imágenes
+## 4. Images
 
-### Especificación técnica
+### Technical specification
 
-- En procesamiento posterior: creación de thumbnails y QC automatizado. No define tamaños/ratios específicos.
+- During post-processing: thumbnail creation and automated QC. No specific sizes/ratios are defined.
 
-### Flujo operativo (híbrido)
+### Operational flow (hybrid)
 
-- Delivery histórico: imágenes + metadata como entregables.
+- Historical delivery: images + metadata as deliverables.
 
-### Plantilla de imágenes (TBD por VTR)
+### Image template (TBD by VTR)
 
-- Posters (serie)
-- Stills (episodio)
-- Thumbnails derivados (si VTR consume thumbs específicos)
+- Posters (series)
+- Stills (episode)
+- Derived thumbnails (if VTR consumes specific thumbs)
 
 ### Watermark
 
-- No especificado (TBD)
+- Not specified (TBD)
 
 ---
 
-## 5. Reglas de validación
+## 5. Validation rules
 
 ### Video
 
-- Resolución mínima: 720p
-- Duración máxima: 2h
-- Codificación: H.264
-- Contenedor/Tipo: MP4 H.264
+- Minimum resolution: 720p
+- Maximum duration: 2h
+- Encoding: H.264
+- Container/Type: MP4 H.264
 
 ### Metadata
 
-- “Metadatos incompletos” figura como error común.
+- “Metadatos incompletos” appears as a common error.
 
 ### Imágenes
 
-- No hay reglas explícitas (TBD), aunque se generan thumbnails en el post-proceso.
+- No explicit rules (TBD), although thumbnails are generated in post-processing.
 
 ### Estados del proceso (API)
 
@@ -219,73 +219,73 @@ La ingesta por API no define árbol de carpetas ni naming de archivos. Se propon
 
 ### Errores comunes (API)
 
-- Formato no soportado
-- Metadatos incompletos
+- Unsupported format
+- Incomplete metadata
 
 ---
 
-## 6. Criterios de aceptación
+## 6. Acceptance criteria
 
-### Operaciones EDYE valida:
+### EDYE Operations validates:
 
-- El `POST /api/ingesta/contenido` responde `200 OK` con `status: received` e id válido.
-- El `GET /api/ingesta/status?id=xxx` llega a `completed`.
-- Validación técnica de media: `MP4/H.264, >=720p`, duración `<=2h`.
-- Validación de metadata: `titulo`, `id_cliente`, `archivo_media` presentes y coherentes.
-- Evidencia de post-proceso: thumbnails generados / QC automático sin fallas (según logs/monitoreo).
-- Si aplica flujo híbrido de delivery (imágenes+metadata): confirmación de disponibilidad del paquete final según canal definido (Aspera).
+- `POST /api/ingesta/contenido` responds `200 OK` with `status: received` and a valid id.
+- `GET /api/ingesta/status?id=xxx` reaches `completed`.
+- Technical media validation: `MP4/H.264, >=720p`, duration `<=2h`.
+- Metadata validation: `titulo`, `id_cliente`, `archivo_media` present and consistent.
+- Post-processing evidence: thumbnails generated / automatic QC without failures (per logs/monitoring).
+- If the hybrid delivery flow applies (images+metadata): confirmation of availability of the final package according to the defined channel (Aspera).
 
 ---
 
-## 7. Reintentos / rollback
+## 7. Retries / rollback
 
-### Reintentos recomendados (ingesta API)
+### Recommended retries (ingestion API)
 
-- Si el estado queda en error por:
-  - “Formato no soportado” → re-encode / reemplazar archivo y reingestar.
-  - “Metadatos incompletos” → corregir JSON y reingestar.
+- If the status remains in error due to:
+  - “Unsupported format” → re-encode / replace the file and re-ingest.
+  - “Metadatos incompletos” → correct the JSON and re-ingest.
 
-### Regenerar vs reenviar completo (criterio práctico)
+### Regenerate vs resend complete (practical criterion)
 
-- Regenerar (parcial) cuando el media es válido y el problema fue metadata (cambio en JSON) o un campo faltante.
-- Reenviar completo cuando cambia el archivo de video (nuevo encode) o cambian insumos que afectan thumbnails/QC.
+- Regenerate (partial) when the media is valid and the issue was metadata (JSON change) or a missing field.
+- Resend the full package when the video file changes (new encode) or inputs that affect thumbnails/QC change.
 
 ### Rollback
 
-- En ingesta, el “rollback” típico es: invalidar/retirar el asset en el catálogo (si ya propagó), y reingestar versión corregida con nuevo tracking.
-- No se define endpoint de “delete/rollback” para ingesta (TBD).
+- In ingestion, the typical “rollback” is to invalidate/remove the asset in the catalog (if it already propagated) and re-ingest the corrected version with new tracking.
+- No “delete/rollback” endpoint is defined for ingestion (TBD).
 
 ---
 
-## 8. Soporte
+## 8. Support
 
-### Monitoreo / logs
+### Monitoring / logs
 
 - Logs: Elastic/Kibana > IngestaLogs
-- Indicadores: tiempo de procesamiento, % fallos por cliente.
-- Alertas críticas: >10 errores consecutivos por cliente.
+- Indicators: processing time, % failures per client.
+- Critical alerts: >10 consecutive errors per client.
 
-### Sistemas involucrados (para triage)
+### Systems involved (for triage)
 
 - Ingest Processor
 - Metadata Parser
 - Media Transcoder
-- Dependencias: S3 bucket, AWS Lambda, Kafka
+- Dependencies: S3 bucket, AWS Lambda, Kafka
 
-### Escalamiento sugerido (EDYE)
+### Suggested escalation (EDYE)
 
-- Operaciones de Contenido: valida inputs (metadata mínima + archivo).
-- Equipo técnico de Integraciones/Backend: revisa logs + estado por tracking ID.
-- DevOps: incidentes de infraestructura (S3/Lambda/Kafka), degradación o colas.
+- Content Operations: validates inputs (minimum metadata + file).
+- Technical Integrations/Backend team: reviews logs + status by tracking ID.
+- DevOps: infrastructure incidents (S3/Lambda/Kafka), degradation or queues.
 
-### Contactos / horario
+### Contacts / schedule
 
-- No vienen en los documentos adjuntos → TBD (añadir: nombre, email, Slack/Teams, horario, y “on-call” si aplica).
+- Not provided in attached documents → TBD (add: name, email, Slack/Teams, schedule, and “on-call” if applicable).
 
 ---
 
-## 9. Notas finales específicas de VTR
+## 9. Final notes specific to VTR
 
-- Mantener visible la dualidad:
-  - Ingesta (entrada a EDYE vía API/FTP)
-  - Delivery operativo/histórico (videos en Aspera + entrega de imágenes/metadata)
+- Keep the duality visible:
+- Ingestion (entry to EDYE via API/FTP)
+- Operational/historical delivery (videos in Aspera + delivery of images/metadata)

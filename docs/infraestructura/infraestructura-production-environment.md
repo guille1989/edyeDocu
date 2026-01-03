@@ -121,7 +121,7 @@ sequenceDiagram
   CI->>Prod: Despliegue controlado a producción (aprobación manual)
   Prod->>Monitoreo: Inicio de observabilidad y alertas
 ```
-
+> **Figura 3.** Diagrama de Arquitectura de despliegue (CI/CD)
 
 Commit y control de versiones: Los desarrolladores actualizan el código en el repositorio. Se utilizan ramas feature y merge requests para revisión de pares.
 

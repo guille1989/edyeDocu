@@ -1,16 +1,16 @@
 ---
 id: int-ing-partner-directv
-title: Ingesta de Contenidos – Directv
+title: Content Ingestion - Directv
 ---
 
-# Anexo por Partner (reutilizable) — DIRECTV (Integración tipo Ingesta)
+# Partner Annex (reusable) - DIRECTV (Ingestion-type Integration)
 
-## Descripción general del flujo de ingesta
+## General description of the ingestion flow
 
-El siguiente diagrama de secuencia de ingesta para DIRECTV describe el proceso completo de entrega de contenidos desde Edye hacia el partner, utilizando un modelo API-driven y altamente automatizado.
-El objetivo del flujo es asegurar que cada asset audiovisual cumpla con los requisitos técnicos, de metadata y de procesamiento antes de ser aceptado por DIRECTV, manteniendo trazabilidad, control de errores y criterios claros de reintento.
+The following ingestion sequence diagram for DIRECTV describes the complete process of delivering content from Edye to the partner, using an API-driven and highly automated model.
+The goal of the flow is to ensure that each audiovisual asset meets the technical, metadata, and processing requirements before being accepted by DIRECTV, maintaining traceability, error control, and clear retry criteria.
 
-Este flujo se apoya en un pipeline asíncrono, donde la ingesta inicial, el procesamiento y la validación final están desacoplados, permitiendo escalar volumen y reducir intervención manual.
+This flow relies on an asynchronous pipeline, where the initial ingestion, processing, and final validation are decoupled, allowing volume scaling and reduced manual intervention.
 
 <div class="mermaid-zoom">
 
@@ -53,80 +53,81 @@ sequenceDiagram
     OPS->>OPS: Verificación final (estado, logs, SLA)
     OPS-->>CO: Confirmación de entrega DIRECTV
 ```
+
 </div>
-> **Figura 1.** Diagrama del flujo operativo del partner
+> **Figure 1.** Partner operational flow diagram
 
-## Explicación de la secuencia paso a paso
+## Step-by-step sequence explanation
 
-1) **Recepción y pre-validación del contenido**  
-Content Operations recibe el contenido y realiza una verificación básica previa (formato, duración, resolución), asegurando que el material esté listo para ser ingestado.
+1. **Content reception and pre-validation**  
+   Content Operations receives the content and performs a basic pre-check (format, duration, resolution), ensuring the material is ready to be ingested.
 
-2) **Carga y preparación del asset**  
-El video master y la metadata base son preparados (y, si aplica, gestionados desde JW Player como fuente de verdad), antes de iniciar la entrega al partner.
+2. **Asset upload and preparation**  
+   The master video and base metadata are prepared (and, if applicable, managed from JW Player as the source of truth) before starting delivery to the partner.
 
-3) **Ingesta vía API DIRECTV**  
-El contenido se envía mediante un request POST a la API de ingesta de DIRECTV, incluyendo el archivo de video y la metadata en formato JSON.  
-La API responde con un asset_id que permite el tracking del proceso.
+3. **Ingestion via DIRECTV API**  
+   The content is sent through a POST request to the DIRECTV ingestion API, including the video file and metadata in JSON format.  
+   The API responds with an asset_id that enables process tracking.
 
-4) **Procesamiento asíncrono**  
-El asset es encolado en el pipeline de DIRECTV, donde se ejecutan validaciones técnicas, procesamiento de video (transcoding), generación de thumbnails y controles de calidad automáticos.
+4. **Asynchronous processing**  
+   The asset is queued in the DIRECTV pipeline, where technical validations, video processing (transcoding), thumbnail generation, and automatic quality controls are executed.
 
-5) **Validación y control de errores**  
-Si ocurre un error (video inválido, metadata incompleta, fallo de procesamiento), el estado se marca como error y se notifican logs y alertas a Operaciones.  
-Operaciones coordina con Content Operations la corrección correspondiente.
+5. **Validation and error control**  
+   If an error occurs (invalid video, incomplete metadata, processing failure), the status is marked as error and logs and alerts are notified to Operations.  
+   Operations coordinates the corresponding correction with Content Operations.
 
-6) **Reintentos controlados**  
-Dependiendo del tipo de error, el flujo permite:
+6. **Controlled retries**  
+   Depending on the type of error, the flow allows:
 
-- Reintentar solo la metadata corregida, o
-- Regenerar el media y reenviar la ingesta completa.
+- Retry only the corrected metadata, or
+- Regenerate the media and resend the full ingestion.
 
-7) **Finalización exitosa**  
-Si todas las validaciones son correctas, el asset cambia a estado `completed` y queda disponible en el ecosistema de DIRECTV.
+7. **Successful completion**  
+   If all validations are correct, the asset changes to `completed` status and becomes available in the DIRECTV ecosystem.
 
-8) **Cierre operativo**  
-Operaciones realiza la verificación final (estado, logs y SLA) y confirma la entrega como cerrada.
+8. **Operational close**  
+   Operations performs the final verification (status, logs, and SLA) and confirms the delivery as closed.
 
 ---
 
-## 1. Canal de entrega
+## 1. Delivery channel
 
-**Método principal (activo):** API REST (inserción de contenido vía endpoint de ingesta)
+**Primary method (active):** REST API (content insertion via ingestion endpoint)
 
 - Endpoint: `POST /api/ingesta/contenido`
-- Autenticación: Bearer Token
+- Authentication: Bearer Token
 - Content-Type: `multipart/form-data` (media) + JSON (metadata)
-- Token (QA / Sandbox): `abc123` (token de prueba)
-- Token (Producción): [COMPLETAR]
-- Base URL (Dev/QA/Prod): [COMPLETAR]
+- Token (QA / Sandbox): `abc123` (test token)
+- Token (Production): [TO BE COMPLETED]
+- Base URL (Dev/QA/Prod): [TO BE COMPLETED]
 
-**Método alterno (legado):** FTP con polling (nota: “FTP será descontinuado Q3 2025”)
+**Alternate method (legacy):** FTP with polling (note: "FTP will be discontinued Q3 2025")
 
-- FTP host/ruta: [COMPLETAR]
+- FTP host/path: [TO BE COMPLETED]
 
 ---
 
-## 2. Estructura y naming
+## 2. Structure and naming
 
-**Convención recomendada (archivo media):**
+**Recommended convention (media file):**
 `directv_<id_cliente>_<titulo_sanitizado>_<yyyyMMdd>.<ext>`
-Ejemplo: `directv_7890_el-bosque-magico_20251222.mp4`
+Example: `directv_7890_el-bosque-magico_20251222.mp4`
 
-**Convención recomendada (metadata):**
+**Recommended convention (metadata):**
 `directv_<id_cliente>_<asset_id>.json`
-Ejemplo: `directv_7890_1234-5678.json`
+Example: `directv_7890_1234-5678.json`
 
 ---
 
 ## 3. Metadata
 
-**Campos obligatorios (mínimos):**
+**Mandatory fields (minimum):**
 
 - `titulo`
 - `id_cliente`
 - `archivo_media` (en el multipart como “file”)
 
-**Ejemplo JSON mínimo:**
+**Minimum JSON example:**
 
 ```json
 {
@@ -139,41 +140,41 @@ Ejemplo: `directv_7890_1234-5678.json`
 }
 ```
 
-**Ejemplo de request (curl):**
+**Request example (curl):**
 `curl -X POST -F file=@video.mp4 -F metadata='{...}' <endpoint>`
 
-**Respuesta esperada (tracking):**
-`200 OK` con payload: `{ "status": "received", "id": "1234-5678" }`
+**Expected response (tracking):**
+`200 OK` with payload: `{ "status": "received", "id": "1234-5678" }`
 
 ---
 
-## 4. Imágenes
+## 4. Images
 
-En DIRECTV, el pipeline incluye “creación de thumbnails” como parte del procesamiento automático.
+In DIRECTV, the pipeline includes "thumbnail creation" as part of the automatic processing.
 
-**Lista mínima recomendada:**
+**Minimum recommended list:**
 
 - Poster / Key Art (vertical)
 - Thumbnail (horizontal)
-- Still (episódico, si aplica)
+- Still (episodic, if applicable)
 
-**Tamaños / ratios:** [COMPLETAR]
+**Sizes / ratios:** [TO BE COMPLETED]
 
-**Watermark:** [Sí/No] [COMPLETAR]
+**Watermark:** [Yes/No] [TO BE COMPLETED]
 
 ---
 
-## 5. Reglas de validación
+## 5. Validation rules
 
 **Video:**
 
 - Codec: H.264
-- Resolución mínima: 720p
-- Duración máxima: 2 horas
+- Minimum resolution: 720p
+- Maximum duration: 2 hours
 
 **Metadata:**
 
-- Rechazo si hay metadatos incompletos
+- Rejected if metadata is incomplete
 
 **Estados de proceso:**
 
@@ -181,62 +182,62 @@ En DIRECTV, el pipeline incluye “creación de thumbnails” como parte del pro
 
 ---
 
-## 6. Criterios de aceptación
+## 6. Acceptance criteria
 
-**Checklist de aceptación (Operaciones):**
+**Acceptance checklist (Operations):**
 
-- Ingesta exitosa: API responde 200 y entrega id de tracking
-- Seguimiento: el id consulta estado en `GET /api/ingesta/status?id=xxx`
-- Estado final: `completed` (sin quedarse en `processing` más allá del umbral operativo)
-- Validación técnica de media: cumple `720p+, H.264 y <=2h`
-- Verificación de pipeline posterior: transcode ABR + thumbnails + QC automatizado completados
-- Monitoreo/logs: evidencias en Elastic/Kibana (IngestaLogs)
+- Successful ingestion: API responds 200 and provides tracking id
+- Tracking: the id checks status in `GET /api/ingesta/status?id=xxx`
+- Final state: `completed` (without remaining in `processing` beyond the operational threshold)
+- Technical validation of media: meets `720p+, H.264 and <=2h`
+- Subsequent pipeline verification: transcode ABR + thumbnails + automated QC completed
+- Monitoring/logs: evidence in Elastic/Kibana (IngestaLogs)
 
 ---
 
-## 7. Reintentos / rollback
+## 7. Retries / rollback
 
-**Reintentar (sin reenviar todo) cuando:**
+**Retry (without resending everything) when:**
 
-- Falla por “metadatos incompletos” y el media no requiere cambios → reenviar request con metadata corregida + mismo archivo
+- Failure due to "incomplete metadata" and the media does not require changes → resend request with corrected metadata + same file
 
-**Regenerar y reenviar completo cuando:**
+**Regenerate and resend completely when:**
 
-- El error es “formato no soportado” o falla de validación de video → requiere nuevo encode/export y nueva ingesta
+- The error is "unsupported format" or video validation failure → requires new encode/export and new ingestion
 
 **Rollback:**
 
-- Detener publicación/entitlement del asset en el destino
-- Reingestar versión corregida
-- Auditar logs del intento fallido
-- [COMPLETAR: existe endpoint de delete/cancel del asset o es solo reemplazo por reingesta]
+- Stop publication/entitlement of the asset at the destination
+- Reingest corrected version
+- Audit logs of the failed attempt
+- [TO BE COMPLETED: there is an endpoint to delete/cancel the asset or it is only replacement by reingestion]
 
 ---
 
-## 8. Soporte
+## 8. Support
 
-**Monitoreo / alertas:**
+**Monitoring / alerts:**
 
-- Logs: Elastic/Kibana → “IngestaLogs”
-- Alerta crítica: más de 10 errores consecutivos por cliente
+- Logs: Elastic/Kibana → "IngestaLogs"
+- Critical alert: more than 10 consecutive errors per client
 
-**Contactos:**
+**Contacts:**
 
-- Partner DIRECTV (NOC/Soporte): [Nombre, email, canal]
-- Edye Operations (L1): [Nombre, email, Slack/Teams]
-- Edye DevOps (L2): [Nombre, on-call]
-- Escalamiento (L3): [Tech Lead / Arquitectura]
+- Partner DIRECTV (NOC/Support): [Name, email, channel]
+- Edye Operations (L1): [Name, email, Slack/Teams]
+- Edye DevOps (L2): [Name, on-call]
+- Escalation (L3): [Tech Lead / Architecture]
 
-**Horario:**
+**Schedule:**
 
-- Ventana operativa: [COMPLETAR]
-- Ventana de mantenimiento: [COMPLETAR]
+- Operating window: [TO BE COMPLETED]
+- Maintenance window: [TO BE COMPLETED]
 
 ---
 
-## 9. Notas específicas DIRECTV
+## 9. DIRECTV-specific notes
 
-- Tipo de contenido documentado: Video MP4 (H.264) + JSON de metadatos
-- Volumen estimado: 1500 archivos/día
-- Componentes involucrados: Ingest Processor, Metadata Parser, Media Transcoder; dependencias: S3 Bucket, AWS Lambda, Kafka
-- Almacenamiento: AWS S3 (bucket: vod-ingest-prod)
+- Documented content type: MP4 video (H.264) + metadata JSON
+- Estimated volume: 1500 files/day
+- Components involved: Ingest Processor, Metadata Parser, Media Transcoder; dependencies: S3 Bucket, AWS Lambda, Kafka
+- Storage: AWS S3 (bucket: vod-ingest-prod)

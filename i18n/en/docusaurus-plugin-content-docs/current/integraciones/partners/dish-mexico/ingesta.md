@@ -1,24 +1,28 @@
 ---
 id: int-ing-partner-dish-mexico
-title: Ingesta de Contenidos – Dish Mexico
+title: Content Ingestion – Dish Mexico
 ---
 
-# Ingesta de Contenidos – Dish México
+# Content Ingestion – Dish México
 
-## 1. Descripción
-Integración de ingesta VOD para Dish México mediante entrega de media,
-metadata y artwork, operada principalmente vía Aspera.
+## 1. Description
 
-## 2. Tipo de Ingesta
-- Modalidad principal: Aspera
-- Modalidad secundaria: API (si aplica)
-- Frecuencia: diaria
-- Volumen estimado: ~1500 assets/día
+VOD ingestion integration for Dish México through delivery of media,
+metadata, and artwork, operated primarily via Aspera.
 
-## 3. Canales de Entrega
+## 2. Ingestion Type
+
+- Primary mode: Aspera
+- Secondary mode: API (if applicable)
+- Frequency: daily
+- Estimated volume: ~1500 assets/day
+
+## 3. Delivery Channels
+
 ### 3.1 Aspera
-- Cuenta provista por Dish
-- Directorios esperados:
+
+- Account provided by Dish
+- Expected directories:
   - /MEDIA
   - /METADATA
   - /ART
@@ -56,35 +60,41 @@ sequenceDiagram
     else Validación exitosa
         DD->>CV: Entrega assets vía SFTP / Aspera
     end
-``` 
-> **Figura 1.** Diagrama del flujo operativo del partner
+```
 
-Este flujo describe el proceso operativo completo desde la recepción del
-contenido por parte del equipo de Content Operations hasta la entrega
-final del contenido al cliente Dish México vía Aspera.
+> **Figura 1.** Diagrama del flujo operativo del partner
+> **Figure 1.** Partner operational flow diagram
+
+This flow describes the complete operational process from the receipt of
+content by the Content Operations team to the final delivery of the
+content to the Dish México customer via Aspera.
 
 ## 5. Metadata
-- Estándar: CableLabs XML
-- Versión: según especificación Dish
-- Validaciones obligatorias:
+
+- Standard: CableLabs XML
+- Version: according to Dish specification
+- Mandatory validations:
   - ProgramID
   - Title
   - Rating
   - Language
   - Duration
 
-> Ver Anexo: Metadata / XML CableLabs – Dish México
+> See Annex: Metadata / XML CableLabs – Dish México
 
-## 6. Reglas Específicas Dish
-- Naming estricto por ProgramID
-- Ingesta rechazada si falta artwork
-- Reprocesos requieren reenvío completo
+## 6. Dish-Specific Rules
 
-## 7. Dependencias
+- Strict naming by ProgramID
+- Ingestion rejected if artwork is missing
+- Reprocessing requires full resend
+
+## 7. Dependencies
+
 - Aspera
-- Validador XML
-- Pipeline estándar de Ingesta Edye
+- XML validator
+- Standard Edye Ingestion pipeline
 
-## 8. Referencias
-- Modelo general: Ingesta de Contenidos
-- Flujo general: Flujo de Ingesta de Contenidos
+## 8. References
+
+- General model: Ingesta de Contenidos
+- General flow: Flujo de Ingesta de Contenidos

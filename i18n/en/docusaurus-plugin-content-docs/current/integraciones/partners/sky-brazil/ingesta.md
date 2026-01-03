@@ -1,18 +1,18 @@
 ---
 id: int-ing-partner-sky-brazil
-title: Ingesta de Contenidos – Sky Brazil
+title: Content Ingestion – Sky Brazil
 ---
 
-# Anexo de Integración por Ingesta – Sky Brazil
+# Ingestion Integration Annex – Sky Brazil
 
-Este anexo resume los parámetros específicos para Sky Brazil. API es el canal preferido; Aspera se usa solo en flujos file-based cuando se acuerda.
+This annex summarizes the specific parameters for Sky Brazil. API is the preferred channel; Aspera is used only in file-based flows when agreed.
 
 ---
 
-## 1. Flujo de Ingesta – Sky Brazil
+## 1. Ingestion Flow – Sky Brazil
 
-El siguiente flujo describe el **proceso end-to-end de ingesta y entrega de contenidos hacia Sky Brazil**, partiendo desde la preparación editorial y técnica en EDYE hasta la validación final del partner.
-Este flujo es una **implementación específica del modelo genérico de ingesta**, adaptada a los requisitos técnicos y operativos de Sky.
+The following flow describes the **end-to-end ingestion and delivery process for content to Sky Brazil**, starting from editorial and technical preparation in EDYE to the partner’s final validation.
+This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
 <div class="mermaid-zoom">
 
@@ -54,71 +54,79 @@ sequenceDiagram
         end
     end
 ```
+
 </div>
 > **Figura 1.** Diagrama del flujo operativo del partner
+> **Figure 1.** Partner operational flow diagram
 
-### Descripción del flujo
+### 1.2. Flow description
 
-1) **Recepción y preparación del contenido**
-    - Content Operations recibe contenido aprobado (video + info editorial + disponibilidad).
-    - Carga los videos en JW Player con metadata mínima y valida requisitos técnicos Sky (codec, resolución, duración).
+1. **Content reception and preparation**
 
-2) **Sincronización con EDYE**
-    - Tras validar en JWP, se sincronizan los assets con la API de EDYE, dejando a EDYE como capa de orquestación hacia Sky.
+   - Content Operations receives approved content (video + editorial info + availability).
+   - Uploads the videos to JW Player with minimum metadata and validates Sky technical requirements (codec, resolution, duration).
 
-3) **Producción y carga de artes**
-    - Content Operations solicita a Design Team los artes (posters, key art, stills) con ratios/resoluciones definidas por Sky.
-    - Design Team carga las imágenes en EDYE y notifica a Operaciones al completar.
+2. **Synchronization with EDYE**
 
-4) **Generación del delivery**
-    - Con video, metadata e imágenes disponibles, Edye DevOps genera el delivery para Sky Brazil aplicando reglas del canal elegido (API o Aspera).
+   - After validating in JWP, assets are synchronized with the EDYE API, making EDYE the orchestration layer toward Sky.
 
-5) **Validación técnica**
-    - DevOps valida automáticamente: formato y características del video, completitud/consistencia de metadata, presencia y calidad de imágenes.
-    - Ante errores, se reporta a Content Operations para corrección y reintento.
+3. **Artwork production and upload**
 
-6) **Entrega a Sky Brazil**
-    - Canal API (principal): ingesta vía API Sky; se monitorea el estado hasta `completed`.
-    - Canal Aspera (alterno): se entrega paquete completo vía Aspera y se verifica transferencia/procesamiento.
+   - Content Operations requests the Design Team for the artwork (posters, key art, stills) with ratios/resolutions defined by Sky.
+   - Design Team uploads the images to EDYE and notifies Operations upon completion.
 
-7) **Cierre y monitoreo**
-    - El flujo cierra cuando Sky confirma recepción/procesamiento correcto.
-    - Logs y estados de ingesta quedan disponibles para monitoreo/reporting operativo.
+4. **Delivery generation**
+
+   - With video, metadata, and images available, Edye DevOps generates the delivery for Sky Brazil applying rules of the chosen channel (API or Aspera).
+
+5. **Technical validation**
+
+   - DevOps automatically validates: video format and characteristics, metadata completeness/consistency, presence and quality of images.
+   - In case of errors, it reports to Content Operations for correction and retry.
+
+6. **Delivery to Sky Brazil**
+
+   - API channel (main): ingestion via Sky API; status is monitored until `completed`.
+   - Aspera channel (alternate): a full package is delivered via Aspera and transfer/processing is verified.
+
+7. **Closure and monitoring**
+   - The flow closes when Sky confirms correct receipt/processing.
+   - Ingestion logs and statuses remain available for operational monitoring/reporting.
 
 ---
 
-## 2. Canal de entrega
+## 2. Delivery channel
 
-### Opción A — Ingesta vía API (preferida)
+### 2.1. Option A — Ingestion via API (preferred)
 
-- Tipo: API REST
+- Type: REST API
 - Endpoint: `POST /api/ingesta/contenido`
-- Autenticación: Bearer Token
-- Formato: `multipart/form-data` (media) + JSON (metadata)
-- Tracking: el API retorna `id` y se consulta estado por `GET /api/ingesta/status?id={id}`
-- Fallback / legado: FTP con polling (plan de deprecación Q3 2025)
+- Authentication: Bearer Token
+- Format: `multipart/form-data` (media) + JSON (metadata)
+- Tracking: the API returns `id` and status is queried via `GET /api/ingesta/status?id={id}`
+- Fallback / legacy: FTP with polling (deprecation planned Q3 2025)
 
-### Opción B — Entrega de paquetes vía Aspera (file-based)
+### 2.2. Option B — Package delivery via Aspera (file-based)
 
-- Tipo: Aspera Enterprise Server (push o pull)
+- Type: Aspera Enterprise Server (push or pull)
 - Host: `aspera.engsky.com.br`
-- Puertos: TCP 33001 / UDP 33001
-- Requisitos onboarding: IP(s) públicas fijas, modalidad push/pull, bandwidth, contactos técnicos/operativos, whitelist y credenciales.
-- Nota: mantener API como canal principal; Aspera solo para flujos específicos acordados con Sky/VRIO.
+- Ports: TCP 33001 / UDP 33001
+- Onboarding requirements: fixed public IP(s), push/pull mode, bandwidth, technical/operational contacts, whitelist, and credentials.
+- Note: keep API as main channel; Aspera only for specific flows agreed with Sky/VRIO.
 
 ---
 
-## 3. Estructura y naming
+## 3. Structure and naming
 
-### API (Opción A)
+### 3.1. API (Option A)
 
 - Media: `video.mp4` (H.264)
-- Metadata: JSON embebido en el form (`-F metadata='{...}'`)
-- Naming recomendado (EDYE):
+- Metadata: JSON embedded in the form (`-F metadata='{...}'`)
+- Recommended naming (EDYE):
   - `archivo_media`: `{partner}_{id_cliente}_{assetId}_{lang}_{version}.mp4`
-  - `assetId`: estable, sin espacios, sin caracteres especiales invisibles (UTF-8 limpio)
+  - `assetId`: stable, no spaces, no invisible special characters (clean UTF-8)
 
-### Aspera / paquetes (Opción B)
+### 3.2. Aspera / packages (Option B)
 
 Estructura base de paquete (ejemplo):
 
@@ -130,13 +138,13 @@ Estructura base de paquete (ejemplo):
 	subtitles/  (si aplica)
 ```
 
-Regla clave: solo colocar en la carpeta de entrega paquetes ya conformes (VRIO hace pull/push y dispara procesamiento al descargar).
+Key rule: only place already conformed packages in the delivery folder (VRIO performs pull/push and triggers processing upon download).
 
 ---
 
 ## 4. Metadata
 
-### 3.1 Campos obligatorios (API)
+### 4.1 Mandatory fields (API)
 
 - `titulo`
 - `id_cliente`
@@ -145,7 +153,7 @@ Regla clave: solo colocar en la carpeta de entrega paquetes ya conformes (VRIO h
 - `asset_id`
 - `tipo`
 
-### 3.2 Ejemplo JSON (mínimo)
+### 4.2 JSON example (minimum)
 
 ```json
 {
@@ -157,19 +165,19 @@ Regla clave: solo colocar en la carpeta de entrega paquetes ya conformes (VRIO h
 }
 ```
 
-### 3.3 Metadata file-based (Aspera)
+### 4.3 Metadata file-based (Aspera)
 
-- Basada en CableLabs 1.1 con estructura ADI.XML (Title, Movie, Poster, Preview, etc., según alcance Sky/VRIO).
+- Based on CableLabs 1.1 with ADI.XML structure (Title, Movie, Poster, Preview, etc., per Sky/VRIO scope).
 
 ---
 
-## 5. Imágenes
+## 5. Images
 
-- Formato: JPG
-- Regla editorial: 16:9 y 4:3 para carruseles/PDP sin texto para evitar sobrecarga visual.
-- Watermark / labels: no requerido; labels visuales solo si se acuerda con curación.
+- Format: JPG
+- Editorial rule: 16:9 and 4:3 for carousels/PDP without text to avoid visual overload.
+- Watermark / labels: not required; visual labels only if agreed with curation.
 
-### 4.1 Movies (mínimos)
+### 5.1 Movies (minimums)
 
 | Ratio | Resolución | Preferencia                                                     |
 | ----- | ---------- | --------------------------------------------------------------- |
@@ -177,7 +185,7 @@ Regla clave: solo colocar en la carpeta de entrega paquetes ya conformes (VRIO h
 | 4:3   | 1440x1080  | Iconic > Key Art > VOD Art > Banner-L2 (sin texto)              |
 | 2:3   | 1280x1920  | Poster Art > VOD Art > Key Art > Banner-L1 (puede llevar texto) |
 
-### 4.2 Shows (mínimos)
+### 5.2 Shows (minimums)
 
 | Ratio | Resolución | Preferencia                                |
 | ----- | ---------- | ------------------------------------------ |
@@ -185,7 +193,7 @@ Regla clave: solo colocar en la carpeta de entrega paquetes ya conformes (VRIO h
 | 4:3   | 1440x1080  | Iconic > Banner-L1 > Banner-L2 (sin texto) |
 | 2:3   | 1280x1920  | Poster / VOD Art                           |
 
-### 4.3 Episodes (mínimos)
+### 5.3 Episodes (minimums)
 
 | Ratio | Resolución | Preferencia                        |
 | ----- | ---------- | ---------------------------------- |
@@ -195,60 +203,60 @@ Regla clave: solo colocar en la carpeta de entrega paquetes ya conformes (VRIO h
 
 ---
 
-## 6. Reglas de validación
+## 6. Validation rules
 
-### 5.1 API (Sky Brazil)
+### 6.1 API (Sky Brazil)
 
 - Resolución mínima: 720p
 - Duración máxima: 2h
 - Codificación: H.264
 - Estados: `received | processing | error | completed`
 
-### 5.2 Aspera / VRIO (file-based)
+### 6.2 Aspera / VRIO (file-based)
 
 - Wrappers/codecs aceptados según spec (ej. TS + H.264/AVC + AC3, etc.).
 - Subtítulos SRT: sin tags HTML `<b>` `<i>`, guardados en filesystem tipo Windows/DOS.
 
 ---
 
-## 7. Criterios de aceptación
+## 7. Acceptance criteria
 
-### 6.1 Aceptación técnica (Operaciones)
+### 7.1 Technical acceptance (Operations)
 
 - Ingesta API responde `200 OK` con `{ "status": "received", "id": "..." }`.
 - `GET /api/ingesta/status?id=...` llega a `completed` en la ventana esperada (referencia 3–5 min/archivo).
 - Sin errores de validación por formato no soportado o metadata incompleta.
 
-### 6.2 Aceptación visual
+### 7.2 Visual acceptance
 
 - Cumple ratios/tamaños mínimos y reglas sin texto donde aplica.
 
 ---
 
-## 8. Reintentos / rollback
+## 8. Retries / rollback
 
-### 7.1 API
+### 8.1 API
 
-- Falla por metadata incompleta: corregir metadata y reintentar `POST` (mismo `asset_id`).
-- Falla por formato/codec/duración: corregir media fuente y reingestar (nuevo archivo).
-- Reintentos recomendados: máximo N (definir) antes de escalar.
+- Failure due to incomplete metadata: correct metadata and retry `POST` (same `asset_id`).
+- Failure due to format/codec/duration: correct source media and reingest (new file).
+- Recommended retries: maximum N (define) before escalating.
 
-### 7.2 Aspera
+### 8.2 Aspera
 
-- Si un paquete ya fue pull/push y resulta inválido: reenvío completo del paquete (no incremental) para evitar estados inconsistentes.
+- If a package has already been pull/push and turns out invalid: full resend of the package (not incremental) to avoid inconsistent states.
 
 ---
 
-## 9. Soporte, contactos, horarios, escalamiento
+## 9. Support, contacts, schedules, escalation
 
-### Monitoreo / logs
+### 9.1. Monitoring / logs
 
 - Logs: Elastic/Kibana > IngestaLogs
-- Alertas críticas: >10 errores consecutivos por cliente
+- Critical alerts: >10 consecutive errors per client
 
-### Contactos (pendiente completar)
+### 9.2. ontacts (pending completion)
 
 - Sky/VRIO NOC / Engineering Network Team (Aspera): TBD
-- Operaciones EDYE: TBD
-- Escalamiento DevOps EDYE: TBD
-- Horario operativo y ventana de despliegues: TBD
+- EDYE Operations: TBD
+- EDYE DevOps escalation: TBD
+- Operating schedule and deployment window: TBD

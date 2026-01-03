@@ -2,40 +2,41 @@
 id: int-edye-delivery-via-api-the-shelf
 title: Delivery via API – The Shelf
 ---
-# 1. Información General
 
-| Elemento                    | Valor                                                                                                                                                                      |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Partner                     | The Shelf                                                                                                                                                                  |
-| Nombre del Servicio         | Delivery de Contenidos – EDYE API / JW Player Feed                                                                                                                         |
-| Tipo de integración         | Delivery vía API (pull de contenido)                                                                                                                                       |
-| Objetivo                    | Distribuir contenido actualizado (video, metadatos, imágenes) mediante APIs EDYE hacia la plataforma del partner, permitiendo su ingesta en JW Player y sistemas internos. |
-| Formato de salida           | JSON estructurado según especificaciones de JW Player y el modelo EDYE.                                                                                                    |
-| Frecuencia de actualización | Cada hora o bajo demanda (evento de publicación).                                                                                                                          |
+# 1. General Information
 
-Esta sección define el alcance y los parámetros básicos de la integración. El tipo de integración Delivery vía API implica que el partner consume de forma programada o event‑driven los recursos expuestos por las APIs de EDYE. El contenido abarca video, metadatos y thumbnails, los cuales se generan en la plataforma EDYE a partir de los orígenes de media (JW Player) y se sirven mediante endpoints REST.
+| Elemento                    | Valor                                                                                                                                                 |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Partner                     | The Shelf                                                                                                                                             |
+| Nombre del Servicio         | Content Delivery – EDYE API / JW Player Feed                                                                                                          |
+| Tipo de integración         | Delivery via API (content pull)                                                                                                                       |
+| Objetivo                    | Distribute updated content (video, metadata, images) through EDYE APIs to the partner platform, enabling ingestion in JW Player and internal systems. |
+| Formato de salida           | JSON structured according to JW Player specifications and the EDYE model.                                                                             |
+| Frecuencia de actualización | Every hour or on demand (publish event).                                                                                                              |
 
-## 2. Estructura del JSON entregado
+This section defines the scope and basic parameters of the integration. The Delivery via API integration type implies that the partner consumes the resources exposed by EDYE APIs on a scheduled or event-driven basis. The content covers video, metadata, and thumbnails, which are generated on the EDYE platform from media sources (JW Player) and served through REST endpoints.
 
-La API entrega un feed en formato JSON. Cada entrada del feed corresponde a un video y contiene los campos principales que se muestran a continuación. El tamaño máximo del feed es de 1 000 ítems por consulta.
+## 2. Structure of the delivered JSON
 
-### 2.1 Campos principales
+The API delivers a feed in JSON format. Each entry in the feed corresponds to a video and contains the main fields shown below. The maximum feed size is 1,000 items per query.
 
-| Campo            | Descripción                                                                        | Obligatorio |
-| ---------------- | ---------------------------------------------------------------------------------- | ----------- |
-| title            | Título del contenido.                                                              | Sí          |
-| description      | Descripción breve del asset.                                                       | No          |
-| image / images[] | URL de la miniatura principal o arreglo de URLs de miniaturas en varios tamaños.   | No          |
-| sources          | Lista de fuentes de vídeo. Cada elemento incluye file, label, type, width, height. | Sí          |
-| tags             | Conjunto de etiquetas asociadas al contenido.                                      | No          |
-| pubdate          | Fecha de publicación en formato ISO 8601.                                          | Sí          |
-| custom_fields    | Objeto JSON con campos personalizados definidos por el partner.                    | No          |
+### 2.1 Main fields
 
-El endpoint de entrega se configura como una URL pública o autenticada. El partner debe solicitar los feeds de manera autenticada mediante token de API o cabecera HTTP conforme a las políticas de seguridad de EDYE.
+| Campo            | Description                                                                    | Obligatorio |
+| ---------------- | ------------------------------------------------------------------------------ | ----------- |
+| title            | Content title.                                                                 | Sí          |
+| description      | Short description of the asset.                                                | No          |
+| image / images[] | URL of the main thumbnail or array of thumbnail URLs in various sizes.         | No          |
+| sources          | List of video sources. Each element includes file, label, type, width, height. | Sí          |
+| tags             | Set of tags associated with the content.                                       | No          |
+| pubdate          | Publication date in ISO 8601 format.                                           | Sí          |
+| custom_fields    | JSON object with custom fields defined by the partner.                         | No          |
 
-### 2.2 Arquitectura general
+The delivery endpoint is configured as a public or authenticated URL. The partner must request feeds in an authenticated manner via API token or HTTP header according to EDYE security policies.
 
-La arquitectura de la entrega está compuesta por los siguientes componentes:
+### 2.2 General architecture
+
+The delivery architecture is composed of the following components:
 
 ```mermaid
 flowchart LR
@@ -54,58 +55,58 @@ flowchart LR
 		C --REST JSON--> D
 ```
 
-**Origen:** EDYE utiliza JW Player como origen de media. Las cargas de vídeo y sus variantes se almacenan y gestionan en JW Player.
+**Origin:** EDYE uses JW Player as the media source. Video uploads and their variants are stored and managed in JW Player.
 
-**Plataforma EDYE:** realiza la ingesta del contenido, normaliza metadatos e imágenes y expone los recursos mediante las APIs EDYE.
+**EDYE Platform:** ingests content, normalizes metadata and images, and exposes the resources via EDYE APIs.
 
-**Partner:** The Shelf opera un servicio de integración que consume los endpoints REST para construir su catálogo local y publicar en sus reproductores (JW Player u otros).
+**Partner:** The Shelf operates an integration service that consumes the REST endpoints to build its local catalog and publish to its players (JW Player or others).
 
-### 2.3 APIs involucradas
+### 2.3 APIs involved
 
-A continuación se detallan los endpoints principales que el partner debe consumir. Todos los endpoints son de tipo HTTP GET y devuelven objetos JSON.
+The main endpoints the partner must consume are detailed below. All endpoints are HTTP GET and return JSON objects.
 
-| Endpoint                                    | Descripción                                                                              | Parámetros relevantes        |
-| ------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------- |
-| /v1/feed                                    | Devuelve el feed completo de contenidos disponibles.                                     | page, page_size (paginación) |
-| /v1/feed?updated_since=YYYY‑MM‑DDTHH:MM:SSZ | Devuelve únicamente los ítems actualizados desde una fecha determinada.                  | updated_since (ISO 8601)     |
-| `/v1/media/{id}`                             | Devuelve el detalle de un contenido específico, incluyendo fuentes de vídeo y metadatos. | id (UUID del contenido)      |
-| `/v1/media/{id}/images`                       | Devuelve la lista de miniaturas asociadas al contenido.                                  | id (UUID del contenido)      |
-| `/v1/media/{id}/metadata`                     | Devuelve únicamente los metadatos del contenido.                                         | id                           |
+| Endpoint                                    | Description                                                                           | Parámetros relevantes        |
+| ------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------- |
+| /v1/feed                                    | Returns the full feed of available content.                                           | page, page_size (pagination) |
+| /v1/feed?updated_since=YYYY‑MM‑DDTHH:MM:SSZ | Returns only the items updated since a given date.                                    | updated_since (ISO 8601)     |
+| `/v1/media/{id}`                            | Returns the details of a specific content item, including video sources and metadata. | id (UUID of the content)     |
+| `/v1/media/{id}/images`                     | Returns the list of thumbnails associated with the content.                           | id (UUID of the content)     |
+| `/v1/media/{id}/metadata`                   | Returns only the metadata of the content.                                             | id                           |
 
-Cada endpoint requiere autenticación mediante un token de API enviado en la cabecera Authorization: Bearer. El partner deberá gestionar la renovación y almacenamiento seguro de dicho token. Las rutas y nombres de endpoints pueden ajustarse según el entorno (QA o producción).
+Each endpoint requires authentication via an API token sent in the Authorization: Bearer header. The partner must manage renewal and secure storage of this token. Routes and endpoint names may be adjusted depending on the environment (QA or production).
 
-## 3. Contenido Multimedia y Thumbnails
+## 3. Multimedia Content and Thumbnails
 
-### 3.1 Fuentes de vídeo
+### 3.1 Video sources
 
-El campo `sources` es una lista de objetos que definen cada versión del vídeo. Cada objeto incluye al menos:
+The `sources` field is a list of objects that define each version of the video. Each object includes at least:
 
 - `file` – URL del archivo de vídeo (HLS, MP4 u otro formato).
 - `label` – Indicador de calidad o resolución (por ejemplo 1080p).
 - `type` – Tipo MIME del archivo (video/mp4, application/x-mpegURL, etc.).
 - `width`/`height` – Resolución del vídeo en píxeles.
 
-Todas las URLs deben ser accesibles mediante HTTPS. El partner debe comprobar su disponibilidad antes de ingestarlas.
+All URLs must be accessible via HTTPS. The partner must verify their availability before ingesting them.
 
-### 3.2 Imágenes
+### 3.2 Images
 
-Las miniaturas se suministran en el campo `image` o dentro de `images[]` para soportar múltiples tamaños. Las recomendaciones de EDYE son:
+Thumbnails are provided in the `image` field or within `images[]` to support multiple sizes. EDYE recommendations are:
 
 - Relación de aspecto 16:9.
 - Resolución mínima 640×360 px.
 - Formato JPG o PNG optimizado para web.
 
-El partner puede solicitar imágenes en diferentes resoluciones empleando el endpoint `/v1/media/{id}/images` y filtrando por clave de tamaño (small, medium, large).
+The partner can request images in different resolutions using the `/v1/media/{id}/images` endpoint and filtering by size key (small, medium, large).
 
-### 3.3 Reglas de validación para multimedia
+### 3.3 Validation rules for multimedia
 
-- **Verificación de URLs:** antes de publicar un feed, la plataforma EDYE valida automáticamente que los enlaces de vídeo e imagen respondan con código HTTP 2xx. El partner debe replicar esta verificación para descartar contenidos corruptos.
-- **Integridad del archivo:** comprobar que la duración y el tamaño del vídeo se ajustan a los metadatos informados. Las discrepancias deben reportarse a soporte.
-- **Formatos soportados:** solo se aceptan tipos MIME estándar (MP4/HLS para vídeo, JPEG/PNG para imágenes). Archivos con codecs no soportados deben ser omitidos.
+- **URL verification:** before publishing a feed, the EDYE platform automatically validates that video and image links respond with HTTP 2xx. The partner must replicate this verification to discard corrupt content.
+- **File integrity:** check that the video duration and size match the reported metadata. Discrepancies must be reported to support.
+- **Supported formats:** only standard MIME types are accepted (MP4/HLS for video, JPEG/PNG for images). Files with unsupported codecs must be omitted.
 
-## 4. Metadatos requeridos y opcionales
+## 4. Required and optional metadata
 
-### 4.1 Campos obligatorios
+### 4.1 Mandatory fields
 
 | Campo   | Descripción                               |
 | ------- | ----------------------------------------- |
@@ -113,7 +114,7 @@ El partner puede solicitar imágenes en diferentes resoluciones empleando el end
 | sources | Array de fuentes de vídeo.                |
 | pubdate | Fecha de publicación en formato ISO 8601. |
 
-### 4.2 Campos opcionales
+### 4.2 Optional fields
 
 | Campo            | Descripción                                      |
 | ---------------- | ------------------------------------------------ |
@@ -123,9 +124,9 @@ El partner puede solicitar imágenes en diferentes resoluciones empleando el end
 | duration         | Duración del contenido en segundos.              |
 | custom_fields    | JSON anidado con claves específicas del cliente. |
 
-### 4.3 Campos personalizados
+### 4.3 Custom fields
 
-Los `custom_fields` permiten incluir metadatos específicos definidos por el partner. Este campo es opcional pero debe respetar el formato JSON. Ejemplo:
+`custom_fields` allow inclusion of specific metadata defined by the partner. This field is optional but must follow JSON format. Example:
 
 ```json
 {
@@ -136,24 +137,24 @@ Los `custom_fields` permiten incluir metadatos específicos definidos por el par
 }
 ```
 
-La plataforma EDYE no interpreta estos valores; se almacenan y transmiten tal cual. The Shelf es responsable de la consistencia y uso de los mismos.
+The EDYE platform does not interpret these values; they are stored and transmitted as is. The Shelf is responsible for their consistency and use.
 
-## 5. Proceso de entrega y endpoints
+## 5. Delivery process and endpoints
 
-### 5.1 Método de entrega
+### 5.1 Delivery method
 
-El feed se genera en el backend de EDYE y se publica vía HTTP(S). El partner ejecuta peticiones GET a los endpoints descritos en la sección 2 para obtener datos completos o incrementales. El modelo de integración es pull, es decir, The Shelf inicia las solicitudes según su plan de actualización.
+The feed is generated in the EDYE backend and published via HTTP(S). The partner performs GET requests to the endpoints described in section 2 to obtain full or incremental data. The integration model is pull; The Shelf initiates requests according to its update schedule.
 
-### 5.2 Seguridad y autenticación
+### 5.2 Security and authentication
 
-Se emplea autenticación mediante token en la URL o encabezado, o bien autenticación básica, según lo acordado. Las credenciales se suministran a través de canales seguros. Se recomienda rotar los tokens periódicamente y utilizar HTTPS para proteger los datos en tránsito.
+Authentication via token in the URL or header, or basic authentication, is used as agreed. Credentials are supplied through secure channels. Rotating tokens periodically and using HTTPS to protect data in transit is recommended.
 
-### 5.3 Monitoreo y notificaciones
+### 5.3 Monitoring and notifications
 
-- **Monitoreo:** EDYE registra el estado HTTP de cada entrega, logs de acceso y la integridad del JSON generado. Se recomienda que The Shelf haga un seguimiento de las llamadas, tiempos de respuesta y códigos de estado para detectar anomalías.
-- **Notificaciones:** tras una actualización exitosa del feed, la plataforma puede invocar un webhook configurado por The Shelf. El webhook debe aceptar solicitudes POST y responder con código 2xx para confirmar la recepción.
+- **Monitoring:** EDYE logs the HTTP status of each delivery, access logs, and the integrity of the generated JSON. It is recommended that The Shelf track calls, response times, and status codes to detect anomalies.
+- **Notifications:** after a successful feed update, the platform can invoke a webhook configured by The Shelf. The webhook must accept POST requests and respond with 2xx to confirm receipt.
 
-### 5.4 Flujo operativo de delivery vía API
+### 5.4 Operational flow of delivery via API
 
 ```mermaid
 sequenceDiagram
@@ -169,80 +170,80 @@ sequenceDiagram
 		Shelf->>Webhook: Notificación interna de disponibilidad
 ```
 
-### 5.5 Descripción del flujo (paso a paso)
+### 5.5 Flow description (step by step)
 
-1. **Generación de contenido:** cuando se publican nuevos vídeos en JW Player, EDYE ingesta los archivos y actualiza los metadatos.
-2. **Publicación del feed:** el backend de EDYE genera el feed JSON y lo expone en el endpoint `/v1/feed`.
-3. **Consulta del partner:** The Shelf programa un trabajo (por ejemplo, cada hora) para solicitar el feed completo o incremental.
-4. **Procesamiento:** el servicio de The Shelf analiza la respuesta, identifica nuevos o modificados, y realiza llamadas adicionales a `/v1/media/{id}`, `/v1/media/{id}/images` o `/v1/media/{id}/metadata` según sea necesario.
-5. **Validación:** The Shelf verifica la integridad del JSON, la disponibilidad de los recursos multimedia y el cumplimiento de campos obligatorios.
-6. **Ingesta interna:** los datos se insertan en el catálogo interno y, opcionalmente, se publica un webhook para notificar a otras aplicaciones.
+1. **Content generation:** when new videos are published in JW Player, EDYE ingests the files and updates metadata.
+2. **Feed publication:** the EDYE backend generates the JSON feed and exposes it at the `/v1/feed` endpoint.
+3. **Partner request:** The Shelf schedules a job (e.g., hourly) to request the full or incremental feed.
+4. **Processing:** The Shelf service parses the response, identifies new or modified items, and makes additional calls to `/v1/media/{id}`, `/v1/media/{id}/images`, or `/v1/media/{id}/metadata` as needed.
+5. **Validation:** The Shelf verifies JSON integrity, availability of multimedia resources, and compliance with mandatory fields.
+6. **Internal ingestion:** the data is inserted into the internal catalog and, optionally, a webhook is published to notify other applications.
 
-### 5.6 Manejo de errores y reintentos
+### 5.6 Error handling and retries
 
-- **Códigos HTTP:** los endpoints devuelven códigos estándar (200, 400, 401, 404, 500). Las respuestas 4xx indican errores del cliente; las 5xx indican problemas temporales del servidor.
-- **Reintentos:** se recomienda implementar reintentos exponenciales ante errores 5xx o timeouts, con un máximo de tres intentos y espera incremental.
-- **Registro de fallos:** todas las llamadas fallidas deben registrarse con el timestamp, endpoint y código de estado para facilitar el análisis.
-- **Gestión de límites:** respetar las políticas de rate limit (si aplican) para evitar bloqueos. Ante una respuesta 429 se debe esperar el tiempo indicado en la cabecera Retry‑After.
+- **HTTP codes:** endpoints return standard codes (200, 400, 401, 404, 500). 4xx responses indicate client errors; 5xx indicate temporary server issues.
+- **Retries:** implement exponential retries for 5xx errors or timeouts, with a maximum of three attempts and incremental wait.
+- **Failure logging:** all failed calls must be logged with timestamp, endpoint, and status code to ease analysis.
+- **Rate limit handling:** respect rate limit policies (if applicable) to avoid blocking. Upon a 429 response, wait the time indicated in the Retry‑After header.
 
-### 5.7 Dependencias técnicas
+### 5.7 Technical dependencies
 
-- **Conectividad:** acceso a Internet mediante HTTPS a los dominios de EDYE y JW Player.
-- **Autenticación:** gestión de tokens de API y credenciales de acceso.
-- **Entorno de ejecución:** servicio capaz de realizar solicitudes HTTP, procesar JSON y almacenar datos (p. ej. un microservicio en la infraestructura de The Shelf).
-- **Sincronización horaria:** los servidores deben mantener sincronizados sus relojes para comparar `pubdate` y filtros `updated_since`.
+- **Connectivity:** Internet access via HTTPS to EDYE and JW Player domains.
+- **Authentication:** management of API tokens and access credentials.
+- **Runtime environment:** service capable of performing HTTP requests, processing JSON, and storing data (e.g., a microservice in The Shelf infrastructure).
+- **Time synchronization:** servers must keep their clocks synchronized to compare `pubdate` and `updated_since` filters.
 
-## 6. Validaciones y control de calidad
+## 6. Validations and quality control
 
-### 6.1 Validaciones previas
+### 6.1 Pre-validations
 
-Antes de publicar un feed, EDYE realiza validaciones automáticas de la estructura JSON, verifica la existencia de todos los campos obligatorios y comprueba las URLs de multimedia. The Shelf debe replicar estas validaciones al consumir los datos.
+Before publishing a feed, EDYE performs automatic validations of the JSON structure, verifies the presence of all mandatory fields, and checks multimedia URLs. The Shelf must replicate these validations when consuming the data.
 
 ### 6.2 Logs
 
-EDYE mantiene registros de generación, validación y publicación del feed. El partner debe conservar sus propios logs de consumo para trazabilidad: hora de petición, URL solicitada, código de respuesta y cantidad de ítems procesados.
+EDYE keeps records of feed generation, validation, and publication. The partner must retain its own consumption logs for traceability: request time, requested URL, response code, and number of items processed.
 
-### 6.3 Alertas y notificaciones de errores
+### 6.3 Alerts and error notifications
 
-Los errores críticos se identifican mediante alertas: código 500, JSON inválido, thumbnails rotos o faltantes. Ante un error, se debe:
+Critical errors are identified via alerts: code 500, invalid JSON, broken or missing thumbnails. In case of an error:
 
-- Registrar el incidente y el código devuelto.
-- Reintentar la solicitud según la política de reintentos.
-- Notificar al equipo de soporte de EDYE si el problema persiste.
+- Log the incident and the returned code.
+- Retry the request according to the retry policy.
+- Notify the EDYE support team if the problem persists.
 
-### 6.4 Retención de versiones
+### 6.4 Version retention
 
-La plataforma conserva el historial de los tres últimos feeds generados. The Shelf puede comparar versiones para detectar cambios o recuperar datos en caso de incidencia.
+The platform retains the history of the last three generated feeds. The Shelf can compare versions to detect changes or recover data in case of an incident.
 
-## 7. Entornos de prueba y herramientas
+## 7. Test environments and tools
 
-### 7.1 Entorno de QA
+### 7.1 QA environment
 
-Para pruebas y certificación se dispone de un entorno QA accesible a través de una URL específica (ejemplo: https://qa.api.clientdomain.com/feed/jwplayer.json). Los datos en QA pueden diferir de producción y se reinician periódicamente.
+For testing and certification there is a QA environment accessible through a specific URL (example: https://qa.api.clientdomain.com/feed/jwplayer.json). Data in QA may differ from production and is reset periodically.
 
-### 7.2 Herramientas recomendadas
+### 7.2 Recommended tools
 
 - **Postman** – para construir y ejecutar peticiones HTTP.
 - **JSONLint** – para validar la sintaxis JSON.
 - **JW Platform feed validator** – herramienta oficial de JW Player para validar feeds.
 
-### 7.3 Ejemplo de validación
+### 7.3 Validation example
 
-Se recomienda utilizar la herramienta de validación de JW Player disponible en https://developer.jwplayer.com/tools/feeds/validate/. Ingrese la URL del feed y revise los resultados para detectar campos faltantes o errores de formato.
+It is recommended to use the JW Player validation tool available at https://developer.jwplayer.com/tools/feeds/validate/. Enter the feed URL and review the results to detect missing fields or format errors.
 
-### 7.4 Cliente de pruebas
+### 7.4 Test client
 
-Durante la integración se facilita acceso a la JW Player Dev Console con una API Key temporal. Esta consola permite probar la reproducción de contenidos y verificar las propiedades del feed.
+During integration, access to the JW Player Dev Console is provided with a temporary API Key. This console allows testing content playback and verifying feed properties.
 
-### 7.5 Operación y soporte
+### 7.5 Operation and support
 
-- **Monitoreo continuo:** se debe instrumentar la integración para medir tiempos de respuesta, tasa de error y número de elementos procesados.
-- **Gestión de incidencias:** ante un error persistente, el partner debe abrir un ticket en la mesa de ayuda de EDYE proporcionando logs y descripción del problema.
-- **Ventanas de mantenimiento:** EDYE notificará con antelación cualquier intervención que pueda afectar la disponibilidad de las APIs.
+- **Continuous monitoring:** the integration must be instrumented to measure response times, error rate, and number of processed items.
+- **Incident management:** in case of a persistent error, the partner must open a ticket in the EDYE help desk providing logs and a description of the problem.
+- **Maintenance windows:** EDYE will notify in advance any intervention that may affect API availability.
 
-# 8. Ejemplo de JSON entregado
+# 8. Example of delivered JSON
 
-El siguiente ejemplo ilustra una entrada del feed devuelta por `/v1/feed`:
+The following example illustrates an entry from the feed returned by `/v1/feed`:
 
 ```json
 {

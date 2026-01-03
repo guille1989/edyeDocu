@@ -1,17 +1,17 @@
 ---
 id: int-partnet-claro-video-anexos-posters
-title: Posters y Artwork Claro Video
+title: Posters and Artwork Claro Video
 sidebar_position: 1
 ---
 
-# Posters y Artwork – Claro Video
+# Posters and Artwork – Claro Video
 
-Este documento define las **reglas técnicas y gráficas** que deben cumplirse para
-la correcta ingesta de **posters e imágenes** del partner Claro Video.
+This document defines the **technical and graphic rules** that must be met for
+the correct ingestion of **posters and images** for the Claro Video partner.
 
 ---
 
-## Alcance
+## Scope
 
 Aplica a:
 
@@ -29,18 +29,18 @@ Incluye:
 
 ---
 
-## Idiomas y variantes
+## Languages and variants
 
-| Código | Descripción |
-| ------ | ----------- |
-| EN     | Inglés      |
-| PT     | Portugués   |
-| SS     | Español     |
-| CLEAN  | Sin texto   |
+| Code  | Description |
+| ----- | ----------- |
+| EN    | English     |
+| PT    | Portuguese  |
+| SS    | Spanish     |
+| CLEAN | No text     |
 
 ---
 
-## Estructura de carpetas
+## Folder structure
 
 ```text
 TITULODELACONTENIDO/
@@ -58,26 +58,26 @@ TITULODELACONTENIDO/
 
 ---
 
-## Nomenclatura de archivos – Episodios
+## File naming – Episodes
 
-### Formato general
+### General format
 
 ```text
 TITULO-TEMP-EP-EP_VARIANTE_CALIDAD_CODIGO.jpg
 ```
 
-### Componentes
+### Components
 
-| Componente   | Descripción                       |
-| ------------ | --------------------------------- |
-| **TITULO**   | Nombre del contenido              |
-| **TEMP**     | Número de temporada               |
-| **EP**       | Número de episodio                |
-| **VARIANTE** | CLEAN / EN / PT / SS              |
-| **CALIDAD**  | HD / SD                           |
-| **CODIGO**   | Código interno (BC10, PS01, etc.) |
+| Component    | Description                      |
+| ------------ | -------------------------------- |
+| **TITULO**   | Content name                     |
+| **TEMP**     | Season number                    |
+| **EP**       | Episode number                   |
+| **VARIANTE** | CLEAN / EN / PT / SS             |
+| **CALIDAD**  | HD / SD                          |
+| **CODIGO**   | Internal code (BC10, PS01, etc.) |
 
-### Ejemplos válidos
+### Valid examples
 
 ```text
 TITULODELASERIE-01-01-01_CLEAN_HD_BC10.jpg
@@ -85,23 +85,23 @@ TITULODELASERIE-01-01-01_SS_HD_PS04.jpg
 TITULODELASERIE-01-01-01_EN_SD_BC13.jpg
 ```
 
-### Consideraciones importantes
+### Important considerations
 
-- Las **carpetas** deben estar en **MAYÚSCULAS** y **sin espacios**.
-- Un **naming incorrecto** puede provocar:
-  - Fallos de validación
-  - Rechazo del delivery
-- Todas las **variantes requeridas** deben entregarse según corresponda.
+- **Folders** must be in **UPPERCASE** and **without spaces**.
+- An **incorrect naming** can cause:
+  - Validation failures
+  - Delivery rejection
+- All **required variants** must be delivered as applicable.
 
 ---
 
-### Control de cambios
+### Change control
 
-Cualquier modificación en:
+Any modification to:
 
 - Dimensiones
 - Naming
 - Idiomas
 - Estructura de carpetas
 
-Debe ser validada previamente con **Operaciones EDYE** y **Claro Video**.
+Must be validated beforehand with **EDYE Operations** and **Claro Video**.

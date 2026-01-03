@@ -4,23 +4,23 @@ title: Ingesta VOD – Dish México (MVShub Specifications)
 sidebar_label: Ingesta VOD – Dish México
 ---
 
-# Ingesta VOD – Dish México
+# VOD Ingestion – Dish México
 
 **MVShub Delivery Specifications**
 
 ## 1. Introducción
 
-Este documento define las **especificaciones de entrega de contenido VOD** para la plataforma OTT de **Dish México**, incluyendo:
+This document defines the **VOD content delivery specifications** for the OTT platform of **Dish México**, including:
 
 - Media (video, audio, subtítulos)
 - Artwork (posters y wallpapers)
 - Metadata (XML CableLabs)
 
-La ingesta es **automatizada**, por lo que **todos los requisitos deben cumplirse estrictamente** para que el contenido sea aceptado y procesado correctamente.
+Ingestion is **automated**, so **all requirements must be strictly met** for the content to be accepted and processed correctly.
 
 ---
 
-## 2. Canal de Entrega
+## 2. Delivery Channel
 
 - **Método:** Aspera
 - **Cuenta:** Provista por Dish
@@ -28,9 +28,9 @@ La ingesta es **automatizada**, por lo que **todos los requisitos deben cumplirs
 
 ---
 
-## 3. Estructura de Carpetas
+## 3. Folder Structure
 
-La entrega debe respetar exactamente la siguiente estructura:
+The delivery must strictly follow the following structure:
 
 ```text
     /MEDIA/ASSETID.mp4
@@ -57,7 +57,7 @@ La entrega debe respetar exactamente la siguiente estructura:
 | Bitrate    | 15 Mbps         |
 | Resolución | 1080p 29.97 fps |
 
-📌 Todos los archivos de video deben colocarse **directamente en `/MEDIA`**, sin subcarpetas.
+📌 All video files must be placed **directly in `/MEDIA`**, without subfolders.
 
 ---
 
@@ -73,16 +73,16 @@ La entrega debe respetar exactamente la siguiente estructura:
 
 ---
 
-### 4.3 Subtítulos
+### 4.3 Subtitles
 
 - **Formato:** TTML o SRT
 - **Idioma:** `es` (ISO-2)
 
 ---
 
-## 5. Artwork (Imágenes)
+## 5. Artwork (Images)
 
-Las imágenes deben entregarse vía **Aspera**, dentro de la carpeta `/ART`.
+Images must be delivered via **Aspera**, inside the `/ART` folder.
 
 ---
 
@@ -105,16 +105,16 @@ Las imágenes deben entregarse vía **Aspera**, dentro de la carpeta `/ART`.
 
 ---
 
-### 5.3 Especificaciones Técnicas
+### 5.3 Technical Specifications
 
-#### Serie Poster
+#### Series Poster
 
 - Resolución: **720 × 1080**
 - PPP: 72
 - Formato: JPEG
 - Postfix: `_main.jpg`
 
-#### Serie Wallpaper
+#### Series Wallpaper
 
 - Resolución: **1920 × 1080**
 - PPP: 72
@@ -144,8 +144,8 @@ Las imágenes deben entregarse vía **Aspera**, dentro de la carpeta `/ART`.
 - Formato: JPEG
 - Postfix: `_highlight.jpg`
 
-📌 Series: **3 imágenes obligatorias**  
-📌 Movies: **2 imágenes obligatorias**
+📌 Series: **3 mandatory images**  
+📌 Movies: **2 mandatory images**
 
 ---
 
@@ -153,19 +153,19 @@ Las imágenes deben entregarse vía **Aspera**, dentro de la carpeta `/ART`.
 
 ### 6.1 Formato
 
-- **Formato:** XML
-- **Estándar:** CableLabs VOD Specification
-- **Versión:** 1.1
-- **Archivos:** 1 XML por asset
+- **Format:** XML
+- **Standard:** CableLabs VOD Specification
+- **Version:** 1.1
+- **Files:** 1 XML per asset
 
-Dish proveerá un **template base** con los campos que pueden ser importados.
+Dish will provide a **base template** with fields that can be imported.
 
 ---
 
 ## 7. Asset ID Rules
 
-- Prefijo: **4 letras del nombre del canal**
-- Movies: libre tras el prefijo
+- Prefix: **4 letters from the channel name**
+- Movies: free after the prefix
 - Episodes:
 
 ```text
@@ -174,41 +174,41 @@ PROVIDER + SERIE_ID + SEASON + EPISODE
 
 ---
 
-## 8. Metadata – Movies (Campos obligatorios)
+## 8. Metadata – Movies (Mandatory fields)
 
-| Campo             | Descripción                       |
-| ----------------- | --------------------------------- |
-| Asset_ID          | ID único                          |
-| asset_name        | Título                            |
-| provider          | Canal                             |
-| spanish_title     | Título en español                 |
-| english_title     | Título en inglés                  |
-| original_title    | Título original                   |
-| summary_long      | Descripción larga                 |
-| summary_short     | Descripción corta                 |
-| rating            | Sistema MX (AA, A, B, B-15, C, D) |
-| run_time          | hh:mm:ss                          |
-| year              | Año                               |
-| country_of_origin | ISO-2                             |
-| actors            | Separados por coma                |
-| director          | Separados por coma                |
-| genre             | Separados por coma                |
-| start_date        | DD/MM/AAAA                        |
-| end_date          | DD/MM/AAAA                        |
-| poster            | URL o referencia a ART            |
-| wallpaper1        | URL o referencia a ART            |
+| Campo             | Description                      |
+| ----------------- | -------------------------------- |
+| Asset_ID          | Unique ID                        |
+| asset_name        | Title                            |
+| provider          | Channel                          |
+| spanish_title     | Title in Spanish                 |
+| english_title     | Title in English                 |
+| original_title    | Original title                   |
+| summary_long      | Long description                 |
+| summary_short     | Short description                |
+| rating            | MX system (AA, A, B, B-15, C, D) |
+| run_time          | hh:mm:ss                         |
+| year              | Year                             |
+| country_of_origin | ISO-2                            |
+| actors            | Comma-separated                  |
+| director          | Comma-separated                  |
+| genre             | Comma-separated                  |
+| start_date        | DD/MM/YYYY                       |
+| end_date          | DD/MM/YYYY                       |
+| poster            | URL or reference to ART          |
+| wallpaper1        | URL or reference to ART          |
 
 ---
 
 ## 9. Metadata – TV Shows / Episodes
 
-Incluye campos de:
+Includes fields for:
 
 - Serie
 - Temporada
 - Episodio
 
-Campos clave:
+Key fields:
 
 - asset_id
 - Serie Name
@@ -235,9 +235,9 @@ Si se cuenta con información de cortes publicitarios, debe agregarse al XML:
 
 ---
 
-## 11. Consideraciones Finales
+## 11. Final Considerations
 
-- La ingesta es **totalmente automatizada**.
-- El **naming** y la **estructura de carpetas** son **estrictos y obligatorios**.
-- Cualquier incumplimiento en las especificaciones técnicas o de metadata **provocará el rechazo del asset**.
-- En caso de reprocesos, el contenido debe ser **reenviado completamente** (media, metadata y artwork).
+- Ingestion is **fully automated**.
+- The **naming** and **folder structure** are **strict and mandatory**.
+- Any non-compliance with technical or metadata specifications **will result in asset rejection**.
+- In case of reprocessing, the content must be **resent completely** (media, metadata, and artwork).
