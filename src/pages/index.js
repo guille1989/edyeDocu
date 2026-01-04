@@ -28,8 +28,10 @@ const featureLinks = [
 ];
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
-  const pdfHref = useBaseUrl('/compendio-es.pdf');
+  const {siteConfig, i18n} = useDocusaurusContext();
+  const locale = i18n?.currentLocale || 'es';
+  const pdfFile = locale === 'en' ? 'compendio-en.pdf' : 'compendio-es.pdf';
+  const pdfHref = useBaseUrl(`/${pdfFile}`);
 
   return (
     <Layout
