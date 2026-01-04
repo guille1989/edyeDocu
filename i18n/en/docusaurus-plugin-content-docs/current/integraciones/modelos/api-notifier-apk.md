@@ -8,8 +8,6 @@ title: 🤝 API Notifier APK Integration
 
 ---
 
-# EDYE Integration – APP/APO/Notifier Model
-
 ## 1. Introduction
 
 This document describes the guidelines for integrating the EDYE application into a partner ecosystem using the APP INTEGRATION model – APO + Notifier + APK. It is aimed at technical teams and DevOps operations. Its purpose is to serve as a generic reference for any partner integrating the official EDYE APK, without mentioning specifics of any particular operator.

@@ -474,8 +474,6 @@ The consolidation presented here integrates the functionality detailed in the Us
 
 ---
 
-# API Service
-
 ## 1. Introduction and Purpose
 
 This document describes the architecture, deployment, and operational practices of the API Service in the EDYE/HITN Digital ecosystem. The service aims to provide a standardized access layer to catalogs of videos, books, and games for both first-party applications (web, mobile, and TV) and distributor integrations. The document targets DevOps, Operations, SRE, and Security teams.
@@ -579,12 +577,11 @@ Each integration uses versioned API contracts to maintain compatibility and trac
 
 # 🈸 Billing Service
 
+
 **Version:** 1.0  
-**Date:** 12/01/2025  
+**Date:** 12/01/2025
 
 ---
-
-# Billing Service
 
 ## 1. Introduction and Purpose
 
@@ -604,12 +601,12 @@ The main functions of the service are:
 
 The Billing Service consists of the following elements:
 
-| Component                 | Description |
-|---------------------------|-------------|
-| Payment interface         | API that exposes subscription, cancellation, and renewal operations. The interface is based on Node.js/Express to orchestrate flows and communicate with external services. |
-| Subscription provider     | The platform uses a third-party service specialized in paywall and subscription management to maintain customer information. This provider offers tools to create plans, update prices, and process changes. |
-| Internal database         | Stores non-sensitive information such as customer IDs, change history, and correlations with EDYE users. MySQL is used for its reliability and ACID support. |
-| Auxiliary services        | Include a notification service to send emails about renewals and expirations, and a reconciliation service to compare internal records with payment provider reports. |
+| Component             | Description                                                                                                                                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Payment interface     | API that exposes subscription, cancellation, and renewal operations. The interface is based on Node.js/Express to orchestrate flows and communicate with external services.                                  |
+| Subscription provider | The platform uses a third-party service specialized in paywall and subscription management to maintain customer information. This provider offers tools to create plans, update prices, and process changes. |
+| Internal database     | Stores non-sensitive information such as customer IDs, change history, and correlations with EDYE users. MySQL is used for its reliability and ACID support.                                                 |
+| Auxiliary services    | Include a notification service to send emails about renewals and expirations, and a reconciliation service to compare internal records with payment provider reports.                                        |
 
 ### 3.1. Architecture Diagram
 
@@ -689,7 +686,6 @@ All communications use versioned API contracts and are secured with access keys 
 **Date:** 12/01/2025
 
 ---
-# Cloud Service
 
 ## Introduction and Purpose
 
@@ -709,13 +705,13 @@ The service's main responsibilities are:
 
 The Cloud Service is composed of several layers:
 
-| Component                  | Description                                                                                                                                                                                                                     |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Object storage             | Distributed storage system that stores objects of any size. Supports replication across multiple zones for high availability and durability.                                                                                    |
-| Transcoder                 | Engine that ingests source files and generates versions adapted for streaming (HLS/DASH). It also produces thumbnails and resized images used by the Admin and Play services.                                                    |
-| CDN                        | Global network that caches asset copies to reduce latency in delivery to end users. Configures cache policies, invalidation, and protection against mass downloads.                                                             |
-| Signing service            | Component that generates temporary signatures and access tokens so content is only accessible with valid permissions.                                                                                                            |
-| Metadata database          | Stores information associated with each file: physical location, versions, transcoding status, and relationships to catalog titles.                                                                                              |
+| Component         | Description                                                                                                                                                                   |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object storage    | Distributed storage system that stores objects of any size. Supports replication across multiple zones for high availability and durability.                                  |
+| Transcoder        | Engine that ingests source files and generates versions adapted for streaming (HLS/DASH). It also produces thumbnails and resized images used by the Admin and Play services. |
+| CDN               | Global network that caches asset copies to reduce latency in delivery to end users. Configures cache policies, invalidation, and protection against mass downloads.           |
+| Signing service   | Component that generates temporary signatures and access tokens so content is only accessible with valid permissions.                                                         |
+| Metadata database | Stores information associated with each file: physical location, versions, transcoding status, and relationships to catalog titles.                                           |
 
 ### Architecture Diagram
 
@@ -784,13 +780,10 @@ These interactions are managed through internal APIs, ensuring access control an
 
 # 🈸 Play Service
 
-
 **Version:** 1.0  
 **Date:** 12/01/2025
 
 ---
-
-# Play Service
 
 ## Introduction and Purpose
 
@@ -897,8 +890,6 @@ The modular design of these communications facilitates independent updates to ea
 
 ---
 
-# Connect Service (Conecta)
-
 ## Introduction and Purpose
 
 The Connect Service, also known as Conecta, is the component responsible for authenticating users who access EDYE/HITN Digital through external distributors (for example, pay TV providers). This document offers a technical description of its infrastructure and operational procedures for DevOps, SRE, Operations, and Security teams.
@@ -1004,7 +995,6 @@ Communications use internal API contracts and are monitored to ensure compliance
 **Date:** 12/01/2025
 
 ---
-# Satellite Service
 
 ## 1. Introduction and Purpose
 
@@ -1021,12 +1011,12 @@ The service performs the following functions:
 
 ## 3. Architecture and Components
 
-| Component                    | Description                                                                                                                                                                                                                                                                                                                                                                                            |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Node.js/NextJS server        | The core of the service is implemented with Node.js and NextJS, leveraging its asynchronous nature to handle numerous state update requests.                                                                                                                                                                                                                     |
-| NoSQL database (MongoDB)     | A document-oriented database stores flexible structures for progress and lists. MongoDB offers dynamic schema and horizontal scalability, making it suitable for semi-structured data like playlists and favorites. Laravel and other frameworks natively support MongoDB through official packages.                                                                                                          |
-| Synchronization service      | Subsystem that listens to events from the API and Play application to update records. It ensures eventual consistency between local caches and the central database.                                                                                                                                                                                                                                    |
-| Message queue                | Manages asynchronous events (e.g., end of playback, favorite marked) to decouple the client application from the persistence process.                                                                                                                                                                                                                                                                 |
+| Component                | Description                                                                                                                                                                                                                                                                                          |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Node.js/NextJS server    | The core of the service is implemented with Node.js and NextJS, leveraging its asynchronous nature to handle numerous state update requests.                                                                                                                                                         |
+| NoSQL database (MongoDB) | A document-oriented database stores flexible structures for progress and lists. MongoDB offers dynamic schema and horizontal scalability, making it suitable for semi-structured data like playlists and favorites. Laravel and other frameworks natively support MongoDB through official packages. |
+| Synchronization service  | Subsystem that listens to events from the API and Play application to update records. It ensures eventual consistency between local caches and the central database.                                                                                                                                 |
+| Message queue            | Manages asynchronous events (e.g., end of playback, favorite marked) to decouple the client application from the persistence process.                                                                                                                                                                |
 
 ### 3.1. Architecture Diagram
 
@@ -3275,8 +3265,6 @@ Use these links as a step-by-step visual reference of the Admin Panel and delive
 
 ---
 
-# Integration Model: Content Delivery via API
-
 This document describes the standard delivery model via API within the EDYE ecosystem, used by partners to consume catalog, metadata, and images directly from endpoints (without file-based transfer such as SFTP/Aspera).
 
 This model applies, among others, to partners that integrate catalog via API (for example, OTT applications, operators, or aggregators consuming JSON). The structure and style of this document follow the same pattern as the attached example.
@@ -3573,8 +3561,6 @@ This section centralizes operational documents (PDF) related to operation, monit
 
 ---
 
-# Integration Model: Edye Billing
-
 This document describes the standard Billing integration model within the EDYE / HITN Digital ecosystem, used for managing subscriptions, charges, renewals, cancellations, and access states associated with consumption of content and applications.
 
 The model is reusable for any partner requiring direct billing integration, carrier billing, or external gateway, maintaining a homogeneous technical-operational approach.
@@ -3786,8 +3772,6 @@ EDYE allows:
 
 ---
 
-# EDYE Integration – APP/APO/Notifier Model
-
 ## 1. Introduction
 
 This document describes the guidelines for integrating the EDYE application into a partner ecosystem using the APP INTEGRATION model – APO + Notifier + APK. It is aimed at technical teams and DevOps operations. Its purpose is to serve as a generic reference for any partner integrating the official EDYE APK, without mentioning specifics of any particular operator.
@@ -3992,10 +3976,9 @@ flowchart TD
 
 
 **Version:** 1.0  
-**Date:** 12/01/2025  
+**Date:** 12/01/2025
 
 ---
-# Generic EDYE Integration — API + Notifier (DCB)
 
 ## 1. Introduction
 
@@ -4024,21 +4007,22 @@ The integration is based on two communication vectors:
 The following figure illustrates the general architecture of the API + Notifier model. The diagram is conceptual and shows the essential elements without specific implementation details:
 
 ![Ciclo DevOps](img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
+
 > **Figure 1.** Logical architecture of the integration
 
 ## 4. Main Components
 
-| Component                         | Brief description                                                                                                                                              |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **User**                        | End customer who uses the EDYE application to access content and manage their subscription.                                                                    |
-| **EDYE Application**                    | Mobile or web application where the user consumes the service. Manages the user experience and communicates with the EDYE API.                                   |
-| **EDYE API (REST)**                    | Set of services exposed by EDYE to create accounts, authenticate users, check subscription status, and authorize access to content.                             |
-| **Authentication and Registration Module** | Processes user registration and login. Implements security requirements (strong passwords, age validations).                                                     |
-| **Subscription Management Module** | Stores and queries the user subscription status. Interacts with the operator to start, renew, or cancel subscriptions.                                          |
-| **Internal billing**                    | EDYE’s internal system that manages billing, reconciliation, and service provisioning based on events received from the operator.                               |
-| **Content Access Manager**      | Controls access to episodes, games, and other resources according to the user’s active plan.                                                                  |
-| **Operator Notifier**              | Operator service that sends asynchronous events (activation, renewal, suspension, and cancellation) to the webhook configured by EDYE to keep the subscription synchronized. |
-| **DCB Operator**                       | Entity that provides direct billing service through the mobile network and supplies the APIs and the Notifier to manage payments and events.                   |
+| Component                                  | Brief description                                                                                                                                                            |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **User**                                   | End customer who uses the EDYE application to access content and manage their subscription.                                                                                  |
+| **EDYE Application**                       | Mobile or web application where the user consumes the service. Manages the user experience and communicates with the EDYE API.                                               |
+| **EDYE API (REST)**                        | Set of services exposed by EDYE to create accounts, authenticate users, check subscription status, and authorize access to content.                                          |
+| **Authentication and Registration Module** | Processes user registration and login. Implements security requirements (strong passwords, age validations).                                                                 |
+| **Subscription Management Module**         | Stores and queries the user subscription status. Interacts with the operator to start, renew, or cancel subscriptions.                                                       |
+| **Internal billing**                       | EDYE’s internal system that manages billing, reconciliation, and service provisioning based on events received from the operator.                                            |
+| **Content Access Manager**                 | Controls access to episodes, games, and other resources according to the user’s active plan.                                                                                 |
+| **Operator Notifier**                      | Operator service that sends asynchronous events (activation, renewal, suspension, and cancellation) to the webhook configured by EDYE to keep the subscription synchronized. |
+| **DCB Operator**                           | Entity that provides direct billing service through the mobile network and supplies the APIs and the Notifier to manage payments and events.                                 |
 
 ## 5. Communication Flows
 
@@ -4075,12 +4059,12 @@ Subscriptions are renewed according to the plan frequency (for example, weekly, 
 
 ## 6. Event Summary Table
 
-| Event (eventType)   | Origin                | Brief description                           | Action in EDYE                                               |
-| -------------------- | --------------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| Event (eventType)    | Origin                | Brief description                                  | Action in EDYE                                             |
+| -------------------- | --------------------- | -------------------------------------------------- | ---------------------------------------------------------- |
 | SUBSCRIPTION_STARTED | Operator via Notifier | Subscription activation (first successful charge). | Activate plan, update internal billing, and enable access. |
-| RENEWAL              | Operator via Notifier | Periodic subscription renewal.     | Update validity and maintain access.                       |
-| SUSPENSION           | Operator via Notifier | Failed charge or temporary suspension.        | Suspend plan and restrict access until regularization.     |
-| CANCELLATION         | Operator via Notifier | Final cancellation.                     | Mark the subscription as canceled and revoke access.       |
+| RENEWAL              | Operator via Notifier | Periodic subscription renewal.                     | Update validity and maintain access.                       |
+| SUSPENSION           | Operator via Notifier | Failed charge or temporary suspension.             | Suspend plan and restrict access until regularization.     |
+| CANCELLATION         | Operator via Notifier | Final cancellation.                                | Mark the subscription as canceled and revoke access.       |
 
 Typical event fields include a transaction identifier (paymentId or subscriptionId), the **msisdn** or user identifier, the event type, and the issue date/time. The operator’s Notifier usually allows including a **signature token** to ensure message integrity.
 
@@ -4132,14 +4116,14 @@ Typical event fields include a transaction identifier (paymentId or subscription
 
 ## 11. Glossary of Terms
 
-| Term                      | Definition                                                                                                                |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Term                             | Definition                                                                                                                |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | **DCB (Direct Carrier Billing)** | Payment method that charges the cost of a transaction to the user’s mobile operator bill.                                 |
-| **API REST**                     | HTTP-based programming interface that follows the REST paradigm to expose web services.                                    |
-| **Notifier**                     | Service provided by the operator to send asynchronous events to EDYE (activations, renewals, suspensions, cancellations).  |
+| **API REST**                     | HTTP-based programming interface that follows the REST paradigm to expose web services.                                   |
+| **Notifier**                     | Service provided by the operator to send asynchronous events to EDYE (activations, renewals, suspensions, cancellations). |
 | **msisdn**                       | Mobile phone number that identifies the subscriber on the operator’s network.                                             |
-| **OAuth 2.0 / OIDC**             | Authorization and authentication standards used to securely exchange credentials between applications.                     |
-| **EventType**                    | Event field indicating the type of notified operation (SUBSCRIPTION_STARTED, RENEWAL, SUSPENSION, CANCELLATION).           |
+| **OAuth 2.0 / OIDC**             | Authorization and authentication standards used to securely exchange credentials between applications.                    |
+| **EventType**                    | Event field indicating the type of notified operation (SUBSCRIPTION_STARTED, RENEWAL, SUSPENSION, CANCELLATION).          |
 
 This document is part of EDYE’s corporate documentation ecosystem. It has been prepared for technical and operational purposes and will be kept up to date as direct billing integrations evolve.
 
@@ -7470,6 +7454,7 @@ Telefónica uses a Notification Endpoint in the CAMARA API to send notifications
 **Date:** 12/01/2025
 
 ---
+
 ## 1. Introduction and Purpose
 
 The EDYE ecosystem integrates multiple services (API, streaming platforms, billing, and connectors) running on a hybrid infrastructure. To ensure availability and protect information, EDYE implements a security, monitoring, and assessment strategy based on specialized tools and established operational practices.
@@ -7479,6 +7464,7 @@ The document provides an operational view of the tools used, the types of data m
 ## 2. Infrastructure Management and Monitoring
 
 ![Security and Monitoring](img/seguridad/infraYseguridad.jpg)
+
 > **Figure 1.** _General flow of the Security and Monitoring process_
 
 # Description of the monitored infrastructure
@@ -7503,6 +7489,7 @@ The information captured by Landscape forms the basis for maintenance tasks, pat
 ## 3. Security and Compliance
 
 ![Security and Compliance](img/seguridad/seguridadCompliance.jpg)
+
 > **Figure 2.** _General flow of the Security and Compliance process_
 
 # General approach
@@ -7513,14 +7500,17 @@ The Security and Compliance diagram places the Qualys platform at the core of th
 ### 3.1. Scanning and analysis tools
 
 - **VMDR (Vulnerability Management, Detection and Response):** Qualys module that manages vulnerabilities. It uses scoring techniques such as TruRisk to identify and classify the most critical vulnerabilities.
+
   - **Scope:** performs daily scans inside and outside servers; surveys internal configurations and external open ports, comparing them against the latest vulnerability database to generate reports with severity and remediation suggestions.
   - **Owner:** DevOps team (administrator: Agustín).
 
 - **WAS (Web Application Scanning):** performs external scans on web applications using a reference attack bank to identify configuration or code vulnerabilities.
+
   - For APIs, the test collection (e.g., Postman) is imported and all endpoints are scanned.
   - **Owner:** DevOps team (administrator: Agustín).
 
 - **Compliance:** module that validates adherence to policies and standards. Qualys verifies that technology operations and data comply with laws and standards (currently validated against the credit card industry standard).
+
   - Allows defining internal policies, generating evidence, and facilitating audits.
 
 - **Qualys Platform:** SaaS platform that integrates the above modules and offers asset inventory, reporting, and remediation.
@@ -7528,16 +7518,17 @@ The Security and Compliance diagram places the Qualys platform at the core of th
 
 #### Scan differentiation
 
-| Scan type               | Tool                | Objective and scope                                                                |
-|------------------------ |-------------------- |-----------------------------------------------------------------------------------|
-| Infrastructure          | VMDR                | Detect vulnerabilities in configurations and operating systems; review external open ports and exposed services. |
-| Applications            | WAS                 | Identify issues in web applications and APIs using automated pentesting techniques. |
-| Vulnerability management | VMDR + Qualys      | Prioritize risks and automate remediation using risk scores.                       |
-| Regulatory compliance   | Compliance          | Verify adherence to standards and policies, currently aligned with the credit card industry standard. |
+| Scan type                | Tool          | Objective and scope                                                                                              |
+| ------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Infrastructure           | VMDR          | Detect vulnerabilities in configurations and operating systems; review external open ports and exposed services. |
+| Applications             | WAS           | Identify issues in web applications and APIs using automated pentesting techniques.                              |
+| Vulnerability management | VMDR + Qualys | Prioritize risks and automate remediation using risk scores.                                                     |
+| Regulatory compliance    | Compliance    | Verify adherence to standards and policies, currently aligned with the credit card industry standard.            |
 
 ## 4. Monitoring and Alerting
 
 ![Monitoring and Alerting](img/seguridad/monitoringAlerting.jpg)
+
 > **Figure 3.** _General flow of the Monitoring and Alerting process_
 
 # Monitoring strategy
@@ -7573,6 +7564,7 @@ Las alertas se configuran en Grafana y se alimentan de Prometheus y Loki. Los um
 ## 5. Code Security
 
 ![Code Security](img/seguridad/codeSecurity.jpg)
+
 > **Figure 4.** _General flow of the Code Security process_
 
 # Security integrated into the development cycle (DevSecOps)
@@ -7586,15 +7578,15 @@ EDYE incorporates security from design through the software lifecycle. Code revi
 
 #### Types of analysis
 
-| Analysis type                     | Tool or function     | Description                                                                 |
-|-----------------------------------|----------------------|-----------------------------------------------------------------------------|
-| Static application security testing (SAST) | SonarQube    | Assesses code quality and security during development, identifying bugs and vulnerabilities before compilation. |
-| Dynamic application security testing (DAST) | OWASP ZAP   | Runs automated penetration tests on running web applications to detect vulnerabilities. |
-| Dependency analysis               | Snyk                 | Examines libraries and packages to identify vulnerable versions and recommends updates. |
-| Code Scanning (GitHub)            | GitHub feature       | Searches for errors and vulnerabilities in repository code.                 |
-| Secret Scanning (GitHub)          | GitHub feature       | Scans repository history to detect exposed tokens, keys, and credentials, generating automatic alerts. |
-| Dependency Review (GitHub)        | GitHub feature       | Shows dependency changes during a pull request, with version and vulnerability information. |
-| Dependabot (GitHub)               | Dependabot           | Automates detection and updates of outdated or vulnerable dependencies, creating pull requests and alerts. |
+| Analysis type                               | Tool or function | Description                                                                                                     |
+| ------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| Static application security testing (SAST)  | SonarQube        | Assesses code quality and security during development, identifying bugs and vulnerabilities before compilation. |
+| Dynamic application security testing (DAST) | OWASP ZAP        | Runs automated penetration tests on running web applications to detect vulnerabilities.                         |
+| Dependency analysis                         | Snyk             | Examines libraries and packages to identify vulnerable versions and recommends updates.                         |
+| Code Scanning (GitHub)                      | GitHub feature   | Searches for errors and vulnerabilities in repository code.                                                     |
+| Secret Scanning (GitHub)                    | GitHub feature   | Scans repository history to detect exposed tokens, keys, and credentials, generating automatic alerts.          |
+| Dependency Review (GitHub)                  | GitHub feature   | Shows dependency changes during a pull request, with version and vulnerability information.                     |
+| Dependabot (GitHub)                         | Dependabot       | Automates detection and updates of outdated or vulnerable dependencies, creating pull requests and alerts.      |
 
 ### 5.2. Relationship with CI/CD
 
@@ -7628,8 +7620,6 @@ La operación de la plataforma de seguridad y monitoreo requiere una coordinaci�
 
 ---
 
-# Official Technical Support Procedure for EDYE / HITN Digital
-
 ## 1. Introduction and Purpose
 
 This document consolidates the current technical support model of EDYE / HITN Digital for internal clients. Its purpose is to serve as an auditable corporate reference for the Technical Support, Operations, DevOps, SRE, and Security teams. The information described here is based solely on the Technical Support Procedure – Internal client and the operational escalation matrix provided by the organization; no roles, flows, tools, or metrics beyond those sources have been added.
@@ -7644,14 +7634,14 @@ The objective of the service is to provide efficient technical assistance to EDY
 
 The service is aimed exclusively at internal clients, defined as technical team collaborators who ensure the delivery of EDYE services. Below are some terms used in the procedure:
 
-| Term         | Definition |
-|-----------------|------------|
-| FAQ             | Acronym for Frequently Asked Questions; repository where common questions about technical topics for EDYE services are collected and answered. |
-| Multichannel      | Practice of assisting partners and internal clients through multiple communication channels such as email and Monday. |
-| Monday          | Work OS used by EDYE for executing projects and workflows. |
-| Status report | Document detailing the progress and current status of a ticket; shows actions taken, time spent, and relevant information to track incident resolution. |
-| SLA (Service Level Agreement) | Agreement that sets response conditions for solving technical incidents. |
-| Ticket          | Digital record created when an internal client reports a problem or requests help; allows tracking, managing, and resolving the incident. |
+| Term                          | Definition                                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FAQ                           | Acronym for Frequently Asked Questions; repository where common questions about technical topics for EDYE services are collected and answered.          |
+| Multichannel                  | Practice of assisting partners and internal clients through multiple communication channels such as email and Monday.                                   |
+| Monday                        | Work OS used by EDYE for executing projects and workflows.                                                                                              |
+| Status report                 | Document detailing the progress and current status of a ticket; shows actions taken, time spent, and relevant information to track incident resolution. |
+| SLA (Service Level Agreement) | Agreement that sets response conditions for solving technical incidents.                                                                                |
+| Ticket                        | Digital record created when an internal client reports a problem or requests help; allows tracking, managing, and resolving the incident.               |
 
 ### 3.2. Scope of the Service
 
@@ -7676,12 +7666,12 @@ Requests received are classified according to their nature and when they are sub
 
 Technical support is provided through the following authorized channels:
 
-| Channel | Description | Access requirements |
-|-------|-------------|---------------------|
-| Monday | Main ticket management platform. Internal clients create, update, and review tickets in Monday. The ticket administrator classifies and assigns tickets to the appropriate agents. | Requires access credentials to the corporate Monday account. |
-| Email/Monday notifications | Agents and the ticket administrator use notifications generated by Monday to assign and communicate ticket status. | The user must have a corporate email registered in Monday. |
-| Zendesk | Used to notify the internal client about the ticket resolution and request confirmation. | Access is managed by the ticket administrator. |
-| Slack | Internal communication channel used for reassignment of level 2 tickets and notifications between agents and the administrator. | Access to authorized internal workspaces. |
+| Channel                    | Description                                                                                                                                                                        | Access requirements                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Monday                     | Main ticket management platform. Internal clients create, update, and review tickets in Monday. The ticket administrator classifies and assigns tickets to the appropriate agents. | Requires access credentials to the corporate Monday account. |
+| Email/Monday notifications | Agents and the ticket administrator use notifications generated by Monday to assign and communicate ticket status.                                                                 | The user must have a corporate email registered in Monday.   |
+| Zendesk                    | Used to notify the internal client about the ticket resolution and request confirmation.                                                                                           | Access is managed by the ticket administrator.               |
+| Slack                      | Internal communication channel used for reassignment of level 2 tickets and notifications between agents and the administrator.                                                    | Access to authorized internal workspaces.                    |
 
 ## 5. Tools Used
 
@@ -7738,13 +7728,13 @@ The external provider or expert participates only when level 3 approves their in
 
 The procedure identifies the following ticket categories:
 
-| Request type | Response time | Responsible / Area | Reference |
-|-------------------|--------------------|--------------------|------------|
-| Day-to-day questions and operations | 2–3 hours during business hours | Operations area – Manager | Escalation matrix |
-| Errors or technical questions | 2–3 hours during business hours | Operations area – Manager | Escalation matrix |
-| Errors or technical questions outside business hours (1st contact) | 24 hours | Operations area – Manager | Escalation matrix |
-| Errors or technical questions outside business hours (2nd contact) | 48 hours | Operations area – Head of Technology | Escalation matrix |
-| Marketing and business questions | 24 hours | Marketing and Business – VP | Escalation matrix |
+| Request type                                                       | Response time                   | Responsible / Area                   | Reference         |
+| ------------------------------------------------------------------ | ------------------------------- | ------------------------------------ | ----------------- |
+| Day-to-day questions and operations                                | 2–3 hours during business hours | Operations area – Manager            | Escalation matrix |
+| Errors or technical questions                                      | 2–3 hours during business hours | Operations area – Manager            | Escalation matrix |
+| Errors or technical questions outside business hours (1st contact) | 24 hours                        | Operations area – Manager            | Escalation matrix |
+| Errors or technical questions outside business hours (2nd contact) | 48 hours                        | Operations area – Head of Technology | Escalation matrix |
+| Marketing and business questions                                   | 24 hours                        | Marketing and Business – VP          | Escalation matrix |
 
 ### 8.2. Classification Criteria
 
@@ -7768,6 +7758,7 @@ Business hours are considered to be the work hours established internally (not d
 ## 10. Technical Support Care Flow
 
 ![Internal Client Support](img/soporteClienteInterno.jpg)
+
 > **Figure 1.** _General flow of Internal Client Support_
 
 ### 10.1. Step-by-Step Flow Description
@@ -7805,13 +7796,13 @@ Ticket closure occurs when:
 
 The operational escalation matrix indicates who to contact based on the type of request and schedule. The main information is summarized below:
 
-| Escalation scenario | Response time | Area / Position | Contact | Email | Phone |
-|--------------------------|--------------------|---------------|----------|--------------------|----------|
-| Day-to-day questions and operations | 2–3 hours during business hours | Operations / Manager | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errors or technical questions during business hours | 2–3 hours | Operations / Manager | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errors or technical questions outside business hours (1st contact) | 24 hours | Operations / Manager | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errors or technical questions outside business hours (2nd contact) | 48 hours | Operations / Head of Technology | Agustín Gómez Vega | agustin@edye.com | +1 (786) 329‑9448 |
-| Marketing and business questions | 24 hours | Marketing and Business / VP | Maximiliano Vaccaro | mvaccaro@hitn.org | +1 (305) 721‑4309 |
+| Escalation scenario                                                | Response time                   | Area / Position                 | Contact                         | Email                 | Phone             |
+| ------------------------------------------------------------------ | ------------------------------- | ------------------------------- | ------------------------------- | --------------------- | ----------------- |
+| Day-to-day questions and operations                                | 2–3 hours during business hours | Operations / Manager            | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errors or technical questions during business hours                | 2–3 hours                       | Operations / Manager            | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errors or technical questions outside business hours (1st contact) | 24 hours                        | Operations / Manager            | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errors or technical questions outside business hours (2nd contact) | 48 hours                        | Operations / Head of Technology | Agustín Gómez Vega              | agustin@edye.com      | +1 (786) 329‑9448 |
+| Marketing and business questions                                   | 24 hours                        | Marketing and Business / VP     | Maximiliano Vaccaro             | mvaccaro@hitn.org     | +1 (305) 721‑4309 |
 
 ### 11.2. Responsibles and Times
 
@@ -7827,10 +7818,10 @@ The contacts indicated in the matrix are responsible for responding within the e
 
 The procedure defines two key metrics:
 
-| Metric | Frequency | Responsible | Tool |
-|---------|------------|-------------|-------------|
-| Number of tickets received | Daily | Ticket administrator | Monday / Zendesk |
-| SLAs met by user or type | Weekly | Ticket administrator | Monday |
+| Metric                     | Frequency | Responsible          | Tool             |
+| -------------------------- | --------- | -------------------- | ---------------- |
+| Number of tickets received | Daily     | Ticket administrator | Monday / Zendesk |
+| SLAs met by user or type   | Weekly    | Ticket administrator | Monday           |
 
 These metrics are used to control workload and the effectiveness of technical support and are reported to the operations and management teams.
 
@@ -7869,8 +7860,6 @@ The Technical Support, Operations, DevOps, SRE, and Security teams must periodic
 
 ---
 
-# Technical Support Procedure for External Clients
-
 ## 1. Introduction
 
 This document serves as the corporate reference for the technical support service for external clients in the EDYE / HITN Digital ecosystem. Its purpose is to describe, in an operational and non-commercial manner, how assistance is provided to partners and external clients with technical needs related to EDYE’s technological services. The service philosophy is to provide effective and efficient assistance, both in hardware and software, adopting a proactive and reactive approach to address needs and prevent future incidents.
@@ -7898,29 +7887,29 @@ The reviewed documentation does not explicitly define which activities fall outs
 
 Para facilitar la comprensión del proceso, se incluyen los principales términos utilizados en el servicio:
 
-| Term | Definition |
-|---------|------------|
-| Internal clients | Members of the technical team responsible for ensuring EDYE service delivery. |
-| FAQ (Frequently Asked Questions) | Section on websites or repositories where common questions that partners and external clients may have about EDYE technical services are collected and answered. |
-| Multichannel | Practice of assisting partners and external clients through multiple communication channels; in this case email and Monday. |
-| Monday | Work OS that facilitates project execution and workflows. Used for internal notifications, ticket logging, and tracking. |
-| Partner / External client | External customer or associate with active services for distributing EDYE content. |
-| Status report | Document detailing ticket progress and status: actions taken, time spent, and relevant information to track progress. |
-| SLA (Service Level Agreement) | Agreement that sets response conditions for resolving technical incidents. They may be defined internally or via contracts with partners. |
-| End users | Direct EDYE subscribers or partner subscribers who access EDYE content. |
-| Ticket | Digital record created when a partner or external client reports a problem or requests help. It enables efficient tracking, management, and resolution of the incident. |
-| Zendesk | Customer service platform that centralizes interactions across multiple channels and enables process automation and data analysis. |
+| Term                             | Definition                                                                                                                                                              |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Internal clients                 | Members of the technical team responsible for ensuring EDYE service delivery.                                                                                           |
+| FAQ (Frequently Asked Questions) | Section on websites or repositories where common questions that partners and external clients may have about EDYE technical services are collected and answered.        |
+| Multichannel                     | Practice of assisting partners and external clients through multiple communication channels; in this case email and Monday.                                             |
+| Monday                           | Work OS that facilitates project execution and workflows. Used for internal notifications, ticket logging, and tracking.                                                |
+| Partner / External client        | External customer or associate with active services for distributing EDYE content.                                                                                      |
+| Status report                    | Document detailing ticket progress and status: actions taken, time spent, and relevant information to track progress.                                                   |
+| SLA (Service Level Agreement)    | Agreement that sets response conditions for resolving technical incidents. They may be defined internally or via contracts with partners.                               |
+| End users                        | Direct EDYE subscribers or partner subscribers who access EDYE content.                                                                                                 |
+| Ticket                           | Digital record created when a partner or external client reports a problem or requests help. It enables efficient tracking, management, and resolution of the incident. |
+| Zendesk                          | Customer service platform that centralizes interactions across multiple channels and enables process automation and data analysis.                                      |
 
 ## 5. Service Summary
 
-| Item | Description |
-|----------|------------|
-| Service name | Multichannel technical support |
-| Objective | Provide efficient technical assistance according to user type. |
-| Target audience | External clients. |
-| Main channel | Zendesk, which requires authentication by the partner or external client. |
-| Support scope | Handling hardware and software technical incidents related to EDYE services. The service seeks to resolve current issues and prevent future incidents. |
-| Out of scope | No specific restrictions or exclusions are described in the current documentation. |
+| Item            | Description                                                                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Service name    | Multichannel technical support                                                                                                                         |
+| Objective       | Provide efficient technical assistance according to user type.                                                                                         |
+| Target audience | External clients.                                                                                                                                      |
+| Main channel    | Zendesk, which requires authentication by the partner or external client.                                                                              |
+| Support scope   | Handling hardware and software technical incidents related to EDYE services. The service seeks to resolve current issues and prevent future incidents. |
+| Out of scope    | No specific restrictions or exclusions are described in the current documentation.                                                                     |
 
 ## 6. Roles and Responsibilities
 
@@ -7973,24 +7962,24 @@ Provide the technical solution in cases requiring specialized support.
 
 ### 7.3. Use of each channel
 
-| Channel | Use |
-|-------|-----|
-| Zendesk | Creation and tracking of support tickets; communication with the external client and resolution notifications. |
-| Monday | Internal tool for ticket classification, assignment, tracking, and reporting; sends notifications between administrators and agents. |
-| Slack | Internal channel used for notifications and ticket reassignment to higher levels when appropriate. |
-| Knowledge base | Self-service resource allowing external clients to consult articles to resolve common issues without opening a ticket. |
+| Channel        | Use                                                                                                                                  |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Zendesk        | Creation and tracking of support tickets; communication with the external client and resolution notifications.                       |
+| Monday         | Internal tool for ticket classification, assignment, tracking, and reporting; sends notifications between administrators and agents. |
+| Slack          | Internal channel used for notifications and ticket reassignment to higher levels when appropriate.                                   |
+| Knowledge base | Self-service resource allowing external clients to consult articles to resolve common issues without opening a ticket.               |
 
 ## 8. Ticket Classification
 
 The documentation provides an operational escalation matrix with request types, response times, and associated contacts. These ticket types constitute the currently defined classification. Times are expressed in hours from ticket receipt, and contacts correspond to the operations area unless otherwise indicated.
 
-| Request type | Response time | Area/Contact | Role | Medium |
-|-------------------|--------------------|--------------|-------|-------|
-| Contact for questions and day-to-day operations | 2–3 hours during business hours | Operations – Constantine Costopoulos | Manager | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalation of errors or technical questions | 2–3 hours during business hours | Operations – Constantine Costopoulos | Manager | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalation of errors or technical questions outside business hours (1st contact) | 24 hours | Operations – Constantine Costopoulos | Manager | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalation of errors or technical questions outside business hours (2nd contact) | 48 hours | Operations – Agustín Gomez Vega | Head of Technology | agustin@edye.com / +1 (786) 329‑9448 |
-| Marketing and business questions | 24 hours | Marketing and Business – Maximiliano Vaccaro | VP | mvaccaro@hitn.org / +1 (305) 721‑4309 |
+| Request type                                                                     | Response time                   | Area/Contact                                 | Role               | Medium                                    |
+| -------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------- | ------------------ | ----------------------------------------- |
+| Contact for questions and day-to-day operations                                  | 2–3 hours during business hours | Operations – Constantine Costopoulos         | Manager            | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalation of errors or technical questions                                      | 2–3 hours during business hours | Operations – Constantine Costopoulos         | Manager            | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalation of errors or technical questions outside business hours (1st contact) | 24 hours                        | Operations – Constantine Costopoulos         | Manager            | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalation of errors or technical questions outside business hours (2nd contact) | 48 hours                        | Operations – Agustín Gomez Vega              | Head of Technology | agustin@edye.com / +1 (786) 329‑9448      |
+| Marketing and business questions                                                 | 24 hours                        | Marketing and Business – Maximiliano Vaccaro | VP                 | mvaccaro@hitn.org / +1 (305) 721‑4309     |
 
 ### 8.1. Scheduling considerations
 
@@ -8000,6 +7989,7 @@ The documentation provides an operational escalation matrix with request types, 
 ## 9. Support and Resolution Flow
 
 ![Support and resolution flow](img/soporteClienteExterno.jpg)
+
 > **Figure 1.** _General flow of the support and resolution process_
 
 The ticket handling process follows a sequence of steps defined in the procedure, with corresponding records in Zendesk and Monday:
@@ -8034,13 +8024,13 @@ Escalation levels ensure support continuity based on schedule and incident natur
 
 Service level agreements (SLAs) are defined by request type and schedule. The documentation sets the following response times:
 
-| Request type | Support level | Documented SLA |
-|-------------------|-----------------|-----------------|
-| Day-to-day questions and operations | Level 1 | 2–3 hours during business hours |
-| Errors or technical questions (business hours) | Level 1 | 2–3 hours |
-| Errors or technical questions (first contact outside business hours) | Level 1 / Operations Management | 24 hours |
-| Errors or technical questions (second contact outside business hours) | Level 2 / Head of Technology | 48 hours |
-| Marketing and business questions | VP of Marketing and Business | 24 hours |
+| Request type                                                          | Support level                   | Documented SLA                  |
+| --------------------------------------------------------------------- | ------------------------------- | ------------------------------- |
+| Day-to-day questions and operations                                   | Level 1                         | 2–3 hours during business hours |
+| Errors or technical questions (business hours)                        | Level 1                         | 2–3 hours                       |
+| Errors or technical questions (first contact outside business hours)  | Level 1 / Operations Management | 24 hours                        |
+| Errors or technical questions (second contact outside business hours) | Level 2 / Head of Technology    | 48 hours                        |
+| Marketing and business questions                                      | VP of Marketing and Business    | 24 hours                        |
 
 The documentation does not define resolution times or availability commitments; only initial response times are set.
 
@@ -8065,10 +8055,10 @@ Knowledge management is a key component to reduce recurrence of incidents and im
 
 The support service performs tracking via metrics defined in the procedure:
 
-| Metric | Frequency | Responsible | Tool |
-|---------|------------|-------------|-------------|
-| Number of tickets received | Daily | Ticket administrator | Monday / Zendesk |
-| SLAs met by user/type | Weekly | Ticket administrator | Monday |
+| Metric                     | Frequency | Responsible          | Tool             |
+| -------------------------- | --------- | -------------------- | ---------------- |
+| Number of tickets received | Daily     | Ticket administrator | Monday / Zendesk |
+| SLAs met by user/type      | Weekly    | Ticket administrator | Monday           |
 
 No additional metrics such as resolution time or customer satisfaction are described; therefore, any other metric is considered undefined in the current documentation.
 
@@ -8076,11 +8066,11 @@ No additional metrics such as resolution time or customer satisfaction are descr
 
 The documentation records templates and forms used in Monday to streamline ticket management:
 
-| Tool | Template/Macro | Objective |
-|-------------|-----------------|----------|
-| Monday | Errors and technical questions form | Streamline handling of frequent technical incidents. |
-| Monday | Marketing and business form | Streamline handling of marketing and business questions. |
-| Monday | Status report format | Establish the minimum required content for status reports on each ticket. |
+| Tool   | Template/Macro                      | Objective                                                                 |
+| ------ | ----------------------------------- | ------------------------------------------------------------------------- |
+| Monday | Errors and technical questions form | Streamline handling of frequent technical incidents.                      |
+| Monday | Marketing and business form         | Streamline handling of marketing and business questions.                  |
+| Monday | Status report format                | Establish the minimum required content for status reports on each ticket. |
 
 ### 15.1 Available forms
 

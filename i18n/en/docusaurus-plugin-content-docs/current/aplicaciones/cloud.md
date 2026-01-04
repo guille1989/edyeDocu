@@ -7,7 +7,6 @@ title: 🈸 Cloud Service
 **Date:** 12/01/2025
 
 ---
-# Cloud Service
 
 ## Introduction and Purpose
 
@@ -27,13 +26,13 @@ The service's main responsibilities are:
 
 The Cloud Service is composed of several layers:
 
-| Component                  | Description                                                                                                                                                                                                                     |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Object storage             | Distributed storage system that stores objects of any size. Supports replication across multiple zones for high availability and durability.                                                                                    |
-| Transcoder                 | Engine that ingests source files and generates versions adapted for streaming (HLS/DASH). It also produces thumbnails and resized images used by the Admin and Play services.                                                    |
-| CDN                        | Global network that caches asset copies to reduce latency in delivery to end users. Configures cache policies, invalidation, and protection against mass downloads.                                                             |
-| Signing service            | Component that generates temporary signatures and access tokens so content is only accessible with valid permissions.                                                                                                            |
-| Metadata database          | Stores information associated with each file: physical location, versions, transcoding status, and relationships to catalog titles.                                                                                              |
+| Component         | Description                                                                                                                                                                   |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Object storage    | Distributed storage system that stores objects of any size. Supports replication across multiple zones for high availability and durability.                                  |
+| Transcoder        | Engine that ingests source files and generates versions adapted for streaming (HLS/DASH). It also produces thumbnails and resized images used by the Admin and Play services. |
+| CDN               | Global network that caches asset copies to reduce latency in delivery to end users. Configures cache policies, invalidation, and protection against mass downloads.           |
+| Signing service   | Component that generates temporary signatures and access tokens so content is only accessible with valid permissions.                                                         |
+| Metadata database | Stores information associated with each file: physical location, versions, transcoding status, and relationships to catalog titles.                                           |
 
 ### Architecture Diagram
 

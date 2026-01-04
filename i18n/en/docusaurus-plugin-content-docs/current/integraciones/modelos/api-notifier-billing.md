@@ -4,10 +4,9 @@ title: 🤝 API Notifier Billing Integration
 ---
 
 **Version:** 1.0  
-**Date:** 12/01/2025  
+**Date:** 12/01/2025
 
 ---
-# Generic EDYE Integration — API + Notifier (DCB)
 
 ## 1. Introduction
 
@@ -36,21 +35,22 @@ The integration is based on two communication vectors:
 The following figure illustrates the general architecture of the API + Notifier model. The diagram is conceptual and shows the essential elements without specific implementation details:
 
 ![Ciclo DevOps](/img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
+
 > **Figure 1.** Logical architecture of the integration
 
 ## 4. Main Components
 
-| Component                         | Brief description                                                                                                                                              |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **User**                        | End customer who uses the EDYE application to access content and manage their subscription.                                                                    |
-| **EDYE Application**                    | Mobile or web application where the user consumes the service. Manages the user experience and communicates with the EDYE API.                                   |
-| **EDYE API (REST)**                    | Set of services exposed by EDYE to create accounts, authenticate users, check subscription status, and authorize access to content.                             |
-| **Authentication and Registration Module** | Processes user registration and login. Implements security requirements (strong passwords, age validations).                                                     |
-| **Subscription Management Module** | Stores and queries the user subscription status. Interacts with the operator to start, renew, or cancel subscriptions.                                          |
-| **Internal billing**                    | EDYE’s internal system that manages billing, reconciliation, and service provisioning based on events received from the operator.                               |
-| **Content Access Manager**      | Controls access to episodes, games, and other resources according to the user’s active plan.                                                                  |
-| **Operator Notifier**              | Operator service that sends asynchronous events (activation, renewal, suspension, and cancellation) to the webhook configured by EDYE to keep the subscription synchronized. |
-| **DCB Operator**                       | Entity that provides direct billing service through the mobile network and supplies the APIs and the Notifier to manage payments and events.                   |
+| Component                                  | Brief description                                                                                                                                                            |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **User**                                   | End customer who uses the EDYE application to access content and manage their subscription.                                                                                  |
+| **EDYE Application**                       | Mobile or web application where the user consumes the service. Manages the user experience and communicates with the EDYE API.                                               |
+| **EDYE API (REST)**                        | Set of services exposed by EDYE to create accounts, authenticate users, check subscription status, and authorize access to content.                                          |
+| **Authentication and Registration Module** | Processes user registration and login. Implements security requirements (strong passwords, age validations).                                                                 |
+| **Subscription Management Module**         | Stores and queries the user subscription status. Interacts with the operator to start, renew, or cancel subscriptions.                                                       |
+| **Internal billing**                       | EDYE’s internal system that manages billing, reconciliation, and service provisioning based on events received from the operator.                                            |
+| **Content Access Manager**                 | Controls access to episodes, games, and other resources according to the user’s active plan.                                                                                 |
+| **Operator Notifier**                      | Operator service that sends asynchronous events (activation, renewal, suspension, and cancellation) to the webhook configured by EDYE to keep the subscription synchronized. |
+| **DCB Operator**                           | Entity that provides direct billing service through the mobile network and supplies the APIs and the Notifier to manage payments and events.                                 |
 
 ## 5. Communication Flows
 
@@ -87,12 +87,12 @@ Subscriptions are renewed according to the plan frequency (for example, weekly, 
 
 ## 6. Event Summary Table
 
-| Event (eventType)   | Origin                | Brief description                           | Action in EDYE                                               |
-| -------------------- | --------------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| Event (eventType)    | Origin                | Brief description                                  | Action in EDYE                                             |
+| -------------------- | --------------------- | -------------------------------------------------- | ---------------------------------------------------------- |
 | SUBSCRIPTION_STARTED | Operator via Notifier | Subscription activation (first successful charge). | Activate plan, update internal billing, and enable access. |
-| RENEWAL              | Operator via Notifier | Periodic subscription renewal.     | Update validity and maintain access.                       |
-| SUSPENSION           | Operator via Notifier | Failed charge or temporary suspension.        | Suspend plan and restrict access until regularization.     |
-| CANCELLATION         | Operator via Notifier | Final cancellation.                     | Mark the subscription as canceled and revoke access.       |
+| RENEWAL              | Operator via Notifier | Periodic subscription renewal.                     | Update validity and maintain access.                       |
+| SUSPENSION           | Operator via Notifier | Failed charge or temporary suspension.             | Suspend plan and restrict access until regularization.     |
+| CANCELLATION         | Operator via Notifier | Final cancellation.                                | Mark the subscription as canceled and revoke access.       |
 
 Typical event fields include a transaction identifier (paymentId or subscriptionId), the **msisdn** or user identifier, the event type, and the issue date/time. The operator’s Notifier usually allows including a **signature token** to ensure message integrity.
 
@@ -144,13 +144,13 @@ Typical event fields include a transaction identifier (paymentId or subscription
 
 ## 11. Glossary of Terms
 
-| Term                      | Definition                                                                                                                |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Term                             | Definition                                                                                                                |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | **DCB (Direct Carrier Billing)** | Payment method that charges the cost of a transaction to the user’s mobile operator bill.                                 |
-| **API REST**                     | HTTP-based programming interface that follows the REST paradigm to expose web services.                                    |
-| **Notifier**                     | Service provided by the operator to send asynchronous events to EDYE (activations, renewals, suspensions, cancellations).  |
+| **API REST**                     | HTTP-based programming interface that follows the REST paradigm to expose web services.                                   |
+| **Notifier**                     | Service provided by the operator to send asynchronous events to EDYE (activations, renewals, suspensions, cancellations). |
 | **msisdn**                       | Mobile phone number that identifies the subscriber on the operator’s network.                                             |
-| **OAuth 2.0 / OIDC**             | Authorization and authentication standards used to securely exchange credentials between applications.                     |
-| **EventType**                    | Event field indicating the type of notified operation (SUBSCRIPTION_STARTED, RENEWAL, SUSPENSION, CANCELLATION).           |
+| **OAuth 2.0 / OIDC**             | Authorization and authentication standards used to securely exchange credentials between applications.                    |
+| **EventType**                    | Event field indicating the type of notified operation (SUBSCRIPTION_STARTED, RENEWAL, SUSPENSION, CANCELLATION).          |
 
 This document is part of EDYE’s corporate documentation ecosystem. It has been prepared for technical and operational purposes and will be kept up to date as direct billing integrations evolve.

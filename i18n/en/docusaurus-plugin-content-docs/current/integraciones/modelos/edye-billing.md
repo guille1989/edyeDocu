@@ -8,8 +8,6 @@ sidebar_position: 2
 
 ---
 
-# Integration Model: Edye Billing
-
 This document describes the standard Billing integration model within the EDYE / HITN Digital ecosystem, used for managing subscriptions, charges, renewals, cancellations, and access states associated with consumption of content and applications.
 
 The model is reusable for any partner requiring direct billing integration, carrier billing, or external gateway, maintaining a homogeneous technical-operational approach.

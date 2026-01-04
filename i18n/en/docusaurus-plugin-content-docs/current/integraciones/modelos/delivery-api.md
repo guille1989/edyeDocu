@@ -8,8 +8,6 @@ sidebar_position: 2
 
 ---
 
-# Integration Model: Content Delivery via API
-
 This document describes the standard delivery model via API within the EDYE ecosystem, used by partners to consume catalog, metadata, and images directly from endpoints (without file-based transfer such as SFTP/Aspera).
 
 This model applies, among others, to partners that integrate catalog via API (for example, OTT applications, operators, or aggregators consuming JSON). The structure and style of this document follow the same pattern as the attached example.

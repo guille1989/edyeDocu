@@ -8,8 +8,6 @@ title: "Soporte Clinetes Internos"
 
 ---
 
-# Procedimiento oficial de Soporte Técnico de EDYE / HITN Digital
-
 ## 1. Introducción y propósito
 
 Este documento consolida el modelo actual de soporte técnico de EDYE / HITN Digital para clientes internos. Su finalidad es servir como referencia corporativa auditable para los equipos de Soporte Técnico, Operaciones, DevOps, SRE y Seguridad. La información aquí descrita se basa únicamente en el Procedimiento de Soporte Técnico – Cliente interno y la Matriz de escalamiento operativo facilitados por la organización; no se han añadido roles, flujos, herramientas o métricas no contemplados en dichas fuentes.
@@ -24,14 +22,14 @@ El objetivo del servicio es proporcionar asistencia técnica eficiente a los col
 
 El servicio se dirige exclusivamente a clientes internos, definidos como colaboradores del equipo técnico que aseguran la prestación de los servicios de EDYE. A continuación se recogen algunos términos usados en el procedimiento:
 
-| Término         | Definición |
-|-----------------|------------|
-| FAQ             | Acrónimo de Frequently Asked Questions o preguntas frecuentes; repositorio donde se recopilan y responden preguntas comunes sobre temas técnicos de los servicios de EDYE. |
-| Multicanal      | Práctica de asistencia a partners y clientes internos a través de múltiples canales de comunicación como correo electrónico y Monday. |
-| Monday          | Work OS utilizado por EDYE para la ejecución de proyectos y flujos de trabajo. |
-| Reporte de estado | Documento que detalla el progreso y la situación actual de un ticket; muestra acciones tomadas, tiempo empleado e información relevante para rastrear la resolución del incidente. |
-| SLA (Service Level Agreement) | Acuerdo de nivel de servicio que establece condiciones de respuesta en la solución de incidentes técnicos. |
-| Ticket          | Registro digital creado cuando un cliente interno reporta un problema o solicitud de ayuda; permite rastrear, gestionar y resolver la incidencia. |
+| Término                       | Definición                                                                                                                                                                         |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FAQ                           | Acrónimo de Frequently Asked Questions o preguntas frecuentes; repositorio donde se recopilan y responden preguntas comunes sobre temas técnicos de los servicios de EDYE.         |
+| Multicanal                    | Práctica de asistencia a partners y clientes internos a través de múltiples canales de comunicación como correo electrónico y Monday.                                              |
+| Monday                        | Work OS utilizado por EDYE para la ejecución de proyectos y flujos de trabajo.                                                                                                     |
+| Reporte de estado             | Documento que detalla el progreso y la situación actual de un ticket; muestra acciones tomadas, tiempo empleado e información relevante para rastrear la resolución del incidente. |
+| SLA (Service Level Agreement) | Acuerdo de nivel de servicio que establece condiciones de respuesta en la solución de incidentes técnicos.                                                                         |
+| Ticket                        | Registro digital creado cuando un cliente interno reporta un problema o solicitud de ayuda; permite rastrear, gestionar y resolver la incidencia.                                  |
 
 ### 3.2. Alcance del servicio
 
@@ -56,12 +54,12 @@ Las solicitudes recibidas se clasifican según su naturaleza y el horario en que
 
 El soporte técnico se presta a través de los siguientes canales autorizados:
 
-| Canal | Descripción | Requisitos de acceso |
-|-------|-------------|---------------------|
-| Monday | Plataforma principal de gestión de tickets. Los clientes internos crean, actualizan y consultan tickets en Monday. El Administrador de tickets clasifica y asigna los tickets a los agentes correspondientes. | Requiere credenciales de acceso a la cuenta corporativa de Monday. |
-| Correo electrónico/Monday notifications | Los agentes y el administrador de tickets utilizan notificaciones generadas por Monday para asignar y comunicar el estado de los tickets. | El usuario debe tener un correo corporativo registrado en Monday. |
-| Zendesk | Se utiliza para notificar al cliente interno sobre la solución del ticket y solicitar confirmación. | El acceso es gestionado por el administrador de tickets. |
-| Slack | Canal de comunicación interna empleado para la reasignación de tickets de nivel 2 y notificaciones entre agentes y administrador. | Acceso a espacios de trabajo internos autorizados. |
+| Canal                                   | Descripción                                                                                                                                                                                                   | Requisitos de acceso                                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Monday                                  | Plataforma principal de gestión de tickets. Los clientes internos crean, actualizan y consultan tickets en Monday. El Administrador de tickets clasifica y asigna los tickets a los agentes correspondientes. | Requiere credenciales de acceso a la cuenta corporativa de Monday. |
+| Correo electrónico/Monday notifications | Los agentes y el administrador de tickets utilizan notificaciones generadas por Monday para asignar y comunicar el estado de los tickets.                                                                     | El usuario debe tener un correo corporativo registrado en Monday.  |
+| Zendesk                                 | Se utiliza para notificar al cliente interno sobre la solución del ticket y solicitar confirmación.                                                                                                           | El acceso es gestionado por el administrador de tickets.           |
+| Slack                                   | Canal de comunicación interna empleado para la reasignación de tickets de nivel 2 y notificaciones entre agentes y administrador.                                                                             | Acceso a espacios de trabajo internos autorizados.                 |
 
 ## 5. Herramientas utilizadas
 
@@ -118,13 +116,13 @@ El proveedor o experto externo participa únicamente cuando el nivel 3 aprueba s
 
 El procedimiento identifica las siguientes categorías de tickets:
 
-| Tipo de solicitud | Tiempo de respuesta | Responsable / Área | Referencia |
-|-------------------|--------------------|--------------------|------------|
-| Dudas y operaciones del día a día | 2–3 horas en horario comercial | Área de Operaciones – Gerente | Matriz de escalamiento |
-| Errores o preguntas técnicas | 2–3 horas en horario comercial | Área de Operaciones – Gerente | Matriz de escalamiento |
-| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas | Área de Operaciones – Gerente | Matriz de escalamiento |
-| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas | Área de Operaciones – Cabeza de Tecnología | Matriz de escalamiento |
-| Preguntas de mercadeo y negocio | 24 horas | Mercadeo y Negocio – VP | Matriz de escalamiento |
+| Tipo de solicitud                                                      | Tiempo de respuesta            | Responsable / Área                         | Referencia             |
+| ---------------------------------------------------------------------- | ------------------------------ | ------------------------------------------ | ---------------------- |
+| Dudas y operaciones del día a día                                      | 2–3 horas en horario comercial | Área de Operaciones – Gerente              | Matriz de escalamiento |
+| Errores o preguntas técnicas                                           | 2–3 horas en horario comercial | Área de Operaciones – Gerente              | Matriz de escalamiento |
+| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas                       | Área de Operaciones – Gerente              | Matriz de escalamiento |
+| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas                       | Área de Operaciones – Cabeza de Tecnología | Matriz de escalamiento |
+| Preguntas de mercadeo y negocio                                        | 24 horas                       | Mercadeo y Negocio – VP                    | Matriz de escalamiento |
 
 ### 8.2. Criterios de clasificación
 
@@ -148,6 +146,7 @@ Se consideran horario comercial las horas laborales establecidas internamente (n
 ## 10. Flujo de atención del soporte técnico
 
 ![Soporte Clientes Internos ](/img/soporteClienteInterno.jpg)
+
 > **Figura 1.** _Flujo general del Soporte Clientes Internos_
 
 ### 10.1. Descripción paso a paso del flujo
@@ -185,13 +184,13 @@ El cierre del ticket ocurre cuando:
 
 La matriz de escalamiento operativo indica a quién contactar según el tipo de solicitud y el horario. A continuación se resume la información principal:
 
-| Escenario de escalamiento | Tiempo de respuesta | Área / Puesto | Contacto | Correo electrónico | Teléfono |
-|--------------------------|--------------------|---------------|----------|--------------------|----------|
-| Dudas y operaciones del día a día | 2–3 horas en horario comercial | Operaciones / Gerente | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errores o preguntas técnicas en horario comercial | 2–3 horas | Operaciones / Gerente | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas | Operaciones / Gerente | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas | Operaciones / Cabeza de Tecnología | Agustín Gómez Vega | agustin@edye.com | +1 (786) 329‑9448 |
-| Preguntas de mercadeo y negocio | 24 horas | Mercadeo y Negocio / VP | Maximiliano Vaccaro | mvaccaro@hitn.org | +1 (305) 721‑4309 |
+| Escenario de escalamiento                                              | Tiempo de respuesta            | Área / Puesto                      | Contacto                        | Correo electrónico    | Teléfono          |
+| ---------------------------------------------------------------------- | ------------------------------ | ---------------------------------- | ------------------------------- | --------------------- | ----------------- |
+| Dudas y operaciones del día a día                                      | 2–3 horas en horario comercial | Operaciones / Gerente              | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errores o preguntas técnicas en horario comercial                      | 2–3 horas                      | Operaciones / Gerente              | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas                       | Operaciones / Gerente              | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas                       | Operaciones / Cabeza de Tecnología | Agustín Gómez Vega              | agustin@edye.com      | +1 (786) 329‑9448 |
+| Preguntas de mercadeo y negocio                                        | 24 horas                       | Mercadeo y Negocio / VP            | Maximiliano Vaccaro             | mvaccaro@hitn.org     | +1 (305) 721‑4309 |
 
 ### 11.2. Responsables y tiempos
 
@@ -207,10 +206,10 @@ Los contactos indicados en la matriz son responsables de responder dentro de los
 
 El procedimiento define dos métricas clave:
 
-| Métrica | Frecuencia | Responsable | Herramienta |
-|---------|------------|-------------|-------------|
-| Número de tickets recibidos | Diario | Administrador de tickets | Monday / Zendesk |
-| SLA cumplidos por usuario o tipo | Semanal | Administrador de tickets | Monday |
+| Métrica                          | Frecuencia | Responsable              | Herramienta      |
+| -------------------------------- | ---------- | ------------------------ | ---------------- |
+| Número de tickets recibidos      | Diario     | Administrador de tickets | Monday / Zendesk |
+| SLA cumplidos por usuario o tipo | Semanal    | Administrador de tickets | Monday           |
 
 Estas métricas se utilizan para controlar la carga de trabajo y la eficacia del soporte técnico y se reportan a los equipos de operaciones y dirección.
 

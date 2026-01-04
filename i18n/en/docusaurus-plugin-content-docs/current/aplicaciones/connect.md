@@ -7,8 +7,6 @@ title: 🈸 Connect Service (Conecta)
 
 ---
 
-# Connect Service (Conecta)
-
 ## Introduction and Purpose
 
 The Connect Service, also known as Conecta, is the component responsible for authenticating users who access EDYE/HITN Digital through external distributors (for example, pay TV providers). This document offers a technical description of its infrastructure and operational procedures for DevOps, SRE, Operations, and Security teams.

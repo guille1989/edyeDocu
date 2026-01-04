@@ -2,12 +2,11 @@
 id: app-billing
 title: 🈸 Billing Service
 ---
+
 **Version:** 1.0  
-**Date:** 12/01/2025  
+**Date:** 12/01/2025
 
 ---
-
-# Billing Service
 
 ## 1. Introduction and Purpose
 
@@ -27,12 +26,12 @@ The main functions of the service are:
 
 The Billing Service consists of the following elements:
 
-| Component                 | Description |
-|---------------------------|-------------|
-| Payment interface         | API that exposes subscription, cancellation, and renewal operations. The interface is based on Node.js/Express to orchestrate flows and communicate with external services. |
-| Subscription provider     | The platform uses a third-party service specialized in paywall and subscription management to maintain customer information. This provider offers tools to create plans, update prices, and process changes. |
-| Internal database         | Stores non-sensitive information such as customer IDs, change history, and correlations with EDYE users. MySQL is used for its reliability and ACID support. |
-| Auxiliary services        | Include a notification service to send emails about renewals and expirations, and a reconciliation service to compare internal records with payment provider reports. |
+| Component             | Description                                                                                                                                                                                                  |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Payment interface     | API that exposes subscription, cancellation, and renewal operations. The interface is based on Node.js/Express to orchestrate flows and communicate with external services.                                  |
+| Subscription provider | The platform uses a third-party service specialized in paywall and subscription management to maintain customer information. This provider offers tools to create plans, update prices, and process changes. |
+| Internal database     | Stores non-sensitive information such as customer IDs, change history, and correlations with EDYE users. MySQL is used for its reliability and ACID support.                                                 |
+| Auxiliary services    | Include a notification service to send emails about renewals and expirations, and a reconciliation service to compare internal records with payment provider reports.                                        |
 
 ### 3.1. Architecture Diagram
 

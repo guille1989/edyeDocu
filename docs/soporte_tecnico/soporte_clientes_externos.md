@@ -8,8 +8,6 @@ title: "Soporte Clinetes Externos"
 
 ---
 
-# Procedimiento de Soporte Técnico para Clientes Externos
-
 ## 1. Introducción
 
 El presente documento constituye la referencia corporativa del servicio de soporte técnico para clientes externos del ecosistema EDYE / HITN Digital. Su finalidad es describir, de manera operativa y no comercial, cómo se brinda asistencia a partners y clientes externos que presentan necesidades técnicas relacionadas con los servicios tecnológicos de EDYE. La filosofía del servicio es proporcionar asistencia eficaz y eficiente, tanto en hardware como en software, adoptando un enfoque proactivo y reactivo para atender necesidades y prevenir incidentes futuros.
@@ -37,29 +35,29 @@ La documentación revisada no define explícitamente qué actividades quedan fue
 
 Para facilitar la comprensión del proceso, se incluyen los principales términos utilizados en el servicio:
 
-| Término | Definición |
-|---------|------------|
-| Clientes internos | Colaboradores del equipo técnico encargados de asegurar la prestación de los servicios de EDYE. |
-| FAQ (Frequently Asked Questions) | Sección en sitios web o repositorios donde se recopilan y responden preguntas comunes que partners y clientes externos pueden tener sobre los servicios técnicos de EDYE. |
-| Multicanal | Práctica de asistencia a partners y clientes externos a través de múltiples canales de comunicación; en este caso correo electrónico y Monday. |
-| Monday | Sistema operativo de trabajo (Work OS) que facilita la ejecución de proyectos y flujos de trabajo. Se utiliza para notificaciones internas, registro y seguimiento de tickets. |
-| Partner / Cliente externo | Cliente externo o asociado que tiene activos los servicios para la difusión de contenidos de EDYE. |
-| Reporte de estado | Documento que detalla el progreso y la situación de un ticket: acciones tomadas, tiempo empleado e información relevante para rastrear el avance. |
-| SLA (Service Level Agreement) | Acuerdo de nivel de servicio que establece las condiciones de respuesta en la solución de incidentes técnicos. Pueden estar definidos internamente o mediante contratos con los partners. |
-| Usuarios finales | Suscriptores directos de EDYE o de los partners que acceden a los contenidos de EDYE. |
-| Ticket | Registro digital creado cuando un partner o cliente externo reporta un problema o solicita ayuda. Permite rastrear, gestionar y resolver la incidencia de manera eficiente. |
-| Zendesk | Plataforma de atención al cliente que centraliza las interacciones a través de múltiples canales y permite automatizar procesos y analizar datos. |
+| Término                          | Definición                                                                                                                                                                                |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Clientes internos                | Colaboradores del equipo técnico encargados de asegurar la prestación de los servicios de EDYE.                                                                                           |
+| FAQ (Frequently Asked Questions) | Sección en sitios web o repositorios donde se recopilan y responden preguntas comunes que partners y clientes externos pueden tener sobre los servicios técnicos de EDYE.                 |
+| Multicanal                       | Práctica de asistencia a partners y clientes externos a través de múltiples canales de comunicación; en este caso correo electrónico y Monday.                                            |
+| Monday                           | Sistema operativo de trabajo (Work OS) que facilita la ejecución de proyectos y flujos de trabajo. Se utiliza para notificaciones internas, registro y seguimiento de tickets.            |
+| Partner / Cliente externo        | Cliente externo o asociado que tiene activos los servicios para la difusión de contenidos de EDYE.                                                                                        |
+| Reporte de estado                | Documento que detalla el progreso y la situación de un ticket: acciones tomadas, tiempo empleado e información relevante para rastrear el avance.                                         |
+| SLA (Service Level Agreement)    | Acuerdo de nivel de servicio que establece las condiciones de respuesta en la solución de incidentes técnicos. Pueden estar definidos internamente o mediante contratos con los partners. |
+| Usuarios finales                 | Suscriptores directos de EDYE o de los partners que acceden a los contenidos de EDYE.                                                                                                     |
+| Ticket                           | Registro digital creado cuando un partner o cliente externo reporta un problema o solicita ayuda. Permite rastrear, gestionar y resolver la incidencia de manera eficiente.               |
+| Zendesk                          | Plataforma de atención al cliente que centraliza las interacciones a través de múltiples canales y permite automatizar procesos y analizar datos.                                         |
 
 ## 5. Resumen del servicio
 
-| Elemento | Descripción |
-|----------|------------|
-| Nombre del servicio | Soporte técnico multicanal |
-| Objetivo | Proporcionar atención técnica eficiente según el tipo de usuario. |
-| Público objetivo | Clientes externos. |
-| Canal principal | Zendesk, que requiere autenticación por parte del partner o cliente externo. |
+| Elemento            | Descripción                                                                                                                                                                |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nombre del servicio | Soporte técnico multicanal                                                                                                                                                 |
+| Objetivo            | Proporcionar atención técnica eficiente según el tipo de usuario.                                                                                                          |
+| Público objetivo    | Clientes externos.                                                                                                                                                         |
+| Canal principal     | Zendesk, que requiere autenticación por parte del partner o cliente externo.                                                                                               |
 | Alcance del soporte | Atención a incidentes técnicos de hardware y software relacionados con los servicios de EDYE. El servicio busca resolver problemas actuales y prevenir incidentes futuros. |
-| Fuera del alcance | No se describen en la documentación actual restricciones o exclusiones específicas. |
+| Fuera del alcance   | No se describen en la documentación actual restricciones o exclusiones específicas.                                                                                        |
 
 ## 6. Roles y responsabilidades
 
@@ -112,24 +110,24 @@ Proporcionan la solución técnica en los casos que requieren un nivel de soport
 
 ### 7.3. Uso de cada canal
 
-| Canal | Uso |
-|-------|-----|
-| Zendesk | Creación y seguimiento de tickets de soporte; comunicación con el cliente externo y envío de notificaciones de resolución. |
-| Monday | Herramienta interna para la clasificación, asignación, seguimiento y reporte de tickets; envío de notificaciones entre administradores y agentes. |
-| Slack | Canal interno usado para notificaciones y reasignación de tickets a niveles superiores cuando corresponde. |
-| Base de conocimiento | Recurso de autogestión que permite al cliente externo consultar artículos para resolver problemas comunes sin necesidad de abrir un ticket. |
+| Canal                | Uso                                                                                                                                               |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Zendesk              | Creación y seguimiento de tickets de soporte; comunicación con el cliente externo y envío de notificaciones de resolución.                        |
+| Monday               | Herramienta interna para la clasificación, asignación, seguimiento y reporte de tickets; envío de notificaciones entre administradores y agentes. |
+| Slack                | Canal interno usado para notificaciones y reasignación de tickets a niveles superiores cuando corresponde.                                        |
+| Base de conocimiento | Recurso de autogestión que permite al cliente externo consultar artículos para resolver problemas comunes sin necesidad de abrir un ticket.       |
 
 ## 8. Clasificación de tickets
 
 La documentación proporciona una matriz de escalamiento operativo con los tipos de solicitudes, tiempos de respuesta y contactos asociados. Estos tipos de tickets constituyen la clasificación actualmente definida. Los tiempos se expresan en horas desde la recepción del ticket, y los contactos corresponden al área de operaciones salvo indicación distinta.
 
-| Tipo de solicitud | Tiempo de respuesta | Área/Contacto | Cargo | Medio |
-|-------------------|--------------------|--------------|-------|-------|
-| Contacto para dudas y operaciones del día a día | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos | Gerente | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalamiento de errores o preguntas técnicas | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos | Gerente | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalamiento de errores o preguntas técnicas fuera de horario comercial (1º contacto) | 24 horas | Operaciones – Constantine Costopoulos | Gerente | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalamiento de errores o preguntas técnicas fuera de horario comercial (2º contacto) | 48 horas | Operaciones – Agustín Gomez Vega | Cabeza de Tecnología | agustin@edye.com / +1 (786) 329‑9448 |
-| Preguntas de mercadeo y negocio | 24 horas | Mercadeo y Negocio – Maximiliano Vaccaro | VP | mvaccaro@hitn.org / +1 (305) 721‑4309 |
+| Tipo de solicitud                                                                     | Tiempo de respuesta            | Área/Contacto                            | Cargo                | Medio                                     |
+| ------------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------- | -------------------- | ----------------------------------------- |
+| Contacto para dudas y operaciones del día a día                                       | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos    | Gerente              | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalamiento de errores o preguntas técnicas                                          | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos    | Gerente              | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalamiento de errores o preguntas técnicas fuera de horario comercial (1º contacto) | 24 horas                       | Operaciones – Constantine Costopoulos    | Gerente              | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalamiento de errores o preguntas técnicas fuera de horario comercial (2º contacto) | 48 horas                       | Operaciones – Agustín Gomez Vega         | Cabeza de Tecnología | agustin@edye.com / +1 (786) 329‑9448      |
+| Preguntas de mercadeo y negocio                                                       | 24 horas                       | Mercadeo y Negocio – Maximiliano Vaccaro | VP                   | mvaccaro@hitn.org / +1 (305) 721‑4309     |
 
 ### 8.1. Consideraciones de horario
 
@@ -139,6 +137,7 @@ La documentación proporciona una matriz de escalamiento operativo con los tipos
 ## 9. Flujo de atención y resolución
 
 ![Flujo de atención y resolución ](/img/soporteClienteExterno.jpg)
+
 > **Figura 1.** _Flujo general del Flujo de atención y resolución_
 
 El proceso de atención a un ticket sigue una secuencia de pasos definidos en el procedimiento, con los registros correspondientes en Zendesk y Monday:
@@ -173,13 +172,13 @@ Los niveles de escalamiento garantizan la continuidad del soporte en función de
 
 Los acuerdos de nivel de servicio (SLA) están definidos por tipo de solicitud y horario. La documentación establece los siguientes tiempos de respuesta:
 
-| Tipo de solicitud | Nivel de soporte | SLA documentado |
-|-------------------|-----------------|-----------------|
-| Dudas y operaciones del día a día | Nivel 1 | 2–3 horas en horario comercial |
-| Errores o preguntas técnicas (horario comercial) | Nivel 1 | 2–3 horas |
-| Errores o preguntas técnicas (primer contacto fuera de horario comercial) | Nivel 1 / Gerencia de Operaciones | 24 horas |
-| Errores o preguntas técnicas (segundo contacto fuera de horario comercial) | Nivel 2 / Cabeza de Tecnología | 48 horas |
-| Preguntas de mercadeo y negocio | VP de Mercadeo y Negocio | 24 horas |
+| Tipo de solicitud                                                          | Nivel de soporte                  | SLA documentado                |
+| -------------------------------------------------------------------------- | --------------------------------- | ------------------------------ |
+| Dudas y operaciones del día a día                                          | Nivel 1                           | 2–3 horas en horario comercial |
+| Errores o preguntas técnicas (horario comercial)                           | Nivel 1                           | 2–3 horas                      |
+| Errores o preguntas técnicas (primer contacto fuera de horario comercial)  | Nivel 1 / Gerencia de Operaciones | 24 horas                       |
+| Errores o preguntas técnicas (segundo contacto fuera de horario comercial) | Nivel 2 / Cabeza de Tecnología    | 48 horas                       |
+| Preguntas de mercadeo y negocio                                            | VP de Mercadeo y Negocio          | 24 horas                       |
 
 No se definen en la documentación tiempos de resolución o compromisos de disponibilidad; solo se establecen los tiempos de respuesta inicial.
 
@@ -204,10 +203,10 @@ La gestión del conocimiento es un componente clave para reducir la recurrencia 
 
 El servicio de soporte realiza seguimiento mediante métricas definidas en el procedimiento:
 
-| Métrica | Frecuencia | Responsable | Herramienta |
-|---------|------------|-------------|-------------|
-| Número de tickets recibidos | Diario | Administrador de tickets | Monday / Zendesk |
-| SLA cumplidos por usuario/tipo | Semanal | Administrador de tickets | Monday |
+| Métrica                        | Frecuencia | Responsable              | Herramienta      |
+| ------------------------------ | ---------- | ------------------------ | ---------------- |
+| Número de tickets recibidos    | Diario     | Administrador de tickets | Monday / Zendesk |
+| SLA cumplidos por usuario/tipo | Semanal    | Administrador de tickets | Monday           |
 
 No se describen métricas adicionales como tiempo de resolución o satisfacción del cliente; por lo tanto, cualquier otra métrica se considera no definida en la documentación actual.
 
@@ -215,11 +214,11 @@ No se describen métricas adicionales como tiempo de resolución o satisfacción
 
 La documentación registra plantillas y formularios utilizados en Monday para agilizar la gestión de tickets:
 
-| Herramienta | Plantilla/Macro | Objetivo |
-|-------------|-----------------|----------|
-| Monday | Formulario de errores y preguntas técnicas | Agilizar la atención de incidencias técnicas frecuentes. |
-| Monday | Formulario de mercadeo y negocio | Agilizar la atención de preguntas de mercadeo y negocio. |
-| Monday | Formato de reporte de estado | Establecer el contenido mínimo requerido para los reportes de estado de cada ticket. |
+| Herramienta | Plantilla/Macro                            | Objetivo                                                                             |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| Monday      | Formulario de errores y preguntas técnicas | Agilizar la atención de incidencias técnicas frecuentes.                             |
+| Monday      | Formulario de mercadeo y negocio           | Agilizar la atención de preguntas de mercadeo y negocio.                             |
+| Monday      | Formato de reporte de estado               | Establecer el contenido mínimo requerido para los reportes de estado de cada ticket. |
 
 ### 15.1 Formularios disponibles
 

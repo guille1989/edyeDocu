@@ -8,8 +8,6 @@ title: "External Client Support"
 
 ---
 
-# Technical Support Procedure for External Clients
-
 ## 1. Introduction
 
 This document serves as the corporate reference for the technical support service for external clients in the EDYE / HITN Digital ecosystem. Its purpose is to describe, in an operational and non-commercial manner, how assistance is provided to partners and external clients with technical needs related to EDYE’s technological services. The service philosophy is to provide effective and efficient assistance, both in hardware and software, adopting a proactive and reactive approach to address needs and prevent future incidents.
@@ -37,29 +35,29 @@ The reviewed documentation does not explicitly define which activities fall outs
 
 Para facilitar la comprensión del proceso, se incluyen los principales términos utilizados en el servicio:
 
-| Term | Definition |
-|---------|------------|
-| Internal clients | Members of the technical team responsible for ensuring EDYE service delivery. |
-| FAQ (Frequently Asked Questions) | Section on websites or repositories where common questions that partners and external clients may have about EDYE technical services are collected and answered. |
-| Multichannel | Practice of assisting partners and external clients through multiple communication channels; in this case email and Monday. |
-| Monday | Work OS that facilitates project execution and workflows. Used for internal notifications, ticket logging, and tracking. |
-| Partner / External client | External customer or associate with active services for distributing EDYE content. |
-| Status report | Document detailing ticket progress and status: actions taken, time spent, and relevant information to track progress. |
-| SLA (Service Level Agreement) | Agreement that sets response conditions for resolving technical incidents. They may be defined internally or via contracts with partners. |
-| End users | Direct EDYE subscribers or partner subscribers who access EDYE content. |
-| Ticket | Digital record created when a partner or external client reports a problem or requests help. It enables efficient tracking, management, and resolution of the incident. |
-| Zendesk | Customer service platform that centralizes interactions across multiple channels and enables process automation and data analysis. |
+| Term                             | Definition                                                                                                                                                              |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Internal clients                 | Members of the technical team responsible for ensuring EDYE service delivery.                                                                                           |
+| FAQ (Frequently Asked Questions) | Section on websites or repositories where common questions that partners and external clients may have about EDYE technical services are collected and answered.        |
+| Multichannel                     | Practice of assisting partners and external clients through multiple communication channels; in this case email and Monday.                                             |
+| Monday                           | Work OS that facilitates project execution and workflows. Used for internal notifications, ticket logging, and tracking.                                                |
+| Partner / External client        | External customer or associate with active services for distributing EDYE content.                                                                                      |
+| Status report                    | Document detailing ticket progress and status: actions taken, time spent, and relevant information to track progress.                                                   |
+| SLA (Service Level Agreement)    | Agreement that sets response conditions for resolving technical incidents. They may be defined internally or via contracts with partners.                               |
+| End users                        | Direct EDYE subscribers or partner subscribers who access EDYE content.                                                                                                 |
+| Ticket                           | Digital record created when a partner or external client reports a problem or requests help. It enables efficient tracking, management, and resolution of the incident. |
+| Zendesk                          | Customer service platform that centralizes interactions across multiple channels and enables process automation and data analysis.                                      |
 
 ## 5. Service Summary
 
-| Item | Description |
-|----------|------------|
-| Service name | Multichannel technical support |
-| Objective | Provide efficient technical assistance according to user type. |
-| Target audience | External clients. |
-| Main channel | Zendesk, which requires authentication by the partner or external client. |
-| Support scope | Handling hardware and software technical incidents related to EDYE services. The service seeks to resolve current issues and prevent future incidents. |
-| Out of scope | No specific restrictions or exclusions are described in the current documentation. |
+| Item            | Description                                                                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Service name    | Multichannel technical support                                                                                                                         |
+| Objective       | Provide efficient technical assistance according to user type.                                                                                         |
+| Target audience | External clients.                                                                                                                                      |
+| Main channel    | Zendesk, which requires authentication by the partner or external client.                                                                              |
+| Support scope   | Handling hardware and software technical incidents related to EDYE services. The service seeks to resolve current issues and prevent future incidents. |
+| Out of scope    | No specific restrictions or exclusions are described in the current documentation.                                                                     |
 
 ## 6. Roles and Responsibilities
 
@@ -112,24 +110,24 @@ Provide the technical solution in cases requiring specialized support.
 
 ### 7.3. Use of each channel
 
-| Channel | Use |
-|-------|-----|
-| Zendesk | Creation and tracking of support tickets; communication with the external client and resolution notifications. |
-| Monday | Internal tool for ticket classification, assignment, tracking, and reporting; sends notifications between administrators and agents. |
-| Slack | Internal channel used for notifications and ticket reassignment to higher levels when appropriate. |
-| Knowledge base | Self-service resource allowing external clients to consult articles to resolve common issues without opening a ticket. |
+| Channel        | Use                                                                                                                                  |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Zendesk        | Creation and tracking of support tickets; communication with the external client and resolution notifications.                       |
+| Monday         | Internal tool for ticket classification, assignment, tracking, and reporting; sends notifications between administrators and agents. |
+| Slack          | Internal channel used for notifications and ticket reassignment to higher levels when appropriate.                                   |
+| Knowledge base | Self-service resource allowing external clients to consult articles to resolve common issues without opening a ticket.               |
 
 ## 8. Ticket Classification
 
 The documentation provides an operational escalation matrix with request types, response times, and associated contacts. These ticket types constitute the currently defined classification. Times are expressed in hours from ticket receipt, and contacts correspond to the operations area unless otherwise indicated.
 
-| Request type | Response time | Area/Contact | Role | Medium |
-|-------------------|--------------------|--------------|-------|-------|
-| Contact for questions and day-to-day operations | 2–3 hours during business hours | Operations – Constantine Costopoulos | Manager | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalation of errors or technical questions | 2–3 hours during business hours | Operations – Constantine Costopoulos | Manager | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalation of errors or technical questions outside business hours (1st contact) | 24 hours | Operations – Constantine Costopoulos | Manager | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalation of errors or technical questions outside business hours (2nd contact) | 48 hours | Operations – Agustín Gomez Vega | Head of Technology | agustin@edye.com / +1 (786) 329‑9448 |
-| Marketing and business questions | 24 hours | Marketing and Business – Maximiliano Vaccaro | VP | mvaccaro@hitn.org / +1 (305) 721‑4309 |
+| Request type                                                                     | Response time                   | Area/Contact                                 | Role               | Medium                                    |
+| -------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------- | ------------------ | ----------------------------------------- |
+| Contact for questions and day-to-day operations                                  | 2–3 hours during business hours | Operations – Constantine Costopoulos         | Manager            | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalation of errors or technical questions                                      | 2–3 hours during business hours | Operations – Constantine Costopoulos         | Manager            | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalation of errors or technical questions outside business hours (1st contact) | 24 hours                        | Operations – Constantine Costopoulos         | Manager            | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalation of errors or technical questions outside business hours (2nd contact) | 48 hours                        | Operations – Agustín Gomez Vega              | Head of Technology | agustin@edye.com / +1 (786) 329‑9448      |
+| Marketing and business questions                                                 | 24 hours                        | Marketing and Business – Maximiliano Vaccaro | VP                 | mvaccaro@hitn.org / +1 (305) 721‑4309     |
 
 ### 8.1. Scheduling considerations
 
@@ -139,6 +137,7 @@ The documentation provides an operational escalation matrix with request types, 
 ## 9. Support and Resolution Flow
 
 ![Support and resolution flow](/img/soporteClienteExterno.jpg)
+
 > **Figure 1.** _General flow of the support and resolution process_
 
 The ticket handling process follows a sequence of steps defined in the procedure, with corresponding records in Zendesk and Monday:
@@ -173,13 +172,13 @@ Escalation levels ensure support continuity based on schedule and incident natur
 
 Service level agreements (SLAs) are defined by request type and schedule. The documentation sets the following response times:
 
-| Request type | Support level | Documented SLA |
-|-------------------|-----------------|-----------------|
-| Day-to-day questions and operations | Level 1 | 2–3 hours during business hours |
-| Errors or technical questions (business hours) | Level 1 | 2–3 hours |
-| Errors or technical questions (first contact outside business hours) | Level 1 / Operations Management | 24 hours |
-| Errors or technical questions (second contact outside business hours) | Level 2 / Head of Technology | 48 hours |
-| Marketing and business questions | VP of Marketing and Business | 24 hours |
+| Request type                                                          | Support level                   | Documented SLA                  |
+| --------------------------------------------------------------------- | ------------------------------- | ------------------------------- |
+| Day-to-day questions and operations                                   | Level 1                         | 2–3 hours during business hours |
+| Errors or technical questions (business hours)                        | Level 1                         | 2–3 hours                       |
+| Errors or technical questions (first contact outside business hours)  | Level 1 / Operations Management | 24 hours                        |
+| Errors or technical questions (second contact outside business hours) | Level 2 / Head of Technology    | 48 hours                        |
+| Marketing and business questions                                      | VP of Marketing and Business    | 24 hours                        |
 
 The documentation does not define resolution times or availability commitments; only initial response times are set.
 
@@ -204,10 +203,10 @@ Knowledge management is a key component to reduce recurrence of incidents and im
 
 The support service performs tracking via metrics defined in the procedure:
 
-| Metric | Frequency | Responsible | Tool |
-|---------|------------|-------------|-------------|
-| Number of tickets received | Daily | Ticket administrator | Monday / Zendesk |
-| SLAs met by user/type | Weekly | Ticket administrator | Monday |
+| Metric                     | Frequency | Responsible          | Tool             |
+| -------------------------- | --------- | -------------------- | ---------------- |
+| Number of tickets received | Daily     | Ticket administrator | Monday / Zendesk |
+| SLAs met by user/type      | Weekly    | Ticket administrator | Monday           |
 
 No additional metrics such as resolution time or customer satisfaction are described; therefore, any other metric is considered undefined in the current documentation.
 
@@ -215,11 +214,11 @@ No additional metrics such as resolution time or customer satisfaction are descr
 
 The documentation records templates and forms used in Monday to streamline ticket management:
 
-| Tool | Template/Macro | Objective |
-|-------------|-----------------|----------|
-| Monday | Errors and technical questions form | Streamline handling of frequent technical incidents. |
-| Monday | Marketing and business form | Streamline handling of marketing and business questions. |
-| Monday | Status report format | Establish the minimum required content for status reports on each ticket. |
+| Tool   | Template/Macro                      | Objective                                                                 |
+| ------ | ----------------------------------- | ------------------------------------------------------------------------- |
+| Monday | Errors and technical questions form | Streamline handling of frequent technical incidents.                      |
+| Monday | Marketing and business form         | Streamline handling of marketing and business questions.                  |
+| Monday | Status report format                | Establish the minimum required content for status reports on each ticket. |
 
 ### 15.1 Available forms
 

@@ -7,8 +7,6 @@ title: 🈸 Servicio Connect (Conecta)
 
 ---
 
-# Servicio Connect (Conecta)
-
 ## Introducción y propósito
 
 El servicio Connect, también denominado Conecta, es el componente encargado de autenticar a los usuarios que acceden a EDYE/HITN Digital a través de distribuidores externos (por ejemplo, proveedores de televisión de pago). Este documento ofrece una descripción técnica de su infraestructura y de los procedimientos operativos para los equipos de DevOps, SRE, Operaciones y Seguridad.

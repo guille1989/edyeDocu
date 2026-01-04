@@ -8,8 +8,6 @@ title: 🈸 API Service
 
 ---
 
-# API Service
-
 ## 1. Introduction and Purpose
 
 This document describes the architecture, deployment, and operational practices of the API Service in the EDYE/HITN Digital ecosystem. The service aims to provide a standardized access layer to catalogs of videos, books, and games for both first-party applications (web, mobile, and TV) and distributor integrations. The document targets DevOps, Operations, SRE, and Security teams.

@@ -133,7 +133,7 @@ sequenceDiagram
   CI->>Prod: Despliegue controlado a producción (aprobación manual)
   Prod->>Monitoreo: Inicio de observabilidad y alertas
 ```
-
+> **Figura 3.** Diagrama de Arquitectura de despliegue (CI/CD)
 
 Commit y control de versiones: Los desarrolladores actualizan el código en el repositorio. Se utilizan ramas feature y merge requests para revisión de pares.
 
@@ -959,12 +959,12 @@ El servicio cumple las siguientes funciones:
 
 ## 3. Arquitectura y componentes
 
-| Componente                    | Descripción                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Servidor Node.js/NextJS       | El núcleo del servicio está implementado con Node.js y NextJS, aprovechando su naturaleza asíncrona para gestionar numerosas peticiones de actualización de estado.                                                                                                                                                                                             |
+| Componente                    | Descripción                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Servidor Node.js/NextJS       | El núcleo del servicio está implementado con Node.js y NextJS, aprovechando su naturaleza asíncrona para gestionar numerosas peticiones de actualización de estado.                                                                                                                                                                                               |
 | Base de datos NoSQL (MongoDB) | Se utiliza una base de datos orientada a documentos para almacenar estructuras flexibles de progreso y listas. MongoDB ofrece esquema dinámico y escalabilidad horizontal, lo que facilita el almacenamiento de datos semiestructurados como listas de reproducción y favoritos. Laravel y otros marcos soportan nativamente MongoDB mediante paquetes oficiales. |
-| Servicio de sincronización    | Subsistema que escucha eventos del API y de la aplicación Play para actualizar los registros. Asegura consistencia eventual entre cachés locales y la base de datos central.                                                                                                                                                                                                                           |
-| Cola de mensajes              | Gestiona eventos asincrónicos (p. ej., fin de reproducción, marcado de favorito) para desacoplar a la aplicación cliente del proceso de persistencia.                                                                                                                                                                                                                                                  |
+| Servicio de sincronización    | Subsistema que escucha eventos del API y de la aplicación Play para actualizar los registros. Asegura consistencia eventual entre cachés locales y la base de datos central.                                                                                                                                                                                      |
+| Cola de mensajes              | Gestiona eventos asincrónicos (p. ej., fin de reproducción, marcado de favorito) para desacoplar a la aplicación cliente del proceso de persistencia.                                                                                                                                                                                                             |
 
 ### 3.1. Diagrama de arquitectura
 
@@ -1056,6 +1056,7 @@ Se apoya en herramientas como:
 El ciclo DevOps implementado en Edye sigue el siguiente flujo principal:
 
 ![Ciclo DevOps](img/flujo-devops.jpg)
+
 > **Figura 1.** _Flujo general del proceso DevOps_
 
 Cada fase está soportada por herramientas específicas y responsables asignados:
@@ -1071,7 +1072,9 @@ Cada fase está soportada por herramientas específicas y responsables asignados
 ## 4. Arquitectura Técnica del Ciclo DevOps de EDYE
 
 ![Ciclo DevOps](img/arquitecturaDevOps.jpg)
+
 > **Figura 2.** _Arquitectura DevOps y Flujo CI/CD del Ecosistema EDYE_
+
 ---
 
 ## 5. Estructura Documental
@@ -1144,24 +1147,26 @@ Definir la estrategia DevOps revisada de la organización, consolidando la autom
 
 Esta estrategia aplica a todas las plataformas soportadas por:
 
-- GitHub  
-- Swagger  
-- Monday  
-- Grafana  
-- Qualys  
+- GitHub
+- Swagger
+- Monday
+- Grafana
+- Qualys
 
 ---
 
 ## 2. Principios y Políticas DevOps
 
 ### **Principios básicos**
-- Automatización extremo a extremo  
-- Colaboración constante entre equipos  
-- Mejora continua  
-- Seguridad integrada (DevSecOps)  
+
+- Automatización extremo a extremo
+- Colaboración constante entre equipos
+- Mejora continua
+- Seguridad integrada (DevSecOps)
 - Monitoreo constante
 
 ### **Política de Versionamiento**
+
 Todo código debe estar versionado en GitHub bajo un esquema de ramas controlado:
 
 - `main`
@@ -1170,18 +1175,19 @@ Todo código debe estar versionado en GitHub bajo un esquema de ramas controlado
 - `feature/*`
 
 ### **Política de Despliegue**
+
 Los despliegues deben realizarse exclusivamente mediante **pipelines validados y automatizados**, con control de calidad previo.
 
 ---
 
 ## 3. Gobernanza y Colaboración
 
-Cada región (*Latam, Europa, Norteamérica*) cuenta con un **DevOps Lead** responsable de coordinar entregas, validaciones y despliegues controlados.
+Cada región (_Latam, Europa, Norteamérica_) cuenta con un **DevOps Lead** responsable de coordinar entregas, validaciones y despliegues controlados.
 
 La gestión de tareas se realiza en **Monday**, con:
 
-- Reportes semanales automatizados  
-- Control de versiones en Drive/Miro  
+- Reportes semanales automatizados
+- Control de versiones en Drive/Miro
 - Flujo formal de documentación:
 
 Solicitud → Revisión → Ajuste → Aprobación → Publicación.
@@ -1190,13 +1196,13 @@ Solicitud → Revisión → Ajuste → Aprobación → Publicación.
 
 ## 4. Herramientas Principales
 
-| Herramienta | Propósito | Integración |
-|-------------|-----------|-------------|
-| **GitHub / GitHub Actions** | Repositorio y CI/CD automatizado | Integración con Swagger |
-| **Swagger / Postman** | Documentación y validación de endpoints | QA automatizado |
-| **Monday** | Gestión de backlog e incidentes | Fuente de seguimiento y control |
-| **Grafana / Prometheus / Loki** | Monitoreo y alertas | Integración por correo |
-| **Qualys (VMDR/WAS)** | Escaneo de vulnerabilidades y compliance | Integración continua en monitoreo |
+| Herramienta                     | Propósito                                | Integración                       |
+| ------------------------------- | ---------------------------------------- | --------------------------------- |
+| **GitHub / GitHub Actions**     | Repositorio y CI/CD automatizado         | Integración con Swagger           |
+| **Swagger / Postman**           | Documentación y validación de endpoints  | QA automatizado                   |
+| **Monday**                      | Gestión de backlog e incidentes          | Fuente de seguimiento y control   |
+| **Grafana / Prometheus / Loki** | Monitoreo y alertas                      | Integración por correo            |
+| **Qualys (VMDR/WAS)**           | Escaneo de vulnerabilidades y compliance | Integración continua en monitoreo |
 
 ---
 
@@ -1206,9 +1212,9 @@ La seguridad forma parte integral del pipeline DevOps (**DevSecOps**), aplicánd
 
 El monitoreo se realiza con **Grafana**, consolidando métricas de:
 
-- Infraestructura  
-- APIs  
-- Servicios críticos  
+- Infraestructura
+- APIs
+- Servicios críticos
 
 Las alertas se envían por correo y se revisan diariamente en el panel de incidentes.
 
@@ -1336,7 +1342,7 @@ El presente procedimiento aplica a todas las actividades de implementación, doc
 
 Cubre el ciclo completo desde la asignación de una tarea hasta la aprobación del código para su integración en los entornos de staging o producción, garantizando trazabilidad entre requerimientos, commits, pruebas y entregas.
 
-Este procedimiento es de aplicación para los equipos de desarrollo backend, frontend y QA, así como para los perfiles DevOps Engineer y Project Manager responsables del control de calidad y validación de entregables. 
+Este procedimiento es de aplicación para los equipos de desarrollo backend, frontend y QA, así como para los perfiles DevOps Engineer y Project Manager responsables del control de calidad y validación de entregables.
 
 ---
 
@@ -1354,34 +1360,34 @@ El entorno de desarrollo de Edye se sustenta en una arquitectura tecnológica mo
 
 La plataforma opera bajo un modelo de bases de datos híbridas:
 
-- **MySQL** → motor relacional para procesos estructurados.  
+- **MySQL** → motor relacional para procesos estructurados.
 - **MongoDB** → base de datos NoSQL para componentes que requieren flexibilidad y escalabilidad.
 
 ### Entornos principales
 
-- **Local**: desarrollo individual de los programadores.  
-- **Staging**: entorno de pruebas integradas y QA.  
+- **Local**: desarrollo individual de los programadores.
+- **Staging**: entorno de pruebas integradas y QA.
 - **Producción**: despliegue estable validado.
 
 ### Control de versiones
 
 El control de versiones se gestiona en **GitHub**, utilizando las ramas principales:
 
-- `main`  
-- `production`  
-- `features/*`  
-- `staging`  
+- `main`
+- `production`
+- `features/*`
+- `staging`
 
 ---
 
 ## 3.2. Entradas y salidas del proceso
 
-| Tipo     | Descripción |
-|----------|-------------|
+| Tipo         | Descripción                                                                                  |
+| ------------ | -------------------------------------------------------------------------------------------- |
 | **Entradas** | Tareas asignadas en Monday, requerimientos funcionales/técnicos, reportes de bugs o mejoras. |
-| **Salidas** | Código documentado, probado y aprobado en GitHub; Swagger actualizado; Postman validado. |
+| **Salidas**  | Código documentado, probado y aprobado en GitHub; Swagger actualizado; Postman validado.     |
 
-> *Nota:* Para algunos repositorios, las entregas Swagger/Postman no son necesarias.
+> _Nota:_ Para algunos repositorios, las entregas Swagger/Postman no son necesarias.
 
 ---
 
@@ -1390,7 +1396,8 @@ El control de versiones se gestiona en **GitHub**, utilizando las ramas principa
 El siguiente diagrama representa de forma visual el **flujo general de la fase de desarrollo dentro del ciclo DevOps** del ecosistema Edye.
 
 ![Diagrama del flujo de desarrollo DevOps](img/desarrollo-devops.jpg)
-> **Figura 1.** *Diagrama del flujo del proceso de desarrollo DevOps.*  
+
+> **Figura 1.** _Diagrama del flujo del proceso de desarrollo DevOps._
 
 ---
 
@@ -1409,17 +1416,16 @@ El siguiente diagrama representa de forma visual el **flujo general de la fase d
 
 Los repositorios se encuentran en GitHub, y constituyen la fuente única de verdad del código y la documentación técnica del ecosistema EDYE. Cada repositorio mantiene sus ramas, pipelines CI/CD y archivos de documentación asociados (README.md, Swagger, Postman).
 
-
-| Repositorio | Propósito | Ramas | Stack |
-|-------------|-----------|--------|--------|
-| **EDYE-CONNECT** | Middleware SSO para operadores, apps y partners. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-BILLING** | Pagos, promociones y suscripciones. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-API-STANDALONE** | Backend principal con endpoints REST. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-CONECTA** | Conector SSO entre Edye y operadores. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-ADMIN** | CMS central para shows, metadata, imágenes y partners. | Main / Staging / Production | PHP - Laravel - MySQL |
-| **EDYE-PLAY** | Plataforma web (niños/padres). | Main / Staging / Production | Node.js - Next.js - MongoDB |
-| **EDYE-CLOUD** | Actividad de usuarios y almacenamiento. | Main / Staging / Production | Node.js - MongoDB |
-| **EDYE-API-SATELITE** | Redundancia, carga y resiliencia. | Main / Staging / Production | PHP - Laravel - MySQL |
+| Repositorio             | Propósito                                              | Ramas                       | Stack                       |
+| ----------------------- | ------------------------------------------------------ | --------------------------- | --------------------------- |
+| **EDYE-CONNECT**        | Middleware SSO para operadores, apps y partners.       | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-BILLING**        | Pagos, promociones y suscripciones.                    | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-API-STANDALONE** | Backend principal con endpoints REST.                  | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-CONECTA**        | Conector SSO entre Edye y operadores.                  | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-ADMIN**          | CMS central para shows, metadata, imágenes y partners. | Main / Staging / Production | PHP - Laravel - MySQL       |
+| **EDYE-PLAY**           | Plataforma web (niños/padres).                         | Main / Staging / Production | Node.js - Next.js - MongoDB |
+| **EDYE-CLOUD**          | Actividad de usuarios y almacenamiento.                | Main / Staging / Production | Node.js - MongoDB           |
+| **EDYE-API-SATELITE**   | Redundancia, carga y resiliencia.                      | Main / Staging / Production | PHP - Laravel - MySQL       |
 
 > **Nomenclatura estándar:** `edye-[módulo]`
 
@@ -1435,7 +1441,7 @@ El desarrollador debe contar con permisos y haber configurado SSH o PAT.
 
 **Requisitos previos:**
 
-- Tener clave SSH (`id_rsa` o `ed25519`)  
+- Tener clave SSH (`id_rsa` o `ed25519`)
 - Agregar clave pública en GitHub:  
   **Settings → SSH and GPG keys**
 
@@ -1457,9 +1463,9 @@ El desarrollo de software en Edye sigue criterios uniformes para asegurar consis
 Los estándares incluyen:
 
 - **Estructura modular** organizada por servicio.
-- **Revisión de código obligatoria** antes de cada *merge request*.
-- **Nomenclatura de ramas controlada**  
-  - `feature/<nombre>`  
+- **Revisión de código obligatoria** antes de cada _merge request_.
+- **Nomenclatura de ramas controlada**
+  - `feature/<nombre>`
   - `<nombre>`
 - **Versionado semántico**, por ejemplo: `v1.3.2`.
 - **Definición correcta de endpoints RESTful**, asegurando respuestas **JSON coherentes**.
@@ -1469,11 +1475,11 @@ Los estándares incluyen:
 
 ## 4. Herramientas
 
-| Categoría              | Herramienta     | Uso |
-|------------------------|-----------------|-----|
-| **Control de versiones** | GitHub          | Repositorios, PRs, code review |
-| **Pruebas**             | Jest, Postman   | Validación funcional e integración |
-| **Gestión**             | Monday          | Seguimiento de backlog y entregas. Todos los cambios deben actualizar la documentación técnica y referenciar la tarea origen en Monday. |
+| Categoría                | Herramienta   | Uso                                                                                                                                     |
+| ------------------------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Control de versiones** | GitHub        | Repositorios, PRs, code review                                                                                                          |
+| **Pruebas**              | Jest, Postman | Validación funcional e integración                                                                                                      |
+| **Gestión**              | Monday        | Seguimiento de backlog y entregas. Todos los cambios deben actualizar la documentación técnica y referenciar la tarea origen en Monday. |
 
 ***
 
@@ -1495,14 +1501,14 @@ De esta forma, la Integración Continua contribuye a mantener un flujo DevOps ef
 
 Este procedimiento aplica a todos los repositorios alojados en GitHub pertenecientes al ecosistema Edye, incluyendo:
 
-- EDYE-CONNECT  
-- EDYE-BILLING  
-- EDYE-API-STANDALONE  
-- EDYE-CONECTA  
-- EDYE-ADMIN  
-- EDYE-PLAY  
-- EDYE-CLOUD  
-- EDYE-API-SATELITE  
+- EDYE-CONNECT
+- EDYE-BILLING
+- EDYE-API-STANDALONE
+- EDYE-CONECTA
+- EDYE-ADMIN
+- EDYE-PLAY
+- EDYE-CLOUD
+- EDYE-API-SATELITE
 
 Cada repositorio cuenta con un pipeline CI configurado en GitHub Actions, el cual se ejecuta automáticamente ante cada pull request (PR) o push hacia las ramas principales (**stage** o **production**). El alcance incluye la construcción, análisis, validación y empaquetado del código.
 
@@ -1521,10 +1527,13 @@ Cada repositorio dispone de un pipeline configurado que se activa ante un **push
 El siguiente diagrama representa la secuencia completa del proceso CI en Edye:
 
 ![Flujo general del proceso de Integración Continua](img/integracion-continua-devops.jpg)
+
 > **Figura 1.** Diagrama del flujo general del proceso de Integración Continua
 
 ---
+
 ## 3.2. Descripción del flujo CI
+
 ---
 
 ### 3.2.1 Descripción del Pipeline – CI Cloud (Node.js)
@@ -1545,7 +1554,7 @@ Permite lanzar el pipeline desde GitHub Actions sin necesidad de realizar un com
 
 El job principal utiliza:
 
-- Sistema operativo: Ubuntu 22.04  
+- Sistema operativo: Ubuntu 22.04
 - Node.js: versión 22 (configurada mediante actions/setup-node)
 
 Este entorno garantiza compatibilidad y reproducibilidad durante la ejecución del proceso.
@@ -1553,12 +1562,15 @@ Este entorno garantiza compatibilidad y reproducibilidad durante la ejecución d
 ### 3. Etapas del Pipeline
 
 #### 3.1. Checkout del Repositorio
+
 El pipeline obtiene el código fuente del repositorio mediante actions/checkout, permitiendo acceder a todo el contenido vigente en la rama.
 
 #### 3.2. Configuración de Node.js
+
 A través de actions/setup-node se define la versión de Node.js necesaria para ejecutar las tareas del proyecto.
 
 #### 3.3. Actualización de Dependencias
+
 Se ejecuta un proceso de actualización de paquetes mediante el comando npm update para asegurar versiones coherentes con el entorno productivo.
 
 ```bash
@@ -1566,13 +1578,15 @@ npm update
 ```
 
 #### 3.4. Ejecución de Pruebas Automatizadas
-Se ejecuta el script de pruebas definido en el proyecto (npm run test).  Si alguna prueba falla, el pipeline finaliza y se evita un despliegue defectuoso.
+
+Se ejecuta el script de pruebas definido en el proyecto (npm run test). Si alguna prueba falla, el pipeline finaliza y se evita un despliegue defectuoso.
 
 ```bash
 npm run test
 ```
 
 #### 3.5. Construcción del Proyecto (Build)
+
 Se ejecuta el comando npm run build para generar los artefactos finales del sistema (bundle, dist o equivalentes).
 
 ```bash
@@ -1580,32 +1594,35 @@ npm run build
 ```
 
 #### 3.6. Limpieza Antes del Despliegue
+
 Con el objetivo de reducir el peso del paquete final, se eliminan los directorios no necesarios:
 
-- node_modules  
-- .git  
+- node_modules
+- .git
 
 ### 4. Despliegue en Servidor Linode 1
 
 #### 4.1. Transferencia de Archivos (SCP)
-El pipeline utiliza appleboy/scp-action para copiar todos los archivos generados hacia el directorio del servidor:  **/var/www/cloud-prod.edye.com**.
+
+El pipeline utiliza appleboy/scp-action para copiar todos los archivos generados hacia el directorio del servidor: **/var/www/cloud-prod.edye.com**.
 
 La autenticación se realiza mediante variables y secretos seguros almacenados en GitHub.
 
 #### 4.2. Ejecución de Scripts en el Servidor (SSH)
+
 Una vez copiados los archivos, se ejecutan las siguientes acciones en el servidor:
 
-- Carga del entorno NVM y Node.js  
-- Instalación de dependencias del entorno productivo (npm install)  
+- Carga del entorno NVM y Node.js
+- Instalación de dependencias del entorno productivo (npm install)
 - Reinicio del proceso Node.js mediante **PM2**, asegurando que el servicio quede activo con la nueva versión.
 
 ### 5. Despliegue en Servidor Linode 2
 
 Se repite exactamente el mismo proceso aplicado en el servidor 1:
 
-- Copia de archivos mediante SCP  
-- Instalación de dependencias  
-- Reinicio del servicio mediante PM2  
+- Copia de archivos mediante SCP
+- Instalación de dependencias
+- Reinicio del servicio mediante PM2
 
 Esto garantiza alta disponibilidad y consistencia entre ambos nodos productivos.
 
@@ -1616,17 +1633,18 @@ La nueva versión del servicio cloud-prod.edye.com queda operativa en ambos nodo
 
 ### Resumen del Flujo General
 
-- Configuración del entorno Node.js  
-- Actualización de dependencias  
-- Ejecución de pruebas automatizadas  
-- Construcción del proyecto  
-- Limpieza de archivos no necesarios  
-- Transferencia de archivos a los servidores  
-- Instalación de dependencias en servidores  
-- Reinicio del servicio con PM2  
-- Publicación final en ambos nodos productivos  
+- Configuración del entorno Node.js
+- Actualización de dependencias
+- Ejecución de pruebas automatizadas
+- Construcción del proyecto
+- Limpieza de archivos no necesarios
+- Transferencia de archivos a los servidores
+- Instalación de dependencias en servidores
+- Reinicio del servicio con PM2
+- Publicación final en ambos nodos productivos
 
 ---
+
 ### 3.2.2 Descripción del Pipeline – CI Admin - Deploy (Laravel)
 
 El pipeline “CI Admin - Deploy” automatiza el proceso de despliegue de la aplicación Laravel Admin en el entorno stage. Su función principal es notificar a un script de despliegue en el servidor cada vez que se actualiza la rama, delegando en dicho script las tareas internas de actualización del código y del entorno.
@@ -1663,10 +1681,10 @@ Se utiliza la acción `appleboy/ssh-action` para conectarse al servidor mediante
 
 Una vez establecida la conexión, el runner ejecuta en el servidor un comando `curl` que realiza una petición HTTP local:
 
-- **Método:** POST  
-- **URL:** `http://127.0.0.1/deploy/deploy.php`  
-- **Parámetros:**  
-  - token enviado en la URL, obtenido del secreto `ADMIN_PROD_TOKEN`  
+- **Método:** POST
+- **URL:** `http://127.0.0.1/deploy/deploy.php`
+- **Parámetros:**
+  - token enviado en la URL, obtenido del secreto `ADMIN_PROD_TOKEN`
   - cuerpo JSON con el campo `ref` indicando la referencia de la rama: `"refs/heads/production"`
 
 Este POST activa el script `deploy.php` en el propio servidor, el cual es el responsable de ejecutar internamente las acciones necesarias para actualizar la aplicación con la última versión del código de la rama (por ejemplo, obtener cambios del repositorio, actualizar dependencias, ejecutar tareas de Laravel, limpiar cachés, etc., según esté configurado en dicho script).
@@ -1675,31 +1693,31 @@ Este POST activa el script `deploy.php` en el propio servidor, el cual es el res
 
 De forma resumida, el flujo del pipeline es el siguiente:
 
-- Se detecta un cambio en la rama o se lanza el workflow manualmente.  
-- GitHub Actions inicia el job **deploy** en un runner Ubuntu 22.04.  
-- El runner se conecta por SSH al servidor utilizando las credenciales seguras configuradas en GitHub.  
-- En el servidor, se ejecuta una petición HTTP local (`curl`) a `deploy.php` con:  
-  - un token de seguridad  
-  - la referencia de la rama como parámetro  
-- El script `deploy.php` procesa la solicitud y ejecuta el flujo de despliegue definido para la aplicación Laravel Admin.  
+- Se detecta un cambio en la rama o se lanza el workflow manualmente.
+- GitHub Actions inicia el job **deploy** en un runner Ubuntu 22.04.
+- El runner se conecta por SSH al servidor utilizando las credenciales seguras configuradas en GitHub.
+- En el servidor, se ejecuta una petición HTTP local (`curl`) a `deploy.php` con:
+  - un token de seguridad
+  - la referencia de la rama como parámetro
+- El script `deploy.php` procesa la solicitud y ejecuta el flujo de despliegue definido para la aplicación Laravel Admin.
 - Finalizado el script de despliegue, la nueva versión de la aplicación queda disponible en el entorno **stage/**.
 
 ### 5. Enfoque DevOps
 
 Este pipeline se alinea con la estrategia DevOps del ecosistema Edye al:
 
-- Centralizar el despliegue de entornos en GitHub Actions.  
-- Mantener las credenciales y tokens gestionados como secretos en GitHub.  
-- Delegar en un script del servidor (`deploy.php`) la lógica específica del despliegue Laravel, permitiendo adaptar y extender el proceso sin modificar el pipeline.  
-- Facilitar relanzar despliegues de forma controlada y repetible mediante la opción manual (`workflow_dispatch`). 
+- Centralizar el despliegue de entornos en GitHub Actions.
+- Mantener las credenciales y tokens gestionados como secretos en GitHub.
+- Delegar en un script del servidor (`deploy.php`) la lógica específica del despliegue Laravel, permitiendo adaptar y extender el proceso sin modificar el pipeline.
+- Facilitar relanzar despliegues de forma controlada y repetible mediante la opción manual (`workflow_dispatch`).
 
 ---
 
 ## 3.3. Políticas de ejecución y validación
 
-- El Pull Request necesita aprobación por parte del área técnica.  
-- Todo Merge debe superar el pipeline CI.  
-- Se requiere mínimo un revisor técnico para el merge a Stage y Production.  
+- El Pull Request necesita aprobación por parte del área técnica.
+- Todo Merge debe superar el pipeline CI.
+- Se requiere mínimo un revisor técnico para el merge a Stage y Production.
 
 ---
 
@@ -1708,7 +1726,7 @@ Este pipeline se alinea con la estrategia DevOps del ecosistema Edye al:
 Cada repositorio del ecosistema Edye debe contener un archivo principal del workflow de Integración Continua en la siguiente ruta: **.github/workflows/ci.yml**
 
 Ejemplo básico de configuración  
-*[Estructura de Archivos del Pipeline](https://drive.google.com/file/d/1SvEgbb7Nh5Z_eFrrlLFLRECpUTM_qHEQ/view?usp=drive_link)*
+_[Estructura de Archivos del Pipeline](https://drive.google.com/file/d/1SvEgbb7Nh5Z_eFrrlLFLRECpUTM_qHEQ/view?usp=drive_link)_
 
 ---
 
@@ -1716,12 +1734,12 @@ Ejemplo básico de configuración
 
 El control de versiones y la ejecución de pipelines CI se basan en la siguiente estructura de ramas:
 
-| Rama       | Propósito                           | Pipeline asociado                    |
-|------------|-------------------------------------|--------------------------------------|
-| **main**   | Código de producción estable.       | No aplica pipeline. <br/>SCI limitado a test y lint. |
-| **stage**  | Entorno de staging o pruebas integradas. | Stack Node.js pipeline por rama. <br/>Stack Laravel pipeline por rama. |
-| **production** | Entorno de producción.          | Stack Node.js pipeline por rama. <br/>SStack Laravel pipeline por rama. |
-| **Satellite**  | Entorno especial (NY).          | Stack Laravel pipeline por rama. |
+| Rama           | Propósito                                | Pipeline asociado                                                       |
+| -------------- | ---------------------------------------- | ----------------------------------------------------------------------- |
+| **main**       | Código de producción estable.            | No aplica pipeline. <br/>SCI limitado a test y lint.                    |
+| **stage**      | Entorno de staging o pruebas integradas. | Stack Node.js pipeline por rama. <br/>Stack Laravel pipeline por rama.  |
+| **production** | Entorno de producción.                   | Stack Node.js pipeline por rama. <br/>SStack Laravel pipeline por rama. |
+| **Satellite**  | Entorno especial (NY).                   | Stack Laravel pipeline por rama.                                        |
 
 ---
 
@@ -1729,10 +1747,10 @@ El control de versiones y la ejecución de pipelines CI se basan en la siguiente
 
 Las principales herramientas empleadas en la Integración Continua de Eddy son:
 
-| Categoría                   | Herramienta      | Uso principal |
-|-----------------------------|------------------|---------------|
-| Repositorios y versionado   | GitHub           | Gestión de código, PR, control de ramas y workflows CI/CD. |
-| Automatización de CI/CD     | GitHub Actions   | Ejecución automática de pipelines y validaciones. |
+| Categoría                 | Herramienta    | Uso principal                                              |
+| ------------------------- | -------------- | ---------------------------------------------------------- |
+| Repositorios y versionado | GitHub         | Gestión de código, PR, control de ramas y workflows CI/CD. |
+| Automatización de CI/CD   | GitHub Actions | Ejecución automática de pipelines y validaciones.          |
 
 ***
 
@@ -1741,11 +1759,13 @@ Las principales herramientas empleadas en la Integración Continua de Eddy son:
 # 🔄 Entrega Continua (CD)
 
 ## 1. Introducción
+
 Definir la arquitectura técnica, configuración y políticas de acceso a los servidores que soportan los entornos de staging y production del ecosistema Edye.
 
 ---
 
 ## 2. Alcance
+
 El presente procedimiento aplica a todos los servidores y entornos del ecosistema Edye, incluyendo los servicios:  
 Admin, API, Satélite, Billing, Cloud, Play, Conecta y Conect, en sus ambientes de staging y production.
 
@@ -1754,39 +1774,42 @@ El alcance de este documento DevOps comprende únicamente las actividades relaci
 ---
 
 ## 3. Procedimiento
+
 El proceso de Entrega Continua (CD) permite desplegar versiones estables del software en los entornos definidos mediante flujos automatizados y reproducibles.  
 Los despliegues se gestionan a través de GitHub Actions y herramientas de monitoreo integradas.
 
 ---
 
 ## 3.1. Arquitectura general de entornos
+
 La infraestructura de Edye se encuentra alojada en Linode (Akamai Cloud) y organizada en tres niveles principales:
 
-- **Staging:** entorno intermedio para validación funcional y pruebas de QA.  
+- **Staging:** entorno intermedio para validación funcional y pruebas de QA.
 - **Production:** entorno activo con servicios en operación.
 
 **Configuración técnica general:**
 
-- Servidor Web: Linode/Ubuntu  
-- Base de datos: MongoDB, MySQL  
+- Servidor Web: Linode/Ubuntu
+- Base de datos: MongoDB, MySQL
 - Despliegues: automatizados mediante GitHub Actions
 
 ---
 
 ### 3.1.1. Arquitectura general de servidores y DNS
 
-- *[**Linode servidores**](https://docs.google.com/spreadsheets/d/19VrWJu_G5nqdRHV1idEApHZ80LjAlgtPcORP6zDS-y8/edit?usp=drive_link)*
-- *[**Nombres de dominio**](https://docs.google.com/spreadsheets/d/1x-BnfqmrZmFQHwP7ihllWhJsTDkXjA37w5z9jj-uCDE/edit?usp=drive_link)*
+- _[**Linode servidores**](https://docs.google.com/spreadsheets/d/19VrWJu_G5nqdRHV1idEApHZ80LjAlgtPcORP6zDS-y8/edit?usp=drive_link)_
+- _[**Nombres de dominio**](https://docs.google.com/spreadsheets/d/1x-BnfqmrZmFQHwP7ihllWhJsTDkXjA37w5z9jj-uCDE/edit?usp=drive_link)_
 
 ---
 
 ## 3.2. Acceso y autenticación a servidores/Bases de datos
 
 ### Acceso a servidor Linode
+
 El acceso a los servidores del ecosistema Edye se realiza mediante los siguientes lineamientos:
 
-- Conexión SSH segura, restringida por firewall.  
-- Autenticación mediante clave pública (SSH Key) sobre el puerto 22/TCP.  
+- Conexión SSH segura, restringida por firewall.
+- Autenticación mediante clave pública (SSH Key) sobre el puerto 22/TCP.
 - Acceso limitado únicamente a roles autorizados:
   - Administradores (Admin / DevOps).
 
@@ -1794,7 +1817,7 @@ El acceso a los servidores del ecosistema Edye se realiza mediante los siguiente
 
 El ecosistema Edye opera con dos motores principales:
 
-- **MySQL** (servicios Laravel: Admin, API, Billing, Conecta, Connect, Satélite)  
+- **MySQL** (servicios Laravel: Admin, API, Billing, Conecta, Connect, Satélite)
 - **MongoDB** (servicios Node.js: Play y Cloud)
 
 Cada tecnología cuenta con políticas particulares:
@@ -1807,9 +1830,9 @@ El ecosistema Edye utiliza MySQL para servicios críticos como Admin, API, Billi
 
 ### **Arquitectura General**
 
-| Entorno | Modelo | Descripción |
-|--------|--------|-------------|
-| **Staging** | Nodo único | Cada base vive en un único servidor. |
+| Entorno        | Modelo                           | Descripción                                                |
+| -------------- | -------------------------------- | ---------------------------------------------------------- |
+| **Staging**    | Nodo único                       | Cada base vive en un único servidor.                       |
 | **Producción** | Clúster HA (Alta Disponibilidad) | 1 Primary (lectura/escritura) + 2 Replicas (solo lectura). |
 
 - **Versión:** MySQL **8.0.35**.
@@ -1822,6 +1845,7 @@ El ecosistema Edye utiliza MySQL para servicios críticos como Admin, API, Billi
 El acceso está protegido mediante una doble capa de seguridad:
 
 #### **1) Whitelist de IPs**
+
 Solo los servidores autorizados pueden conectarse:
 
 - API
@@ -1869,10 +1893,10 @@ La conexión a MongoDB está **totalmente restringida** a los dos servidores de 
 
 Estos módulos administran:
 
-- Actividad y consumo de usuarios  
-- Favoritos y progresos  
-- Contenidos vistos  
-- Perfil del usuario y preferencias  
+- Actividad y consumo de usuarios
+- Favoritos y progresos
+- Contenidos vistos
+- Perfil del usuario y preferencias
 
 ---
 
@@ -1889,15 +1913,15 @@ La conexión se realiza mediante:
 
 ```text
 POST https://data.mongodb-api.com/app/<app-id>/endpoint/data/v1/action/find
-Headers: 
+Headers:
   api-key: <API_KEY>
-  content-type: application/json 
+  content-type: application/json
 Body:
 {
   "dataSource": "<DATA_SOURCE_NAME>",
   "database": "<DATABASE_NAME>",
   "collection": "<COLLECTION_NAME>",
-  "filter": { 
+  "filter": {
       /* filtros opcionales */
   },
   "limit": 20
@@ -1911,9 +1935,11 @@ Body:
 - Solicitudes desde IPs externas no son aceptadas.
 
 ---
+
 ## 3.3. Flujo del proceso de entrega continua
 
 ![Flujo del proceso de entrega continua](img/entrega-continua-devops.jpg)
+
 > **Figura 1.** Diagrama del flujo de Entrega Continua DevOps
 
 **Descripción del flujo:**
@@ -1923,12 +1949,14 @@ Body:
 El pipeline ejecuta automáticamente el procedimiento de despliegue correspondiente al tipo de tecnología:x
 
 #### Servicios Laravel (Apache)
+
 - `git pull`
 - `composer install` / optimización
-- `php artisan migrate` *(solo en 1 nodo de Production)*
+- `php artisan migrate` _(solo en 1 nodo de Production)_
 - Reinicio de Apache
 
 #### Servicios Node.js (Nginx + PM2)
+
 - Transferencia del build via SCP
 - `pm2 reload`
 
@@ -1938,9 +1966,9 @@ El pipeline ejecuta automáticamente el procedimiento de despliegue correspondie
 
 Una vez desplegado en Staging, se realizan las siguientes validaciones:
 
-- Revisión de logs iniciales  
-- Validación de endpoints críticos  
-- Comprobación de respuesta del backend/servicio  
+- Revisión de logs iniciales
+- Validación de endpoints críticos
+- Comprobación de respuesta del backend/servicio
 
 Si todas las pruebas se completan correctamente, se habilita la opción de despliegue a Producción.
 
@@ -1950,16 +1978,16 @@ Si todas las pruebas se completan correctamente, se habilita la opción de despl
 
 El despliegue en Staging a Production requiere una **aprobación manual** por parte del equipo autorizado (DevOps / Líder Técnico).
 Una vez aprobada, el sistema ejecuta en Production el mismo procedimiento automatizado aplicado en Staging, garantizando coherencia entre entornos.
- 
+
 ---
 
 ### Monitoreo y Seguimiento
 
 Tras desplegar en Production, se activa el monitoreo continuo:
 
-- Logs de servidor y aplicación  
-- Métricas de rendimiento, uso y disponibilidad (https://monitor.edye.com)  
-- Alertas: errores, tiempo de respuesta, caídas  
+- Logs de servidor y aplicación
+- Métricas de rendimiento, uso y disponibilidad (https://monitor.edye.com)
+- Alertas: errores, tiempo de respuesta, caídas
 
 Si se detecta anomalía o degradación del servicio, el flujo avanza hacia el proceso de contingencia.
 
@@ -1969,9 +1997,9 @@ Si se detecta anomalía o degradación del servicio, el flujo avanza hacia el pr
 
 Ante errores post-despliegue:
 
-- Restaurar versión anterior  
-- Usar snapshots o artefactos históricos  
-- Reactivar servicio en estado previo estable  
+- Restaurar versión anterior
+- Usar snapshots o artefactos históricos
+- Reactivar servicio en estado previo estable
 
 Esto asegura continuidad operativa y minimiza tiempos de caída.
 
@@ -1983,11 +2011,10 @@ El ecosistema Edye utiliza dos modelos de ejecución distintos según la tecnolo
 
 Aunque el proceso CI/CD es común, **la forma en que el servidor actualiza y levanta cada servicio depende del stack tecnológico.**
 
-
-| Tipo de Servicio | Servidor / Proceso | Inicio del Servicio | Método de Despliegue | Logs |
-|------------------|--------------------|----------------------|-----------------------|------|
-| **Laravel** | Apache | Automático | git pull + composer install + artisan migrate + restart Apache | /var/log/apache2/* /var/www/{'app'}/storage/logs/laravel.log |
-| **Node.js (Play / Cloud)** | Nginx + PM2 | PM2 (modo fork) | build CI → scp → pm2 reload | /var/log/nginx/*  ~/.pm2/logs/* |
+| Tipo de Servicio           | Servidor / Proceso | Inicio del Servicio | Método de Despliegue                                           | Logs                                                          |
+| -------------------------- | ------------------ | ------------------- | -------------------------------------------------------------- | ------------------------------------------------------------- |
+| **Laravel**                | Apache             | Automático          | git pull + composer install + artisan migrate + restart Apache | /var/log/apache2/\* /var/www/{'app'}/storage/logs/laravel.log |
+| **Node.js (Play / Cloud)** | Nginx + PM2        | PM2 (modo fork)     | build CI → scp → pm2 reload                                    | /var/log/nginx/_ ~/.pm2/logs/_                                |
 
 ---
 
@@ -1997,23 +2024,23 @@ Los servicios Play y Cloud utilizan una arquitectura basada en **Node.js**, admi
 
 #### Nginx
 
-- Última versión: https://nginx.org/  
-- Actúa como reverse proxy  
-- No ejecuta la app; solo enruta tráfico HTTPS  
+- Última versión: https://nginx.org/
+- Actúa como reverse proxy
+- No ejecuta la app; solo enruta tráfico HTTPS
 
 **Rutas de configuración:**
 
-- `/etc/nginx/sites-enabled/play-proxy.conf`  
-- `/etc/nginx/sites-enabled/cloud-prod-proxy.conf`  
+- `/etc/nginx/sites-enabled/play-proxy.conf`
+- `/etc/nginx/sites-enabled/cloud-prod-proxy.conf`
 
 **Certificados:**
 
-- Certbot automático  
-- Renovación manual cada 75 días en balanceadores  
+- Certbot automático
+- Renovación manual cada 75 días en balanceadores
 
 **Comandos:**
 
-- `sudo systemctl reload nginx` Comando que recarga la configuración del servidor Nginx sin detener el proceso ni interrumpir las conexiones activas existentes.  
+- `sudo systemctl reload nginx` Comando que recarga la configuración del servidor Nginx sin detener el proceso ni interrumpir las conexiones activas existentes.
 - `sudo systemctl restart nginx` Comando sudo systemctl restart nginx detiene completamente el servicio de Nginx y lo vuelve a iniciar desde cero, lo que implica una interrupción temporal de todas las conexiones activas y puede causar un breve período en el que tu sitio web no está disponible.
 
 ---
@@ -2024,13 +2051,13 @@ PM2 gestiona el ciclo de vida de los procesos Node.js, permitiendo reinicios con
 
 **Ubicación del código:**
 
-- `/var/www/play`  
+- `/var/www/play`
 - `/var/www/cloud-prod.edye.com`
 
 **Versiones de Node.js:**
 
-- Cloud → 22.19.0  
-- Play → 18.20.4  
+- Cloud → 22.19.0
+- Play → 18.20.4
 
 **Logs:**
 
@@ -2038,36 +2065,36 @@ PM2 gestiona el ciclo de vida de los procesos Node.js, permitiendo reinicios con
 
 **PM2 autostart:**
 
-- `pm2 startup`  
+- `pm2 startup`
 - `pm2 save`
 
 **Comandos frecuentes:**
 
-- `pm2 start 0`  
-- `pm2 stop 0`  
-- `pm2 delete 0`  
-- `pm2 reload 0`  
+- `pm2 start 0`
+- `pm2 stop 0`
+- `pm2 delete 0`
+- `pm2 reload 0`
 
 **Flujo de despliegue (Node.js):**
 
 El pipeline no ejecuta git pull en servidores Node.js.
 
-- CI ejecuta build + pruebas  
-- Build se copia via SCP  
-- `pm2 reload 0`  
+- CI ejecuta build + pruebas
+- Build se copia via SCP
+- `pm2 reload 0`
 
 **Validación y monitoreo:**
 
-- Healthcheck 24/7  
-- Alertas de degradación  
-- Dashboard en https://monitor.edye.com  
-- Status externo: https://status.edye.com  
+- Healthcheck 24/7
+- Alertas de degradación
+- Dashboard en https://monitor.edye.com
+- Status externo: https://status.edye.com
 
 **Rollback:**
 
-- Retroceder rama production  
-- Nuevo build  
-- Re-despliegue  
+- Retroceder rama production
+- Nuevo build
+- Re-despliegue
 
 ---
 
@@ -2077,15 +2104,15 @@ Los servicios basados en Laravel dentro del ecosistema Edye operan sobre **Apach
 
 **Arquitectura:**
 
-- Aplicaciones PHP servidas desde `/public`  
-- Routing gestionado vía VirtualHost  
+- Aplicaciones PHP servidas desde `/public`
+- Routing gestionado vía VirtualHost
 
 **Flujo de despliegue:**
 
-- `git pull`  
-- `composer install --no-dev --optimize-autoloader`  
-- `php artisan migrate`  
-- `php artisan optimize`  
+- `git pull`
+- `composer install --no-dev --optimize-autoloader`
+- `php artisan migrate`
+- `php artisan optimize`
 - Limpieza de caches:
   - `php artisan cache:clear`
   - `php artisan config:clear`
@@ -2094,42 +2121,42 @@ Los servicios basados en Laravel dentro del ecosistema Edye operan sobre **Apach
 
 **Logs:**
 
-- `/var/log/apache2/error.log`  
-- `/var/log/apache2/access.log`  
+- `/var/log/apache2/error.log`
+- `/var/log/apache2/access.log`
 - `/var/www/{'app'}/storage/logs/laravel.log`
 
 **Validación y monitoreo:**
 
-- Healthcheck activo  
-- Logs Apache + Laravel  
-- Observabilidad en Grafana  
+- Healthcheck activo
+- Logs Apache + Laravel
+- Observabilidad en Grafana
 
 **Rollback:**
 
-- Revertir código  
-- Reejecutar flujo de deploy  
+- Revertir código
+- Reejecutar flujo de deploy
 
 ---
 
 ## 3.5. Procedimiento de mantenimiento y contingencia
 
-- Actualizaciones automáticas por cada PUSH  
-- Limpieza de logs y temporales (Autorotate)  
-- Backups diarios (Akamai Cloud Storage)  
-- Escaneo Qualys diario  
-- Rollback manual ante fallas críticas  
+- Actualizaciones automáticas por cada PUSH
+- Limpieza de logs y temporales (Autorotate)
+- Backups diarios (Akamai Cloud Storage)
+- Escaneo Qualys diario
+- Rollback manual ante fallas críticas
 
 ---
 
 ## 4. Herramientas
 
-| Categoría | Herramienta | Uso principal |
-|----------|-------------|---------------|
-| Automatización y despliegue | GitHub Actions | Despliegue automatizado de aplicaciones y recursos |
-| Infraestructura | Linode (Akamai Cloud), PM2, Nginx, Apache | Hosting y ejecución de servicios |
-| Seguridad | Qualys | Escaneo de vulnerabilidades |
-| Monitoreo | Grafana | Supervisión de rendimiento |
-| Gestión operativa | Monday | Registro de entregas, incidencias y trazabilidad post-deploy |
+| Categoría                   | Herramienta                               | Uso principal                                                |
+| --------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
+| Automatización y despliegue | GitHub Actions                            | Despliegue automatizado de aplicaciones y recursos           |
+| Infraestructura             | Linode (Akamai Cloud), PM2, Nginx, Apache | Hosting y ejecución de servicios                             |
+| Seguridad                   | Qualys                                    | Escaneo de vulnerabilidades                                  |
+| Monitoreo                   | Grafana                                   | Supervisión de rendimiento                                   |
+| Gestión operativa           | Monday                                    | Registro de entregas, incidencias y trazabilidad post-deploy |
 
 ***
 
@@ -2864,14 +2891,6 @@ Esto garantiza que:
 | ROKU Premium Subscriptions  | Ingesta                                   | 🟢 Operativa   |
 
 </div>
-
-# Monday Board (embed)
-
-<iframe
-  src="https://hitn-team.monday.com/embed/boards/2225780598?origin=http://http://localhost:3000"
-  style={{ width: '100%', height: '900px', border: 0 }}
-  allowfullscreen
-></iframe>
 
 ***
 
@@ -7311,9 +7330,10 @@ El documento proporciona una vista operativa de las herramientas utilizadas, los
 ## 2. Gestión y Monitoreo de Infraestructura
 
 ![Seguridad y Monitoreo](img/seguridad/infraYseguridad.jpg)
+
 > **Figura 1.** _Flujo general del proceso Seguridad y Monitoreo_
 
-# Descripción de la infraestructura monitoreada
+### Descripción de la infraestructura monitoreada
 
 EDYE utiliza servidores Ubuntu como base de sus servicios. Para la gestión y el monitoreo de estos hosts se emplea Landscape, una solución que administra el ciclo de vida de las instancias, aplica actualizaciones y permite recopilar eventos del sistema. La infraestructura supervisada incluye estados de los servidores (encendido/apagado), versiones de sistema operativo y paquetes, así como eventos relevantes del sistema.
 
@@ -7335,9 +7355,10 @@ La información capturada por Landscape constituye la base para realizar tareas 
 ## 3. Seguridad y Cumplimiento
 
 ![Seguridad y Cumplimiento](img/seguridad/seguridadCompliance.jpg)
+
 > **Figura 2.** _Flujo general del proceso Seguridad y Cumplimiento_
 
-# Enfoque general
+### Enfoque general
 
 La estrategia de seguridad de EDYE se basa en la detección proactiva de vulnerabilidades y en el cumplimiento de normativas vigentes. Para ello se utilizan herramientas que escanean tanto la infraestructura como las aplicaciones, permiten priorizar riesgos y evidenciar el cumplimiento de estándares.
 El diagrama de Seguridad y Cumplimiento sitúa la plataforma Qualys como núcleo de esta capa de seguridad y subdivide su funcionalidad en VMDR, WAS y Compliance.
@@ -7345,14 +7366,17 @@ El diagrama de Seguridad y Cumplimiento sitúa la plataforma Qualys como núcleo
 ### 3.1. Herramientas de escaneo y análisis
 
 - **VMDR (Vulnerability Management, Detection and Response)**: módulo de Qualys que gestiona vulnerabilidades. Utiliza técnicas de scoring, como TruRisk, para identificar y clasificar las vulnerabilidades más críticas.
+
   - **Alcance**: realiza escaneos diarios por dentro y por fuera de los servidores; releva configuraciones internas y puertos abiertos externos, comparándolos con la base de datos de vulnerabilidades más reciente para generar reportes con gravedad y sugerencias de remediación.
   - **Responsable**: equipo DevOps (administrador: Agustín).
 
 - **WAS (Web Application Scanning)**: realiza escaneos externos sobre aplicaciones web y utiliza un banco de ataques de referencia para identificar vulnerabilidades de configuración o código.
+
   - En el caso de APIs, se importa la colección de pruebas (p.ej., Postman) y se escanean todos los endpoints.
   - **Responsable**: equipo DevOps (administrador: Agustín).
 
 - **Compliance**: módulo que valida el cumplimiento de políticas y normas. Qualys verifica que las operaciones tecnológicas y los datos cumplan con leyes y estándares (actualmente se valida contra la norma de la industria de tarjetas de crédito).
+
   - Permite definir políticas internas, generar evidencias y facilitar auditorías.
 
 - **Qualys Platform**: plataforma SaaS que integra los módulos anteriores y ofrece inventario de activos, reportes y remediación.
@@ -7360,19 +7384,20 @@ El diagrama de Seguridad y Cumplimiento sitúa la plataforma Qualys como núcleo
 
 #### Diferenciación de escaneos
 
-| Tipo de escaneo         | Herramienta         | Objetivo y alcance                                                                 |
-|------------------------ |-------------------- |-----------------------------------------------------------------------------------|
-| Infraestructura         | VMDR                | Detectar vulnerabilidades en configuraciones y sistemas operativos; revisar puertos abiertos y servicios expuestos. |
-| Aplicaciones            | WAS                 | Identificar fallos en aplicaciones web y APIs mediante técnicas de pentesting automatizado. |
-| Gestión de vulnerabilidades | VMDR + Qualys   | Priorizar riesgos y automatizar la remediación utilizando puntuaciones de riesgo.   |
-| Compliance normativo    | Compliance          | Verificar cumplimiento de normas y políticas, actualmente alineado con la norma de tarjetas de crédito. |
+| Tipo de escaneo             | Herramienta   | Objetivo y alcance                                                                                                  |
+| --------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Infraestructura             | VMDR          | Detectar vulnerabilidades en configuraciones y sistemas operativos; revisar puertos abiertos y servicios expuestos. |
+| Aplicaciones                | WAS           | Identificar fallos en aplicaciones web y APIs mediante técnicas de pentesting automatizado.                         |
+| Gestión de vulnerabilidades | VMDR + Qualys | Priorizar riesgos y automatizar la remediación utilizando puntuaciones de riesgo.                                   |
+| Compliance normativo        | Compliance    | Verificar cumplimiento de normas y políticas, actualmente alineado con la norma de tarjetas de crédito.             |
 
 ## 4. Monitoreo y Alertamiento
 
 ![Monitoreo y Alertamiento](img/seguridad/monitoringAlerting.jpg)
+
 > **Figura 3.** _Flujo general del proceso Monitoreo y Alertamiento_
 
-# Estrategia de monitoreo
+### Estrategia de monitoreo
 
 El monitoreo de EDYE cubre tanto la disponibilidad de servicios como el rendimiento. Se vigilan APIs, aplicaciones, bases de datos, integraciones de terceros e infraestructura, así como la experiencia del usuario mediante pruebas externas (black box). La meta es garantizar un SLA de 99,9 % de disponibilidad y reaccionar rápidamente ante fallos.
 
@@ -7405,9 +7430,10 @@ Las alertas se configuran en Grafana y se alimentan de Prometheus y Loki. Los um
 ## 5. Seguridad de Código
 
 ![Seguridad de Código](img/seguridad/codeSecurity.jpg)
+
 > **Figura 4.** _Flujo general del proceso Seguridad de Código_
 
-# Seguridad integrada al ciclo de desarrollo (DevSecOps)
+### Seguridad integrada al ciclo de desarrollo (DevSecOps)
 
 EDYE incorpora la seguridad desde el diseño y durante el ciclo de vida del software. Las revisiones de código son obligatorias mediante pull requests con revisión por pares. Además, se integran análisis estáticos y dinámicos en la pipeline CI/CD para identificar problemas antes de llegar a producción.
 
@@ -7418,15 +7444,15 @@ EDYE incorpora la seguridad desde el diseño y durante el ciclo de vida del soft
 
 #### Tipos de análisis
 
-| Tipo de análisis                  | Herramienta o función | Descripción                                                                 |
-|-----------------------------------|----------------------|-----------------------------------------------------------------------------|
-| Análisis estático de código (SAST)| SonarQube            | Evalúa la calidad y seguridad del código durante el desarrollo, identificando bugs y vulnerabilidades antes de la compilación. |
-| Análisis dinámico de aplicaciones (DAST) | OWASP ZAP      | Ejecuta pruebas de penetración automatizadas sobre aplicaciones web en ejecución para detectar vulnerabilidades. |
-| Análisis de dependencias          | Snyk                 | Examina las bibliotecas y paquetes utilizados para identificar versiones vulnerables y recomienda actualizaciones. |
-| Code Scanning (GitHub)            | Función de GitHub    | Busca errores y vulnerabilidades en el código del repositorio.               |
-| Secret Scanning (GitHub)          | Función de GitHub    | Escanea el historial del repositorio para detectar tokens, claves y credenciales expuestos, generando alertas automáticas. |
-| Dependency Review (GitHub)        | Función de GitHub    | Muestra los cambios en dependencias durante una pull request, con información sobre versiones y vulnerabilidades. |
-| Dependabot (GitHub)               | Dependabot           | Automatiza la detección y actualización de dependencias obsoletas o vulnerables, creando pull requests y alertas. |
+| Tipo de análisis                         | Herramienta o función | Descripción                                                                                                                    |
+| ---------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Análisis estático de código (SAST)       | SonarQube             | Evalúa la calidad y seguridad del código durante el desarrollo, identificando bugs y vulnerabilidades antes de la compilación. |
+| Análisis dinámico de aplicaciones (DAST) | OWASP ZAP             | Ejecuta pruebas de penetración automatizadas sobre aplicaciones web en ejecución para detectar vulnerabilidades.               |
+| Análisis de dependencias                 | Snyk                  | Examina las bibliotecas y paquetes utilizados para identificar versiones vulnerables y recomienda actualizaciones.             |
+| Code Scanning (GitHub)                   | Función de GitHub     | Busca errores y vulnerabilidades en el código del repositorio.                                                                 |
+| Secret Scanning (GitHub)                 | Función de GitHub     | Escanea el historial del repositorio para detectar tokens, claves y credenciales expuestos, generando alertas automáticas.     |
+| Dependency Review (GitHub)               | Función de GitHub     | Muestra los cambios en dependencias durante una pull request, con información sobre versiones y vulnerabilidades.              |
+| Dependabot (GitHub)                      | Dependabot            | Automatiza la detección y actualización de dependencias obsoletas o vulnerables, creando pull requests y alertas.              |
 
 ### 5.2. Relación con CI/CD
 
@@ -7468,14 +7494,14 @@ El objetivo del servicio es proporcionar asistencia técnica eficiente a los col
 
 El servicio se dirige exclusivamente a clientes internos, definidos como colaboradores del equipo técnico que aseguran la prestación de los servicios de EDYE. A continuación se recogen algunos términos usados en el procedimiento:
 
-| Término         | Definición |
-|-----------------|------------|
-| FAQ             | Acrónimo de Frequently Asked Questions o preguntas frecuentes; repositorio donde se recopilan y responden preguntas comunes sobre temas técnicos de los servicios de EDYE. |
-| Multicanal      | Práctica de asistencia a partners y clientes internos a través de múltiples canales de comunicación como correo electrónico y Monday. |
-| Monday          | Work OS utilizado por EDYE para la ejecución de proyectos y flujos de trabajo. |
-| Reporte de estado | Documento que detalla el progreso y la situación actual de un ticket; muestra acciones tomadas, tiempo empleado e información relevante para rastrear la resolución del incidente. |
-| SLA (Service Level Agreement) | Acuerdo de nivel de servicio que establece condiciones de respuesta en la solución de incidentes técnicos. |
-| Ticket          | Registro digital creado cuando un cliente interno reporta un problema o solicitud de ayuda; permite rastrear, gestionar y resolver la incidencia. |
+| Término                       | Definición                                                                                                                                                                         |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FAQ                           | Acrónimo de Frequently Asked Questions o preguntas frecuentes; repositorio donde se recopilan y responden preguntas comunes sobre temas técnicos de los servicios de EDYE.         |
+| Multicanal                    | Práctica de asistencia a partners y clientes internos a través de múltiples canales de comunicación como correo electrónico y Monday.                                              |
+| Monday                        | Work OS utilizado por EDYE para la ejecución de proyectos y flujos de trabajo.                                                                                                     |
+| Reporte de estado             | Documento que detalla el progreso y la situación actual de un ticket; muestra acciones tomadas, tiempo empleado e información relevante para rastrear la resolución del incidente. |
+| SLA (Service Level Agreement) | Acuerdo de nivel de servicio que establece condiciones de respuesta en la solución de incidentes técnicos.                                                                         |
+| Ticket                        | Registro digital creado cuando un cliente interno reporta un problema o solicitud de ayuda; permite rastrear, gestionar y resolver la incidencia.                                  |
 
 ### 3.2. Alcance del servicio
 
@@ -7500,12 +7526,12 @@ Las solicitudes recibidas se clasifican según su naturaleza y el horario en que
 
 El soporte técnico se presta a través de los siguientes canales autorizados:
 
-| Canal | Descripción | Requisitos de acceso |
-|-------|-------------|---------------------|
-| Monday | Plataforma principal de gestión de tickets. Los clientes internos crean, actualizan y consultan tickets en Monday. El Administrador de tickets clasifica y asigna los tickets a los agentes correspondientes. | Requiere credenciales de acceso a la cuenta corporativa de Monday. |
-| Correo electrónico/Monday notifications | Los agentes y el administrador de tickets utilizan notificaciones generadas por Monday para asignar y comunicar el estado de los tickets. | El usuario debe tener un correo corporativo registrado en Monday. |
-| Zendesk | Se utiliza para notificar al cliente interno sobre la solución del ticket y solicitar confirmación. | El acceso es gestionado por el administrador de tickets. |
-| Slack | Canal de comunicación interna empleado para la reasignación de tickets de nivel 2 y notificaciones entre agentes y administrador. | Acceso a espacios de trabajo internos autorizados. |
+| Canal                                   | Descripción                                                                                                                                                                                                   | Requisitos de acceso                                               |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Monday                                  | Plataforma principal de gestión de tickets. Los clientes internos crean, actualizan y consultan tickets en Monday. El Administrador de tickets clasifica y asigna los tickets a los agentes correspondientes. | Requiere credenciales de acceso a la cuenta corporativa de Monday. |
+| Correo electrónico/Monday notifications | Los agentes y el administrador de tickets utilizan notificaciones generadas por Monday para asignar y comunicar el estado de los tickets.                                                                     | El usuario debe tener un correo corporativo registrado en Monday.  |
+| Zendesk                                 | Se utiliza para notificar al cliente interno sobre la solución del ticket y solicitar confirmación.                                                                                                           | El acceso es gestionado por el administrador de tickets.           |
+| Slack                                   | Canal de comunicación interna empleado para la reasignación de tickets de nivel 2 y notificaciones entre agentes y administrador.                                                                             | Acceso a espacios de trabajo internos autorizados.                 |
 
 ## 5. Herramientas utilizadas
 
@@ -7562,13 +7588,13 @@ El proveedor o experto externo participa únicamente cuando el nivel 3 aprueba s
 
 El procedimiento identifica las siguientes categorías de tickets:
 
-| Tipo de solicitud | Tiempo de respuesta | Responsable / Área | Referencia |
-|-------------------|--------------------|--------------------|------------|
-| Dudas y operaciones del día a día | 2–3 horas en horario comercial | Área de Operaciones – Gerente | Matriz de escalamiento |
-| Errores o preguntas técnicas | 2–3 horas en horario comercial | Área de Operaciones – Gerente | Matriz de escalamiento |
-| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas | Área de Operaciones – Gerente | Matriz de escalamiento |
-| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas | Área de Operaciones – Cabeza de Tecnología | Matriz de escalamiento |
-| Preguntas de mercadeo y negocio | 24 horas | Mercadeo y Negocio – VP | Matriz de escalamiento |
+| Tipo de solicitud                                                      | Tiempo de respuesta            | Responsable / Área                         | Referencia             |
+| ---------------------------------------------------------------------- | ------------------------------ | ------------------------------------------ | ---------------------- |
+| Dudas y operaciones del día a día                                      | 2–3 horas en horario comercial | Área de Operaciones – Gerente              | Matriz de escalamiento |
+| Errores o preguntas técnicas                                           | 2–3 horas en horario comercial | Área de Operaciones – Gerente              | Matriz de escalamiento |
+| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas                       | Área de Operaciones – Gerente              | Matriz de escalamiento |
+| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas                       | Área de Operaciones – Cabeza de Tecnología | Matriz de escalamiento |
+| Preguntas de mercadeo y negocio                                        | 24 horas                       | Mercadeo y Negocio – VP                    | Matriz de escalamiento |
 
 ### 8.2. Criterios de clasificación
 
@@ -7592,6 +7618,7 @@ Se consideran horario comercial las horas laborales establecidas internamente (n
 ## 10. Flujo de atención del soporte técnico
 
 ![Soporte Clientes Internos ](img/soporteClienteInterno.jpg)
+
 > **Figura 1.** _Flujo general del Soporte Clientes Internos_
 
 ### 10.1. Descripción paso a paso del flujo
@@ -7629,13 +7656,13 @@ El cierre del ticket ocurre cuando:
 
 La matriz de escalamiento operativo indica a quién contactar según el tipo de solicitud y el horario. A continuación se resume la información principal:
 
-| Escenario de escalamiento | Tiempo de respuesta | Área / Puesto | Contacto | Correo electrónico | Teléfono |
-|--------------------------|--------------------|---------------|----------|--------------------|----------|
-| Dudas y operaciones del día a día | 2–3 horas en horario comercial | Operaciones / Gerente | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errores o preguntas técnicas en horario comercial | 2–3 horas | Operaciones / Gerente | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas | Operaciones / Gerente | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
-| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas | Operaciones / Cabeza de Tecnología | Agustín Gómez Vega | agustin@edye.com | +1 (786) 329‑9448 |
-| Preguntas de mercadeo y negocio | 24 horas | Mercadeo y Negocio / VP | Maximiliano Vaccaro | mvaccaro@hitn.org | +1 (305) 721‑4309 |
+| Escenario de escalamiento                                              | Tiempo de respuesta            | Área / Puesto                      | Contacto                        | Correo electrónico    | Teléfono          |
+| ---------------------------------------------------------------------- | ------------------------------ | ---------------------------------- | ------------------------------- | --------------------- | ----------------- |
+| Dudas y operaciones del día a día                                      | 2–3 horas en horario comercial | Operaciones / Gerente              | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errores o preguntas técnicas en horario comercial                      | 2–3 horas                      | Operaciones / Gerente              | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errores o preguntas técnicas fuera de horario comercial (1.º contacto) | 24 horas                       | Operaciones / Gerente              | Constantine Costopoulos (Kosta) | ccostopoulos@hitn.org | +1 (646) 296‑2497 |
+| Errores o preguntas técnicas fuera de horario comercial (2.º contacto) | 48 horas                       | Operaciones / Cabeza de Tecnología | Agustín Gómez Vega              | agustin@edye.com      | +1 (786) 329‑9448 |
+| Preguntas de mercadeo y negocio                                        | 24 horas                       | Mercadeo y Negocio / VP            | Maximiliano Vaccaro             | mvaccaro@hitn.org     | +1 (305) 721‑4309 |
 
 ### 11.2. Responsables y tiempos
 
@@ -7651,10 +7678,10 @@ Los contactos indicados en la matriz son responsables de responder dentro de los
 
 El procedimiento define dos métricas clave:
 
-| Métrica | Frecuencia | Responsable | Herramienta |
-|---------|------------|-------------|-------------|
-| Número de tickets recibidos | Diario | Administrador de tickets | Monday / Zendesk |
-| SLA cumplidos por usuario o tipo | Semanal | Administrador de tickets | Monday |
+| Métrica                          | Frecuencia | Responsable              | Herramienta      |
+| -------------------------------- | ---------- | ------------------------ | ---------------- |
+| Número de tickets recibidos      | Diario     | Administrador de tickets | Monday / Zendesk |
+| SLA cumplidos por usuario o tipo | Semanal    | Administrador de tickets | Monday           |
 
 Estas métricas se utilizan para controlar la carga de trabajo y la eficacia del soporte técnico y se reportan a los equipos de operaciones y dirección.
 
@@ -7714,29 +7741,29 @@ La documentación revisada no define explícitamente qué actividades quedan fue
 
 Para facilitar la comprensión del proceso, se incluyen los principales términos utilizados en el servicio:
 
-| Término | Definición |
-|---------|------------|
-| Clientes internos | Colaboradores del equipo técnico encargados de asegurar la prestación de los servicios de EDYE. |
-| FAQ (Frequently Asked Questions) | Sección en sitios web o repositorios donde se recopilan y responden preguntas comunes que partners y clientes externos pueden tener sobre los servicios técnicos de EDYE. |
-| Multicanal | Práctica de asistencia a partners y clientes externos a través de múltiples canales de comunicación; en este caso correo electrónico y Monday. |
-| Monday | Sistema operativo de trabajo (Work OS) que facilita la ejecución de proyectos y flujos de trabajo. Se utiliza para notificaciones internas, registro y seguimiento de tickets. |
-| Partner / Cliente externo | Cliente externo o asociado que tiene activos los servicios para la difusión de contenidos de EDYE. |
-| Reporte de estado | Documento que detalla el progreso y la situación de un ticket: acciones tomadas, tiempo empleado e información relevante para rastrear el avance. |
-| SLA (Service Level Agreement) | Acuerdo de nivel de servicio que establece las condiciones de respuesta en la solución de incidentes técnicos. Pueden estar definidos internamente o mediante contratos con los partners. |
-| Usuarios finales | Suscriptores directos de EDYE o de los partners que acceden a los contenidos de EDYE. |
-| Ticket | Registro digital creado cuando un partner o cliente externo reporta un problema o solicita ayuda. Permite rastrear, gestionar y resolver la incidencia de manera eficiente. |
-| Zendesk | Plataforma de atención al cliente que centraliza las interacciones a través de múltiples canales y permite automatizar procesos y analizar datos. |
+| Término                          | Definición                                                                                                                                                                                |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Clientes internos                | Colaboradores del equipo técnico encargados de asegurar la prestación de los servicios de EDYE.                                                                                           |
+| FAQ (Frequently Asked Questions) | Sección en sitios web o repositorios donde se recopilan y responden preguntas comunes que partners y clientes externos pueden tener sobre los servicios técnicos de EDYE.                 |
+| Multicanal                       | Práctica de asistencia a partners y clientes externos a través de múltiples canales de comunicación; en este caso correo electrónico y Monday.                                            |
+| Monday                           | Sistema operativo de trabajo (Work OS) que facilita la ejecución de proyectos y flujos de trabajo. Se utiliza para notificaciones internas, registro y seguimiento de tickets.            |
+| Partner / Cliente externo        | Cliente externo o asociado que tiene activos los servicios para la difusión de contenidos de EDYE.                                                                                        |
+| Reporte de estado                | Documento que detalla el progreso y la situación de un ticket: acciones tomadas, tiempo empleado e información relevante para rastrear el avance.                                         |
+| SLA (Service Level Agreement)    | Acuerdo de nivel de servicio que establece las condiciones de respuesta en la solución de incidentes técnicos. Pueden estar definidos internamente o mediante contratos con los partners. |
+| Usuarios finales                 | Suscriptores directos de EDYE o de los partners que acceden a los contenidos de EDYE.                                                                                                     |
+| Ticket                           | Registro digital creado cuando un partner o cliente externo reporta un problema o solicita ayuda. Permite rastrear, gestionar y resolver la incidencia de manera eficiente.               |
+| Zendesk                          | Plataforma de atención al cliente que centraliza las interacciones a través de múltiples canales y permite automatizar procesos y analizar datos.                                         |
 
 ## 5. Resumen del servicio
 
-| Elemento | Descripción |
-|----------|------------|
-| Nombre del servicio | Soporte técnico multicanal |
-| Objetivo | Proporcionar atención técnica eficiente según el tipo de usuario. |
-| Público objetivo | Clientes externos. |
-| Canal principal | Zendesk, que requiere autenticación por parte del partner o cliente externo. |
+| Elemento            | Descripción                                                                                                                                                                |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nombre del servicio | Soporte técnico multicanal                                                                                                                                                 |
+| Objetivo            | Proporcionar atención técnica eficiente según el tipo de usuario.                                                                                                          |
+| Público objetivo    | Clientes externos.                                                                                                                                                         |
+| Canal principal     | Zendesk, que requiere autenticación por parte del partner o cliente externo.                                                                                               |
 | Alcance del soporte | Atención a incidentes técnicos de hardware y software relacionados con los servicios de EDYE. El servicio busca resolver problemas actuales y prevenir incidentes futuros. |
-| Fuera del alcance | No se describen en la documentación actual restricciones o exclusiones específicas. |
+| Fuera del alcance   | No se describen en la documentación actual restricciones o exclusiones específicas.                                                                                        |
 
 ## 6. Roles y responsabilidades
 
@@ -7789,24 +7816,24 @@ Proporcionan la solución técnica en los casos que requieren un nivel de soport
 
 ### 7.3. Uso de cada canal
 
-| Canal | Uso |
-|-------|-----|
-| Zendesk | Creación y seguimiento de tickets de soporte; comunicación con el cliente externo y envío de notificaciones de resolución. |
-| Monday | Herramienta interna para la clasificación, asignación, seguimiento y reporte de tickets; envío de notificaciones entre administradores y agentes. |
-| Slack | Canal interno usado para notificaciones y reasignación de tickets a niveles superiores cuando corresponde. |
-| Base de conocimiento | Recurso de autogestión que permite al cliente externo consultar artículos para resolver problemas comunes sin necesidad de abrir un ticket. |
+| Canal                | Uso                                                                                                                                               |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Zendesk              | Creación y seguimiento de tickets de soporte; comunicación con el cliente externo y envío de notificaciones de resolución.                        |
+| Monday               | Herramienta interna para la clasificación, asignación, seguimiento y reporte de tickets; envío de notificaciones entre administradores y agentes. |
+| Slack                | Canal interno usado para notificaciones y reasignación de tickets a niveles superiores cuando corresponde.                                        |
+| Base de conocimiento | Recurso de autogestión que permite al cliente externo consultar artículos para resolver problemas comunes sin necesidad de abrir un ticket.       |
 
 ## 8. Clasificación de tickets
 
 La documentación proporciona una matriz de escalamiento operativo con los tipos de solicitudes, tiempos de respuesta y contactos asociados. Estos tipos de tickets constituyen la clasificación actualmente definida. Los tiempos se expresan en horas desde la recepción del ticket, y los contactos corresponden al área de operaciones salvo indicación distinta.
 
-| Tipo de solicitud | Tiempo de respuesta | Área/Contacto | Cargo | Medio |
-|-------------------|--------------------|--------------|-------|-------|
-| Contacto para dudas y operaciones del día a día | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos | Gerente | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalamiento de errores o preguntas técnicas | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos | Gerente | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalamiento de errores o preguntas técnicas fuera de horario comercial (1º contacto) | 24 horas | Operaciones – Constantine Costopoulos | Gerente | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
-| Escalamiento de errores o preguntas técnicas fuera de horario comercial (2º contacto) | 48 horas | Operaciones – Agustín Gomez Vega | Cabeza de Tecnología | agustin@edye.com / +1 (786) 329‑9448 |
-| Preguntas de mercadeo y negocio | 24 horas | Mercadeo y Negocio – Maximiliano Vaccaro | VP | mvaccaro@hitn.org / +1 (305) 721‑4309 |
+| Tipo de solicitud                                                                     | Tiempo de respuesta            | Área/Contacto                            | Cargo                | Medio                                     |
+| ------------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------- | -------------------- | ----------------------------------------- |
+| Contacto para dudas y operaciones del día a día                                       | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos    | Gerente              | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalamiento de errores o preguntas técnicas                                          | 2–3 horas en horario comercial | Operaciones – Constantine Costopoulos    | Gerente              | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalamiento de errores o preguntas técnicas fuera de horario comercial (1º contacto) | 24 horas                       | Operaciones – Constantine Costopoulos    | Gerente              | ccostopoulos@hitn.org / +1 (646) 296‑2497 |
+| Escalamiento de errores o preguntas técnicas fuera de horario comercial (2º contacto) | 48 horas                       | Operaciones – Agustín Gomez Vega         | Cabeza de Tecnología | agustin@edye.com / +1 (786) 329‑9448      |
+| Preguntas de mercadeo y negocio                                                       | 24 horas                       | Mercadeo y Negocio – Maximiliano Vaccaro | VP                   | mvaccaro@hitn.org / +1 (305) 721‑4309     |
 
 ### 8.1. Consideraciones de horario
 
@@ -7816,6 +7843,7 @@ La documentación proporciona una matriz de escalamiento operativo con los tipos
 ## 9. Flujo de atención y resolución
 
 ![Flujo de atención y resolución ](img/soporteClienteExterno.jpg)
+
 > **Figura 1.** _Flujo general del Flujo de atención y resolución_
 
 El proceso de atención a un ticket sigue una secuencia de pasos definidos en el procedimiento, con los registros correspondientes en Zendesk y Monday:
@@ -7850,13 +7878,13 @@ Los niveles de escalamiento garantizan la continuidad del soporte en función de
 
 Los acuerdos de nivel de servicio (SLA) están definidos por tipo de solicitud y horario. La documentación establece los siguientes tiempos de respuesta:
 
-| Tipo de solicitud | Nivel de soporte | SLA documentado |
-|-------------------|-----------------|-----------------|
-| Dudas y operaciones del día a día | Nivel 1 | 2–3 horas en horario comercial |
-| Errores o preguntas técnicas (horario comercial) | Nivel 1 | 2–3 horas |
-| Errores o preguntas técnicas (primer contacto fuera de horario comercial) | Nivel 1 / Gerencia de Operaciones | 24 horas |
-| Errores o preguntas técnicas (segundo contacto fuera de horario comercial) | Nivel 2 / Cabeza de Tecnología | 48 horas |
-| Preguntas de mercadeo y negocio | VP de Mercadeo y Negocio | 24 horas |
+| Tipo de solicitud                                                          | Nivel de soporte                  | SLA documentado                |
+| -------------------------------------------------------------------------- | --------------------------------- | ------------------------------ |
+| Dudas y operaciones del día a día                                          | Nivel 1                           | 2–3 horas en horario comercial |
+| Errores o preguntas técnicas (horario comercial)                           | Nivel 1                           | 2–3 horas                      |
+| Errores o preguntas técnicas (primer contacto fuera de horario comercial)  | Nivel 1 / Gerencia de Operaciones | 24 horas                       |
+| Errores o preguntas técnicas (segundo contacto fuera de horario comercial) | Nivel 2 / Cabeza de Tecnología    | 48 horas                       |
+| Preguntas de mercadeo y negocio                                            | VP de Mercadeo y Negocio          | 24 horas                       |
 
 No se definen en la documentación tiempos de resolución o compromisos de disponibilidad; solo se establecen los tiempos de respuesta inicial.
 
@@ -7881,10 +7909,10 @@ La gestión del conocimiento es un componente clave para reducir la recurrencia 
 
 El servicio de soporte realiza seguimiento mediante métricas definidas en el procedimiento:
 
-| Métrica | Frecuencia | Responsable | Herramienta |
-|---------|------------|-------------|-------------|
-| Número de tickets recibidos | Diario | Administrador de tickets | Monday / Zendesk |
-| SLA cumplidos por usuario/tipo | Semanal | Administrador de tickets | Monday |
+| Métrica                        | Frecuencia | Responsable              | Herramienta      |
+| ------------------------------ | ---------- | ------------------------ | ---------------- |
+| Número de tickets recibidos    | Diario     | Administrador de tickets | Monday / Zendesk |
+| SLA cumplidos por usuario/tipo | Semanal    | Administrador de tickets | Monday           |
 
 No se describen métricas adicionales como tiempo de resolución o satisfacción del cliente; por lo tanto, cualquier otra métrica se considera no definida en la documentación actual.
 
@@ -7892,11 +7920,11 @@ No se describen métricas adicionales como tiempo de resolución o satisfacción
 
 La documentación registra plantillas y formularios utilizados en Monday para agilizar la gestión de tickets:
 
-| Herramienta | Plantilla/Macro | Objetivo |
-|-------------|-----------------|----------|
-| Monday | Formulario de errores y preguntas técnicas | Agilizar la atención de incidencias técnicas frecuentes. |
-| Monday | Formulario de mercadeo y negocio | Agilizar la atención de preguntas de mercadeo y negocio. |
-| Monday | Formato de reporte de estado | Establecer el contenido mínimo requerido para los reportes de estado de cada ticket. |
+| Herramienta | Plantilla/Macro                            | Objetivo                                                                             |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| Monday      | Formulario de errores y preguntas técnicas | Agilizar la atención de incidencias técnicas frecuentes.                             |
+| Monday      | Formulario de mercadeo y negocio           | Agilizar la atención de preguntas de mercadeo y negocio.                             |
+| Monday      | Formato de reporte de estado               | Establecer el contenido mínimo requerido para los reportes de estado de cada ticket. |
 
 ### 15.1 Formularios disponibles
 

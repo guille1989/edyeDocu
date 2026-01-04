@@ -7,7 +7,6 @@ title: 🈸 Servicio Cloud
 **Fecha:** 01/12/2025
 
 ---
-# Servicio Cloud
 
 ## Introducción y propósito
 

@@ -7,7 +7,6 @@ title: 🤝 Integración por API Notifier billing
 **Fecha:** 01/12/2025  
 
 ---
-# Integración Genérica EDYE — API + Notifier (DCB)
 
 ## 1. Introducción
 

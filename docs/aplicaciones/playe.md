@@ -8,8 +8,6 @@ title: 🈸 Servicio Play
 
 ---
 
-# Servicio Play
-
 ## Introducción y propósito
 
 El servicio Play es la puerta de entrada de los usuarios finales al catálogo audiovisual y de juegos de EDYE/HITN Digital. Incluye las aplicaciones web y móviles que permiten reproducir contenido en streaming, acceder a libros interactivos y juegos educativos, así como gestionar perfiles y preferencias. Este documento describe la infraestructura del servicio desde la perspectiva operativa y de seguridad.

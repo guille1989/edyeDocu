@@ -8,8 +8,6 @@ title: 🤝 Integración por API Notifier APK
 
 ---
 
-# Integración EDYE – Modelo APP/APO/Notifier
-
 ## 1. Introducción
 
 Este documento describe las directrices para integrar la aplicación de EDYE en el ecosistema de un socio mediante el modelo APP INTEGRATION – APO + Notifier + APK. Está dirigido a equipos técnicos y de operaciones DevOps. Su propósito es servir como referencia genérica para cualquier partner que integre la APK oficial de EDYE, sin mencionar particularidades específicas de un operador concreto.

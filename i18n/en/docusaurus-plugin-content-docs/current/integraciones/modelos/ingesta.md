@@ -9,8 +9,6 @@ sidebar_position: 1
 
 ---
 
-# Integration Model: Content Ingestion
-
 This document describes the **standard content ingestion model** within the
 **EDYE** ecosystem, used by multiple partners for the distribution of audiovisual
 content (series, movies, episodes, images, and metadata).

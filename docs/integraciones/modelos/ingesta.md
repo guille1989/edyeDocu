@@ -9,8 +9,6 @@ sidebar_position: 1
 
 ---
 
-# Modelo de Integración: Ingesta de Contenidos
-
 Este documento describe el **modelo estándar de ingesta de contenidos** dentro del
 ecosistema **EDYE**, utilizado por múltiples partners para la distribución de
 contenidos audiovisuales (series, películas, episodios, imágenes y metadata).

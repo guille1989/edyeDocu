@@ -7,6 +7,7 @@ title: "Security and Monitoring"
 **Date:** 12/01/2025
 
 ---
+
 ## 1. Introduction and Purpose
 
 The EDYE ecosystem integrates multiple services (API, streaming platforms, billing, and connectors) running on a hybrid infrastructure. To ensure availability and protect information, EDYE implements a security, monitoring, and assessment strategy based on specialized tools and established operational practices.
@@ -16,6 +17,7 @@ The document provides an operational view of the tools used, the types of data m
 ## 2. Infrastructure Management and Monitoring
 
 ![Security and Monitoring](/img/seguridad/infraYseguridad.jpg)
+
 > **Figure 1.** _General flow of the Security and Monitoring process_
 
 # Description of the monitored infrastructure
@@ -40,6 +42,7 @@ The information captured by Landscape forms the basis for maintenance tasks, pat
 ## 3. Security and Compliance
 
 ![Security and Compliance](/img/seguridad/seguridadCompliance.jpg)
+
 > **Figure 2.** _General flow of the Security and Compliance process_
 
 # General approach
@@ -50,14 +53,17 @@ The Security and Compliance diagram places the Qualys platform at the core of th
 ### 3.1. Scanning and analysis tools
 
 - **VMDR (Vulnerability Management, Detection and Response):** Qualys module that manages vulnerabilities. It uses scoring techniques such as TruRisk to identify and classify the most critical vulnerabilities.
+
   - **Scope:** performs daily scans inside and outside servers; surveys internal configurations and external open ports, comparing them against the latest vulnerability database to generate reports with severity and remediation suggestions.
   - **Owner:** DevOps team (administrator: Agustín).
 
 - **WAS (Web Application Scanning):** performs external scans on web applications using a reference attack bank to identify configuration or code vulnerabilities.
+
   - For APIs, the test collection (e.g., Postman) is imported and all endpoints are scanned.
   - **Owner:** DevOps team (administrator: Agustín).
 
 - **Compliance:** module that validates adherence to policies and standards. Qualys verifies that technology operations and data comply with laws and standards (currently validated against the credit card industry standard).
+
   - Allows defining internal policies, generating evidence, and facilitating audits.
 
 - **Qualys Platform:** SaaS platform that integrates the above modules and offers asset inventory, reporting, and remediation.
@@ -65,16 +71,17 @@ The Security and Compliance diagram places the Qualys platform at the core of th
 
 #### Scan differentiation
 
-| Scan type               | Tool                | Objective and scope                                                                |
-|------------------------ |-------------------- |-----------------------------------------------------------------------------------|
-| Infrastructure          | VMDR                | Detect vulnerabilities in configurations and operating systems; review external open ports and exposed services. |
-| Applications            | WAS                 | Identify issues in web applications and APIs using automated pentesting techniques. |
-| Vulnerability management | VMDR + Qualys      | Prioritize risks and automate remediation using risk scores.                       |
-| Regulatory compliance   | Compliance          | Verify adherence to standards and policies, currently aligned with the credit card industry standard. |
+| Scan type                | Tool          | Objective and scope                                                                                              |
+| ------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Infrastructure           | VMDR          | Detect vulnerabilities in configurations and operating systems; review external open ports and exposed services. |
+| Applications             | WAS           | Identify issues in web applications and APIs using automated pentesting techniques.                              |
+| Vulnerability management | VMDR + Qualys | Prioritize risks and automate remediation using risk scores.                                                     |
+| Regulatory compliance    | Compliance    | Verify adherence to standards and policies, currently aligned with the credit card industry standard.            |
 
 ## 4. Monitoring and Alerting
 
 ![Monitoring and Alerting](/img/seguridad/monitoringAlerting.jpg)
+
 > **Figure 3.** _General flow of the Monitoring and Alerting process_
 
 # Monitoring strategy
@@ -110,6 +117,7 @@ Las alertas se configuran en Grafana y se alimentan de Prometheus y Loki. Los um
 ## 5. Code Security
 
 ![Code Security](/img/seguridad/codeSecurity.jpg)
+
 > **Figure 4.** _General flow of the Code Security process_
 
 # Security integrated into the development cycle (DevSecOps)
@@ -123,15 +131,15 @@ EDYE incorporates security from design through the software lifecycle. Code revi
 
 #### Types of analysis
 
-| Analysis type                     | Tool or function     | Description                                                                 |
-|-----------------------------------|----------------------|-----------------------------------------------------------------------------|
-| Static application security testing (SAST) | SonarQube    | Assesses code quality and security during development, identifying bugs and vulnerabilities before compilation. |
-| Dynamic application security testing (DAST) | OWASP ZAP   | Runs automated penetration tests on running web applications to detect vulnerabilities. |
-| Dependency analysis               | Snyk                 | Examines libraries and packages to identify vulnerable versions and recommends updates. |
-| Code Scanning (GitHub)            | GitHub feature       | Searches for errors and vulnerabilities in repository code.                 |
-| Secret Scanning (GitHub)          | GitHub feature       | Scans repository history to detect exposed tokens, keys, and credentials, generating automatic alerts. |
-| Dependency Review (GitHub)        | GitHub feature       | Shows dependency changes during a pull request, with version and vulnerability information. |
-| Dependabot (GitHub)               | Dependabot           | Automates detection and updates of outdated or vulnerable dependencies, creating pull requests and alerts. |
+| Analysis type                               | Tool or function | Description                                                                                                     |
+| ------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| Static application security testing (SAST)  | SonarQube        | Assesses code quality and security during development, identifying bugs and vulnerabilities before compilation. |
+| Dynamic application security testing (DAST) | OWASP ZAP        | Runs automated penetration tests on running web applications to detect vulnerabilities.                         |
+| Dependency analysis                         | Snyk             | Examines libraries and packages to identify vulnerable versions and recommends updates.                         |
+| Code Scanning (GitHub)                      | GitHub feature   | Searches for errors and vulnerabilities in repository code.                                                     |
+| Secret Scanning (GitHub)                    | GitHub feature   | Scans repository history to detect exposed tokens, keys, and credentials, generating automatic alerts.          |
+| Dependency Review (GitHub)                  | GitHub feature   | Shows dependency changes during a pull request, with version and vulnerability information.                     |
+| Dependabot (GitHub)                         | Dependabot       | Automates detection and updates of outdated or vulnerable dependencies, creating pull requests and alerts.      |
 
 ### 5.2. Relationship with CI/CD
 

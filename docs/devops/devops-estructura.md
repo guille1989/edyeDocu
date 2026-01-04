@@ -33,6 +33,7 @@ Se apoya en herramientas como:
 El ciclo DevOps implementado en Edye sigue el siguiente flujo principal:
 
 ![Ciclo DevOps](/img/flujo-devops.jpg)
+
 > **Figura 1.** _Flujo general del proceso DevOps_
 
 Cada fase está soportada por herramientas específicas y responsables asignados:
@@ -48,7 +49,9 @@ Cada fase está soportada por herramientas específicas y responsables asignados
 ## 4. Arquitectura Técnica del Ciclo DevOps de EDYE
 
 ![Ciclo DevOps](/img/arquitecturaDevOps.jpg)
+
 > **Figura 2.** _Arquitectura DevOps y Flujo CI/CD del Ecosistema EDYE_
+
 ---
 
 ## 5. Estructura Documental

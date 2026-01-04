@@ -2,13 +2,10 @@
 id: app-playe
 title: 🈸 Play Service
 ---
-
 **Version:** 1.0  
 **Date:** 12/01/2025
 
 ---
-
-# Play Service
 
 ## Introduction and Purpose
 
