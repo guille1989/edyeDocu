@@ -1,0 +1,110 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.🗄️ Edye-Infraestructura": {
+    "message": "🗄️ Edye-Infraestructura",
+    "description": "The label for category '🗄️ Edye-Infraestructura' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🗂️ Edye-Aplicaciones": {
+    "message": "🗂️ Edye-Aplicaciones",
+    "description": "The label for category '🗂️ Edye-Aplicaciones' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🛠️ Edye-DevOps": {
+    "message": "🛠️ Edye-DevOps",
+    "description": "The label for category '🛠️ Edye-DevOps' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🔌 Edye-Integraciones": {
+    "message": "🔌 Edye-Integraciones",
+    "description": "The label for category '🔌 Edye-Integraciones' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Tipos de integraciones": {
+    "message": "Tipos de integraciones",
+    "description": "The label for category 'Tipos de integraciones' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Partners": {
+    "message": "Partners",
+    "description": "The label for category 'Partners' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Claro Video": {
+    "message": "Claro Video",
+    "description": "The label for category 'Claro Video' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Anexos-Claro Video": {
+    "message": "Anexos-Claro Video",
+    "description": "The label for category 'Anexos-Claro Video' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Dish Mexico": {
+    "message": "Dish Mexico",
+    "description": "The label for category 'Dish Mexico' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Anexos-Dish Mexico": {
+    "message": "Anexos-Dish Mexico",
+    "description": "The label for category 'Anexos-Dish Mexico' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Claro Brazil": {
+    "message": "Claro Brazil",
+    "description": "The label for category 'Claro Brazil' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Sky Brazil": {
+    "message": "Sky Brazil",
+    "description": "The label for category 'Sky Brazil' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Whatch Brazil": {
+    "message": "Whatch Brazil",
+    "description": "The label for category 'Whatch Brazil' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.VTR": {
+    "message": "VTR",
+    "description": "The label for category 'VTR' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.ROKU Premium": {
+    "message": "ROKU Premium",
+    "description": "The label for category 'ROKU Premium' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.DirecTV": {
+    "message": "DirecTV",
+    "description": "The label for category 'DirecTV' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Megacable": {
+    "message": "Megacable",
+    "description": "The label for category 'Megacable' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Walmart": {
+    "message": "Walmart",
+    "description": "The label for category 'Walmart' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Mi Bebé y Yo": {
+    "message": "Mi Bebé y Yo",
+    "description": "The label for category 'Mi Bebé y Yo' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Ultralink": {
+    "message": "Ultralink",
+    "description": "The label for category 'Ultralink' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.The Shelf": {
+    "message": "The Shelf",
+    "description": "The label for category 'The Shelf' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Telecable": {
+    "message": "Telecable",
+    "description": "The label for category 'Telecable' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Telefonica (Movistar)": {
+    "message": "Telefonica (Movistar)",
+    "description": "The label for category 'Telefonica (Movistar)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.Anexos": {
+    "message": "Anexos",
+    "description": "The label for category 'Anexos' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.🛡️ Edye-Seguridad y Monitoreo": {
+    "message": "🛡️ Edye-Seguridad y Monitoreo",
+    "description": "The label for category '🛡️ Edye-Seguridad y Monitoreo' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.👷🏼‍♂️ Edye-Soporte y Técnico": {
+    "message": "👷🏼‍♂️ Edye-Soporte y Técnico",
+    "description": "The label for category '👷🏼‍♂️ Edye-Soporte y Técnico' in sidebar 'tutorialSidebar'"
+  }
+}

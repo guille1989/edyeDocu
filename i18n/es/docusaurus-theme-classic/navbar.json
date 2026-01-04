@@ -1,0 +1,10 @@
+{
+  "logo.alt": {
+    "message": "Edye Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Edye Docs": {
+    "message": "Edye Docs",
+    "description": "Navbar item with label Edye Docs"
+  }
+}
