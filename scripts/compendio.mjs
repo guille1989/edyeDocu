@@ -4,6 +4,7 @@ import path from "path";
 import { spawnSync } from "child_process";
 import { pathToFileURL } from "url";
 import { createRequire } from "module";
+import { createHash } from "crypto";
 
 const args = process.argv.slice(2);
 const require = createRequire(import.meta.url);
@@ -28,6 +29,10 @@ function hasFlag(flag) {
 function printUsage() {
   const text = [
     "Usage: node scripts/compendio.mjs --locale es|en [--format md|pdf] [--pdf-engine <engine>]",
+    "",
+    "Notes:",
+    "  PDF output renders Mermaid diagrams via mmdc (Mermaid CLI).",
+    "  Install with: npm i -D @mermaid-js/mermaid-cli",
     "",
     "Examples:",
     "  node scripts/compendio.mjs --locale es",
@@ -384,6 +389,15 @@ function findExecutableOnPath(name) {
   return null;
 }
 
+function findMermaidCli(rootDir) {
+  const localBin =
+    process.platform === "win32"
+      ? path.join(rootDir, "node_modules", ".bin", "mmdc.cmd")
+      : path.join(rootDir, "node_modules", ".bin", "mmdc");
+  if (fs.existsSync(localBin)) return localBin;
+  return findExecutableOnPath("mmdc");
+}
+
 function findTexLiveExecutable(name) {
   if (process.platform !== "win32") return null;
   const root = "C:\\texlive";
@@ -488,6 +502,89 @@ function runPandoc(inputPath, outputPath, options = {}) {
   return result.status === 0;
 }
 
+function runMermaidCli(cliPath, inputPath, outputPath) {
+  const args = ["-i", inputPath, "-o", outputPath, "-b", "transparent"];
+  const isCmdShim =
+    process.platform === "win32" && /\.(cmd|bat)$/i.test(cliPath);
+  const result = spawnSync(cliPath, args, {
+    stdio: "inherit",
+    shell: isCmdShim,
+  });
+  return result.status === 0;
+}
+
+function stripMermaidZoomWrappers(markdown) {
+  return markdown
+    .replace(/^\s*<div\s+class=["']mermaid-zoom["']\s*>\s*$/gm, "")
+    .replace(/^\s*<\/div>\s*$/gm, "");
+}
+
+function renderMermaidForPdf(markdown, outDir, rootDir) {
+  const cleaned = stripMermaidZoomWrappers(markdown);
+  const blocks = [];
+  const placeholderPrefix = "__MERMAID_BLOCK_";
+  const fenceRegex =
+    /(^|\r?\n)[ \t]*```[ \t]*mermaid[ \t]*\r?\n([\s\S]*?)\r?\n[ \t]*```/g;
+  const replaced = cleaned.replace(
+    fenceRegex,
+    (match, lead, code) => {
+      const index = blocks.length;
+      blocks.push(code.trimEnd());
+      return `${lead}${placeholderPrefix}${index}__`;
+    }
+  );
+
+  if (blocks.length === 0) {
+    return { markdown: cleaned, didRender: false, hadBlocks: false, warnings: [] };
+  }
+
+  const cliPath = findMermaidCli(rootDir);
+  if (!cliPath) {
+    return {
+      markdown: cleaned,
+      didRender: false,
+      hadBlocks: true,
+      warnings: [
+        "Mermaid CLI (mmdc) not found. Install @mermaid-js/mermaid-cli or add mmdc to PATH to render diagrams in PDF.",
+      ],
+    };
+  }
+
+  const mermaidDir = path.join(outDir, "mermaid");
+  fs.mkdirSync(mermaidDir, { recursive: true });
+
+  const imageRefs = [];
+  for (let i = 0; i < blocks.length; i += 1) {
+    const source = blocks[i];
+    const hash = createHash("sha1").update(source).digest("hex").slice(0, 8);
+    const baseName = `diagram-${i + 1}-${hash}`;
+    const inputPath = path.join(mermaidDir, `${baseName}.mmd`);
+    const outputPath = path.join(mermaidDir, `${baseName}.png`);
+    fs.writeFileSync(inputPath, `${source}\n`, "utf8");
+    const ok = runMermaidCli(cliPath, inputPath, outputPath);
+    if (!ok) {
+      return {
+        markdown: cleaned,
+        didRender: false,
+        hadBlocks: true,
+        warnings: [`Failed to render Mermaid diagram ${i + 1}.`],
+      };
+    }
+    imageRefs.push(`mermaid/${baseName}.png`);
+  }
+
+  let rendered = replaced;
+  for (let i = 0; i < imageRefs.length; i += 1) {
+    const placeholder = `${placeholderPrefix}${i}__`;
+    rendered = rendered.replace(
+      placeholder,
+      `![Mermaid diagram ${i + 1}](${imageRefs[i]})`
+    );
+  }
+
+  return { markdown: rendered, didRender: true, hadBlocks: true, warnings: [] };
+}
+
 const sidebars = await loadSidebars(sidebarPath);
 const sidebar = sidebars && sidebars.tutorialSidebar ? sidebars.tutorialSidebar : null;
 
@@ -574,13 +671,38 @@ if (format === "pdf") {
     console.warn(`pandoc "${outMd}" -o "${outPdf}" --toc`);
     process.exit(0);
   }
+  const rawForPdf = fs.readFileSync(outMd, "utf8");
+  const {
+    markdown: pdfMd,
+    didRender: mermaidRendered,
+    hadBlocks: mermaidBlocks,
+    warnings: mermaidWarnings,
+  } = renderMermaidForPdf(rawForPdf, outDir, root);
+  for (const warning of mermaidWarnings) {
+    console.warn(warning);
+  }
+  if (mermaidBlocks && !mermaidRendered) {
+    console.error(
+      "Mermaid diagrams detected but could not be rendered. Install Mermaid CLI (mmdc) and re-run."
+    );
+    process.exit(1);
+  }
+  let pdfInput = outMd;
+  if (pdfMd !== rawForPdf) {
+    const outPdfMd = path.join(outDir, `compendio-${locale}-pdf.md`);
+    fs.writeFileSync(outPdfMd, pdfMd, "utf8");
+    if (mermaidRendered) {
+      console.log(`Wrote ${outPdfMd}`);
+    }
+    pdfInput = outPdfMd;
+  }
   const pdfEngine = resolvePdfEngine(getArgValue("--pdf-engine"));
   if (!pdfEngine) {
     console.warn(
       "No PDF engine found on PATH or standard locations. Use --pdf-engine with a full path."
     );
   }
-  const ok = runPandoc(outMd, outPdf, { resourcePath, pdfEngine });
+  const ok = runPandoc(pdfInput, outPdf, { resourcePath, pdfEngine });
   if (!ok) {
     process.exit(1);
   }

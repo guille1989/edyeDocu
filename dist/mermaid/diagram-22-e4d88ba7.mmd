@@ -1,0 +1,11 @@
+sequenceDiagram
+		participant Shelf as The Shelf
+		participant EDYE as EDYE API
+		participant JW as JW Player / Ingesta
+		JW-->EDYE: Carga de nuevos contenidos
+		Shelf->>EDYE: Solicitar feed (/v1/feed)
+		EDYE-->>Shelf: Respuesta JSON con contenidos
+		Shelf->>EDYE: Para cada ítem, obtener detalles (`/v1/media/{id}`)
+		EDYE-->>Shelf: Detalle de media, metadatos e imágenes
+		Shelf->Shelf: Validación y procesamiento local
+		Shelf->>Webhook: Notificación interna de disponibilidad

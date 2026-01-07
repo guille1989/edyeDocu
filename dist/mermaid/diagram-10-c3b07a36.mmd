@@ -1,0 +1,13 @@
+flowchart TD
+  A["Content + metadata + images preparation"] --> B["Configure Partner in Admin"]
+  B --> C["Exposure in EDYE API (Show/Episode List)"]
+  C --> D["Partner Consumption (polling/sync)"]
+  D --> E{"Validation on Partner"}
+  E -- Error --> R["Correction (metadata/images/config) + retry"]
+  R --> C
+  E -- OK --> F["Catalog updated on Partner"]
+  C --> G["EDYE Observability: Dashboard + API Log"]
+  G --> H{"Errors detected?"}
+  H -- Yes --> R2["Troubleshooting (Ops/DevOps) + fix"]
+  R2 --> C
+  H -- No --> I["Reporting and operational closure"]

@@ -1,0 +1,29 @@
+flowchart TD
+    %% Definición de subgráficos para representar las "swimlanes"
+    subgraph EDYE_API["EDYE API"]
+        A[Creación de portal geolocalizado para cliente]
+    end
+
+    subgraph Pagoralia["Pagoralia"]
+        B[Implementación de Pagoralia en el portal del cliente]
+        D{Paywall Pagoralia}
+        E[ Pantalla de error ]
+    end
+
+    subgraph Cliente["Cliente"]
+        C[Portal entregado al cliente<br>para distribución]
+        F[Cliente ofrece diferentes ofertas de suscripciones]
+    end
+
+    subgraph InPlayer["InPlayer"]
+        G[El usuario es registrado en InPlayer]
+    end
+
+    subgraph Reconciliación["Reconciliación"]
+        H[Reconciliación y de ganancias entre Edye y cliente]
+    end
+
+    %% Flujo principal
+    A --> B --> C --> F --> D
+    D -->|Transacción Falla| E --> H
+    D -->|Transacción Exitosa| G --> H

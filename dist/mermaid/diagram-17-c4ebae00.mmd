@@ -1,0 +1,36 @@
+sequenceDiagram
+    actor CO as "Content Operations"
+    actor DT as "Design Team"
+    actor DD as "Edye DevOps"
+    actor VTR as "VTR"
+
+    CO->>CO: Recibe contenido del equipo de contenido/programación
+    CO->>CO: Prepara video + metadata mínima (titulo, id_cliente, archivo_media)
+    CO->>CO: Verifica requisitos VTR (MP4/H.264, >=720p, <=2h) y paquete requerido
+    CO->>CO: (Si aplica) asegura thumbnails/imagenes requeridas para catálogo
+
+    CO->>DT: Solicita creación/actualización de artes (posters/stills) si aplica
+    DT->>DT: Crea artes según sizes/ratios definidos por VTR (TBD)
+    DT->>DT: Sube imágenes a EDYE (API) y notifica a Operaciones
+
+    CO->>DD: Solicita ejecución de ingesta VTR (según canal acordado)
+    DD->>DD: Ejecuta ingesta y procesamiento (metadata + media + post-proceso/QC)
+
+    DD->>DD: Validación correcta? (video + metadata + post-proceso)
+    alt Errores en validación
+        DD->>CO: Reporta errores y causa (metadatos incompletos / formato no soportado)
+        CO->>CO: Corrige (JSON o re-encode) y solicita reintento
+        CO->>DD: Reintento de ingesta
+    else OK
+        alt Canal API (principal)
+            DD->>VTR: POST /api/ingesta/contenido (multipart: file + metadata JSON)
+            VTR-->>DD: 200 OK (status=received + trackingId)
+            DD->>VTR: GET /api/ingesta/status?id=trackingId (polling)
+            VTR-->>DD: Status final: completed
+        else Canal FTP polling (legado / transitorio)
+            DD->>VTR: Deposita media/paquete en FTP Inbound
+            VTR-->>DD: Polling detecta archivo y crea trackingId
+            DD->>VTR: Consulta/confirmación de estado (según operación)
+            VTR-->>DD: Status final: completed
+        end
+    end

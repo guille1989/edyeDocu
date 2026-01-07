@@ -1,0 +1,14 @@
+flowchart LR
+		subgraph Origen
+				A[JW Player – Origen de media]
+		end
+		subgraph Plataforma_EDYE
+				B[Ingesta y procesamiento de contenido]
+				C[APIs EDYE]
+		end
+		subgraph Partner
+				D[Servicio de integración de The Shelf]
+		end
+		A --> B
+		B --> C
+		C --REST JSON--> D

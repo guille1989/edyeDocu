@@ -1,0 +1,37 @@
+sequenceDiagram
+    autonumber
+
+    participant CO as Content Operations (Edye)
+    participant JWP as JW Player
+    participant API as DIRECTV Ingest API
+    participant PROC as Ingest Processor / Pipeline
+    participant OPS as Operaciones Edye
+
+    %% Pre-ingesta
+    CO->>CO: Recepción y validación inicial del contenido
+    CO->>JWP: Carga de video master y metadata base
+    CO->>CO: Verifica codec, resolución y duración (H.264, >=720p, <=2h)
+
+    %% Ingesta
+    CO->>API: POST Ingesta (video + metadata JSON)
+    API-->>CO: 200 OK + asset_id (tracking)
+
+    %% Procesamiento
+    API->>PROC: Encola asset para procesamiento
+    PROC->>PROC: Validación técnica (video, metadata)
+    PROC->>PROC: Transcoding / thumbnails / QC automático
+
+    %% Validación
+    alt Error de validación
+        PROC-->>API: Estado = error
+        API-->>OPS: Error reportado (logs / alertas)
+        OPS-->>CO: Solicita corrección
+        CO->>API: Reintento (metadata corregida o media regenerada)
+    else Validación OK
+        PROC-->>API: Estado = completed
+        API-->>OPS: Notificación de ingesta exitosa
+    end
+
+    %% Cierre
+    OPS->>OPS: Verificación final (estado, logs, SLA)
+    OPS-->>CO: Confirmación de entrega DIRECTV

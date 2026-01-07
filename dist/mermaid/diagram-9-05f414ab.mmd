@@ -1,0 +1,11 @@
+flowchart TD
+  A[Pre-ingesta] --> B[Ingesta / Sync]
+  B --> C{Validación}
+  C -- Error --> R[Corrección y reintento]
+  R --> B
+  C -- OK --> D[Generación Delivery]
+  D --> E[Entrega]
+  E --> F{Validación Final}
+  F -- Error --> R2[Corrección y reenvío]
+  R2 --> D
+  F -- OK --> G[Reporting y Cierre]

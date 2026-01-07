@@ -1,0 +1,15 @@
+sequenceDiagram
+	participant User as Usuario
+	participant App as Aplicación (Play/TV)
+	participant Connect as Servicio Connect
+	participant Provider as Proveedor externo
+	participant API as Servicio API
+	User->>App: Seleccionar "Iniciar sesión con proveedor"
+	App->>Connect: Solicitud de autenticación
+	Connect->>Provider: Redirección a login externo
+	User->>Provider: Introduce credenciales
+	Provider-->>Connect: Token de autenticación
+	Connect->>API: Crear/actualizar perfil y emitir token interno
+	API-->>Connect: Confirmación y token interno
+	Connect-->>App: Devuelve token interno
+	App-->>User: Acceso concedido

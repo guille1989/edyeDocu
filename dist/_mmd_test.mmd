@@ -1,0 +1,17 @@
+%% Diagrama de flujo CI/CD
+sequenceDiagram
+  participant Dev as Desarrollador
+  participant SCM as Repositorio de código
+  participant CI as Servidor CI
+  participant QA as Entorno Staging
+  participant Prod as Entorno Producción
+
+  Dev->>SCM: Commit y push de código
+  SCM->>CI: Disparo de pipeline
+  CI->>CI: Ejecución de pruebas unitarias y de integración
+  CI->>SCM: Publicación de artefactos versionados
+  CI->>QA: Despliegue automático en Staging
+  QA->>Dev: Feedback de pruebas funcionales
+  Dev->>SCM: Solicitud de merge a rama release
+  CI->>Prod: Despliegue controlado a producción (aprobación manual)
+  Prod->>Monitoreo: Inicio de observabilidad y alertas

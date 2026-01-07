@@ -1,0 +1,36 @@
+sequenceDiagram
+    actor CO as "Content Operations"
+    actor DT as "Design Team"
+    actor DD as "Edye DevOps"
+    actor RK as "ROKU"
+
+    CO->>CO: Recibe contenido del equipo de contenido/programación
+    CO->>CO: Sube contenido a JW Player (videos) y completa metadata mínima
+    CO->>CO: Verifica requisitos ROKU (H.264, >=720p, <=2h) y pre-validación de metadata mínima
+    CO->>CO: Sincroniza JW Player con la API de EDYE
+    CO->>CO: Solicita al equipo de diseño el arte principal (key art / posters / stills)
+
+    CO->>DT: Solicita creación/actualización de artes por serie/temporada/episodio
+    DT->>DT: Crea artes según ratios/tamaños requeridos por ROKU (según spec)
+    DT->>DT: Sube imágenes a EDYE (API) y notifica a Operaciones
+
+    CO->>DD: Solicita generación de delivery ROKU (API principal)
+    DD->>DD: Genera delivery (metadata + imágenes + media) para ROKU
+    DD->>DD: Validación correcta? (video + metadata + imágenes)
+
+    alt Errores en validación
+        DD->>CO: Reporta errores y causa (metadata/imagenes/video)
+        CO->>CO: Corrige en JWP/EDYE y solicita reintento
+        CO->>DD: Reintento de generación/entrega
+    else OK
+        alt Canal API (principal)
+            DD->>RK: Ingesta vía API ROKU (multipart: media + JSON metadata + id_cliente)
+            RK-->>DD: Status: received / processing / error
+            DD->>RK: Consulta status (polling por tracking_id)
+            RK-->>DD: Status final: completed
+        else Canal FTP (legado / alternativo)
+            DD->>RK: Entrega vía FTP (polling)
+            RK-->>DD: Confirmación / detección por polling
+            DD->>DD: Verifica outcome / logs
+        end
+    end

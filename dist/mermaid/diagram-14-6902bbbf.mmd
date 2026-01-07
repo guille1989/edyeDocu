@@ -1,0 +1,42 @@
+sequenceDiagram
+    autonumber
+    actor CO as "Content Operations (EDYE)"
+    actor DT as "Design Team (EDYE)"
+    participant JWP as "JW Player"
+    participant API as "EDYE API / Admin"
+    participant DD as "Delivery Service / DevOps (EDYE)"
+    participant CB as "Claro Brasil (API)"
+
+    CO->>CO: Recibe contenido (masters + info editorial)
+    CO->>JWP: Carga video y organiza (show/season/episode)
+    CO->>JWP: Completa metadata mínima (IDs, idiomas, tags/geo)
+    CO->>API: Sync JWP → EDYE (catálogo + metadata base)
+
+    CO->>DT: Solicita arte (poster / episodic stills)
+    DT->>API: Sube imágenes a EDYE (formatos requeridos)
+    DT-->>CO: Confirma carga de imágenes (listas/IDs)
+
+    CO->>DD: Solicita generación de paquete para Claro BR
+    DD->>API: Valida consistencia (external_id, metadata, imágenes)
+    DD->>DD: Genera payload Claro BR (video + metadata JSON + images)
+
+    DD->>CB: POST Ingesta (multipart/form-data)\n(video + metadata.json + images)
+    CB-->>DD: Respuesta con tracking_id + estado=received
+
+    loop Seguimiento de procesamiento
+        DD->>CB: GET Status (tracking_id)
+        CB-->>DD: estado=processing / completed / error
+    end
+
+    alt Error en validación/procesamiento (CB=error o validación EDYE falla)
+        DD-->>CO: Reporta errores (detalle + tracking_id)
+        CO->>JWP: Corrige metadata/video (si aplica)
+        CO->>API: Re-sync JWP → EDYE (si aplica)
+        CO->>DT: Ajusta/recarga imágenes (si aplica)
+        CO->>DD: Reintento (parcial si metadata/imágenes)\nReenvío completo si cambia el video/IDs
+    else OK (CB=completed)
+        DD-->>CO: Confirma entrega exitosa (tracking_id, timestamp)
+        CO-->>CB: Cierre operativo / registro de entrega
+    end
+
+    note over DD,CB: Canal preferido: API\nAlterno legacy: FTP/SFTP (si se habilita por Claro BR)

@@ -1,0 +1,10 @@
+flowchart TD
+    Start["Start: APK delivery"]
+    Prep["Environment preparation (QA and production)"]
+    Install["APK installation on devices"]
+    ConfigAPO["Configuration in APO (endpoints, keys, versions)"]
+    SubscribeNotifier["Subscription to Notifier and topic definition"]
+    Validate["Functional validation (authentication, content, events)"]
+    Production["Go-live and monitoring"]
+
+    Start --> Prep --> Install --> ConfigAPO --> SubscribeNotifier --> Validate --> Production

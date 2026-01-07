@@ -1,0 +1,29 @@
+sequenceDiagram
+    actor CO as "Content Operations"
+    actor DT as "Design Team"
+    actor DD as "Edye DevOps"
+    actor WB as "WATCH Brazil"
+
+    CO->>CO: Recibe contenido del equipo de contenido/programación
+    CO->>CO: Sube contenido a JW Player (video) y completa metadata mínima
+    CO->>CO: Verifica campos específicos Watch (rating, studio, ventanas)
+    CO->>CO: Solicita al equipo de diseño los artes requeridos (posters/stills)
+
+    CO->>DT: Brief de artes por serie/temporada/episodio
+    DT->>DT: Produce posters y stills (incluye Still Vertical obligatoria)
+    DT->>DT: Carga imágenes en EDYE (API/Admin) y notifica a Operaciones
+    DT->>DD: Confirma artes listos para delivery
+
+    DD->>DD: Genera paquete de entrega (video + metadata JSON + imágenes)
+    DD->>DD: Ejecuta validaciones (video/metadata/imágenes/naming)
+
+    alt Errores en la validación
+        DD->>CO: Reporta errores y solicita corrección (reintento)
+        CO->>CO: Corrige en JWP/metadata/imágenes y reenvía para regeneración
+    else Validación OK
+        DD->>WB: Entrega por API (multipart: video + JSON + imágenes)
+        DD->>DD: Monitorea estados (received/processing/completed o error)
+        opt Canal alterno (si aplica)
+            DD->>WB: Entrega a bucket Amazon S3 del partner
+        end
+    end

@@ -1,0 +1,7 @@
+flowchart TD
+    User[User / Play Service] --> Billing[Billing Service]
+    Billing --> External[Subscription platform]
+    External --> Billing
+    Billing --> DB[(Internal MySQL database)]
+    Billing --> API[API Service]
+    Billing --> Aux["Auxiliary services<br/>(notifications, reconciliation)"]

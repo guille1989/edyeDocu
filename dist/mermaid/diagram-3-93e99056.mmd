@@ -1,0 +1,16 @@
+flowchart TD
+    subgraph Cliente
+        A["Aplicaciones (Web/Móvil/TV)"]
+    end
+    subgraph Servicios
+        API["Servicio API"]
+        DBR[("MySQL")]
+        DBNoSQL[("MongoDB")]
+        Cache["Cache en memoria"]
+        Storage["Almacenamiento de medios"]
+    end
+    A -- "Solicitudes REST" --> API
+    API -- "Lectura/Escritura" --> DBR
+    API -- "Lectura/Escritura" --> DBNoSQL
+    API -- "Consultas" --> Cache
+    API -- "Recuperar activos" --> Storage

@@ -1,0 +1,17 @@
+sequenceDiagram
+	participant User as User
+	participant PlayApp as Play Application
+	participant API as API Service
+	participant Billing as Billing Service
+	participant Cloud as Cloud Service
+	User->>PlayApp: Log in / select profile
+	PlayApp->>Billing: Check subscription status
+	Billing-->>PlayApp: Status (active/inactive)
+	PlayApp->>API: Request catalog and content details
+	API-->>PlayApp: Catalog data
+	User->>PlayApp: Select content
+	PlayApp->>API: Get streaming / book / game URL
+	API->>Cloud: Retrieve asset
+	Cloud-->>API: Signed URL
+	API-->>PlayApp: URL for playback
+	PlayApp->>User: Play content

@@ -1,0 +1,8 @@
+flowchart LR
+	Source[Fuentes de contenido] --> Transcode[Transcodificador]
+	Transcode --> Storage[Almacenamiento de objetos]
+	Storage -- Sincronización de metadatos --> Metadata[Base de metadatos]
+	Storage --> CDN
+	API -- Solicitar URL --> Signer[Servicio de firma]
+	Signer --> Storage
+	Play -- Descargar contenido --> CDN

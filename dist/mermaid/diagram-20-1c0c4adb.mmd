@@ -1,0 +1,36 @@
+sequenceDiagram
+    actor CO as Content Operations
+    actor DT as Design Team
+    actor DD as Edye DevOps
+    participant API as Megacable Ingest API
+    participant LOG as Monitoring / Logs
+
+    CO->>CO: Recibe contenido del equipo de programación
+    CO->>CO: Verifica requisitos técnicos (H.264, >=720p, <=2h)
+    CO->>CO: Completa metadata mínima (titulo, id_cliente, archivo_media)
+
+    CO->>DT: Solicita artes (poster / still si aplica)
+    DT->>DT: Crea y valida artes según ratios requeridos
+    DT->>CO: Confirma disponibilidad de imágenes
+
+    CO->>DD: Solicita ejecución de ingesta
+    DD->>API: POST Ingesta (video + metadata JSON)
+    API-->>DD: Respuesta 200 OK + tracking_id
+
+    DD->>LOG: Registra evento de ingesta (tracking_id)
+
+    API->>API: Validación de video (codec, resolución, duración)
+    API->>API: Validación de metadata
+    API->>API: Generación de thumbnails (si aplica)
+
+    alt Error de validación
+        API-->>DD: Estado ERROR + detalle
+        DD->>CO: Reporta error para corrección
+        CO->>CO: Corrige video / metadata
+        CO->>DD: Solicita reenvío completo
+        DD->>API: Reenvía ingesta corregida
+    else Validación OK
+        API-->>DD: Estado COMPLETED
+        DD->>LOG: Registra cierre exitoso
+        DD->>CO: Confirma ingesta exitosa
+    end

@@ -1,0 +1,15 @@
+sequenceDiagram
+	participant User as User
+	participant App as Application (Play/TV)
+	participant Connect as Connect Service
+	participant Provider as External provider
+	participant API as API Service
+	User->>App: Select "Log in with provider"
+	App->>Connect: Authentication request
+	Connect->>Provider: Redirect to external login
+	User->>Provider: Enter credentials
+	Provider-->>Connect: Authentication token
+	Connect->>API: Create/update profile and issue internal token
+	API-->>Connect: Confirmation and internal token
+	Connect-->>App: Return internal token
+	App-->>User: Access granted

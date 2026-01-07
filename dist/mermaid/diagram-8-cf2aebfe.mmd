@@ -1,0 +1,7 @@
+flowchart TD
+	Client[Aplicación Play] -- Actualizar progreso --> API
+	API -- Emitir evento --> Queue[Cola de mensajes]
+	Queue --> Satellite[Servicio Satellite]
+	Satellite -- Persistir progreso y favoritos --> DB[(MongoDB)]
+	Client -- Consultar progreso/favoritos --> Satellite
+	Satellite --> DB

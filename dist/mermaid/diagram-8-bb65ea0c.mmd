@@ -1,0 +1,7 @@
+flowchart TD
+	Client[Play application] -- Update progress --> API
+	API -- Emit event --> Queue[Message queue]
+	Queue --> Satellite[Satellite Service]
+	Satellite -- Persist progress and favorites --> DB[(MongoDB)]
+	Client -- Query progress/favorites --> Satellite
+	Satellite --> DB

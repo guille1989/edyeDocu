@@ -1,0 +1,17 @@
+sequenceDiagram
+	participant User as Usuario
+	participant PlayApp as Aplicación Play
+	participant API as Servicio API
+	participant Billing as Servicio Billing
+	participant Cloud as Servicio Cloud
+	User->>PlayApp: Inicio de sesión / selección de perfil
+	PlayApp->>Billing: Verificar estado de suscripción
+	Billing-->>PlayApp: Estado (activo/inactivo)
+	PlayApp->>API: Solicitar catálogo y detalles de contenido
+	API-->>PlayApp: Datos de catálogos
+	User->>PlayApp: Seleccionar contenido
+	PlayApp->>API: Obtener URL de streaming / libro / juego
+	API->>Cloud: Recuperar activo
+	Cloud-->>API: URL firmada
+	API-->>PlayApp: URL para reproducción
+	PlayApp->>User: Reproduce contenido

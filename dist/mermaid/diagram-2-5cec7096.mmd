@@ -1,0 +1,12 @@
+%% Flujo de gestión de incidencias
+flowchart TD
+  A[Incident detection] --> B{Classification and severity}
+  B -->|Critical| C[Response team activation]
+  B -->|Medium/Low| D[Handled by support team]
+  C --> E[Initial mitigation]
+  D --> E
+  E --> F[Investigation and diagnosis]
+  F --> G[Resolution and restoration]
+  G --> H[Post-mortem analysis]
+  H --> I[Documentation and improvements]
+  I --> J[Close ticket in tracking system]

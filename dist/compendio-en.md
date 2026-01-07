@@ -1127,7 +1127,15 @@ Each phase relies on specific tools and assigned owners:
 
 ---
 
-## 4. Document Structure
+## 4. Technical Architecture of the EDYE DevOps Cycle
+
+![DevOps Cycle](img/arquitecturaDevOps.jpg)
+
+> **Figura 2.** _DevOps Architecture and CI/CD Flow of the EDYE Ecosystem_
+
+---
+
+## 5. Document Structure
 
 DevOps documentation is organized hierarchically to ensure traceability and version control.
 
@@ -1141,7 +1149,7 @@ DevOps documentation is organized hierarchically to ensure traceability and vers
 
 ---
 
-## 5. Security and Monitoring
+## 6. Security and Monitoring
 
 Security is embedded throughout the DevOps pipeline via:
 
@@ -1152,7 +1160,7 @@ Security is embedded throughout the DevOps pipeline via:
 
 ---
 
-## 6. Roles and Responsibilities
+## 7. Roles and Responsibilities
 
 | Role                     | Responsibilities                                          | Associated Tools         | Primary Interaction |
 | ------------------------ | --------------------------------------------------------- | ------------------------ | ------------------- |
@@ -1163,7 +1171,7 @@ Security is embedded throughout the DevOps pipeline via:
 
 ---
 
-## 7. Documentation Governance
+## 8. Documentation Governance
 
 Update flow:
 
@@ -1177,7 +1185,7 @@ Each document tracks:
 
 ---
 
-## 8. Best Practices
+## 9. Best Practices
 
 - Keep pipelines automated and validated.
 - Apply branch control and code reviews.

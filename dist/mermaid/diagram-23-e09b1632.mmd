@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant Usuario
+    participant Telecable
+    participant EDYE
+    participant Inplayer
+
+    Usuario->>Telecable: Activa el producto vía APK de EDYE instalada en el decodificador de Telecable
+    Telecable->>Telecable: Verificación de autenticación del usuario
+    alt Autenticación exitosa
+        Telecable->>EDYE: Solicitar URL de suscripción
+        EDYE->>Telecable: API genera y devuelve URL de suscripción
+        EDYE->>Usuario: API envía un SMS al usuario para completar su registro
+        Usuario->>EDYE: Crea su cuenta de EDYE usando el enlace recibido
+        EDYE->>Inplayer: API genera la suscripción en Inplayer
+        Inplayer->>Telecable: Envía confirmación con el Subscription ID del usuario
+        Telecable->>Usuario: Libera acceso al contenido en la APK de EDYE instalada en su decodificador
+    else Autenticación fallida
+        Telecable->>Usuario: Notifica error de autenticación
+    end

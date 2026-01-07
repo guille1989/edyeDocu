@@ -1,0 +1,22 @@
+sequenceDiagram
+    participant Usuario
+    participant App as Aplicación EDYE
+    participant API as API EDYE
+    participant Movistar as API Movistar DCB
+    participant Notifier as Notifier Movistar
+
+    Usuario->>App: Selecciona suscripción DCB
+    App->>API: Solicita alta de suscripción
+    API->>Movistar: Identificar operador / obtener MSISDN
+    Movistar-->>API: Devuelve MSISDN identificado
+    API->>Movistar: Inicia autenticación (OAuth 2.0/OIDC)
+    Movistar-->>Usuario: Envía OTP o mensaje de consentimiento
+    Usuario-->>Movistar: Confirma consentimiento de pago
+    Movistar-->>API: Devuelve access token
+    API->>Movistar: Crea suscripción (preparación y cobro)
+    Movistar-->>API: paymentId y estado del cobro
+    Movistar-->>Notifier: Emite evento SUBSCRIPTION_STARTED
+    Notifier->>API: Notifica alta de suscripción
+    API->>App: Confirma suscripción y habilita acceso
+
+    Note over Usuario,Notifier: Las renovaciones, suspensiones y cancelaciones siguen el mismo patrón. Movistar realiza el cobro periódico y su Notifier envía eventos RENEWAL, SUSPENSION o CANCELLATION que EDYE procesa para actualizar el estado de la suscripción.
