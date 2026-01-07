@@ -14,8 +14,6 @@ This annex summarizes the specific parameters for Sky Brazil. API is the preferr
 The following flow describes the **end-to-end ingestion and delivery process for content to Sky Brazil**, starting from editorial and technical preparation in EDYE to the partner’s final validation.
 This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -55,7 +53,6 @@ sequenceDiagram
     end
 ```
 
-</div>
 > **Figure 1.** _Partner operational flow diagram_
 
 ### 1.2. Flow description

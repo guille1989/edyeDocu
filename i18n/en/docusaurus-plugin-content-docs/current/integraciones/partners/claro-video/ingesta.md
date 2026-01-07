@@ -41,7 +41,7 @@ operational flow that involves the Content, Design, and DevOps teams.
 This flow describes the human tasks before and after the delivery generation.
 
 ![Partner operational flow](/img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ---
 

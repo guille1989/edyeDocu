@@ -12,8 +12,6 @@ The goal of the flow is to ensure that each audiovisual asset meets the technica
 
 This flow relies on an asynchronous pipeline, where the initial ingestion, processing, and final validation are decoupled, allowing volume scaling and reduced manual intervention.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     autonumber
@@ -54,7 +52,6 @@ sequenceDiagram
     OPS-->>CO: Confirmación de entrega DIRECTV
 ```
 
-</div>
 > **Figure 1.** _Partner operational flow diagram_
 
 ## Step-by-step sequence explanation

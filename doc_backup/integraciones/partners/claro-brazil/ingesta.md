@@ -2,6 +2,7 @@
 id: int-ing-partner-claro-brazil
 title: Ingesta de Contenidos – Claro Brasil
 ---
+
 # Anexo de Integración por Ingesta – Claro Brasil
 
 Este documento describe las **configuraciones específicas del partner Claro Brasil** que complementan el **flujo genérico de ingesta EDYE**.  
@@ -20,9 +21,6 @@ Una vez que video, metadata e imágenes se encuentran sincronizados, el sistema 
 La entrega se realiza preferentemente vía **API de ingesta de Claro Brasil**, utilizando un esquema asíncrono con **tracking ID** para el seguimiento del estado del procesamiento. En caso de errores de validación o procesamiento, el flujo contempla **corrección en origen y reintentos controlados**, ya sea parciales (metadata / imágenes) o completos (video).
 
 El proceso concluye cuando Claro Brasil retorna el estado **`completed`**, momento en el cual la entrega es validada por Operaciones y se realiza el **cierre operativo de la ingesta**.
-
-
-<div class="mermaid-zoom">
 
 ```mermaid
 sequenceDiagram
@@ -69,8 +67,8 @@ sequenceDiagram
     note over DD,CB: Canal preferido: API\nAlterno legacy: FTP/SFTP (si se habilita por Claro BR)
 ```
 
-</div>
 > **Figura 1.** Diagrama del flujo operativo del partner
+
 ---
 
 ## 1. Canal de Entrega
@@ -80,14 +78,14 @@ sequenceDiagram
 ### 1.1 Métodos soportados
 
 - **API REST (principal)**
-- **FTP / SFTP (polling)** *(en proceso de descontinuación)*
+- **FTP / SFTP (polling)** _(en proceso de descontinuación)_
 
 ### 1.2 Endpoints principales
 
-| Uso                     | Endpoint |
-|-------------------------|----------|
-| Ingesta de contenido    | `POST /api/ingesta/contenido` |
-| Consulta de estado      | `GET /api/ingesta/status?id={tracking_id}` |
+| Uso                  | Endpoint                                   |
+| -------------------- | ------------------------------------------ |
+| Ingesta de contenido | `POST /api/ingesta/contenido`              |
+| Consulta de estado   | `GET /api/ingesta/status?id={tracking_id}` |
 
 ### 1.3 Autenticación
 
@@ -134,15 +132,15 @@ sequenceDiagram
 
 ### 3.1 Campos obligatorios
 
-| Campo        | Tipo   | Descripción                   |
-|--------------|--------|--------------------------------|
-| title        | string | Título del contenido           |
-| external_id  | string | ID único del contenido         |
-| id_cliente   | string | Identificador Claro Brasil     |
-| duration     | number | Duración en segundos           |
-| language     | string | Idioma principal               |
-| tms_id       | string | ID Gracenote / TMS             |
-| acronym      | string | Acrónimo operativo             |
+| Campo       | Tipo   | Descripción                |
+| ----------- | ------ | -------------------------- |
+| title       | string | Título del contenido       |
+| external_id | string | ID único del contenido     |
+| id_cliente  | string | Identificador Claro Brasil |
+| duration    | number | Duración en segundos       |
+| language    | string | Idioma principal           |
+| tms_id      | string | ID Gracenote / TMS         |
+| acronym     | string | Acrónimo operativo         |
 
 ### 3.2 Ejemplo de JSON
 
@@ -158,23 +156,24 @@ sequenceDiagram
   "content_type": "episode"
 }
 ```
+
 ---
 
 ## 4. Imágenes
 
 ### 4.1 Tipos requeridos
 
-| Tipo           | Uso     |
-|----------------|---------|
+| Tipo           | Uso      |
+| -------------- | -------- |
 | Poster         | Serie    |
 | Episodic still | Episodio |
 
 ### 4.2 Especificaciones
 
-| Tipo    | Resolución    | Ratio | Watermark |
-|---------|---------------|-------|-----------|
-| Poster  | >= 2000x3000  | 2:3   | No        |
-| Episodio| >= 1920x1080  | 16:9  | No        |
+| Tipo     | Resolución   | Ratio | Watermark |
+| -------- | ------------ | ----- | --------- |
+| Poster   | >= 2000x3000 | 2:3   | No        |
+| Episodio | >= 1920x1080 | 16:9  | No        |
 
 ---
 
@@ -237,12 +236,12 @@ Obligatorio cuando:
 
 ## 8. Estados del Proceso
 
-| Estado     | Descripción            |
-|------------|------------------------|
-| received   | Archivo recibido       |
-| processing | En procesamiento       |
-| error      | Fallo en validación    |
-| completed  | Proceso exitoso        |
+| Estado     | Descripción         |
+| ---------- | ------------------- |
+| received   | Archivo recibido    |
+| processing | En procesamiento    |
+| error      | Fallo en validación |
+| completed  | Proceso exitoso     |
 
 ---
 

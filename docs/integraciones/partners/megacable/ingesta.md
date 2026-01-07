@@ -13,8 +13,6 @@ El flujo se basa en el modelo genérico de ingesta de EDYE, utilizando como punt
 Este diagrama permite visualizar claramente quién interviene en cada etapa, qué validaciones se ejecutan y cómo se gestionan los errores y reintentos, asegurando una integración consistente y reutilizable para este partner.
 
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as Content Operations
@@ -53,8 +51,7 @@ sequenceDiagram
         DD->>CO: Confirma ingesta exitosa
     end
 ```
-</div>
-> **Figura 1.** Diagrama del flujo operativo del partner
+> **Figura 1.** _Diagrama del flujo operativo del partner_
 
 ## Descripción de la secuencia del flujo
 

@@ -229,7 +229,7 @@ The panel includes integrated views with Loki, showing:
 
 ![Centralized Logs and Error Detection](/img/operaciones/logs-edyes-devops.jpg)
 
-> **Figure X.** _Centralized logs and system errors (Loki)._ 
+> **Figure X.** _Centralized logs and system errors (Loki)_ 
 
 - Nginx logs (Play/Cloud)
 - Apache logs (Laravel services)

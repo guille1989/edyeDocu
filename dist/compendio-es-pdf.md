@@ -46,12 +46,10 @@ La documentación abarca el ecosistema EDYE en su conjunto y, por lo tanto, cont
 El ecosistema EDYE está organizado en una arquitectura modular compuesta por servicios de back‑end y front‑end que se comunican a través de APIs y colas de mensajes. Los servicios se despliegan en instancias virtuales o contenedores dentro de centros de datos en Estados Unidos (principal) y un centro secundario para contingencias. La capa de entrega de contenido se apoya en un proveedor de CDN de ámbito global para optimizar la distribución de contenidos a los usuarios finales.
 
 
-![Arquitectura general del ecosistema - Production](img/infraestructura/production.jpg)
-> **Figura 1.** Arquitectura general del ecosistema Production
+![Arquitectura general del ecosistema Production](img/infraestructura/production.jpg)
 
 
-![Arquitectura general del ecosistema - Staging](img/infraestructura/staging.jpg)
-> **Figura 2.** Arquitectura general del ecosistema Staging
+![Arquitectura general del ecosistema Staging](img/infraestructura/staging.jpg)
 
 
 
@@ -114,8 +112,7 @@ en.wikipedia.org
 La plataforma utiliza un flujo de integración continua y despliegue continuo (CI/CD) que automatiza la compilación, pruebas y puesta en producción del software. El flujo general es el siguiente:
 
 
-![Mermaid diagram 1](mermaid/diagram-1-14f53345.png)
-> **Figura 3.** Diagrama de Arquitectura de despliegue (CI/CD)
+![Diagrama de Arquitectura de despliegue (CI/CD)](mermaid/diagram-1-14f53345.png)
 
 Commit y control de versiones: Los desarrolladores actualizan el código en el repositorio. Se utilizan ramas feature y merge requests para revisión de pares.
 
@@ -197,8 +194,7 @@ Pruebas de recuperación: De forma periódica se ejecutan ejercicios de failover
 La organización dispone de un proceso formal para la gestión de incidencias que abarca detección, clasificación, respuesta, comunicación y cierre con aprendizaje. El flujo general es el siguiente:
 
 
-![Mermaid diagram 2](mermaid/diagram-2-ce37b5f9.png)
-
+![Diagrama de Gestión de incidencias y soporte](mermaid/diagram-2-ce37b5f9.png)
 
 **Detección**: Las alertas de monitoreo o los reportes de usuarios inician el proceso de incidente.
 
@@ -437,17 +433,17 @@ El servicio API constituye el núcleo de comunicación entre clientes y recursos
 
 El servicio está diseñado como microservicio de alto rendimiento en Node.js. Los principales componentes son:
 
-| Componente                | Descripción                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Plataforma Node.js**        | Implementado sobre Node.js, que emplea un bucle de eventos para operaciones de E/S no bloqueantes. Este modelo permite atender muchas solicitudes simultáneamente, lo que es fundamental para un servicio de contenido.                                                                                                                                                                    |
-| **Framework y controladores** | Se utiliza un framework HTTP (p. ej., Express o Fastify) para definir rutas REST, controladores y middlewares.                                                                                                                                                                                                                                                                             |
+| Componente                    | Descripción                                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Plataforma Node.js**        | Implementado sobre Node.js, que emplea un bucle de eventos para operaciones de E/S no bloqueantes. Este modelo permite atender muchas solicitudes simultáneamente, lo que es fundamental para un servicio de contenido.                                                                                                                                                                            |
+| **Framework y controladores** | Se utiliza un framework HTTP (p. ej., Express o Fastify) para definir rutas REST, controladores y middlewares.                                                                                                                                                                                                                                                                                     |
 | **Bases de datos**            | 1) **MySQL** para datos relacionales como cuentas de usuario, metadatos de títulos y sus relaciones. MySQL es reconocido por su fiabilidad y soporte a ACID. 2) **MongoDB** para datos semiestructurados relacionados con la continuidad de visualización (listas de reproducción, favoritos). Laravel admite MongoDB mediante un paquete oficial, facilitando la integración con otros servicios. |
-| **Servicios de cache**        | Utiliza caché en memoria (p. ej., Redis) para almacenar respuestas frecuentes y reducir la latencia.                                                                                                                                                                                                                                                                                       |
-| **Servicios externos**        | Interactúa con servicios de almacenamiento para obtener activos multimedia y con el servicio de suscripciones para validar licencias de acceso.                                                                                                                                                                                                                                            |
+| **Servicios de cache**        | Utiliza caché en memoria (p. ej., Redis) para almacenar respuestas frecuentes y reducir la latencia.                                                                                                                                                                                                                                                                                               |
+| **Servicios externos**        | Interactúa con servicios de almacenamiento para obtener activos multimedia y con el servicio de suscripciones para validar licencias de acceso.                                                                                                                                                                                                                                                    |
 
 ### 3.1. Diagrama de arquitectura
 
-![Mermaid diagram 3](mermaid/diagram-3-93e99056.png)
+![Diagrama de arquitectura](mermaid/diagram-3-93e99056.png)
 
 Este diagrama resume la interacción principal entre clientes, bases de datos y servicios de soporte.
 
@@ -523,16 +519,16 @@ Las funciones principales del servicio son:
 
 El servicio Billing está compuesto por los siguientes elementos:
 
-| Componente                | Descripción |
-|---------------------------|-------------|
-| Interfaz de pago          | API que expone las operaciones de suscripción, cancelación y renovación. La interfaz se basa en Node.js/Express para orquestar los flujos y comunicarse con servicios externos. |
-| Proveedor de suscripciones| La plataforma utiliza un servicio de terceros especializado en paywall y administración de suscripciones para mantener la información de clientes. Este proveedor ofrece herramientas para crear planes, actualizar precios y procesar cambios. |
-| Base de datos interna     | Se almacena información no sensible como identificadores de clientes, historial de cambios y correlaciones con usuarios de EDYE. Para ello se emplea MySQL por su fiabilidad y soporte a ACID. |
-| Servicios auxiliares      | Incluyen un servicio de notificaciones para enviar correos electrónicos sobre renovaciones y vencimientos, y un servicio de conciliación para comparar registros internos con los reportes del proveedor de pagos. |
+| Componente                 | Descripción                                                                                                                                                                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Interfaz de pago           | API que expone las operaciones de suscripción, cancelación y renovación. La interfaz se basa en Node.js/Express para orquestar los flujos y comunicarse con servicios externos.                                                                 |
+| Proveedor de suscripciones | La plataforma utiliza un servicio de terceros especializado en paywall y administración de suscripciones para mantener la información de clientes. Este proveedor ofrece herramientas para crear planes, actualizar precios y procesar cambios. |
+| Base de datos interna      | Se almacena información no sensible como identificadores de clientes, historial de cambios y correlaciones con usuarios de EDYE. Para ello se emplea MySQL por su fiabilidad y soporte a ACID.                                                  |
+| Servicios auxiliares       | Incluyen un servicio de notificaciones para enviar correos electrónicos sobre renovaciones y vencimientos, y un servicio de conciliación para comparar registros internos con los reportes del proveedor de pagos.                              |
 
 ### 3.1. Diagrama de arquitectura
 
-![Mermaid diagram 4](mermaid/diagram-4-f7bd7f0f.png)
+![Diagrama de arquitectura](mermaid/diagram-4-f7bd7f0f.png)
 
 ## 4. Flujo general
 
@@ -613,17 +609,17 @@ Las responsabilidades principales del servicio son:
 
 El servicio Cloud se compone de varias capas:
 
-| Componente                 | Descripción                                                                                                                                                                                                                     |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Almacenamiento de objetos  | Sistema de almacenamiento distribuido que permite guardar objetos de cualquier tamaño. Permite la replicación en múltiples zonas para alta disponibilidad y durabilidad.                                                        |
-| Transcodificador           | Motor que ingiere los archivos fuente y genera versiones adaptadas para streaming (HLS/DASH). También produce miniaturas e imágenes redimensionadas utilizadas por el servicio Admin y Play. |
-| CDN                        | Red global que almacena copias en caché de los activos para reducir la latencia en la entrega a usuarios finales. Configura políticas de cache, invalidación y protección contra descargas masivas.                             |
-| Servicio de firma          | Componente que genera firmas temporales y tokens de acceso para que el contenido solo sea accesible con permisos válidos.                                                                                                       |
-| Base de datos de metadatos | Conserva información asociada a cada archivo: ubicación física, versiones, estatus de transcodificación y relaciones con títulos del catálogo.                                                                                  |
+| Componente                 | Descripción                                                                                                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Almacenamiento de objetos  | Sistema de almacenamiento distribuido que permite guardar objetos de cualquier tamaño. Permite la replicación en múltiples zonas para alta disponibilidad y durabilidad.                            |
+| Transcodificador           | Motor que ingiere los archivos fuente y genera versiones adaptadas para streaming (HLS/DASH). También produce miniaturas e imágenes redimensionadas utilizadas por el servicio Admin y Play.        |
+| CDN                        | Red global que almacena copias en caché de los activos para reducir la latencia en la entrega a usuarios finales. Configura políticas de cache, invalidación y protección contra descargas masivas. |
+| Servicio de firma          | Componente que genera firmas temporales y tokens de acceso para que el contenido solo sea accesible con permisos válidos.                                                                           |
+| Base de datos de metadatos | Conserva información asociada a cada archivo: ubicación física, versiones, estatus de transcodificación y relaciones con títulos del catálogo.                                                      |
 
 ### Diagrama de arquitectura
 
-![Mermaid diagram 5](mermaid/diagram-5-a47fd0e5.png)
+![Diagrama de arquitectura](mermaid/diagram-5-a47fd0e5.png)
 
 ## Modelo de despliegue
 
@@ -705,7 +701,7 @@ Entre las funciones clave del servicio se encuentran:
 
 ### Diagrama de flujo
 
-![Mermaid diagram 6](mermaid/diagram-6-d3a05f4e.png)
+![Diagrama de arquitectura](mermaid/diagram-6-d3a05f4e.png)
 
 ## Modelo de despliegue
 
@@ -778,17 +774,17 @@ Las funciones clave del servicio son:
 
 El servicio se implementa como un microservicio orientado a integraciones externas. Los componentes incluyen:
 
-| Componente              | Descripción |
-|-------------------------|-------------|
-| Gateway de autenticación| Servicio API que expone endpoints para iniciar y completar el flujo de autenticación. Encapsula la lógica específica de cada distribuidor (redirecciones, parámetros y manejo de respuestas). |
-| Módulos de proveedor    | Cada proveedor de televisión se gestiona mediante un módulo que implementa el protocolo de autenticación acordado (OAuth 2.0, SAML u otros). Los módulos encapsulan los endpoints, scopes y parámetros específicos. |
-| Base de datos de sesión | Almacena tokens temporales y estados intermedios. Se utiliza una base de datos rápida (p. ej., Redis o MySQL) para realizar la correlación entre la solicitud inicial y la respuesta del proveedor. |
-| Integración con API     | Una vez autenticado el usuario, el servicio comunica al API la creación o actualización del perfil, incluyendo los permisos obtenidos. |
-| Frontend de TV          | Algunos flujos se implementan como páginas web adaptadas a dispositivos de TV, desarrolladas en Laravel/Next JS para compatibilidad con navegadores embebidos. |
+| Componente               | Descripción                                                                                                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gateway de autenticación | Servicio API que expone endpoints para iniciar y completar el flujo de autenticación. Encapsula la lógica específica de cada distribuidor (redirecciones, parámetros y manejo de respuestas).                       |
+| Módulos de proveedor     | Cada proveedor de televisión se gestiona mediante un módulo que implementa el protocolo de autenticación acordado (OAuth 2.0, SAML u otros). Los módulos encapsulan los endpoints, scopes y parámetros específicos. |
+| Base de datos de sesión  | Almacena tokens temporales y estados intermedios. Se utiliza una base de datos rápida (p. ej., Redis o MySQL) para realizar la correlación entre la solicitud inicial y la respuesta del proveedor.                 |
+| Integración con API      | Una vez autenticado el usuario, el servicio comunica al API la creación o actualización del perfil, incluyendo los permisos obtenidos.                                                                              |
+| Frontend de TV           | Algunos flujos se implementan como páginas web adaptadas a dispositivos de TV, desarrolladas en Laravel/Next JS para compatibilidad con navegadores embebidos.                                                      |
 
 ### Diagrama de secuencia
 
-![Mermaid diagram 7](mermaid/diagram-7-2df39e27.png)
+![Diagrama de arquitectura](mermaid/diagram-7-2df39e27.png)
 
 ## Modelo de despliegue
 
@@ -869,7 +865,7 @@ El servicio cumple las siguientes funciones:
 
 ### 3.1. Diagrama de arquitectura
 
-![Mermaid diagram 8](mermaid/diagram-8-cf2aebfe.png)
+![Diagrama de arquitectura](mermaid/diagram-8-cf2aebfe.png)
 
 ## 4. Modelo de despliegue
 
@@ -948,9 +944,7 @@ Se apoya en herramientas como:
 
 El ciclo DevOps implementado en Edye sigue el siguiente flujo principal:
 
-![Ciclo DevOps](img/flujo-devops.jpg)
-
-> **Figura 1.** _Flujo general del proceso DevOps_
+![_Flujo general del proceso DevOps_](img/flujo-devops.jpg)
 
 Cada fase está soportada por herramientas específicas y responsables asignados:
 
@@ -964,9 +958,7 @@ Cada fase está soportada por herramientas específicas y responsables asignados
 
 ## 4. Arquitectura Técnica del Ciclo DevOps de EDYE
 
-![Ciclo DevOps](img/arquitecturaDevOps.jpg)
-
-> **Figura 2.** _Arquitectura DevOps y Flujo CI/CD del Ecosistema EDYE_
+![_Arquitectura DevOps y Flujo CI/CD del Ecosistema EDYE_](img/arquitecturaDevOps.jpg)
 
 ---
 
@@ -1190,9 +1182,7 @@ Todas las actividades se gestionan mediante:
 
 ### 3.2. Diagrama del flujo de planificación DevOps
 
-![Flujo de planificación DevOps](img/planificacion-devops-diagrama.jpg)
-
-> **Figura 1.** Diagrama del flujo del proceso de planificación DevOps.
+![Diagrama del flujo del proceso de planificación DevOps.](img/planificacion-devops-diagrama.jpg)
 
 ---
 
@@ -1288,9 +1278,7 @@ El control de versiones se gestiona en **GitHub**, utilizando las ramas principa
 
 El siguiente diagrama representa de forma visual el **flujo general de la fase de desarrollo dentro del ciclo DevOps** del ecosistema Edye.
 
-![Diagrama del flujo de desarrollo DevOps](img/desarrollo-devops.jpg)
-
-> **Figura 1.** _Diagrama del flujo del proceso de desarrollo DevOps._
+![_Diagrama del flujo del proceso de desarrollo DevOps._](img/desarrollo-devops.jpg)
 
 ---
 
@@ -1417,9 +1405,7 @@ Cada repositorio dispone de un pipeline configurado que se activa ante un **push
 
 El siguiente diagrama representa la secuencia completa del proceso CI en Edye:
 
-![Flujo general del proceso de Integración Continua](img/integracion-continua-devops.jpg)
-
-> **Figura 1.** Diagrama del flujo general del proceso de Integración Continua
+![Diagrama del flujo general del proceso de Integración Continua](img/integracion-continua-devops.jpg)
 
 
 ### 3.2. Descripción del flujo CI
@@ -1829,9 +1815,7 @@ Body:
 
 ## 3.3. Flujo del proceso de entrega continua
 
-![Flujo del proceso de entrega continua](img/entrega-continua-devops.jpg)
-
-> **Figura 1.** Diagrama del flujo de Entrega Continua DevOps
+![Diagrama del flujo de Entrega Continua DevOps](img/entrega-continua-devops.jpg)
 
 **Descripción del flujo:**
 
@@ -2131,9 +2115,7 @@ El estado varía dinámicamente entre:
 - (Amarillo)
 - (Rojo)
 
-![Estado general del ecosistema](img/operaciones/estado-general-edyes-devops.jpg)
-
-> **Figura 1.** _Estado general del ecosistema._
+![_Estado general del ecosistema._](img/operaciones/estado-general-edyes-devops.jpg)
 
 **Uptime histórico (últimos 90 días)**  
 Cada servicio dispone de un gráfico de barras que representa su disponibilidad diaria durante los últimos 90 días.  
@@ -2143,9 +2125,7 @@ El uso de colores permite identificar rápidamente:
 - Amarillo → degradación parcial
 - Rojo → indisponibilidad total
 
-![Uptime histórico](img/operaciones/uptime-edyes-devops.jpg)
-
-> **Figura 2.** _Uptime histórico últimos 90 días._
+![_Uptime histórico últimos 90 días._](img/operaciones/uptime-edyes-devops.jpg)
 
 **Servicios monitoreados**  
 El panel incluye los módulos principales de Edye:
@@ -2160,16 +2140,12 @@ El panel incluye los módulos principales de Edye:
 
 Cada uno con su porcentaje exacto de disponibilidad (ej. 99.997%), indicador de estado y su historial de uptime.
 
-![Servicios monitoreados](img/operaciones/uptime-marker-edyes-devops.jpg)
-
-> **Figura 3.** _Servicios monitoreados últimos 90 días._
+![_Servicios monitoreados últimos 90 días._](img/operaciones/uptime-marker-edyes-devops.jpg)
 
 **Actualización automática**  
 El sistema se actualiza en intervalos regulares (por ejemplo, cada pocos segundos), permitiendo información prácticamente en tiempo real, como se indica con el contador de actualización (Next update in X sec).
 
-![Actualización automática](img/operaciones/upgrade-edyes-devops.jpg)
-
-> **Figura 4.** _Actualización automática dashboard._
+![_Actualización automática dashboard._](img/operaciones/upgrade-edyes-devops.jpg)
 
 **Overall Uptime (últimas 24h · 7 días · 30 días · 90 días)**  
 El panel incluye métricas consolidadas de disponibilidad global del ecosistema:
@@ -2181,9 +2157,7 @@ El panel incluye métricas consolidadas de disponibilidad global del ecosistema:
 
 Este bloque permite evaluar la estabilidad general de la plataforma a lo largo del tiempo y detectar tendencias de mejora o degradación.
 
-![Overall Uptime](img/operaciones/overall-uptime-edyes-devops.jpg)
-
-> **Figura 5.** _Overall Uptime._
+![_Overall Uptime._](img/operaciones/overall-uptime-edyes-devops.jpg)
 
 **Registro de incidentes y actualizaciones (Status Updates)**  
 El panel incorpora un área de actualizaciones que muestra incidentes reportados, mantenimientos programados o problemas históricos.
@@ -2191,9 +2165,7 @@ El panel incorpora un área de actualizaciones que muestra incidentes reportados
 Esto indica que no se han producido incidentes relevantes en el último mes.  
 El enlace “Status update history” da acceso al historial completo de eventos registrados.
 
-![Registro de incidentes y actualizaciones](img/operaciones/status-update-edyes-devops.jpg)
-
-> **Figura 6.** _Registro de incidentes y actualizaciones._
+![_Registro de incidentes y actualizaciones._](img/operaciones/status-update-edyes-devops.jpg)
 
 **Propósito dentro del ecosistema**  
 El servicio cumple funciones claves:
@@ -2214,9 +2186,7 @@ Este sistema complementa el monitoreo externo (https://status.edye.com) proporci
 
 La pantalla principal del Monitor Edye presenta un resumen en tiempo real del estado de los servicios y servidores del ecosistema.
 
-![Vista General del Estado del Sistema](img/operaciones/dashboard-edyes-devops.jpg)
-
-> **Figura 6.** _Vista general del sistema (Dashboard principal)._
+![_Vista general del sistema (Dashboard principal)._](img/operaciones/dashboard-edyes-devops.jpg)
 
 En este panel se visualiza:
 
@@ -2967,8 +2937,7 @@ El flujo estándar de ingesta se compone de los siguientes pasos:
 
 ### 4.2. Diagrama del flujo
 
-![Mermaid diagram 9](mermaid/diagram-9-05f414ab.png)
-> **Figura 1.** Diagrama del flujo **
+![Diagrama del flujo **](mermaid/diagram-9-05f414ab.png)
 
 ---
 
@@ -3248,7 +3217,7 @@ El flujo estándar de delivery vía API se compone de los siguientes pasos:
 
 ### Diagrama del flujo
 
-![Mermaid diagram 10](mermaid/diagram-10-3a4e9e4f.png)
+![_Diagrama del flujo_](mermaid/diagram-10-3a4e9e4f.png)
 
 ---
 
@@ -3484,8 +3453,7 @@ El flujo estándar de Billing se compone de los siguientes pasos:
 
 A continuación se muestra un diagrama de alto nivel que ilustra este flujo end‑to‑end. El diagrama refleja la interacción entre el **EDYE Billing** (como orquestador), la pasarela de pagos (**Pagoralia** en el ejemplo), el **cliente** y la plataforma externa **InPlayer**. El portal geolocalizado se crea y se integra con la pasarela; el cliente accede a su portal y oferta distintas suscripciones, el usuario ingresa al paywall y se registra, y finalmente EDYE reconcilia las ganancias con el partner. Si ocurre un fallo de transacción, se presenta una pantalla de error; en caso de éxito, el usuario queda registrado en InPlayer y se continúa con el flujo de renovación y reporting.
 
-![Mermaid diagram 11](mermaid/diagram-11-b25ca4c1.png)
-> **Figura 1.** Flujo general de Billing
+![Flujo general de Billing](mermaid/diagram-11-b25ca4c1.png)
 
 ## 6. Pre-requisitos obligatorios
 
@@ -3627,8 +3595,7 @@ Un diagrama general podría mostrar estos componentes conectados: la APK se comu
 6. **Integración con el backend:** la APK invoca servicios de EDYE mediante HTTPS y tokens.
 7. **Monitoreo y soporte:** el partner supervisa el funcionamiento y coordina con EDYE ante incidencias.
 
-![Mermaid diagram 12](mermaid/diagram-12-177e3e3b.png)
-> **Figura 1.** Diagrama del flujo **
+![_Flujo general de la integración_](mermaid/diagram-12-177e3e3b.png)
 
 ## 6. Componentes involucrados
 
@@ -3767,8 +3734,7 @@ La integración se basa en dos vectores de comunicación:
 
 La figura siguiente ilustra la arquitectura general del modelo API + Notifier. El diagrama es conceptual y muestra los elementos esenciales sin detalles de implementación específicos:
 
-![Ciclo DevOps](img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
-> **Figura 1.** Arquitectura lógica de la integración
+![Arquitectura lógica de la integración](img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
 
 ## 4. Componentes principales
 
@@ -3929,8 +3895,7 @@ flujo operativo que involucra a los equipos de Contenido, Diseño y DevOps.
 Este flujo describe las tareas humanas previas y posteriores a la generación del
 delivery.
 
-![Flujo operativo del partner](img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
 
 ---
 
@@ -4132,8 +4097,7 @@ metadata y artwork, operada principalmente vía Aspera.
 
 ## 4. Flujo de Ingesta – Dish México
 
-![Mermaid diagram 13](mermaid/diagram-13-bf410d28.png) 
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](mermaid/diagram-13-bf410d28.png) 
 
 Este flujo describe el proceso operativo completo desde la recepción del
 contenido por parte del equipo de Content Operations hasta la entrega
@@ -4430,9 +4394,9 @@ La entrega se realiza preferentemente vía **API de ingesta de Claro Brasil**, u
 
 El proceso concluye cuando Claro Brasil retorna el estado **`completed`**, momento en el cual la entrega es validada por Operaciones y se realiza el **cierre operativo de la ingesta**.
 
-![Mermaid diagram 14](mermaid/diagram-14-6902bbbf.png)
 
-> **Figura 1.** Diagrama del flujo operativo del partner
+![_Diagrama del flujo operativo del partner_](mermaid/diagram-14-6902bbbf.png)
+
 ---
 
 ## 1. Canal de Entrega
@@ -4442,14 +4406,14 @@ El proceso concluye cuando Claro Brasil retorna el estado **`completed`**, momen
 ### 1.1 Métodos soportados
 
 - **API REST (principal)**
-- **FTP / SFTP (polling)** *(en proceso de descontinuación)*
+- **FTP / SFTP (polling)** _(en proceso de descontinuación)_
 
 ### 1.2 Endpoints principales
 
-| Uso                     | Endpoint |
-|-------------------------|----------|
-| Ingesta de contenido    | `POST /api/ingesta/contenido` |
-| Consulta de estado      | `GET /api/ingesta/status?id={tracking_id}` |
+| Uso                  | Endpoint                                   |
+| -------------------- | ------------------------------------------ |
+| Ingesta de contenido | `POST /api/ingesta/contenido`              |
+| Consulta de estado   | `GET /api/ingesta/status?id={tracking_id}` |
 
 ### 1.3 Autenticación
 
@@ -4496,15 +4460,15 @@ El proceso concluye cuando Claro Brasil retorna el estado **`completed`**, momen
 
 ### 3.1 Campos obligatorios
 
-| Campo        | Tipo   | Descripción                   |
-|--------------|--------|--------------------------------|
-| title        | string | Título del contenido           |
-| external_id  | string | ID único del contenido         |
-| id_cliente   | string | Identificador Claro Brasil     |
-| duration     | number | Duración en segundos           |
-| language     | string | Idioma principal               |
-| tms_id       | string | ID Gracenote / TMS             |
-| acronym      | string | Acrónimo operativo             |
+| Campo       | Tipo   | Descripción                |
+| ----------- | ------ | -------------------------- |
+| title       | string | Título del contenido       |
+| external_id | string | ID único del contenido     |
+| id_cliente  | string | Identificador Claro Brasil |
+| duration    | number | Duración en segundos       |
+| language    | string | Idioma principal           |
+| tms_id      | string | ID Gracenote / TMS         |
+| acronym     | string | Acrónimo operativo         |
 
 ### 3.2 Ejemplo de JSON
 
@@ -4520,23 +4484,24 @@ El proceso concluye cuando Claro Brasil retorna el estado **`completed`**, momen
   "content_type": "episode"
 }
 ```
+
 ---
 
 ## 4. Imágenes
 
 ### 4.1 Tipos requeridos
 
-| Tipo           | Uso     |
-|----------------|---------|
+| Tipo           | Uso      |
+| -------------- | -------- |
 | Poster         | Serie    |
 | Episodic still | Episodio |
 
 ### 4.2 Especificaciones
 
-| Tipo    | Resolución    | Ratio | Watermark |
-|---------|---------------|-------|-----------|
-| Poster  | >= 2000x3000  | 2:3   | No        |
-| Episodio| >= 1920x1080  | 16:9  | No        |
+| Tipo     | Resolución   | Ratio | Watermark |
+| -------- | ------------ | ----- | --------- |
+| Poster   | >= 2000x3000 | 2:3   | No        |
+| Episodio | >= 1920x1080 | 16:9  | No        |
 
 ---
 
@@ -4599,12 +4564,12 @@ Obligatorio cuando:
 
 ## 8. Estados del Proceso
 
-| Estado     | Descripción            |
-|------------|------------------------|
-| received   | Archivo recibido       |
-| processing | En procesamiento       |
-| error      | Fallo en validación    |
-| completed  | Proceso exitoso        |
+| Estado     | Descripción         |
+| ---------- | ------------------- |
+| received   | Archivo recibido    |
+| processing | En procesamiento    |
+| error      | Fallo en validación |
+| completed  | Proceso exitoso     |
 
 ---
 
@@ -4637,37 +4602,41 @@ Este anexo resume los parámetros específicos para Sky Brazil. API es el canal 
 El siguiente flujo describe el **proceso end-to-end de ingesta y entrega de contenidos hacia Sky Brazil**, partiendo desde la preparación editorial y técnica en EDYE hasta la validación final del partner.
 Este flujo es una **implementación específica del modelo genérico de ingesta**, adaptada a los requisitos técnicos y operativos de Sky.
 
-![Mermaid diagram 15](mermaid/diagram-15-1d5df93e.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](mermaid/diagram-15-1d5df93e.png)
 
 ### Descripción del flujo
 
-1) **Recepción y preparación del contenido**
-    - Content Operations recibe contenido aprobado (video + info editorial + disponibilidad).
-    - Carga los videos en JW Player con metadata mínima y valida requisitos técnicos Sky (codec, resolución, duración).
+1. **Recepción y preparación del contenido**
 
-2) **Sincronización con EDYE**
-    - Tras validar en JWP, se sincronizan los assets con la API de EDYE, dejando a EDYE como capa de orquestación hacia Sky.
+   - Content Operations recibe contenido aprobado (video + info editorial + disponibilidad).
+   - Carga los videos en JW Player con metadata mínima y valida requisitos técnicos Sky (codec, resolución, duración).
 
-3) **Producción y carga de artes**
-    - Content Operations solicita a Design Team los artes (posters, key art, stills) con ratios/resoluciones definidas por Sky.
-    - Design Team carga las imágenes en EDYE y notifica a Operaciones al completar.
+2. **Sincronización con EDYE**
 
-4) **Generación del delivery**
-    - Con video, metadata e imágenes disponibles, Edye DevOps genera el delivery para Sky Brazil aplicando reglas del canal elegido (API o Aspera).
+   - Tras validar en JWP, se sincronizan los assets con la API de EDYE, dejando a EDYE como capa de orquestación hacia Sky.
 
-5) **Validación técnica**
-    - DevOps valida automáticamente: formato y características del video, completitud/consistencia de metadata, presencia y calidad de imágenes.
-    - Ante errores, se reporta a Content Operations para corrección y reintento.
+3. **Producción y carga de artes**
 
-6) **Entrega a Sky Brazil**
-    - Canal API (principal): ingesta vía API Sky; se monitorea el estado hasta `completed`.
-    - Canal Aspera (alterno): se entrega paquete completo vía Aspera y se verifica transferencia/procesamiento.
+   - Content Operations solicita a Design Team los artes (posters, key art, stills) con ratios/resoluciones definidas por Sky.
+   - Design Team carga las imágenes en EDYE y notifica a Operaciones al completar.
 
-7) **Cierre y monitoreo**
-    - El flujo cierra cuando Sky confirma recepción/procesamiento correcto.
-    - Logs y estados de ingesta quedan disponibles para monitoreo/reporting operativo.
+4. **Generación del delivery**
+
+   - Con video, metadata e imágenes disponibles, Edye DevOps genera el delivery para Sky Brazil aplicando reglas del canal elegido (API o Aspera).
+
+5. **Validación técnica**
+
+   - DevOps valida automáticamente: formato y características del video, completitud/consistencia de metadata, presencia y calidad de imágenes.
+   - Ante errores, se reporta a Content Operations para corrección y reintento.
+
+6. **Entrega a Sky Brazil**
+
+   - Canal API (principal): ingesta vía API Sky; se monitorea el estado hasta `completed`.
+   - Canal Aspera (alterno): se entrega paquete completo vía Aspera y se verifica transferencia/procesamiento.
+
+7. **Cierre y monitoreo**
+   - El flujo cierra cuando Sky confirma recepción/procesamiento correcto.
+   - Logs y estados de ingesta quedan disponibles para monitoreo/reporting operativo.
 
 ---
 
@@ -4859,35 +4828,33 @@ documento de Ingesta estándar.
 El siguiente flujo describe el **proceso end-to-end de ingesta y entrega de contenidos hacia Sky Brazil**, partiendo desde la preparación editorial y técnica en EDYE hasta la validación final del partner.
 Este flujo es una **implementación específica del modelo genérico de ingesta**, adaptada a los requisitos técnicos y operativos de Sky.
 
-![Mermaid diagram 16](mermaid/diagram-16-b4cd7f3a.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](mermaid/diagram-16-b4cd7f3a.png)
 
 # Flujo de Ingesta – Watch Brazil
 
 1. **Recepción del contenido**  
-  Content Operations recibe el contenido audiovisual desde programación o proveedores.
+   Content Operations recibe el contenido audiovisual desde programación o proveedores.
 
 2. **Carga en JW Player**  
-  El video se carga en JW Player y se completa la metadata mínima, incluyendo los campos específicos requeridos por Watch Brazil.
+   El video se carga en JW Player y se completa la metadata mínima, incluyendo los campos específicos requeridos por Watch Brazil.
 
 3. **Solicitud y creación de artes**  
-  Content Operations solicita al Design Team los posters y stills; el equipo de diseño produce y carga los artes requeridos.
+   Content Operations solicita al Design Team los posters y stills; el equipo de diseño produce y carga los artes requeridos.
 
 4. **Confirmación de assets**  
-  Una vez cargadas las imágenes, el Design Team notifica a Edye DevOps que los assets están listos para delivery.
+   Una vez cargadas las imágenes, el Design Team notifica a Edye DevOps que los assets están listos para delivery.
 
 5. **Generación del paquete**  
-  Edye DevOps consolida el paquete completo de entrega (video, metadata e imágenes).
+   Edye DevOps consolida el paquete completo de entrega (video, metadata e imágenes).
 
 6. **Validación técnica**  
-  Se ejecutan validaciones de video, metadata, imágenes, naming y estructura del delivery.
+   Se ejecutan validaciones de video, metadata, imágenes, naming y estructura del delivery.
 
 7. **Correcciones (si aplica)**  
-  Si hay errores, se reportan a Content Operations, se corrige el contenido y se regenera el paquete.
+   Si hay errores, se reportan a Content Operations, se corrige el contenido y se regenera el paquete.
 
 8. **Entrega al partner**  
-  Con validación exitosa, Edye DevOps entrega el contenido a Watch Brazil (API y, si aplica, Amazon S3) y confirma el cierre del proceso.
+   Con validación exitosa, Edye DevOps entrega el contenido a Watch Brazil (API y, si aplica, Amazon S3) y confirma el cierre del proceso.
 
 ---
 
@@ -4936,6 +4903,7 @@ POST /api/ingesta/contenido
 ```
 
 ### Reglas de naming
+
 - Un **content_id único** por asset
 - Nombres sin espacios
 - Solo caracteres ASCII
@@ -4947,18 +4915,19 @@ POST /api/ingesta/contenido
 
 ### Campos obligatorios (JSON)
 
-| Campo | Descripción |
-|------|-------------|
-| `title` | Título del contenido |
-| `id_cliente` | Identificador del partner |
-| `rating` | Clasificación etaria |
-| `studio` | Debe ser **Edye** |
-| `studio_name` | Debe ser **Edye** |
-| `licensing_window_start` | Fecha + hora (ISO 8601) |
-| `licensing_window_end` | Fecha + hora (ISO 8601) |
-| `actors_display` | Lista consolidada de actores |
+| Campo                    | Descripción                  |
+| ------------------------ | ---------------------------- |
+| `title`                  | Título del contenido         |
+| `id_cliente`             | Identificador del partner    |
+| `rating`                 | Clasificación etaria         |
+| `studio`                 | Debe ser **Edye**            |
+| `studio_name`            | Debe ser **Edye**            |
+| `licensing_window_start` | Fecha + hora (ISO 8601)      |
+| `licensing_window_end`   | Fecha + hora (ISO 8601)      |
+| `actors_display`         | Lista consolidada de actores |
 
 **Reglas especiales Watch Brazil:**
+
 - El campo `rating` **no acepta valores numéricos simples**
 - Debe enviarse como:
   - `A12`, `AL`, `12` o `L`
@@ -4985,12 +4954,12 @@ POST /api/ingesta/contenido
 
 ### Imágenes requeridas (obligatorias)
 
-| Tipo              | Resolución | Ratio   |
-|-------------------|------------|---------|
-| Poster Horizontal | 3840x2160  | 16:9    |
-| Poster Vertical   | 1708x2562  | Vertical|
-| Still Horizontal  | 3840x2160  | 16:9    |
-| Still Vertical    | 1708x2562  | Vertical|
+| Tipo              | Resolución | Ratio    |
+| ----------------- | ---------- | -------- |
+| Poster Horizontal | 3840x2160  | 16:9     |
+| Poster Vertical   | 1708x2562  | Vertical |
+| Still Horizontal  | 3840x2160  | 16:9     |
+| Still Vertical    | 1708x2562  | Vertical |
 
 > ⚠️ La imagen **Still Vertical** es obligatoria. Sin este asset, la Still Horizontal será recortada en aplicaciones mobile.
 
@@ -5091,38 +5060,36 @@ El flujo está diseñado para ser reutilizable y controlado, incorporando valida
 
 De esta manera, Operaciones, Diseño y DevOps trabajan de forma coordinada para garantizar una ingesta estable, trazable y con visibilidad de estado en cada etapa.
 
-![Mermaid diagram 17](mermaid/diagram-17-c4ebae00.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](mermaid/diagram-17-c4ebae00.png)
 
 ## Descripción paso a paso del flujo de ingesta VTR
 
-1) **Recepción del contenido**  
-El equipo de Content Operations recibe el contenido audiovisual desde Programación o Contenidos (series, temporadas, episodios).
+1. **Recepción del contenido**  
+   El equipo de Content Operations recibe el contenido audiovisual desde Programación o Contenidos (series, temporadas, episodios).
 
-2) **Preparación de video y metadata mínima**  
-Content Operations prepara el archivo de video y completa la metadata obligatoria requerida por VTR (por ejemplo: título, identificador de cliente y referencia al archivo de media).
+2. **Preparación de video y metadata mínima**  
+   Content Operations prepara el archivo de video y completa la metadata obligatoria requerida por VTR (por ejemplo: título, identificador de cliente y referencia al archivo de media).
 
-3) **Validación previa de requisitos técnicos**  
-Antes de iniciar la ingesta, se verifica que el contenido cumpla con las especificaciones técnicas de VTR, como formato MP4/H.264, resolución mínima de 720p y duración máxima permitida.
+3. **Validación previa de requisitos técnicos**  
+   Antes de iniciar la ingesta, se verifica que el contenido cumpla con las especificaciones técnicas de VTR, como formato MP4/H.264, resolución mínima de 720p y duración máxima permitida.
 
-4) **Gestión de imágenes y artes (si aplica)**  
-En caso de requerirse artes editoriales, Content Operations solicita al Design Team la creación o actualización de posters, stills u otros assets gráficos. El equipo de diseño genera las imágenes según los tamaños y ratios definidos por VTR y las carga en EDYE.
+4. **Gestión de imágenes y artes (si aplica)**  
+   En caso de requerirse artes editoriales, Content Operations solicita al Design Team la creación o actualización de posters, stills u otros assets gráficos. El equipo de diseño genera las imágenes según los tamaños y ratios definidos por VTR y las carga en EDYE.
 
-5) **Solicitud de ejecución de ingesta**  
-Una vez validados video, metadata e imágenes, Content Operations solicita a Edye DevOps la ejecución del proceso de ingesta hacia VTR, utilizando el canal acordado.
+5. **Solicitud de ejecución de ingesta**  
+   Una vez validados video, metadata e imágenes, Content Operations solicita a Edye DevOps la ejecución del proceso de ingesta hacia VTR, utilizando el canal acordado.
 
-6) **Ejecución de la ingesta y procesamiento**  
-Edye DevOps ejecuta la ingesta, enviando el contenido mediante la API de VTR (canal principal) o a través de FTP con polling (canal alternativo). Durante esta etapa se procesan el video, la metadata y el post-proceso automático (QC y generación de thumbnails).
+6. **Ejecución de la ingesta y procesamiento**  
+   Edye DevOps ejecuta la ingesta, enviando el contenido mediante la API de VTR (canal principal) o a través de FTP con polling (canal alternativo). Durante esta etapa se procesan el video, la metadata y el post-proceso automático (QC y generación de thumbnails).
 
-7) **Validación del resultado**  
-DevOps valida que la ingesta se haya completado correctamente, revisando el estado del proceso (`received`, `processing`, `error` o `completed`) y confirmando que no existan fallas en video, metadata o procesamiento.
+7. **Validación del resultado**  
+   DevOps valida que la ingesta se haya completado correctamente, revisando el estado del proceso (`received`, `processing`, `error` o `completed`) y confirmando que no existan fallas en video, metadata o procesamiento.
 
-8) **Manejo de errores y reintentos**  
-Si se detectan errores (por ejemplo, metadata incompleta o formato de video no soportado), DevOps reporta la causa a Content Operations. El equipo corrige los insumos necesarios y solicita un reintento de la ingesta.
+8. **Manejo de errores y reintentos**  
+   Si se detectan errores (por ejemplo, metadata incompleta o formato de video no soportado), DevOps reporta la causa a Content Operations. El equipo corrige los insumos necesarios y solicita un reintento de la ingesta.
 
-9) **Cierre exitoso de la ingesta**  
-Cuando el estado final es `completed`, se confirma el cierre operativo del flujo. El contenido queda correctamente ingerido en VTR y el proceso se registra para monitoreo, reporting y auditoría.
+9. **Cierre exitoso de la ingesta**  
+   Cuando el estado final es `completed`, se confirma el cierre operativo del flujo. El contenido queda correctamente ingerido en VTR y el proceso se registra para monitoreo, reporting y auditoría.
 
 ---
 
@@ -5339,8 +5306,7 @@ El flujo contempla como **canal principal la ingesta vía API de ROKU**, utiliza
 
 A lo largo del proceso se integran controles de calidad sobre **video, metadata e imágenes**, con ciclos claros de corrección y reintento en caso de errores, garantizando trazabilidad, consistencia operativa y alineación con las especificaciones técnicas del partner. Este diagrama sirve como referencia única y reutilizable para operaciones, diseño y DevOps durante la ejecución y soporte de la integración con ROKU.
 
-![Mermaid diagram 18](mermaid/diagram-18-07463467.png)
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](mermaid/diagram-18-07463467.png)
 
 ## 1. Canal de entrega
 
@@ -5519,40 +5485,38 @@ El objetivo del flujo es asegurar que cada asset audiovisual cumpla con los requ
 
 Este flujo se apoya en un pipeline asíncrono, donde la ingesta inicial, el procesamiento y la validación final están desacoplados, permitiendo escalar volumen y reducir intervención manual.
 
-![Mermaid diagram 19](mermaid/diagram-19-af3e4ba4.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](mermaid/diagram-19-af3e4ba4.png)
 
 ## Explicación de la secuencia paso a paso
 
-1) **Recepción y pre-validación del contenido**  
-Content Operations recibe el contenido y realiza una verificación básica previa (formato, duración, resolución), asegurando que el material esté listo para ser ingestado.
+1. **Recepción y pre-validación del contenido**  
+   Content Operations recibe el contenido y realiza una verificación básica previa (formato, duración, resolución), asegurando que el material esté listo para ser ingestado.
 
-2) **Carga y preparación del asset**  
-El video master y la metadata base son preparados (y, si aplica, gestionados desde JW Player como fuente de verdad), antes de iniciar la entrega al partner.
+2. **Carga y preparación del asset**  
+   El video master y la metadata base son preparados (y, si aplica, gestionados desde JW Player como fuente de verdad), antes de iniciar la entrega al partner.
 
-3) **Ingesta vía API DIRECTV**  
-El contenido se envía mediante un request POST a la API de ingesta de DIRECTV, incluyendo el archivo de video y la metadata en formato JSON.  
-La API responde con un asset_id que permite el tracking del proceso.
+3. **Ingesta vía API DIRECTV**  
+   El contenido se envía mediante un request POST a la API de ingesta de DIRECTV, incluyendo el archivo de video y la metadata en formato JSON.  
+   La API responde con un asset_id que permite el tracking del proceso.
 
-4) **Procesamiento asíncrono**  
-El asset es encolado en el pipeline de DIRECTV, donde se ejecutan validaciones técnicas, procesamiento de video (transcoding), generación de thumbnails y controles de calidad automáticos.
+4. **Procesamiento asíncrono**  
+   El asset es encolado en el pipeline de DIRECTV, donde se ejecutan validaciones técnicas, procesamiento de video (transcoding), generación de thumbnails y controles de calidad automáticos.
 
-5) **Validación y control de errores**  
-Si ocurre un error (video inválido, metadata incompleta, fallo de procesamiento), el estado se marca como error y se notifican logs y alertas a Operaciones.  
-Operaciones coordina con Content Operations la corrección correspondiente.
+5. **Validación y control de errores**  
+   Si ocurre un error (video inválido, metadata incompleta, fallo de procesamiento), el estado se marca como error y se notifican logs y alertas a Operaciones.  
+   Operaciones coordina con Content Operations la corrección correspondiente.
 
-6) **Reintentos controlados**  
-Dependiendo del tipo de error, el flujo permite:
+6. **Reintentos controlados**  
+   Dependiendo del tipo de error, el flujo permite:
 
 - Reintentar solo la metadata corregida, o
 - Regenerar el media y reenviar la ingesta completa.
 
-7) **Finalización exitosa**  
-Si todas las validaciones son correctas, el asset cambia a estado `completed` y queda disponible en el ecosistema de DIRECTV.
+7. **Finalización exitosa**  
+   Si todas las validaciones son correctas, el asset cambia a estado `completed` y queda disponible en el ecosistema de DIRECTV.
 
-8) **Cierre operativo**  
-Operaciones realiza la verificación final (estado, logs y SLA) y confirma la entrega como cerrada.
+8. **Cierre operativo**  
+   Operaciones realiza la verificación final (estado, logs y SLA) y confirma la entrega como cerrada.
 
 ---
 
@@ -5721,9 +5685,8 @@ El flujo se basa en el modelo genérico de ingesta de EDYE, utilizando como punt
 
 Este diagrama permite visualizar claramente quién interviene en cada etapa, qué validaciones se ejecutan y cómo se gestionan los errores y reintentos, asegurando una integración consistente y reutilizable para este partner.
 
-![Mermaid diagram 20](mermaid/diagram-20-1c0c4adb.png)
 
-> **Figura 1.** Diagrama del flujo operativo del partner
+![_Diagrama del flujo operativo del partner_](mermaid/diagram-20-1c0c4adb.png)
 
 ## Descripción de la secuencia del flujo
 
@@ -6034,7 +5997,7 @@ El endpoint de entrega se configura como una URL pública o autenticada. El part
 
 La arquitectura de la entrega está compuesta por los siguientes componentes:
 
-![Mermaid diagram 21](mermaid/diagram-21-63c891e0.png)
+![_Diagrama Arquitectura general_](mermaid/diagram-21-63c891e0.png)
 
 **Origen:** EDYE utiliza JW Player como origen de media. Las cargas de vídeo y sus variantes se almacenan y gestionan en JW Player.
 
@@ -6137,7 +6100,7 @@ Se emplea autenticación mediante token en la URL o encabezado, o bien autentica
 
 ### 5.4 Flujo operativo de delivery vía API
 
-![Mermaid diagram 22](mermaid/diagram-22-e4d88ba7.png)
+![_Flujo operativo de delivery vía API_](mermaid/diagram-22-e4d88ba7.png)
 
 ### 5.5 Descripción del flujo (paso a paso)
 
@@ -6293,8 +6256,7 @@ La siguiente descripción resume la arquitectura para Telecable:
 6. **Conexión al backend:** la APK invoca los servicios de EDYE usando tokens y obtiene la configuración dinámica desde APO.
 7. **Monitoreo y soporte:** Telecable supervisa la operación, registra eventos y coordina con EDYE para resolver incidencias.
 
-![Mermaid diagram 23](mermaid/diagram-23-e09b1632.png)
-> **Figura 1.** Diagrama del flujo operativo del partner
+![Diagrama del flujo operativo del partner](mermaid/diagram-23-e09b1632.png)
 
 ## 6. Componentes involucrados
 
@@ -6462,7 +6424,7 @@ El diagrama lógico es el mismo que en el documento genérico, con la diferencia
 
 ## 4. Flujos específicos de integración
 
-![Mermaid diagram 24](mermaid/diagram-24-0d351a59.png)
+![_Diagrama de Flujos específicos de integración_](mermaid/diagram-24-0d351a59.png)
 
 ### 4.1. Activación de suscripción con Movistar
 
@@ -6774,9 +6736,7 @@ El documento proporciona una vista operativa de las herramientas utilizadas, los
 
 ## 2. Gestión y Monitoreo de Infraestructura
 
-![Seguridad y Monitoreo](img/seguridad/infraYseguridad.jpg)
-
-> **Figura 1.** _Flujo general del proceso Seguridad y Monitoreo_
+![_Flujo general del proceso Seguridad y Monitoreo_](img/seguridad/infraYseguridad.jpg)
 
 ### Descripción de la infraestructura monitoreada
 
@@ -6799,9 +6759,7 @@ La información capturada por Landscape constituye la base para realizar tareas 
 
 ## 3. Seguridad y Cumplimiento
 
-![Seguridad y Cumplimiento](img/seguridad/seguridadCompliance.jpg)
-
-> **Figura 2.** _Flujo general del proceso Seguridad y Cumplimiento_
+![_Flujo general del proceso Seguridad y Cumplimiento_](img/seguridad/seguridadCompliance.jpg)
 
 ### Enfoque general
 
@@ -6838,9 +6796,7 @@ El diagrama de Seguridad y Cumplimiento sitúa la plataforma Qualys como núcleo
 
 ## 4. Monitoreo y Alertamiento
 
-![Monitoreo y Alertamiento](img/seguridad/monitoringAlerting.jpg)
-
-> **Figura 3.** _Flujo general del proceso Monitoreo y Alertamiento_
+![_Flujo general del proceso Monitoreo y Alertamiento_](img/seguridad/monitoringAlerting.jpg)
 
 ### Estrategia de monitoreo
 
@@ -6874,9 +6830,7 @@ Las alertas se configuran en Grafana y se alimentan de Prometheus y Loki. Los um
 
 ## 5. Seguridad de Código
 
-![Seguridad de Código](img/seguridad/codeSecurity.jpg)
-
-> **Figura 4.** _Flujo general del proceso Seguridad de Código_
+![_Flujo general del proceso Seguridad de Código_](img/seguridad/codeSecurity.jpg)
 
 ### Seguridad integrada al ciclo de desarrollo (DevSecOps)
 
@@ -7062,9 +7016,7 @@ Se consideran horario comercial las horas laborales establecidas internamente (n
 
 ## 10. Flujo de atención del soporte técnico
 
-![Soporte Clientes Internos ](img/soporteClienteInterno.jpg)
-
-> **Figura 1.** _Flujo general del Soporte Clientes Internos_
+![_Flujo general del Soporte Clientes Internos_](img/soporteClienteInterno.jpg)
 
 ### 10.1. Descripción paso a paso del flujo
 
@@ -7287,9 +7239,7 @@ La documentación proporciona una matriz de escalamiento operativo con los tipos
 
 ## 9. Flujo de atención y resolución
 
-![Flujo de atención y resolución ](img/soporteClienteExterno.jpg)
-
-> **Figura 1.** _Flujo general del Flujo de atención y resolución_
+![_Flujo general del Flujo de atención y resolución_](img/soporteClienteExterno.jpg)
 
 El proceso de atención a un ticket sigue una secuencia de pasos definidos en el procedimiento, con los registros correspondientes en Zendesk y Monday:
 

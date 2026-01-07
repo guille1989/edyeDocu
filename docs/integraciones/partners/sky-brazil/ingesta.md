@@ -14,8 +14,6 @@ Este anexo resume los parámetros específicos para Sky Brazil. API es el canal 
 El siguiente flujo describe el **proceso end-to-end de ingesta y entrega de contenidos hacia Sky Brazil**, partiendo desde la preparación editorial y técnica en EDYE hasta la validación final del partner.
 Este flujo es una **implementación específica del modelo genérico de ingesta**, adaptada a los requisitos técnicos y operativos de Sky.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -54,36 +52,42 @@ sequenceDiagram
         end
     end
 ```
-</div>
+
 > **Figura 1.** Diagrama del flujo operativo del partner
 
 ### Descripción del flujo
 
-1) **Recepción y preparación del contenido**
-    - Content Operations recibe contenido aprobado (video + info editorial + disponibilidad).
-    - Carga los videos en JW Player con metadata mínima y valida requisitos técnicos Sky (codec, resolución, duración).
+1. **Recepción y preparación del contenido**
 
-2) **Sincronización con EDYE**
-    - Tras validar en JWP, se sincronizan los assets con la API de EDYE, dejando a EDYE como capa de orquestación hacia Sky.
+   - Content Operations recibe contenido aprobado (video + info editorial + disponibilidad).
+   - Carga los videos en JW Player con metadata mínima y valida requisitos técnicos Sky (codec, resolución, duración).
 
-3) **Producción y carga de artes**
-    - Content Operations solicita a Design Team los artes (posters, key art, stills) con ratios/resoluciones definidas por Sky.
-    - Design Team carga las imágenes en EDYE y notifica a Operaciones al completar.
+2. **Sincronización con EDYE**
 
-4) **Generación del delivery**
-    - Con video, metadata e imágenes disponibles, Edye DevOps genera el delivery para Sky Brazil aplicando reglas del canal elegido (API o Aspera).
+   - Tras validar en JWP, se sincronizan los assets con la API de EDYE, dejando a EDYE como capa de orquestación hacia Sky.
 
-5) **Validación técnica**
-    - DevOps valida automáticamente: formato y características del video, completitud/consistencia de metadata, presencia y calidad de imágenes.
-    - Ante errores, se reporta a Content Operations para corrección y reintento.
+3. **Producción y carga de artes**
 
-6) **Entrega a Sky Brazil**
-    - Canal API (principal): ingesta vía API Sky; se monitorea el estado hasta `completed`.
-    - Canal Aspera (alterno): se entrega paquete completo vía Aspera y se verifica transferencia/procesamiento.
+   - Content Operations solicita a Design Team los artes (posters, key art, stills) con ratios/resoluciones definidas por Sky.
+   - Design Team carga las imágenes en EDYE y notifica a Operaciones al completar.
 
-7) **Cierre y monitoreo**
-    - El flujo cierra cuando Sky confirma recepción/procesamiento correcto.
-    - Logs y estados de ingesta quedan disponibles para monitoreo/reporting operativo.
+4. **Generación del delivery**
+
+   - Con video, metadata e imágenes disponibles, Edye DevOps genera el delivery para Sky Brazil aplicando reglas del canal elegido (API o Aspera).
+
+5. **Validación técnica**
+
+   - DevOps valida automáticamente: formato y características del video, completitud/consistencia de metadata, presencia y calidad de imágenes.
+   - Ante errores, se reporta a Content Operations para corrección y reintento.
+
+6. **Entrega a Sky Brazil**
+
+   - Canal API (principal): ingesta vía API Sky; se monitorea el estado hasta `completed`.
+   - Canal Aspera (alterno): se entrega paquete completo vía Aspera y se verifica transferencia/procesamiento.
+
+7. **Cierre y monitoreo**
+   - El flujo cierra cuando Sky confirma recepción/procesamiento correcto.
+   - Logs y estados de ingesta quedan disponibles para monitoreo/reporting operativo.
 
 ---
 

@@ -36,7 +36,7 @@ The following figure illustrates the general architecture of the API + Notifier 
 
 ![Ciclo DevOps](/img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
 
-> **Figure 1.** Logical architecture of the integration
+> **Figure 1.** _Logical architecture of the integration_
 
 ## 4. Main Components
 

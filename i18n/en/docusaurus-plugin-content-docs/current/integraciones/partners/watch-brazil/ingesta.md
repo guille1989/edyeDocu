@@ -18,8 +18,6 @@ The operational flow, general validations, and base responsibilities are governe
 
 The following flow describes the **end-to-end ingestion and content delivery process to Sky Brazil**, starting from the editorial and technical preparation in EDYE through the partner’s final validation. This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -52,7 +50,6 @@ sequenceDiagram
     end
 ```
 
-</div>
 > **Figure 1.** _Partner operational flow diagram_
 
 # Ingestion Flow – Watch Brazil

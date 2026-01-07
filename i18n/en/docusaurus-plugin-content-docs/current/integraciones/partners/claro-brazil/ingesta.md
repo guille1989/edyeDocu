@@ -22,8 +22,6 @@ Delivery is preferably performed via the **Claro Brazil ingestion API**, using a
 
 The process concludes when Claro Brazil returns the **`completed`** status, at which point Operations validate the delivery and perform the **operational close of the ingestion**.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     autonumber
@@ -69,8 +67,8 @@ sequenceDiagram
     note over DD,CB: Canal preferido: API\nAlterno legacy: FTP/SFTP (si se habilita por Claro BR)
 ```
 
-</div>
 > **Figure 1.** _Partner operational flow diagram_
+
 ---
 
 ## 1. Delivery Channel

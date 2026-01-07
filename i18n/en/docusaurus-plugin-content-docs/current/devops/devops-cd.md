@@ -115,7 +115,7 @@ Used by EDYE-PLAY and EDYE-CLOUD as NoSQL database.
 
 ![Continuous delivery process flow](/img/entrega-continua-devops.jpg)
 
-> **Figure 1.** Diagram of the DevOps Continuous Delivery flow
+> **Figure 1.** _Diagram of the DevOps Continuous Delivery flow_
 
 **Flow description:**
 

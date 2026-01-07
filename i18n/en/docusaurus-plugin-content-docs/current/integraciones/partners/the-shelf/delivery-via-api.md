@@ -170,7 +170,7 @@ sequenceDiagram
 		Shelf->Shelf: Validación y procesamiento local
 		Shelf->>Webhook: Notificación interna de disponibilidad
 ```
-> **Figure 2.** _ Operational flow of delivery via API flow_
+> **Figure 2.** _Operational flow of delivery via API flow_
 
 ### 5.5 Flow description (step by step)
 

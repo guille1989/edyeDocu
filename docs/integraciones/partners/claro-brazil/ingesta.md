@@ -22,7 +22,6 @@ La entrega se realiza preferentemente vía **API de ingesta de Claro Brasil**, u
 
 El proceso concluye cuando Claro Brasil retorna el estado **`completed`**, momento en el cual la entrega es validada por Operaciones y se realiza el **cierre operativo de la ingesta**.
 
-<div class="mermaid-zoom">
 
 ```mermaid
 sequenceDiagram
@@ -69,7 +68,6 @@ sequenceDiagram
     note over DD,CB: Canal preferido: API\nAlterno legacy: FTP/SFTP (si se habilita por Claro BR)
 ```
 
-</div>
 > **Figura 1.** _Diagrama del flujo operativo del partner_
 
 ---

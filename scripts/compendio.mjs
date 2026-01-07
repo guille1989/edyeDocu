@@ -362,6 +362,58 @@ function rewriteAbsoluteImagePaths(markdown) {
   return updated.replace(/src=(["'])\/img\//g, "src=$1img/");
 }
 
+function stripFigureLabelPrefix(text) {
+  let cleaned = text.trim();
+  cleaned = cleaned.replace(
+    /^\*\*(Figura|Figure)\s+\d+[.\-:]*\*\*\s*/i,
+    ""
+  );
+  cleaned = cleaned.replace(/^(Figura|Figure)\s+\d+[.\-:]*\s*/i, "");
+  return cleaned.trim();
+}
+
+function isFigureCaptionStart(line) {
+  return /^\s*>\s*(\*\*)?(Figura|Figure)\s+\d+/i.test(line);
+}
+
+function rewriteFigureCaptions(markdown) {
+  const lines = markdown.split(/\r?\n/);
+  const output = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i];
+    const imageMatch = line.match(/^!\[([^\]]*)\]\(([^)]*)\)(.*)$/);
+    if (!imageMatch) {
+      output.push(line);
+      continue;
+    }
+    let j = i + 1;
+    while (j < lines.length && lines[j].trim() === "") {
+      j += 1;
+    }
+    if (j < lines.length && isFigureCaptionStart(lines[j])) {
+      const captionLines = [];
+      let k = j;
+      while (k < lines.length && /^\s*>/.test(lines[k])) {
+        captionLines.push(lines[k]);
+        k += 1;
+      }
+      let caption = captionLines
+        .map((captionLine) => captionLine.replace(/^\s*>\s?/, "").trim())
+        .join(" ")
+        .trim();
+      caption = stripFigureLabelPrefix(caption);
+      if (!caption) {
+        caption = imageMatch[1] || "Figure";
+      }
+      output.push(line.replace(/^!\[[^\]]*\]/, `![${caption}]`));
+      i = k - 1;
+      continue;
+    }
+    output.push(line);
+  }
+  return output.join("\n");
+}
+
 function pandocAvailable() {
   const check = spawnSync("pandoc", ["--version"], { stdio: "ignore" });
   if (check.error && check.error.code === "ENOENT") return false;
@@ -678,6 +730,7 @@ if (format === "pdf") {
     hadBlocks: mermaidBlocks,
     warnings: mermaidWarnings,
   } = renderMermaidForPdf(rawForPdf, outDir, root);
+  const pdfWithCaptions = rewriteFigureCaptions(pdfMd);
   for (const warning of mermaidWarnings) {
     console.warn(warning);
   }
@@ -688,10 +741,10 @@ if (format === "pdf") {
     process.exit(1);
   }
   let pdfInput = outMd;
-  if (pdfMd !== rawForPdf) {
+  if (pdfWithCaptions !== rawForPdf) {
     const outPdfMd = path.join(outDir, `compendio-${locale}-pdf.md`);
-    fs.writeFileSync(outPdfMd, pdfMd, "utf8");
-    if (mermaidRendered) {
+    fs.writeFileSync(outPdfMd, pdfWithCaptions, "utf8");
+    if (mermaidRendered || pdfWithCaptions !== rawForPdf) {
       console.log(`Wrote ${outPdfMd}`);
     }
     pdfInput = outPdfMd;

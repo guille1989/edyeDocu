@@ -145,7 +145,7 @@ sequenceDiagram
   CI->>Prod: Controlled deploy to production (manual approval)
   Prod->>Monitoreo: Start observability and alerts
 ```
-
+> **Figure 1.** _Deployment Architecture (CI/CD) Diagram_
 
 Commit and version control: Developers update code in the repository. Feature branches and merge requests are used for peer review.
 
@@ -241,7 +241,7 @@ flowchart TD
   H --> I[Documentation and improvements]
   I --> J[Close ticket in tracking system]
 ```
-
+> **Figure 2.** _Incident Management and Support Diagram_
 
 **Detection**: Monitoring alerts or user reports initiate the incident process.
 
@@ -520,6 +520,7 @@ flowchart TD
     API -- "Queries" --> Cache
     API -- "Retrieve assets" --> Storage
 ```
+> **Figure 1.** _Architecture Diagram_
 
 This diagram summarizes the main interaction between clients, databases, and supporting services.
 
@@ -619,6 +620,7 @@ flowchart TD
     Billing --> API[API Service]
     Billing --> Aux["Auxiliary services<br/>(notifications, reconciliation)"]
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## 4. General Flow
 
@@ -725,6 +727,7 @@ flowchart LR
 	Signer --> Storage
 	Play -- Download content --> CDN
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## Deployment Model
 
@@ -830,6 +833,7 @@ sequenceDiagram
 	API-->>PlayApp: URL for playback
 	PlayApp->>User: Play content
 ```
+> **Figure 1.** _Flow Diagram_
 
 ## Deployment Model
 
@@ -934,6 +938,7 @@ sequenceDiagram
 	Connect-->>App: Return internal token
 	App-->>User: Access granted
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## Deployment Model
 
@@ -1029,6 +1034,7 @@ flowchart TD
 	Client -- Query progress/favorites --> Satellite
 	Satellite --> DB
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## 4. Deployment Model
 
@@ -1366,7 +1372,7 @@ All activities are managed through:
 
 ![DevOps planning flow](img/planificacion-devops-diagrama.jpg)
 
-> **Figure 1.** Diagram of the DevOps planning process flow.
+> **Figure 1.** _Diagram of the DevOps planning process flow_
 
 ---
 
@@ -1599,7 +1605,7 @@ The following diagram represents the full sequence of the CI process in Edye:
 
 ![Flujo general del proceso de Integración Continua](img/integracion-continua-devops.jpg)
 
-> **Figure 1.** Diagram of the general Continuous Integration process flow
+> **Figure 1.** _Diagram of the general Continuous Integration process flow_
 
 ### 3.2. CI flow description
 
@@ -1936,7 +1942,7 @@ Used by EDYE-PLAY and EDYE-CLOUD as NoSQL database.
 
 ![Continuous delivery process flow](img/entrega-continua-devops.jpg)
 
-> **Figure 1.** Diagram of the DevOps Continuous Delivery flow
+> **Figure 1.** _Diagram of the DevOps Continuous Delivery flow_
 
 **Flow description:**
 
@@ -2383,7 +2389,7 @@ The panel includes integrated views with Loki, showing:
 
 ![Centralized Logs and Error Detection](img/operaciones/logs-edyes-devops.jpg)
 
-> **Figure X.** _Centralized logs and system errors (Loki)._ 
+> **Figure X.** _Centralized logs and system errors (Loki)_ 
 
 - Nginx logs (Play/Cloud)
 - Apache logs (Laravel services)
@@ -3099,7 +3105,7 @@ flowchart TD
   R2 --> D
   F -- OK --> G[Reporting y Cierre]
 ```
-> **Figure 1.** Flow diagram **
+> **Figure 1.** _Flow diagram_
 
 ---
 
@@ -3399,6 +3405,7 @@ flowchart TD
   R2 --> C
   H -- No --> I["Reporting and operational closure"]
 ```
+> **Figure 1.** _Flow Diagram_
 
 ---
 
@@ -3670,7 +3677,7 @@ flowchart TD
     D -->|Transacción Falla| E --> H
     D -->|Transacción Exitosa| G --> H
 ```
-> **Figure 1.** General Billing Flow
+> **Figure 1.** _General Billing Flow_
 
 ## 6. Mandatory Prerequisites
 
@@ -3830,8 +3837,7 @@ flowchart TD
 
     Start --> Prep --> Install --> ConfigAPO --> SubscribeNotifier --> Validate --> Production
 ```
-
-> **Figure 1.** Flow diagram \*\*
+> **Figure 1.** _Flow diagram_
 
 ---
 
@@ -4008,7 +4014,7 @@ The following figure illustrates the general architecture of the API + Notifier 
 
 ![Ciclo DevOps](img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
 
-> **Figure 1.** Logical architecture of the integration
+> **Figure 1.** _Logical architecture of the integration_
 
 ## 4. Main Components
 
@@ -4168,7 +4174,7 @@ operational flow that involves the Content, Design, and DevOps teams.
 This flow describes the human tasks before and after the delivery generation.
 
 ![Partner operational flow](img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ---
 
@@ -4406,9 +4412,7 @@ sequenceDiagram
         DD->>CV: Entrega assets vía SFTP / Aspera
     end
 ```
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 This flow describes the complete operational process from the receipt of
 content by the Content Operations team to the final delivery of the
@@ -4709,8 +4713,6 @@ Delivery is preferably performed via the **Claro Brazil ingestion API**, using a
 
 The process concludes when Claro Brazil returns the **`completed`** status, at which point Operations validate the delivery and perform the **operational close of the ingestion**.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     autonumber
@@ -4756,8 +4758,8 @@ sequenceDiagram
     note over DD,CB: Canal preferido: API\nAlterno legacy: FTP/SFTP (si se habilita por Claro BR)
 ```
 
-</div>
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
+
 ---
 
 ## 1. Delivery Channel
@@ -4977,8 +4979,6 @@ This annex summarizes the specific parameters for Sky Brazil. API is the preferr
 The following flow describes the **end-to-end ingestion and delivery process for content to Sky Brazil**, starting from editorial and technical preparation in EDYE to the partner’s final validation.
 This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -5018,9 +5018,7 @@ sequenceDiagram
     end
 ```
 
-</div>
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ### 1.2. Flow description
 
@@ -5243,8 +5241,6 @@ The operational flow, general validations, and base responsibilities are governe
 
 The following flow describes the **end-to-end ingestion and content delivery process to Sky Brazil**, starting from the editorial and technical preparation in EDYE through the partner’s final validation. This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -5277,8 +5273,7 @@ sequenceDiagram
     end
 ```
 
-</div>
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 # Ingestion Flow – Watch Brazil
 
@@ -5510,8 +5505,6 @@ The flow is designed to be reusable and controlled, incorporating early validati
 
 This way, Operations, Design, and DevOps work in coordination to ensure stable ingestion, traceability, and status visibility at every stage.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -5551,8 +5544,7 @@ sequenceDiagram
     end
 ```
 
-</div>
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## Step-by-step description of the VTR ingestion flow
 
@@ -5836,9 +5828,7 @@ sequenceDiagram
         end
     end
 ```
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## 1. Delivery channel
 
@@ -6017,8 +6007,6 @@ The goal of the flow is to ensure that each audiovisual asset meets the technica
 
 This flow relies on an asynchronous pipeline, where the initial ingestion, processing, and final validation are decoupled, allowing volume scaling and reduced manual intervention.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     autonumber
@@ -6059,8 +6047,7 @@ sequenceDiagram
     OPS-->>CO: Confirmación de entrega DIRECTV
 ```
 
-</div>
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## Step-by-step sequence explanation
 
@@ -6260,8 +6247,6 @@ The flow is based on the generic EDYE ingestion model, using the Megacable Inges
 
 This diagram clearly shows who is involved at each stage, which validations are executed, and how errors and retries are handled, ensuring a consistent and reusable integration for this partner.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as Content Operations
@@ -6301,9 +6286,7 @@ sequenceDiagram
     end
 ```
 
-</div>
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## Flow sequence description
 
@@ -6349,8 +6332,8 @@ sequenceDiagram
 
 ### 1.3 Credentials / paths (to be completed by partner)
 
-- **Production** - API Base URL: ************\_\_************ - Token (vault/secret ref): ************\_\_************ - (If FTP applies) Host: ****\_\_**** Port: \_**\_ User: **\_\_**** Path: **\_\_\_\_**
-- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: ************\_\_************
+- **Production** - API Base URL: \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\*** - Token (vault/secret ref): \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\*** - (If FTP applies) Host: \***\*\_\_\*\*** Port: \_**\_ User: **\_\_\***\* Path: **\_\_\_\_\*\*
+- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\***
 
 ---
 
@@ -6396,11 +6379,11 @@ sequenceDiagram
 
 ### 3.4 Optional fields (if the partner requires them)
 
-- idioma: ****\_\_****
-- sinopsis: ****\_\_****
-- género/tema: ****\_\_****
-- temporada/episodio: ****\_\_****
-- tags/acrónimo: ****\_\_****
+- idioma: \***\*\_\_\*\***
+- sinopsis: \***\*\_\_\*\***
+- género/tema: \***\*\_\_\*\***
+- temporada/episodio: \***\*\_\_\*\***
+- tags/acrónimo: \***\*\_\_\*\***
 
 ---
 
@@ -6463,7 +6446,7 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 
 - Thumbnails generated (if applicable) and available for delivery/consultation (according to configuration)
 - Logs without validation errors for the tracking id (see section 7)
-- Delivery report/record (Ticket/Monday/internal log): ********\_\_********
+- Delivery report/record (Ticket/Monday/internal log): **\*\*\*\***\_\_**\*\*\*\***
 
 ---
 
@@ -6493,7 +6476,7 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 - Resend completely when:
   - The video file changes or mandatory metadata changes (id_cliente/titulo/archivo_media).
 - Rollback (operational):
-  - If a “completed” content must be removed, define action per catalog (unpublishing) and evidence: ********\_\_********
+  - If a “completed” content must be removed, define action per catalog (unpublishing) and evidence: **\*\*\*\***\_\_**\*\*\*\***
 
 ---
 
@@ -6501,18 +6484,18 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 
 ### Partner (Megacable)
 
-- Contacto técnico: ********\_\_********
-- Email: ********\_\_********
-- Tel: ********\_\_********
-- Ventana de soporte: ********\_\_******** (TZ)
+- Contacto técnico: **\*\*\*\***\_\_**\*\*\*\***
+- Email: **\*\*\*\***\_\_**\*\*\*\***
+- Tel: **\*\*\*\***\_\_**\*\*\*\***
+- Ventana de soporte: **\*\*\*\***\_\_**\*\*\*\*** (TZ)
 
 ### EDYE / HITN
 
-- Operaciones (L1): ********\_\_********
-- DevOps (L2): ********\_\_********
-- Producto/Contenido (L3 si aplica): ********\_\_********
-- Severidades y SLA (si existen): ********\_\_********
-- Canal de escalamiento (Slack/Email/Ticket): ********\_\_********
+- Operaciones (L1): **\*\*\*\***\_\_**\*\*\*\***
+- DevOps (L2): **\*\*\*\***\_\_**\*\*\*\***
+- Producto/Contenido (L3 si aplica): **\*\*\*\***\_\_**\*\*\*\***
+- Severidades y SLA (si existen): **\*\*\*\***\_\_**\*\*\*\***
+- Canal de escalamiento (Slack/Email/Ticket): **\*\*\*\***\_\_**\*\*\*\***
 
 ***
 
@@ -6641,6 +6624,7 @@ flowchart LR
 		B --> C
 		C --REST JSON--> D
 ```
+> **Figure 1.** _General architecture flow_
 
 **Origin:** EDYE uses JW Player as the media source. Video uploads and their variants are stored and managed in JW Player.
 
@@ -6756,6 +6740,7 @@ sequenceDiagram
 		Shelf->Shelf: Validación y procesamiento local
 		Shelf->>Webhook: Notificación interna de disponibilidad
 ```
+> **Figure 2.** _Operational flow of delivery via API flow_
 
 ### 5.5 Flow description (step by step)
 
@@ -6932,9 +6917,7 @@ sequenceDiagram
         Telecable->>Usuario: Notifica error de autenticación
     end
 ```
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## 6. Componentes involucrados
 
@@ -7114,7 +7097,7 @@ The integration model maintains the same general structure (EDYE application, ED
 
 The logical diagram is the same as in the generic document, with the difference that the “DCB Operator” component corresponds to **Telefónica (Movistar)** and is invoked following the CAMARA API specifications.
 
-## 4. Flujos específicos de integración
+## 4. Specific integration flows
 
 ```mermaid
 sequenceDiagram
@@ -7141,6 +7124,8 @@ sequenceDiagram
     Note over Usuario,Notifier: Las renovaciones, suspensiones y cancelaciones siguen el mismo patrón. Movistar realiza el cobro periódico y su Notifier envía eventos RENEWAL, SUSPENSION o CANCELLATION que EDYE procesa para actualizar el estado de la suscripción.
 
 ```
+
+> **Figure 1.** _Specific integration flows_
 
 ### 4.1. Subscription activation with Movistar
 
@@ -7197,12 +7182,12 @@ Telefónica uses a Notification Endpoint in the CAMARA API to send notifications
 
 ## 9. Tabla de eventos y acciones (Movistar)
 
-| eventType            | Meaning in Movistar                          | Expected action in EDYE                 |
-| -------------------- | -------------------------------------------- | --------------------------------------- |
-| **SUBSCRIPTION_STARTED** | Subscription activation; successful initial charge | Activate plan and enable access.        |
-| **RENEWAL**              | Periodic plan renewal                        | Update validity, keep access.           |
-| **SUSPENSION**           | Renewal charge failed; temporary suspension | Mark the subscription as suspended.     |
-| **CANCELLATION**         | Final cancellation of the subscription      | Revoke access and close the subscription. |
+| eventType                | Meaning in Movistar                                | Expected action in EDYE                   |
+| ------------------------ | -------------------------------------------------- | ----------------------------------------- |
+| **SUBSCRIPTION_STARTED** | Subscription activation; successful initial charge | Activate plan and enable access.          |
+| **RENEWAL**              | Periodic plan renewal                              | Update validity, keep access.             |
+| **SUSPENSION**           | Renewal charge failed; temporary suspension        | Mark the subscription as suspended.       |
+| **CANCELLATION**         | Final cancellation of the subscription             | Revoke access and close the subscription. |
 
 ***
 

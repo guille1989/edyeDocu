@@ -43,7 +43,7 @@ The following diagram represents the full sequence of the CI process in Edye:
 
 ![Flujo general del proceso de Integración Continua](/img/integracion-continua-devops.jpg)
 
-> **Figure 1.** Diagram of the general Continuous Integration process flow
+> **Figure 1.** _Diagram of the general Continuous Integration process flow_
 
 ### 3.2. CI flow description
 

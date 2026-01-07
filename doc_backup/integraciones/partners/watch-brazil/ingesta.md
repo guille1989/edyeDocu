@@ -21,8 +21,6 @@ documento de Ingesta estándar.
 El siguiente flujo describe el **proceso end-to-end de ingesta y entrega de contenidos hacia Sky Brazil**, partiendo desde la preparación editorial y técnica en EDYE hasta la validación final del partner.
 Este flujo es una **implementación específica del modelo genérico de ingesta**, adaptada a los requisitos técnicos y operativos de Sky.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -54,34 +52,34 @@ sequenceDiagram
         end
     end
 ```
-</div>
+
 > **Figura 1.** Diagrama del flujo operativo del partner
 
 # Flujo de Ingesta – Watch Brazil
 
 1. **Recepción del contenido**  
-  Content Operations recibe el contenido audiovisual desde programación o proveedores.
+   Content Operations recibe el contenido audiovisual desde programación o proveedores.
 
 2. **Carga en JW Player**  
-  El video se carga en JW Player y se completa la metadata mínima, incluyendo los campos específicos requeridos por Watch Brazil.
+   El video se carga en JW Player y se completa la metadata mínima, incluyendo los campos específicos requeridos por Watch Brazil.
 
 3. **Solicitud y creación de artes**  
-  Content Operations solicita al Design Team los posters y stills; el equipo de diseño produce y carga los artes requeridos.
+   Content Operations solicita al Design Team los posters y stills; el equipo de diseño produce y carga los artes requeridos.
 
 4. **Confirmación de assets**  
-  Una vez cargadas las imágenes, el Design Team notifica a Edye DevOps que los assets están listos para delivery.
+   Una vez cargadas las imágenes, el Design Team notifica a Edye DevOps que los assets están listos para delivery.
 
 5. **Generación del paquete**  
-  Edye DevOps consolida el paquete completo de entrega (video, metadata e imágenes).
+   Edye DevOps consolida el paquete completo de entrega (video, metadata e imágenes).
 
 6. **Validación técnica**  
-  Se ejecutan validaciones de video, metadata, imágenes, naming y estructura del delivery.
+   Se ejecutan validaciones de video, metadata, imágenes, naming y estructura del delivery.
 
 7. **Correcciones (si aplica)**  
-  Si hay errores, se reportan a Content Operations, se corrige el contenido y se regenera el paquete.
+   Si hay errores, se reportan a Content Operations, se corrige el contenido y se regenera el paquete.
 
 8. **Entrega al partner**  
-  Con validación exitosa, Edye DevOps entrega el contenido a Watch Brazil (API y, si aplica, Amazon S3) y confirma el cierre del proceso.
+   Con validación exitosa, Edye DevOps entrega el contenido a Watch Brazil (API y, si aplica, Amazon S3) y confirma el cierre del proceso.
 
 ---
 
@@ -130,6 +128,7 @@ POST /api/ingesta/contenido
 ```
 
 ### Reglas de naming
+
 - Un **content_id único** por asset
 - Nombres sin espacios
 - Solo caracteres ASCII
@@ -141,18 +140,19 @@ POST /api/ingesta/contenido
 
 ### Campos obligatorios (JSON)
 
-| Campo | Descripción |
-|------|-------------|
-| `title` | Título del contenido |
-| `id_cliente` | Identificador del partner |
-| `rating` | Clasificación etaria |
-| `studio` | Debe ser **Edye** |
-| `studio_name` | Debe ser **Edye** |
-| `licensing_window_start` | Fecha + hora (ISO 8601) |
-| `licensing_window_end` | Fecha + hora (ISO 8601) |
-| `actors_display` | Lista consolidada de actores |
+| Campo                    | Descripción                  |
+| ------------------------ | ---------------------------- |
+| `title`                  | Título del contenido         |
+| `id_cliente`             | Identificador del partner    |
+| `rating`                 | Clasificación etaria         |
+| `studio`                 | Debe ser **Edye**            |
+| `studio_name`            | Debe ser **Edye**            |
+| `licensing_window_start` | Fecha + hora (ISO 8601)      |
+| `licensing_window_end`   | Fecha + hora (ISO 8601)      |
+| `actors_display`         | Lista consolidada de actores |
 
 **Reglas especiales Watch Brazil:**
+
 - El campo `rating` **no acepta valores numéricos simples**
 - Debe enviarse como:
   - `A12`, `AL`, `12` o `L`
@@ -182,12 +182,12 @@ POST /api/ingesta/contenido
 
 ### Imágenes requeridas (obligatorias)
 
-| Tipo              | Resolución | Ratio   |
-|-------------------|------------|---------|
-| Poster Horizontal | 3840x2160  | 16:9    |
-| Poster Vertical   | 1708x2562  | Vertical|
-| Still Horizontal  | 3840x2160  | 16:9    |
-| Still Vertical    | 1708x2562  | Vertical|
+| Tipo              | Resolución | Ratio    |
+| ----------------- | ---------- | -------- |
+| Poster Horizontal | 3840x2160  | 16:9     |
+| Poster Vertical   | 1708x2562  | Vertical |
+| Still Horizontal  | 3840x2160  | 16:9     |
+| Still Vertical    | 1708x2562  | Vertical |
 
 > ⚠️ La imagen **Still Vertical** es obligatoria. Sin este asset, la Still Horizontal será recortada en aplicaciones mobile.
 

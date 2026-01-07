@@ -12,8 +12,6 @@ El objetivo del flujo es asegurar que cada asset audiovisual cumpla con los requ
 
 Este flujo se apoya en un pipeline asíncrono, donde la ingesta inicial, el procesamiento y la validación final están desacoplados, permitiendo escalar volumen y reducir intervención manual.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     autonumber
@@ -53,39 +51,39 @@ sequenceDiagram
     OPS->>OPS: Verificación final (estado, logs, SLA)
     OPS-->>CO: Confirmación de entrega DIRECTV
 ```
-</div>
+
 > **Figura 1.** Diagrama del flujo operativo del partner
 
 ## Explicación de la secuencia paso a paso
 
-1) **Recepción y pre-validación del contenido**  
-Content Operations recibe el contenido y realiza una verificación básica previa (formato, duración, resolución), asegurando que el material esté listo para ser ingestado.
+1. **Recepción y pre-validación del contenido**  
+   Content Operations recibe el contenido y realiza una verificación básica previa (formato, duración, resolución), asegurando que el material esté listo para ser ingestado.
 
-2) **Carga y preparación del asset**  
-El video master y la metadata base son preparados (y, si aplica, gestionados desde JW Player como fuente de verdad), antes de iniciar la entrega al partner.
+2. **Carga y preparación del asset**  
+   El video master y la metadata base son preparados (y, si aplica, gestionados desde JW Player como fuente de verdad), antes de iniciar la entrega al partner.
 
-3) **Ingesta vía API DIRECTV**  
-El contenido se envía mediante un request POST a la API de ingesta de DIRECTV, incluyendo el archivo de video y la metadata en formato JSON.  
-La API responde con un asset_id que permite el tracking del proceso.
+3. **Ingesta vía API DIRECTV**  
+   El contenido se envía mediante un request POST a la API de ingesta de DIRECTV, incluyendo el archivo de video y la metadata en formato JSON.  
+   La API responde con un asset_id que permite el tracking del proceso.
 
-4) **Procesamiento asíncrono**  
-El asset es encolado en el pipeline de DIRECTV, donde se ejecutan validaciones técnicas, procesamiento de video (transcoding), generación de thumbnails y controles de calidad automáticos.
+4. **Procesamiento asíncrono**  
+   El asset es encolado en el pipeline de DIRECTV, donde se ejecutan validaciones técnicas, procesamiento de video (transcoding), generación de thumbnails y controles de calidad automáticos.
 
-5) **Validación y control de errores**  
-Si ocurre un error (video inválido, metadata incompleta, fallo de procesamiento), el estado se marca como error y se notifican logs y alertas a Operaciones.  
-Operaciones coordina con Content Operations la corrección correspondiente.
+5. **Validación y control de errores**  
+   Si ocurre un error (video inválido, metadata incompleta, fallo de procesamiento), el estado se marca como error y se notifican logs y alertas a Operaciones.  
+   Operaciones coordina con Content Operations la corrección correspondiente.
 
-6) **Reintentos controlados**  
-Dependiendo del tipo de error, el flujo permite:
+6. **Reintentos controlados**  
+   Dependiendo del tipo de error, el flujo permite:
 
 - Reintentar solo la metadata corregida, o
 - Regenerar el media y reenviar la ingesta completa.
 
-7) **Finalización exitosa**  
-Si todas las validaciones son correctas, el asset cambia a estado `completed` y queda disponible en el ecosistema de DIRECTV.
+7. **Finalización exitosa**  
+   Si todas las validaciones son correctas, el asset cambia a estado `completed` y queda disponible en el ecosistema de DIRECTV.
 
-8) **Cierre operativo**  
-Operaciones realiza la verificación final (estado, logs y SLA) y confirma la entrega como cerrada.
+8. **Cierre operativo**  
+   Operaciones realiza la verificación final (estado, logs y SLA) y confirma la entrega como cerrada.
 
 ---
 

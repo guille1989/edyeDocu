@@ -12,8 +12,6 @@ The flow is based on the generic EDYE ingestion model, using the Megacable Inges
 
 This diagram clearly shows who is involved at each stage, which validations are executed, and how errors and retries are handled, ensuring a consistent and reusable integration for this partner.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as Content Operations
@@ -53,7 +51,6 @@ sequenceDiagram
     end
 ```
 
-</div>
 > **Figure 1.** _Partner operational flow diagram_
 
 ## Flow sequence description
@@ -100,8 +97,8 @@ sequenceDiagram
 
 ### 1.3 Credentials / paths (to be completed by partner)
 
-- **Production** - API Base URL: ****\*\*\*\*****\_\_****\*\*\*\***** - Token (vault/secret ref): ****\*\*\*\*****\_\_****\*\*\*\***** - (If FTP applies) Host: \***\*\_\_\*\*** Port: \_**\_ User: **\_\_\***\* Path: **\_\_\_\_\*\*
-- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: ****\*\*\*\*****\_\_****\*\*\*\*****
+- **Production** - API Base URL: \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\*** - Token (vault/secret ref): \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\*** - (If FTP applies) Host: \***\*\_\_\*\*** Port: \_**\_ User: **\_\_\***\* Path: **\_\_\_\_\*\*
+- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\***
 
 ---
 

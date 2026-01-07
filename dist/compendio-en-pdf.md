@@ -59,11 +59,9 @@ The EDYE ecosystem is organized in a modular architecture composed of back-end a
 
 
 ![General ecosystem architecture - Production](img/infraestructura/production.jpg)
-> **Figure 1.** General ecosystem architecture - Production
 
 
 ![General ecosystem architecture - Staging](img/infraestructura/staging.jpg)
-> **Figure 2.** General ecosystem architecture - Staging
 
 
 
@@ -126,8 +124,7 @@ en.wikipedia.org
 The platform uses a continuous integration and continuous deployment (CI/CD) flow that automates software build, testing, and release. The general flow is as follows:
 
 
-![Mermaid diagram 1](mermaid/diagram-1-9a914fb3.png)
-
+![_Deployment Architecture (CI/CD) Diagram_](mermaid/diagram-1-9a914fb3.png)
 
 Commit and version control: Developers update code in the repository. Feature branches and merge requests are used for peer review.
 
@@ -209,8 +206,7 @@ Recovery tests: Failover exercises are executed periodically to validate procedu
 The organization has a formal incident management process covering detection, classification, response, communication, and closure with learnings. The general flow is as follows:
 
 
-![Mermaid diagram 2](mermaid/diagram-2-5cec7096.png)
-
+![_Incident Management and Support Diagram_](mermaid/diagram-2-5cec7096.png)
 
 **Detection**: Monitoring alerts or user reports initiate the incident process.
 
@@ -471,7 +467,7 @@ The service is designed as a high-performance microservice in Node.js. The main 
 
 ### 3.1. Architecture Diagram
 
-![Mermaid diagram 3](mermaid/diagram-3-45b521e2.png)
+![_Architecture Diagram_](mermaid/diagram-3-45b521e2.png)
 
 This diagram summarizes the main interaction between clients, databases, and supporting services.
 
@@ -562,7 +558,7 @@ The Billing Service consists of the following elements:
 
 ### 3.1. Architecture Diagram
 
-![Mermaid diagram 4](mermaid/diagram-4-ae829413.png)
+![_Architecture Diagram_](mermaid/diagram-4-ae829413.png)
 
 ## 4. General Flow
 
@@ -659,7 +655,7 @@ The Cloud Service is composed of several layers:
 
 ### Architecture Diagram
 
-![Mermaid diagram 5](mermaid/diagram-5-193ffee9.png)
+![_Architecture Diagram_](mermaid/diagram-5-193ffee9.png)
 
 ## Deployment Model
 
@@ -746,7 +742,7 @@ Key functions of the service include:
 
 ### Flow Diagram
 
-![Mermaid diagram 6](mermaid/diagram-6-10e5578b.png)
+![_Flow Diagram_](mermaid/diagram-6-10e5578b.png)
 
 ## Deployment Model
 
@@ -834,7 +830,7 @@ The service is implemented as a microservice focused on external integrations. C
 
 ### Sequence Diagram
 
-![Mermaid diagram 7](mermaid/diagram-7-53586146.png)
+![_Architecture Diagram_](mermaid/diagram-7-53586146.png)
 
 ## Deployment Model
 
@@ -921,7 +917,7 @@ The service performs the following functions:
 
 ### 3.1. Architecture Diagram
 
-![Mermaid diagram 8](mermaid/diagram-8-bb65ea0c.png)
+![_Architecture Diagram_](mermaid/diagram-8-bb65ea0c.png)
 
 ## 4. Deployment Model
 
@@ -1004,9 +1000,7 @@ The DevOps component integrates development, continuous integration, continuous 
 
 The DevOps cycle implemented at Edye follows this main flow:
 
-![DevOps Cycle](img/flujo-devops.jpg)
-
-> **Figure 1.** _General DevOps process flow_
+![_General DevOps process flow_](img/flujo-devops.jpg)
 
 Each phase relies on specific tools and assigned owners:
 
@@ -1022,9 +1016,7 @@ Each phase relies on specific tools and assigned owners:
 
 ## 4. Technical Architecture of the EDYE DevOps Cycle
 
-![DevOps Cycle](img/arquitecturaDevOps.jpg)
-
-> **Figura 2.** _DevOps Architecture and CI/CD Flow of the EDYE Ecosystem_
+![_DevOps Architecture and CI/CD Flow of the EDYE Ecosystem_](img/arquitecturaDevOps.jpg)
 
 ---
 
@@ -1257,9 +1249,7 @@ All activities are managed through:
 
 ### 3.2. DevOps planning flow diagram
 
-![DevOps planning flow](img/planificacion-devops-diagrama.jpg)
-
-> **Figure 1.** Diagram of the DevOps planning process flow.
+![_Diagram of the DevOps planning process flow_](img/planificacion-devops-diagrama.jpg)
 
 ---
 
@@ -1360,9 +1350,7 @@ Version control is managed in **GitHub**, using the main branches:
 
 The following diagram visually represents the **general flow of the development phase within Edye’s DevOps cycle**.
 
-![DevOps development flow diagram](img/desarrollo-devops.jpg)
-
-> **Figure 1.** _Diagram of the DevOps development process flow._
+![_Diagram of the DevOps development process flow._](img/desarrollo-devops.jpg)
 
 ---
 
@@ -1490,9 +1478,7 @@ Each repository has a configured pipeline that is triggered by a **push** or **p
 
 The following diagram represents the full sequence of the CI process in Edye:
 
-![Flujo general del proceso de Integración Continua](img/integracion-continua-devops.jpg)
-
-> **Figure 1.** Diagram of the general Continuous Integration process flow
+![_Diagram of the general Continuous Integration process flow_](img/integracion-continua-devops.jpg)
 
 ### 3.2. CI flow description
 
@@ -1827,9 +1813,7 @@ Used by EDYE-PLAY and EDYE-CLOUD as NoSQL database.
 
 ## 3.3. Continuous delivery process flow
 
-![Continuous delivery process flow](img/entrega-continua-devops.jpg)
-
-> **Figure 1.** Diagram of the DevOps Continuous Delivery flow
+![_Diagram of the DevOps Continuous Delivery flow_](img/entrega-continua-devops.jpg)
 
 **Flow description:**
 
@@ -2134,9 +2118,7 @@ The status dynamically varies between:
 - (Yellow)
 - (Red)
 
-![General ecosystem status](img/operaciones/estado-general-edyes-devops.jpg)
-
-> **Figure 1.** _General ecosystem status._
+![_General ecosystem status._](img/operaciones/estado-general-edyes-devops.jpg)
 
 **Historical uptime (last 90 days)**  
 Each service has a bar chart representing its daily availability over the last 90 days.  
@@ -2146,9 +2128,7 @@ The use of colors allows quick identification of:
 - Yellow → partial degradation
 - Red → total unavailability
 
-![Historical uptime](img/operaciones/uptime-edyes-devops.jpg)
-
-> **Figure 2.** _Historical uptime last 90 days._
+![_Historical uptime last 90 days._](img/operaciones/uptime-edyes-devops.jpg)
 
 **Monitored services**  
 The panel includes the main Edye modules:
@@ -2163,16 +2143,12 @@ The panel includes the main Edye modules:
 
 Each with its exact availability percentage (e.g. 99.997%), status indicator, and uptime history.
 
-![Monitored services](img/operaciones/uptime-marker-edyes-devops.jpg)
-
-> **Figure 3.** _Monitored services last 90 days._
+![_Monitored services last 90 days._](img/operaciones/uptime-marker-edyes-devops.jpg)
 
 **Automatic update**  
 The system updates at regular intervals (for example, every few seconds), allowing information practically in real time, as indicated by the update counter (Next update in X sec).
 
-![Automatic update](img/operaciones/upgrade-edyes-devops.jpg)
-
-> **Figure 4.** _Automatic dashboard update._
+![_Automatic dashboard update._](img/operaciones/upgrade-edyes-devops.jpg)
 
 **Overall Uptime (last 24h · 7 days · 30 days · 90 days)**  
 The panel includes consolidated metrics of the global availability of the ecosystem:
@@ -2184,9 +2160,7 @@ The panel includes consolidated metrics of the global availability of the ecosys
 
 This block allows evaluation of the general stability of the platform over time and detection of improvement or degradation trends.
 
-![Overall Uptime](img/operaciones/overall-uptime-edyes-devops.jpg)
-
-> **Figure 5.** _Overall Uptime._
+![_Overall Uptime._](img/operaciones/overall-uptime-edyes-devops.jpg)
 
 **Incident and update log (Status Updates)**  
 The panel incorporates an updates area that shows reported incidents, scheduled maintenance, or historical problems.
@@ -2194,9 +2168,7 @@ The panel incorporates an updates area that shows reported incidents, scheduled 
 This indicates that no relevant incidents have occurred in the last month.  
 The “Status update history” link provides access to the full history of recorded events.
 
-![Incident and update log](img/operaciones/status-update-edyes-devops.jpg)
-
-> **Figure 6.** _Incident and update log._
+![_Incident and update log._](img/operaciones/status-update-edyes-devops.jpg)
 
 **Purpose within the ecosystem**  
 The service fulfills key functions:
@@ -2217,9 +2189,7 @@ This system complements external monitoring (https://status.edye.com) by providi
 
 The main screen of the Edye Monitor presents a real-time summary of the status of the ecosystem's services and servers.
 
-![System Status Overview](img/operaciones/dashboard-edyes-devops.jpg)
-
-> **Figure 6.** _System overview (Main dashboard)._ 
+![_System overview (Main dashboard)._](img/operaciones/dashboard-edyes-devops.jpg)
 
 This panel displays:
 
@@ -2276,7 +2246,7 @@ The panel includes integrated views with Loki, showing:
 
 ![Centralized Logs and Error Detection](img/operaciones/logs-edyes-devops.jpg)
 
-> **Figure X.** _Centralized logs and system errors (Loki)._ 
+> **Figure X.** _Centralized logs and system errors (Loki)_ 
 
 - Nginx logs (Play/Cloud)
 - Apache logs (Laravel services)
@@ -2977,8 +2947,7 @@ The standard ingestion flow consists of the following steps:
 
 ### 4.2. Flow Diagram
 
-![Mermaid diagram 9](mermaid/diagram-9-05f414ab.png)
-> **Figure 1.** Flow diagram **
+![_Flow diagram_](mermaid/diagram-9-05f414ab.png)
 
 ---
 
@@ -3263,7 +3232,7 @@ The standard delivery flow via API is composed of the following steps:
 
 ### Flow Diagram
 
-![Mermaid diagram 10](mermaid/diagram-10-c3b07a36.png)
+![_Flow Diagram_](mermaid/diagram-10-c3b07a36.png)
 
 ---
 
@@ -3504,8 +3473,7 @@ The standard Billing flow is composed of the following steps:
 
 Below is a high-level diagram illustrating this end-to-end flow. The diagram shows the interaction between **EDYE Billing** (as orchestrator), the payment gateway (**Pagoralia** in the example), the **client**, and the external platform **InPlayer**. The geolocated portal is created and integrated with the gateway; the client accesses their portal and offers various subscriptions, the user enters the paywall and registers, and finally EDYE reconciles earnings with the partner. If a transaction failure occurs, an error screen is shown; in case of success, the user is registered in InPlayer and the renewal and reporting flow continues.
 
-![Mermaid diagram 11](mermaid/diagram-11-b25ca4c1.png)
-> **Figure 1.** General Billing Flow
+![_General Billing Flow_](mermaid/diagram-11-b25ca4c1.png)
 
 ## 6. Mandatory Prerequisites
 
@@ -3653,9 +3621,7 @@ A general diagram could show these components connected: the APK communicates wi
 6. **Backend integration:** the APK invokes EDYE services via HTTPS and tokens.
 7. **Monitoring and support:** the partner monitors operation and coordinates with EDYE in case of incidents.
 
-![Mermaid diagram 12](mermaid/diagram-12-cf4feec2.png)
-
-> **Figure 1.** Flow diagram \*\*
+![_Flow diagram_](mermaid/diagram-12-cf4feec2.png)
 
 ---
 
@@ -3830,9 +3796,7 @@ The integration is based on two communication vectors:
 
 The following figure illustrates the general architecture of the API + Notifier model. The diagram is conceptual and shows the essential elements without specific implementation details:
 
-![Ciclo DevOps](img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
-
-> **Figure 1.** Logical architecture of the integration
+![_Logical architecture of the integration_](img/integraciones/api_notifier_billing/int_api_noti_billing_flujo.png)
 
 ## 4. Main Components
 
@@ -3991,8 +3955,7 @@ operational flow that involves the Content, Design, and DevOps teams.
 
 This flow describes the human tasks before and after the delivery generation.
 
-![Partner operational flow](img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](img/integraciones/ingesta/claro-video/claro-video-integracion-ingesta.jpg)
 
 ---
 
@@ -4198,10 +4161,7 @@ metadata, and artwork, operated primarily via Aspera.
 
 ## 4. Flujo de Ingesta – Dish México
 
-![Mermaid diagram 13](mermaid/diagram-13-bf410d28.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-13-bf410d28.png)
 
 This flow describes the complete operational process from the receipt of
 content by the Content Operations team to the final delivery of the
@@ -4502,9 +4462,8 @@ Delivery is preferably performed via the **Claro Brazil ingestion API**, using a
 
 The process concludes when Claro Brazil returns the **`completed`** status, at which point Operations validate the delivery and perform the **operational close of the ingestion**.
 
-![Mermaid diagram 14](mermaid/diagram-14-6902bbbf.png)
+![_Partner operational flow diagram_](mermaid/diagram-14-6902bbbf.png)
 
-> **Figure 1.** Partner operational flow diagram
 ---
 
 ## 1. Delivery Channel
@@ -4724,10 +4683,7 @@ This annex summarizes the specific parameters for Sky Brazil. API is the preferr
 The following flow describes the **end-to-end ingestion and delivery process for content to Sky Brazil**, starting from editorial and technical preparation in EDYE to the partner’s final validation.
 This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
-![Mermaid diagram 15](mermaid/diagram-15-1d5df93e.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-15-1d5df93e.png)
 
 ### 1.2. Flow description
 
@@ -4950,9 +4906,7 @@ The operational flow, general validations, and base responsibilities are governe
 
 The following flow describes the **end-to-end ingestion and content delivery process to Sky Brazil**, starting from the editorial and technical preparation in EDYE through the partner’s final validation. This flow is a **specific implementation of the generic ingestion model**, adapted to Sky’s technical and operational requirements.
 
-![Mermaid diagram 16](mermaid/diagram-16-b4cd7f3a.png)
-
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-16-b4cd7f3a.png)
 
 # Ingestion Flow – Watch Brazil
 
@@ -5184,9 +5138,7 @@ The flow is designed to be reusable and controlled, incorporating early validati
 
 This way, Operations, Design, and DevOps work in coordination to ensure stable ingestion, traceability, and status visibility at every stage.
 
-![Mermaid diagram 17](mermaid/diagram-17-c4ebae00.png)
-
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-17-c4ebae00.png)
 
 ## Step-by-step description of the VTR ingestion flow
 
@@ -5432,10 +5384,7 @@ The flow includes **ROKU API ingestion as the main channel**, using a `multipart
 
 Throughout the process, quality controls are integrated on **video, metadata, and images**, with clear correction and retry cycles in case of errors, ensuring traceability, operational consistency, and alignment with the partner’s technical specifications. This diagram serves as a single, reusable reference for operations, design, and DevOps during the execution and support of the integration with ROKU.
 
-![Mermaid diagram 18](mermaid/diagram-18-07463467.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-18-07463467.png)
 
 ## 1. Delivery channel
 
@@ -5614,9 +5563,7 @@ The goal of the flow is to ensure that each audiovisual asset meets the technica
 
 This flow relies on an asynchronous pipeline, where the initial ingestion, processing, and final validation are decoupled, allowing volume scaling and reduced manual intervention.
 
-![Mermaid diagram 19](mermaid/diagram-19-af3e4ba4.png)
-
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-19-af3e4ba4.png)
 
 ## Step-by-step sequence explanation
 
@@ -5816,10 +5763,7 @@ The flow is based on the generic EDYE ingestion model, using the Megacable Inges
 
 This diagram clearly shows who is involved at each stage, which validations are executed, and how errors and retries are handled, ensuring a consistent and reusable integration for this partner.
 
-![Mermaid diagram 20](mermaid/diagram-20-1c0c4adb.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-20-1c0c4adb.png)
 
 ## Flow sequence description
 
@@ -5865,8 +5809,8 @@ This diagram clearly shows who is involved at each stage, which validations are 
 
 ### 1.3 Credentials / paths (to be completed by partner)
 
-- **Production** - API Base URL: ************\_\_************ - Token (vault/secret ref): ************\_\_************ - (If FTP applies) Host: ****\_\_**** Port: \_**\_ User: **\_\_**** Path: **\_\_\_\_**
-- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: ************\_\_************
+- **Production** - API Base URL: \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\*** - Token (vault/secret ref): \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\*** - (If FTP applies) Host: \***\*\_\_\*\*** Port: \_**\_ User: **\_\_\***\* Path: **\_\_\_\_\*\*
+- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: \***\*\*\*\*\*\*\***\_\_\***\*\*\*\*\*\*\***
 
 ---
 
@@ -5912,11 +5856,11 @@ This diagram clearly shows who is involved at each stage, which validations are 
 
 ### 3.4 Optional fields (if the partner requires them)
 
-- idioma: ****\_\_****
-- sinopsis: ****\_\_****
-- género/tema: ****\_\_****
-- temporada/episodio: ****\_\_****
-- tags/acrónimo: ****\_\_****
+- idioma: \***\*\_\_\*\***
+- sinopsis: \***\*\_\_\*\***
+- género/tema: \***\*\_\_\*\***
+- temporada/episodio: \***\*\_\_\*\***
+- tags/acrónimo: \***\*\_\_\*\***
 
 ---
 
@@ -5979,7 +5923,7 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 
 - Thumbnails generated (if applicable) and available for delivery/consultation (according to configuration)
 - Logs without validation errors for the tracking id (see section 7)
-- Delivery report/record (Ticket/Monday/internal log): ********\_\_********
+- Delivery report/record (Ticket/Monday/internal log): **\*\*\*\***\_\_**\*\*\*\***
 
 ---
 
@@ -6009,7 +5953,7 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 - Resend completely when:
   - The video file changes or mandatory metadata changes (id_cliente/titulo/archivo_media).
 - Rollback (operational):
-  - If a “completed” content must be removed, define action per catalog (unpublishing) and evidence: ********\_\_********
+  - If a “completed” content must be removed, define action per catalog (unpublishing) and evidence: **\*\*\*\***\_\_**\*\*\*\***
 
 ---
 
@@ -6017,18 +5961,18 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 
 ### Partner (Megacable)
 
-- Contacto técnico: ********\_\_********
-- Email: ********\_\_********
-- Tel: ********\_\_********
-- Ventana de soporte: ********\_\_******** (TZ)
+- Contacto técnico: **\*\*\*\***\_\_**\*\*\*\***
+- Email: **\*\*\*\***\_\_**\*\*\*\***
+- Tel: **\*\*\*\***\_\_**\*\*\*\***
+- Ventana de soporte: **\*\*\*\***\_\_**\*\*\*\*** (TZ)
 
 ### EDYE / HITN
 
-- Operaciones (L1): ********\_\_********
-- DevOps (L2): ********\_\_********
-- Producto/Contenido (L3 si aplica): ********\_\_********
-- Severidades y SLA (si existen): ********\_\_********
-- Canal de escalamiento (Slack/Email/Ticket): ********\_\_********
+- Operaciones (L1): **\*\*\*\***\_\_**\*\*\*\***
+- DevOps (L2): **\*\*\*\***\_\_**\*\*\*\***
+- Producto/Contenido (L3 si aplica): **\*\*\*\***\_\_**\*\*\*\***
+- Severidades y SLA (si existen): **\*\*\*\***\_\_**\*\*\*\***
+- Canal de escalamiento (Slack/Email/Ticket): **\*\*\*\***\_\_**\*\*\*\***
 
 ***
 
@@ -6141,7 +6085,7 @@ The delivery endpoint is configured as a public or authenticated URL. The partne
 
 The delivery architecture is composed of the following components:
 
-![Mermaid diagram 21](mermaid/diagram-21-63c891e0.png)
+![_General architecture flow_](mermaid/diagram-21-63c891e0.png)
 
 **Origin:** EDYE uses JW Player as the media source. Video uploads and their variants are stored and managed in JW Player.
 
@@ -6244,7 +6188,7 @@ Authentication via token in the URL or header, or basic authentication, is used 
 
 ### 5.4 Operational flow of delivery via API
 
-![Mermaid diagram 22](mermaid/diagram-22-e4d88ba7.png)
+![_Operational flow of delivery via API flow_](mermaid/diagram-22-e4d88ba7.png)
 
 ### 5.5 Flow description (step by step)
 
@@ -6400,10 +6344,7 @@ The following description summarizes the architecture for Telecable:
 6. **Backend connection:** the APK calls EDYE services using tokens and retrieves dynamic configuration from APO.
 7. **Monitoring and support:** Telecable oversees operations, logs events, and coordinates with EDYE to resolve issues.
 
-![Mermaid diagram 23](mermaid/diagram-23-e09b1632.png)
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+![_Partner operational flow diagram_](mermaid/diagram-23-e09b1632.png)
 
 ## 6. Componentes involucrados
 
@@ -6583,9 +6524,9 @@ The integration model maintains the same general structure (EDYE application, ED
 
 The logical diagram is the same as in the generic document, with the difference that the “DCB Operator” component corresponds to **Telefónica (Movistar)** and is invoked following the CAMARA API specifications.
 
-## 4. Flujos específicos de integración
+## 4. Specific integration flows
 
-![Mermaid diagram 24](mermaid/diagram-24-0d351a59.png)
+![_Specific integration flows_](mermaid/diagram-24-0d351a59.png)
 
 ### 4.1. Subscription activation with Movistar
 
@@ -6642,12 +6583,12 @@ Telefónica uses a Notification Endpoint in the CAMARA API to send notifications
 
 ## 9. Tabla de eventos y acciones (Movistar)
 
-| eventType            | Meaning in Movistar                          | Expected action in EDYE                 |
-| -------------------- | -------------------------------------------- | --------------------------------------- |
-| **SUBSCRIPTION_STARTED** | Subscription activation; successful initial charge | Activate plan and enable access.        |
-| **RENEWAL**              | Periodic plan renewal                        | Update validity, keep access.           |
-| **SUSPENSION**           | Renewal charge failed; temporary suspension | Mark the subscription as suspended.     |
-| **CANCELLATION**         | Final cancellation of the subscription      | Revoke access and close the subscription. |
+| eventType                | Meaning in Movistar                                | Expected action in EDYE                   |
+| ------------------------ | -------------------------------------------------- | ----------------------------------------- |
+| **SUBSCRIPTION_STARTED** | Subscription activation; successful initial charge | Activate plan and enable access.          |
+| **RENEWAL**              | Periodic plan renewal                              | Update validity, keep access.             |
+| **SUSPENSION**           | Renewal charge failed; temporary suspension        | Mark the subscription as suspended.       |
+| **CANCELLATION**         | Final cancellation of the subscription             | Revoke access and close the subscription. |
 
 ***
 
@@ -6908,9 +6849,7 @@ The document provides an operational view of the tools used, the types of data m
 
 ## 2. Infrastructure Management and Monitoring
 
-![Security and Monitoring](img/seguridad/infraYseguridad.jpg)
-
-> **Figure 1.** _General flow of the Security and Monitoring process_
+![_General flow of the Security and Monitoring process_](img/seguridad/infraYseguridad.jpg)
 
 # Description of the monitored infrastructure
 
@@ -6933,9 +6872,7 @@ The information captured by Landscape forms the basis for maintenance tasks, pat
 
 ## 3. Security and Compliance
 
-![Security and Compliance](img/seguridad/seguridadCompliance.jpg)
-
-> **Figure 2.** _General flow of the Security and Compliance process_
+![_General flow of the Security and Compliance process_](img/seguridad/seguridadCompliance.jpg)
 
 # General approach
 
@@ -6972,9 +6909,7 @@ The Security and Compliance diagram places the Qualys platform at the core of th
 
 ## 4. Monitoring and Alerting
 
-![Monitoring and Alerting](img/seguridad/monitoringAlerting.jpg)
-
-> **Figure 3.** _General flow of the Monitoring and Alerting process_
+![_General flow of the Monitoring and Alerting process_](img/seguridad/monitoringAlerting.jpg)
 
 # Monitoring strategy
 
@@ -7008,9 +6943,7 @@ Las alertas se configuran en Grafana y se alimentan de Prometheus y Loki. Los um
 
 ## 5. Code Security
 
-![Code Security](img/seguridad/codeSecurity.jpg)
-
-> **Figure 4.** _General flow of the Code Security process_
+![_General flow of the Code Security process_](img/seguridad/codeSecurity.jpg)
 
 # Security integrated into the development cycle (DevSecOps)
 
@@ -7202,9 +7135,7 @@ Business hours are considered to be the work hours established internally (not d
 
 ## 10. Technical Support Care Flow
 
-![Internal Client Support](img/soporteClienteInterno.jpg)
-
-> **Figure 1.** _General flow of Internal Client Support_
+![_General flow of Internal Client Support_](img/soporteClienteInterno.jpg)
 
 ### 10.1. Step-by-Step Flow Description
 
@@ -7433,9 +7364,7 @@ The documentation provides an operational escalation matrix with request types, 
 
 ## 9. Support and Resolution Flow
 
-![Support and resolution flow](img/soporteClienteExterno.jpg)
-
-> **Figure 1.** _General flow of the support and resolution process_
+![_General flow of the support and resolution process_](img/soporteClienteExterno.jpg)
 
 The ticket handling process follows a sequence of steps defined in the procedure, with corresponding records in Zendesk and Monday:
 

@@ -86,7 +86,7 @@ All activities are managed through:
 
 ![DevOps planning flow](/img/planificacion-devops-diagrama.jpg)
 
-> **Figure 1.** Diagram of the DevOps planning process flow.
+> **Figure 1.** _Diagram of the DevOps planning process flow_
 
 ---
 

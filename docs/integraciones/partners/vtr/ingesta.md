@@ -16,8 +16,6 @@ El flujo está diseñado para ser reutilizable y controlado, incorporando valida
 
 De esta manera, Operaciones, Diseño y DevOps trabajan de forma coordinada para garantizar una ingesta estable, trazable y con visibilidad de estado en cada etapa.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -57,7 +55,6 @@ sequenceDiagram
     end
 ```
 
-</div>
 > **Figura 1.** Diagrama del flujo operativo del partner
 
 ## Descripción paso a paso del flujo de ingesta VTR

@@ -16,8 +16,6 @@ The flow is designed to be reusable and controlled, incorporating early validati
 
 This way, Operations, Design, and DevOps work in coordination to ensure stable ingestion, traceability, and status visibility at every stage.
 
-<div class="mermaid-zoom">
-
 ```mermaid
 sequenceDiagram
     actor CO as "Content Operations"
@@ -57,7 +55,6 @@ sequenceDiagram
     end
 ```
 
-</div>
 > **Figure 1.** _Partner operational flow diagram_
 
 ## Step-by-step description of the VTR ingestion flow
