@@ -66,7 +66,7 @@ flowchart TD
 
     Start --> Prep --> Install --> ConfigAPO --> SubscribeNotifier --> Validate --> Production
 ```
-> **Figura 1.** Diagrama del flujo **
+> **Figura 1.** _Flujo general de la integración_
 
 ## 6. Componentes involucrados
 

@@ -61,9 +61,7 @@ sequenceDiagram
         DD->>CV: Entrega assets vía SFTP / Aspera
     end
 ```
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 This flow describes the complete operational process from the receipt of
 content by the Content Operations team to the final delivery of the

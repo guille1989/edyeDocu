@@ -142,6 +142,7 @@ flowchart TD
   R2 --> C
   H -- No --> I["Reporting y cierre operativo"]
 ```
+> **Figura 1.** _Diagrama del flujo_
 
 ---
 

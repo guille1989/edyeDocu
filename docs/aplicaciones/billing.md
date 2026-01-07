@@ -2,8 +2,9 @@
 id: app-billing
 title: 🈸 Servicio Billing
 ---
+
 **Versión:** 1.0  
-**Fecha:** 01/12/2025  
+**Fecha:** 01/12/2025
 
 ---
 
@@ -25,12 +26,12 @@ Las funciones principales del servicio son:
 
 El servicio Billing está compuesto por los siguientes elementos:
 
-| Componente                | Descripción |
-|---------------------------|-------------|
-| Interfaz de pago          | API que expone las operaciones de suscripción, cancelación y renovación. La interfaz se basa en Node.js/Express para orquestar los flujos y comunicarse con servicios externos. |
-| Proveedor de suscripciones| La plataforma utiliza un servicio de terceros especializado en paywall y administración de suscripciones para mantener la información de clientes. Este proveedor ofrece herramientas para crear planes, actualizar precios y procesar cambios. |
-| Base de datos interna     | Se almacena información no sensible como identificadores de clientes, historial de cambios y correlaciones con usuarios de EDYE. Para ello se emplea MySQL por su fiabilidad y soporte a ACID. |
-| Servicios auxiliares      | Incluyen un servicio de notificaciones para enviar correos electrónicos sobre renovaciones y vencimientos, y un servicio de conciliación para comparar registros internos con los reportes del proveedor de pagos. |
+| Componente                 | Descripción                                                                                                                                                                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Interfaz de pago           | API que expone las operaciones de suscripción, cancelación y renovación. La interfaz se basa en Node.js/Express para orquestar los flujos y comunicarse con servicios externos.                                                                 |
+| Proveedor de suscripciones | La plataforma utiliza un servicio de terceros especializado en paywall y administración de suscripciones para mantener la información de clientes. Este proveedor ofrece herramientas para crear planes, actualizar precios y procesar cambios. |
+| Base de datos interna      | Se almacena información no sensible como identificadores de clientes, historial de cambios y correlaciones con usuarios de EDYE. Para ello se emplea MySQL por su fiabilidad y soporte a ACID.                                                  |
+| Servicios auxiliares       | Incluyen un servicio de notificaciones para enviar correos electrónicos sobre renovaciones y vencimientos, y un servicio de conciliación para comparar registros internos con los reportes del proveedor de pagos.                              |
 
 ### 3.1. Diagrama de arquitectura
 
@@ -43,6 +44,8 @@ flowchart TD
     Billing --> API[Servicio API]
     Billing --> Aux["Servicios auxiliares<br/>(notificaciones, conciliación)"]
 ```
+
+> **Figura 1.** Diagrama de arquitectura
 
 ## 4. Flujo general
 

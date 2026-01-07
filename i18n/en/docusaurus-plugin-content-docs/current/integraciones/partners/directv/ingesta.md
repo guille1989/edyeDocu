@@ -55,7 +55,7 @@ sequenceDiagram
 ```
 
 </div>
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## Step-by-step sequence explanation
 

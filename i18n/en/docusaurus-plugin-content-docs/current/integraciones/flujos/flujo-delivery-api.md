@@ -117,6 +117,7 @@ flowchart TD
 	R2 --> C
 	H -- No --> I["Reporting and operational closure"]
 ```
+> **Figure 1.** _Flow Diagram_
 
 ---
 

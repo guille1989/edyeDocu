@@ -26,13 +26,13 @@ Las responsabilidades principales del servicio son:
 
 El servicio Cloud se compone de varias capas:
 
-| Componente                 | Descripción                                                                                                                                                                                                                     |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Almacenamiento de objetos  | Sistema de almacenamiento distribuido que permite guardar objetos de cualquier tamaño. Permite la replicación en múltiples zonas para alta disponibilidad y durabilidad.                                                        |
-| Transcodificador           | Motor que ingiere los archivos fuente y genera versiones adaptadas para streaming (HLS/DASH). También produce miniaturas e imágenes redimensionadas utilizadas por el servicio Admin y Play. |
-| CDN                        | Red global que almacena copias en caché de los activos para reducir la latencia en la entrega a usuarios finales. Configura políticas de cache, invalidación y protección contra descargas masivas.                             |
-| Servicio de firma          | Componente que genera firmas temporales y tokens de acceso para que el contenido solo sea accesible con permisos válidos.                                                                                                       |
-| Base de datos de metadatos | Conserva información asociada a cada archivo: ubicación física, versiones, estatus de transcodificación y relaciones con títulos del catálogo.                                                                                  |
+| Componente                 | Descripción                                                                                                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Almacenamiento de objetos  | Sistema de almacenamiento distribuido que permite guardar objetos de cualquier tamaño. Permite la replicación en múltiples zonas para alta disponibilidad y durabilidad.                            |
+| Transcodificador           | Motor que ingiere los archivos fuente y genera versiones adaptadas para streaming (HLS/DASH). También produce miniaturas e imágenes redimensionadas utilizadas por el servicio Admin y Play.        |
+| CDN                        | Red global que almacena copias en caché de los activos para reducir la latencia en la entrega a usuarios finales. Configura políticas de cache, invalidación y protección contra descargas masivas. |
+| Servicio de firma          | Componente que genera firmas temporales y tokens de acceso para que el contenido solo sea accesible con permisos válidos.                                                                           |
+| Base de datos de metadatos | Conserva información asociada a cada archivo: ubicación física, versiones, estatus de transcodificación y relaciones con títulos del catálogo.                                                      |
 
 ### Diagrama de arquitectura
 
@@ -46,6 +46,8 @@ flowchart LR
 	Signer --> Storage
 	Play -- Descargar contenido --> CDN
 ```
+
+> **Figura 1.** Diagrama de arquitectura
 
 ## Modelo de despliegue
 

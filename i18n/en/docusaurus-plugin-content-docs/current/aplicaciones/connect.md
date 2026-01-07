@@ -51,6 +51,7 @@ sequenceDiagram
 	Connect-->>App: Return internal token
 	App-->>User: Access granted
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## Deployment Model
 

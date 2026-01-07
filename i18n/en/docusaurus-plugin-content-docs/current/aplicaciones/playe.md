@@ -52,6 +52,7 @@ sequenceDiagram
 	API-->>PlayApp: URL for playback
 	PlayApp->>User: Play content
 ```
+> **Figure 1.** _Flow Diagram_
 
 ## Deployment Model
 

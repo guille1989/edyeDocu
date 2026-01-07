@@ -53,6 +53,7 @@ flowchart LR
 		B --> C
 		C --REST JSON--> D
 ```
+> **Figura 1.** _Diagrama Arquitectura general_
 
 **Origen:** EDYE utiliza JW Player como origen de media. Las cargas de vídeo y sus variantes se almacenan y gestionan en JW Player.
 
@@ -168,6 +169,7 @@ sequenceDiagram
 		Shelf->Shelf: Validación y procesamiento local
 		Shelf->>Webhook: Notificación interna de disponibilidad
 ```
+> **Figura 2.** _Flujo operativo de delivery vía API_
 
 ### 5.5 Descripción del flujo (paso a paso)
 

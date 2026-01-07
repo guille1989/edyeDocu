@@ -54,8 +54,7 @@ sequenceDiagram
 ```
 
 </div>
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## Flow sequence description
 
@@ -101,8 +100,8 @@ sequenceDiagram
 
 ### 1.3 Credentials / paths (to be completed by partner)
 
-- **Production** - API Base URL: ************\_\_************ - Token (vault/secret ref): ************\_\_************ - (If FTP applies) Host: ****\_\_**** Port: \_**\_ User: **\_\_**** Path: **\_\_\_\_**
-- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: ************\_\_************
+- **Production** - API Base URL: ****\*\*\*\*****\_\_****\*\*\*\***** - Token (vault/secret ref): ****\*\*\*\*****\_\_****\*\*\*\***** - (If FTP applies) Host: \***\*\_\_\*\*** Port: \_**\_ User: **\_\_\***\* Path: **\_\_\_\_\*\*
+- **QA / Sandbox** - Test token (doc): `abc123` - QA Base URL: ****\*\*\*\*****\_\_****\*\*\*\*****
 
 ---
 
@@ -148,11 +147,11 @@ sequenceDiagram
 
 ### 3.4 Optional fields (if the partner requires them)
 
-- idioma: ****\_\_****
-- sinopsis: ****\_\_****
-- género/tema: ****\_\_****
-- temporada/episodio: ****\_\_****
-- tags/acrónimo: ****\_\_****
+- idioma: \***\*\_\_\*\***
+- sinopsis: \***\*\_\_\*\***
+- género/tema: \***\*\_\_\*\***
+- temporada/episodio: \***\*\_\_\*\***
+- tags/acrónimo: \***\*\_\_\*\***
 
 ---
 
@@ -215,7 +214,7 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 
 - Thumbnails generated (if applicable) and available for delivery/consultation (according to configuration)
 - Logs without validation errors for the tracking id (see section 7)
-- Delivery report/record (Ticket/Monday/internal log): ********\_\_********
+- Delivery report/record (Ticket/Monday/internal log): **\*\*\*\***\_\_**\*\*\*\***
 
 ---
 
@@ -245,7 +244,7 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 - Resend completely when:
   - The video file changes or mandatory metadata changes (id_cliente/titulo/archivo_media).
 - Rollback (operational):
-  - If a “completed” content must be removed, define action per catalog (unpublishing) and evidence: ********\_\_********
+  - If a “completed” content must be removed, define action per catalog (unpublishing) and evidence: **\*\*\*\***\_\_**\*\*\*\***
 
 ---
 
@@ -253,15 +252,15 @@ If Megacable requires “source” artwork or specific sizes, complete this sect
 
 ### Partner (Megacable)
 
-- Contacto técnico: ********\_\_********
-- Email: ********\_\_********
-- Tel: ********\_\_********
-- Ventana de soporte: ********\_\_******** (TZ)
+- Contacto técnico: **\*\*\*\***\_\_**\*\*\*\***
+- Email: **\*\*\*\***\_\_**\*\*\*\***
+- Tel: **\*\*\*\***\_\_**\*\*\*\***
+- Ventana de soporte: **\*\*\*\***\_\_**\*\*\*\*** (TZ)
 
 ### EDYE / HITN
 
-- Operaciones (L1): ********\_\_********
-- DevOps (L2): ********\_\_********
-- Producto/Contenido (L3 si aplica): ********\_\_********
-- Severidades y SLA (si existen): ********\_\_********
-- Canal de escalamiento (Slack/Email/Ticket): ********\_\_********
+- Operaciones (L1): **\*\*\*\***\_\_**\*\*\*\***
+- DevOps (L2): **\*\*\*\***\_\_**\*\*\*\***
+- Producto/Contenido (L3 si aplica): **\*\*\*\***\_\_**\*\*\*\***
+- Severidades y SLA (si existen): **\*\*\*\***\_\_**\*\*\*\***
+- Canal de escalamiento (Slack/Email/Ticket): **\*\*\*\***\_\_**\*\*\*\***

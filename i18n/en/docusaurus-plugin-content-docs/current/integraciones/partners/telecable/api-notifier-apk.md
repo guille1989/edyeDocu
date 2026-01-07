@@ -75,9 +75,7 @@ sequenceDiagram
         Telecable->>Usuario: Notifica error de autenticación
     end
 ```
-
-> **Figura 1.** Diagrama del flujo operativo del partner
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 
 ## 6. Componentes involucrados
 

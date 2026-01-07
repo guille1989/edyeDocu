@@ -66,8 +66,7 @@ flowchart TD
 
     Start --> Prep --> Install --> ConfigAPO --> SubscribeNotifier --> Validate --> Production
 ```
-
-> **Figure 1.** Flow diagram \*\*
+> **Figure 1.** _Flow diagram_
 
 ---
 

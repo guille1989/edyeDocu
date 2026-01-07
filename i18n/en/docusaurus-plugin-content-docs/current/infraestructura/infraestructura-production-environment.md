@@ -120,7 +120,7 @@ sequenceDiagram
   CI->>Prod: Controlled deploy to production (manual approval)
   Prod->>Monitoreo: Start observability and alerts
 ```
-
+> **Figure 1.** _Deployment Architecture (CI/CD) Diagram_
 
 Commit and version control: Developers update code in the repository. Feature branches and merge requests are used for peer review.
 
@@ -216,7 +216,7 @@ flowchart TD
   H --> I[Documentation and improvements]
   I --> J[Close ticket in tracking system]
 ```
-
+> **Figure 2.** _Incident Management and Support Diagram_
 
 **Detection**: Monitoring alerts or user reports initiate the incident process.
 

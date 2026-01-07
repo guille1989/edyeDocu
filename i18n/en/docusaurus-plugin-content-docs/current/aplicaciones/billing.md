@@ -44,6 +44,7 @@ flowchart TD
     Billing --> API[API Service]
     Billing --> Aux["Auxiliary services<br/>(notifications, reconciliation)"]
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## 4. General Flow
 

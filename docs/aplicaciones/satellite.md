@@ -42,6 +42,8 @@ flowchart TD
 	Satellite --> DB
 ```
 
+> **Figura 1.** Diagrama de arquitectura
+
 ## 4. Modelo de despliegue
 
 El servicio se construye y se distribuye mediante procesos de CI/CD:

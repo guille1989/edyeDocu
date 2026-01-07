@@ -2,8 +2,9 @@
 id: app-connect
 title: 🈸 Servicio Connect (Conecta)
 ---
+
 **Versión:** 1.0  
-**Fecha:** 01/12/2025  
+**Fecha:** 01/12/2025
 
 ---
 
@@ -24,13 +25,13 @@ Las funciones clave del servicio son:
 
 El servicio se implementa como un microservicio orientado a integraciones externas. Los componentes incluyen:
 
-| Componente              | Descripción |
-|-------------------------|-------------|
-| Gateway de autenticación| Servicio API que expone endpoints para iniciar y completar el flujo de autenticación. Encapsula la lógica específica de cada distribuidor (redirecciones, parámetros y manejo de respuestas). |
-| Módulos de proveedor    | Cada proveedor de televisión se gestiona mediante un módulo que implementa el protocolo de autenticación acordado (OAuth 2.0, SAML u otros). Los módulos encapsulan los endpoints, scopes y parámetros específicos. |
-| Base de datos de sesión | Almacena tokens temporales y estados intermedios. Se utiliza una base de datos rápida (p. ej., Redis o MySQL) para realizar la correlación entre la solicitud inicial y la respuesta del proveedor. |
-| Integración con API     | Una vez autenticado el usuario, el servicio comunica al API la creación o actualización del perfil, incluyendo los permisos obtenidos. |
-| Frontend de TV          | Algunos flujos se implementan como páginas web adaptadas a dispositivos de TV, desarrolladas en Laravel/Next JS para compatibilidad con navegadores embebidos. |
+| Componente               | Descripción                                                                                                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gateway de autenticación | Servicio API que expone endpoints para iniciar y completar el flujo de autenticación. Encapsula la lógica específica de cada distribuidor (redirecciones, parámetros y manejo de respuestas).                       |
+| Módulos de proveedor     | Cada proveedor de televisión se gestiona mediante un módulo que implementa el protocolo de autenticación acordado (OAuth 2.0, SAML u otros). Los módulos encapsulan los endpoints, scopes y parámetros específicos. |
+| Base de datos de sesión  | Almacena tokens temporales y estados intermedios. Se utiliza una base de datos rápida (p. ej., Redis o MySQL) para realizar la correlación entre la solicitud inicial y la respuesta del proveedor.                 |
+| Integración con API      | Una vez autenticado el usuario, el servicio comunica al API la creación o actualización del perfil, incluyendo los permisos obtenidos.                                                                              |
+| Frontend de TV           | Algunos flujos se implementan como páginas web adaptadas a dispositivos de TV, desarrolladas en Laravel/Next JS para compatibilidad con navegadores embebidos.                                                      |
 
 ### Diagrama de secuencia
 
@@ -51,6 +52,8 @@ sequenceDiagram
 	Connect-->>App: Devuelve token interno
 	App-->>User: Acceso concedido
 ```
+
+> **Figura 1.** Diagrama de arquitectura
 
 ## Modelo de despliegue
 
@@ -100,5 +103,3 @@ El servicio Connect interactúa con:
 - **Servicio Play:** envía de vuelta el token interno a la aplicación, permitiendo iniciar la sesión en la interfaz de usuario.
 
 Las comunicaciones usan contratos de API internos y se supervisan para garantizar el cumplimiento de los acuerdos con los distribuidores.
-
-

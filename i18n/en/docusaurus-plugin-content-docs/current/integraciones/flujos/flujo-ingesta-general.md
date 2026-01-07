@@ -134,6 +134,7 @@ flowchart TD
    R2 --> D
    F -- OK --> G[Reporting and Closure]
 ```
+> **Figure 1.** _Flow Diagram_
 
 ---
 

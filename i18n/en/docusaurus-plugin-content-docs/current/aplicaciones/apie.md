@@ -54,6 +54,7 @@ flowchart TD
     API -- "Queries" --> Cache
     API -- "Retrieve assets" --> Storage
 ```
+> **Figure 1.** _Architecture Diagram_
 
 This diagram summarizes the main interaction between clients, databases, and supporting services.
 

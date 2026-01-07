@@ -117,7 +117,7 @@ flowchart TD
     D -->|Transacción Falla| E --> H
     D -->|Transacción Exitosa| G --> H
 ```
-> **Figure 1.** General Billing Flow
+> **Figure 1.** _General Billing Flow_
 
 ## 6. Mandatory Prerequisites
 

@@ -202,7 +202,7 @@ flowchart TD
   R2 --> D
   F -- OK --> G[Reporting y Cierre]
 ```
-> **Figure 1.** Flow diagram **
+> **Figure 1.** _Flow diagram_
 
 ---
 

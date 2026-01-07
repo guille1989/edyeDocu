@@ -217,7 +217,7 @@ flowchart TD
   H --> I[Documentación y mejoras]
   I --> J[Cierre del ticket en sistema de seguimiento]
 ```
-
+> **Figura 4.** Diagrama de Gestión de incidencias y soporte
 
 **Detección**: Las alertas de monitoreo o los reportes de usuarios inician el proceso de incidente.
 

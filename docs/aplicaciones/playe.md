@@ -54,6 +54,8 @@ sequenceDiagram
 	PlayApp->>User: Reproduce contenido
 ```
 
+> **Figura 1.** Diagrama de arquitectura
+
 ## Modelo de despliegue
 
 El servicio Play se despliega como una combinación de aplicaciones web y móviles:

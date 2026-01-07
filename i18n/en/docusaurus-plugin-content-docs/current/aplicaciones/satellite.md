@@ -41,6 +41,7 @@ flowchart TD
 	Client -- Query progress/favorites --> Satellite
 	Satellite --> DB
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## 4. Deployment Model
 

@@ -31,7 +31,7 @@ The integration model maintains the same general structure (EDYE application, ED
 
 The logical diagram is the same as in the generic document, with the difference that the “DCB Operator” component corresponds to **Telefónica (Movistar)** and is invoked following the CAMARA API specifications.
 
-## 4. Flujos específicos de integración
+## 4. Specific integration flows
 
 ```mermaid
 sequenceDiagram
@@ -58,6 +58,8 @@ sequenceDiagram
     Note over Usuario,Notifier: Las renovaciones, suspensiones y cancelaciones siguen el mismo patrón. Movistar realiza el cobro periódico y su Notifier envía eventos RENEWAL, SUSPENSION o CANCELLATION que EDYE procesa para actualizar el estado de la suscripción.
 
 ```
+
+> **Figure 1.** _Specific integration flows_
 
 ### 4.1. Subscription activation with Movistar
 
@@ -114,9 +116,9 @@ Telefónica uses a Notification Endpoint in the CAMARA API to send notifications
 
 ## 9. Tabla de eventos y acciones (Movistar)
 
-| eventType            | Meaning in Movistar                          | Expected action in EDYE                 |
-| -------------------- | -------------------------------------------- | --------------------------------------- |
-| **SUBSCRIPTION_STARTED** | Subscription activation; successful initial charge | Activate plan and enable access.        |
-| **RENEWAL**              | Periodic plan renewal                        | Update validity, keep access.           |
-| **SUSPENSION**           | Renewal charge failed; temporary suspension | Mark the subscription as suspended.     |
-| **CANCELLATION**         | Final cancellation of the subscription      | Revoke access and close the subscription. |
+| eventType                | Meaning in Movistar                                | Expected action in EDYE                   |
+| ------------------------ | -------------------------------------------------- | ----------------------------------------- |
+| **SUBSCRIPTION_STARTED** | Subscription activation; successful initial charge | Activate plan and enable access.          |
+| **RENEWAL**              | Periodic plan renewal                              | Update validity, keep access.             |
+| **SUSPENSION**           | Renewal charge failed; temporary suspension        | Mark the subscription as suspended.       |
+| **CANCELLATION**         | Final cancellation of the subscription             | Revoke access and close the subscription. |

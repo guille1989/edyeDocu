@@ -46,6 +46,7 @@ flowchart LR
 	Signer --> Storage
 	Play -- Download content --> CDN
 ```
+> **Figure 1.** _Architecture Diagram_
 
 ## Deployment Model
 

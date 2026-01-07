@@ -70,7 +70,7 @@ sequenceDiagram
 ```
 
 </div>
-> **Figure 1.** Partner operational flow diagram
+> **Figure 1.** _Partner operational flow diagram_
 ---
 
 ## 1. Delivery Channel

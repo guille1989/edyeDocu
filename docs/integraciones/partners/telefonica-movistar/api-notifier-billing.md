@@ -58,6 +58,7 @@ sequenceDiagram
     Note over Usuario,Notifier: Las renovaciones, suspensiones y cancelaciones siguen el mismo patrón. Movistar realiza el cobro periódico y su Notifier envía eventos RENEWAL, SUSPENSION o CANCELLATION que EDYE procesa para actualizar el estado de la suscripción.
 
 ```
+> **Figura 1.** _Diagrama de Flujos específicos de integración_
 
 ### 4.1. Activación de suscripción con Movistar
 
