@@ -68,11 +68,11 @@
     "description": "The label for category 'Anexos-Dish Mexico' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.🗄️ Edye-Infraestructura": {
-    "message": "🗄️ Edye-Infraestructura",
+    "message": "🗄️ Edye-Infrastructure",
     "description": "The label for category '🗄️ Edye-Infraestructura' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.🗂️ Edye-Aplicaciones": {
-    "message": "🗂️ Edye-Aplicaciones",
+    "message": "🗂️ Edye-Applications",
     "description": "The label for category '🗂️ Edye-Aplicaciones' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.🛠️ Edye-DevOps": {
@@ -144,11 +144,11 @@
     "description": "The label for category 'Anexos' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.🛡️ Edye-Seguridad y Monitoreo": {
-    "message": "🛡️ Edye-Seguridad y Monitoreo",
+    "message": "🛡️ Edye-Security and Monitoring",
     "description": "The label for category '🛡️ Edye-Seguridad y Monitoreo' in sidebar 'tutorialSidebar'"
   },
   "sidebar.tutorialSidebar.category.👷🏼‍♂️ Edye-Soporte y Técnico": {
-    "message": "👷🏼‍♂️ Edye-Soporte y Técnico",
+    "message": "👷🏼‍♂️ Edye-Support and Technical",
     "description": "The label for category '👷🏼‍♂️ Edye-Soporte y Técnico' in sidebar 'tutorialSidebar'"
   }
 }

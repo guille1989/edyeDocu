@@ -1,7 +1,7 @@
 ---
 id: intro
-title: "🏁 Edye-Documentación"
-sidebar_label: "🏁 Edye-Documentación"
+title: "🏁 Edye-Documentation"
+sidebar_label: "🏁 Edye-Documentation"
 ---
 **Version:** 1.0  
 **Date:** 12/01/2025  
